@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import FloatingCard from "@/components/FloatingCard";
 import DoctorBadge from "@/components/DoctorBadge";
-import AppointmentCard from "@/components/AppointmentCard";
 import LogoMarquee from "@/components/LogoMarquee";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -35,31 +34,32 @@ export default function Home() {
   const handleCardMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
-    
+
     // Calculate entry direction
-    const x = e.clientX - rect.left - (rect.width / 2);
-    const y = e.clientY - rect.top - (rect.height / 2);
-    
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
     const forceX = x < 0 ? 1 : -1;
     const forceY = y < 0 ? 1 : -1;
 
     gsap.killTweensOf(card);
-    
+
     // Perform swing away and spring back with transformOrigin at top center
-    gsap.timeline()
+    gsap
+      .timeline()
       .to(card, {
         rotate: forceX * 7,
         x: forceX * 10,
         y: forceY * 3,
         duration: 0.12,
-        ease: "power2.out"
+        ease: "power2.out",
       })
       .to(card, {
         rotate: 0,
         x: 0,
         y: 0,
         duration: 1.6,
-        ease: "elastic.out(1.1, 0.35)"
+        ease: "elastic.out(1.1, 0.35)",
       });
   };
 
@@ -156,7 +156,16 @@ export default function Home() {
       );
 
       // 7. Track active sections to update navbar active state & URL path
-      const sections = ["home", "problem", "service", "blueprint", "industries", "about", "partnership", "testimonial"];
+      const sections = [
+        "home",
+        "problem",
+        "service",
+        "blueprint",
+        "industries",
+        "about",
+        "partnership",
+        "testimonial",
+      ];
       sections.forEach((id) => {
         ScrollTrigger.create({
           trigger: `#${id}`,
@@ -181,8 +190,9 @@ export default function Home() {
 
       // 8. Testimonial Belts Horizontal Scroll Animations
       if (belt1Ref.current) {
-        gsap.fromTo(belt1Ref.current, 
-          { x: -160 }, 
+        gsap.fromTo(
+          belt1Ref.current,
+          { x: -160 },
           {
             x: 160,
             ease: "none",
@@ -191,13 +201,14 @@ export default function Home() {
               start: "top bottom",
               end: "bottom top",
               scrub: 1.2,
-            }
-          }
+            },
+          },
         );
       }
       if (belt2Ref.current) {
-        gsap.fromTo(belt2Ref.current, 
-          { x: 160 }, 
+        gsap.fromTo(
+          belt2Ref.current,
+          { x: 160 },
           {
             x: -160,
             ease: "none",
@@ -206,13 +217,14 @@ export default function Home() {
               start: "top bottom",
               end: "bottom top",
               scrub: 1.2,
-            }
-          }
+            },
+          },
         );
       }
       if (belt3Ref.current) {
-        gsap.fromTo(belt3Ref.current, 
-          { x: -160 }, 
+        gsap.fromTo(
+          belt3Ref.current,
+          { x: -160 },
           {
             x: 160,
             ease: "none",
@@ -221,10 +233,206 @@ export default function Home() {
               start: "top bottom",
               end: "bottom top",
               scrub: 1.2,
-            }
-          }
+            },
+          },
         );
       }
+
+      // Helper function to split text into words recursively while preserving formatting
+      const splitTextToWords = (el: HTMLElement) => {
+        if (el.dataset.splitDone) return;
+        el.dataset.splitDone = "true";
+
+        const processNode = (node: Node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent || "";
+            const trimmed = text.trim();
+            if (!trimmed) return;
+
+            const words = text.split(/(\s+)/);
+            const fragment = document.createDocumentFragment();
+
+            words.forEach((part) => {
+              if (/\s+/.test(part)) {
+                fragment.appendChild(document.createTextNode(part));
+              } else if (part) {
+                const span = document.createElement("span");
+                span.className =
+                  "word-span inline-block opacity-0 translate-y-[12px]";
+                span.textContent = part;
+                fragment.appendChild(span);
+              }
+            });
+
+            node.parentNode?.replaceChild(fragment, node);
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const elNode = node as HTMLElement;
+            if (
+              elNode.tagName !== "SCRIPT" &&
+              elNode.tagName !== "STYLE" &&
+              !elNode.classList.contains("word-span")
+            ) {
+              const children = Array.from(node.childNodes);
+              children.forEach(processNode);
+            }
+          }
+        };
+
+        processNode(el);
+      };
+
+      // 9. Dedicated Text Appear Animations (Word-by-word reveal in ease-in-out)
+      const textSections = [
+        {
+          id: "home",
+          selector: "#home h1 > span, #home p",
+          start: "top 95%",
+        },
+        {
+          id: "problem",
+          selector: "#problem .text-center > *",
+          start: "top 78%",
+        },
+        {
+          id: "service",
+          selector: "#service .text-center > *",
+          start: "top 78%",
+        },
+        {
+          id: "blueprint",
+          selector:
+            "#blueprint .hidden.md\\:block > div.max-w-md > *, #blueprint .hidden.md\\:block > div.left-\\[45\\%\\], #blueprint .md\\:hidden .text-center > *, #blueprint .md\\:hidden div.mt-10",
+          start: "top 78%",
+        },
+        {
+          id: "industries",
+          selector: "#industries .text-center > *",
+          start: "top 78%",
+        },
+        {
+          id: "about",
+          selector:
+            "#about > div > div:nth-child(1) > div:first-child > *, #about > div > div:nth-child(3) > div:first-child > *",
+          start: "top 78%",
+        },
+        {
+          id: "testimonial",
+          selector: "#testimonial .text-center > *",
+          start: "top 78%",
+        },
+        {
+          id: "partnership",
+          selector:
+            "#partnership .lg\\:col-span-5 > span, #partnership .lg\\:col-span-5 > h3, #partnership .lg\\:col-span-5 > p, #partnership .lg\\:col-span-7 > div:first-child > *",
+          start: "top 78%",
+        },
+      ];
+
+      textSections.forEach((sec) => {
+        const containers = document.querySelectorAll(sec.selector);
+        containers.forEach((container) => {
+          splitTextToWords(container as HTMLElement);
+        });
+
+        // Query the generated word spans
+        const wordSpans = gsap.utils.toArray(
+          containers.length > 0
+            ? Array.from(containers).flatMap((c) =>
+                Array.from(c.querySelectorAll(".word-span")),
+              )
+            : [],
+        );
+
+        if (wordSpans.length > 0) {
+          gsap.fromTo(
+            wordSpans,
+            { opacity: 0, y: 12 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              stagger: 0.02,
+              ease: "power2.inOut",
+              scrollTrigger: {
+                trigger: `#${sec.id}`,
+                start: sec.start,
+                toggleActions: "play none none none",
+              },
+            },
+          );
+        }
+      });
+
+      // 10. Layout/Card Appear Animations
+      const layoutSections = [
+        {
+          id: "home",
+          selector: "#home .flex.flex-row.items-center",
+          start: "top 95%",
+        },
+        {
+          id: "problem",
+          selector: "#problem .grid > div",
+          start: "top 78%",
+        },
+        {
+          id: "service",
+          selector:
+            "#service .lg\\:col-span-5 > div, #service .lg\\:col-span-7",
+          start: "top 78%",
+        },
+        {
+          id: "blueprint",
+          selector:
+            "#blueprint .hidden.md\\:block > div.w-\\[285px\\], #blueprint .md\\:hidden .flex.flex-col > div",
+          start: "top 78%",
+        },
+        {
+          id: "industries",
+          selector:
+            "#industries .grid > div, #industries > div > div:nth-child(3)",
+          start: "top 78%",
+        },
+        {
+          id: "about",
+          selector:
+            "#about > div > div:nth-child(1) > div:last-child, #about > div > div:nth-child(2), #about > div > div:nth-child(3) > div:last-child",
+          start: "top 78%",
+        },
+        {
+          id: "testimonial",
+          selector: "#testimonial > div:nth-child(2)",
+          start: "top 78%",
+        },
+        {
+          id: "partnership",
+          selector:
+            "#partnership .lg\\:col-span-5 > ul > li, #partnership .lg\\:col-span-7 .grid > div",
+          start: "top 78%",
+        },
+      ];
+
+      layoutSections.forEach((sec) => {
+        const els = gsap.utils.toArray(sec.selector);
+        if (els.length > 0) {
+          gsap.fromTo(
+            els,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: `#${sec.id}`,
+                start: sec.start,
+                toggleActions: "play none none none",
+              },
+            },
+          );
+        }
+      });
     }, container);
 
     // Handle initial route scroll on mount
@@ -476,11 +684,8 @@ export default function Home() {
                   />
                 </div>
 
-                {/* APPOINTMENT OVERLAY CARD (Center Overlay) */}
-                <AppointmentCard />
-
                 <div className="flex flex-col items-center max-w-4xl text-center select-none z-10 pointer-events-none">
-                  <h1 className="text-[42px] leading-[1.15] sm:text-[68px] sm:leading-[1.1] md:text-[86px] md:leading-[1.08] font-extrabold tracking-tight text-brand-navy">
+                  <h1 className="text-[42px] leading-[1.15] sm:text-[68px] sm:leading-[1.1] md:text-[86px] md:leading-[1.08] font-bold tracking-tight text-brand-navy">
                     <span className="block">Clarity & Growth.</span>
                     <span className="block mt-1">Structured Marketing</span>
                     <span className="block text-brand-navy/[0.08] mt-1">
@@ -537,7 +742,8 @@ export default function Home() {
               Does your marketing feel scattered?
             </h2>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
-              Many businesses today operate in a state of fragmentation, leading to wasted spend and unmeasurable results.
+              Many businesses today operate in a state of fragmentation, leading
+              to wasted spend and unmeasurable results.
             </p>
           </div>
 
@@ -547,45 +753,92 @@ export default function Home() {
                 title: "Irregular Campaigns",
                 desc: "Running marketing activities in fits and starts, resulting in erratic cash flows and inconsistent client acquisition.",
                 icon: (
-                  <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-5 h-5 text-brand-orange"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
-                )
+                ),
               },
               {
                 title: "Multiple Vendor Chaos",
                 desc: "Working with disconnected agencies and freelancers leads to fragmented data, lack of alignment, and finger-pointing.",
                 icon: (
-                  <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <svg
+                    className="w-5 h-5 text-brand-orange"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
                   </svg>
-                )
+                ),
               },
               {
                 title: "Activity Over Direction",
                 desc: "Focusing heavily on execution and vanity metrics (likes, impressions) instead of strategic alignment and revenue goals.",
                 icon: (
-                  <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+                  <svg
+                    className="w-5 h-5 text-brand-orange"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"
+                    />
                   </svg>
-                )
+                ),
               },
               {
                 title: "Consistency Struggles",
                 desc: "Struggling to maintain a unified brand message and consistent campaign presence, reducing trust in the market.",
                 icon: (
-                  <svg className="w-5 h-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12a7.5 7.5 0 0015 0 7.5 7.5 0 00-15 0z" />
+                  <svg
+                    className="w-5 h-5 text-brand-orange"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12a7.5 7.5 0 0015 0 7.5 7.5 0 00-15 0z"
+                    />
                   </svg>
-                )
-              }
+                ),
+              },
             ].map((card, idx) => (
-              <div key={idx} className="bg-white border border-brand-navy/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-brand-orange/20 transition-all duration-300 group">
+              <div
+                key={idx}
+                className="bg-white border border-brand-navy/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-brand-orange/20 transition-all duration-300 group"
+              >
                 <div className="h-10 w-10 rounded-xl bg-brand-orange/5 border border-brand-orange/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                   {card.icon}
                 </div>
-                <h4 className="text-[18px] font-bold text-brand-navy tracking-tight">{card.title}</h4>
-                <p className="text-[13.5px] text-brand-navy/60 leading-relaxed mt-2.5">{card.desc}</p>
+                <h4 className="text-[18px] font-bold text-brand-navy tracking-tight">
+                  {card.title}
+                </h4>
+                <p className="text-[13.5px] text-brand-navy/60 leading-relaxed mt-2.5">
+                  {card.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -706,19 +959,41 @@ export default function Home() {
               Let us show you how we drive your brand to new heights
             </h2>
             <p className="text-[15px] text-brand-navy/70 mt-5 leading-relaxed">
-              Our structured operational framework is engineered to align, optimize, and scale your brand's digital presence systematically.
+              Our structured operational framework is engineered to align,
+              optimize, and scale your brand's digital presence systematically.
             </p>
-            
+
             {/* Cute cursive loop arrow pointing towards the first card */}
-            <svg className="w-14 h-14 text-brand-orange mt-6 ml-12 opacity-80 animate-pulse-subtle" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20,20 C40,20 60,30 70,50 C75,60 70,70 60,75 C55,78 45,72 50,60 C52,55 60,55 65,58 L75,65" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-              <path d="M68,52 L78,65 L60,68" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+            <svg
+              className="w-14 h-14 text-brand-orange mt-6 ml-12 opacity-80 animate-pulse-subtle"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20,20 C40,20 60,30 70,50 C75,60 70,70 60,75 C55,78 45,72 50,60 C52,55 60,55 65,58 L75,65"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              <path
+                d="M68,52 L78,65 L60,68"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
             </svg>
           </div>
 
           {/* SVG dashed curving line path */}
           <div className="absolute inset-0 pointer-events-none">
-            <svg className="w-full h-full" viewBox="0 0 800 1350" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <svg
+              className="w-full h-full"
+              viewBox="0 0 800 1350"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+            >
               <path
                 d="M580,180 C400,240 220,380 200,540 C180,700 540,780 560,920 C580,1060 220,1120 190,1230"
                 stroke="#cbd5e1"
@@ -734,28 +1009,30 @@ export default function Home() {
             {
               step: "01",
               phase: "Define",
-              tagline: "Define the growth roadmap before spending a single rupee.",
+              tagline:
+                "Define the growth roadmap before spending a single rupee.",
               bullets: [
                 "Market & competitor analysis",
                 "Audience segmentation & offers",
                 "Funnel structure strategy",
-                "Clear KPI framework setup"
+                "Clear KPI framework setup",
               ],
               rotation: 3,
-              position: "left-[58%] top-[5%]"
+              position: "left-[58%] top-[5%]",
             },
             {
               step: "02",
               phase: "Design",
-              tagline: "Precision-built campaigns engineered for high performance.",
+              tagline:
+                "Precision-built campaigns engineered for high performance.",
               bullets: [
                 "Account & structure setups",
                 "Conversion pixel integrations",
                 "Ad creative development",
-                "Multi-channel deployments"
+                "Multi-channel deployments",
               ],
               rotation: -2,
-              position: "left-[8%] top-[38%]"
+              position: "left-[8%] top-[38%]",
             },
             {
               step: "03",
@@ -765,10 +1042,10 @@ export default function Home() {
                 "Creative & copy A/B tests",
                 "Dynamic budget allocation",
                 "CPA reduction sprints",
-                "Funnel drop-off fixes"
+                "Funnel drop-off fixes",
               ],
               rotation: 2,
-              position: "left-[52%] top-[62%]"
+              position: "left-[52%] top-[62%]",
             },
             {
               step: "04",
@@ -778,18 +1055,18 @@ export default function Home() {
                 "Winning asset scaling",
                 "Lookalike & broad targeting",
                 "Multi-platform expansion",
-                "Revenue growth playbook"
+                "Revenue growth playbook",
               ],
               rotation: -4,
-              position: "left-[6%] top-[84%]"
-            }
+              position: "left-[6%] top-[84%]",
+            },
           ].map((item, idx) => (
             <div
               key={idx}
               onMouseEnter={handleCardMouseEnter}
               style={{
                 transformOrigin: "top center",
-                transform: `rotate(${item.rotation}deg)`
+                transform: `rotate(${item.rotation}deg)`,
               }}
               className={`absolute ${item.position} w-[285px] h-[310px] bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.035)] p-5 select-none transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(16,20,59,0.08)] flex flex-col justify-between`}
             >
@@ -818,8 +1095,13 @@ export default function Home() {
                 </div>
                 <ul className="flex flex-col gap-2 border-t border-black/[0.05] pt-3.5 pb-2">
                   {item.bullets.map((b, bIdx) => (
-                    <li key={bIdx} className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-semibold">
-                      <span className="text-brand-orange font-bold text-[9px] mt-0.5">➔</span>
+                    <li
+                      key={bIdx}
+                      className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-semibold"
+                    >
+                      <span className="text-brand-orange font-bold text-[9px] mt-0.5">
+                        ➔
+                      </span>
                       <span>{b}</span>
                     </li>
                   ))}
@@ -847,36 +1129,39 @@ export default function Home() {
               Let us show you how we drive your brand to new heights
             </h2>
             <p className="text-[14px] text-brand-navy/70 mt-3 leading-relaxed">
-              Our operational framework is engineered to align, optimize, and scale your digital presence systematically.
+              Our operational framework is engineered to align, optimize, and
+              scale your digital presence systematically.
             </p>
           </div>
-          
+
           {/* Cards Stack */}
           <div className="flex flex-col gap-8 w-full items-center">
             {[
               {
                 step: "01",
                 phase: "Define",
-                tagline: "Define the growth roadmap before spending a single rupee.",
+                tagline:
+                  "Define the growth roadmap before spending a single rupee.",
                 bullets: [
                   "Market & competitor analysis",
                   "Audience segmentation & offers",
                   "Funnel structure strategy",
-                  "Clear KPI framework setup"
+                  "Clear KPI framework setup",
                 ],
-                rotation: 2
+                rotation: 2,
               },
               {
                 step: "02",
                 phase: "Design",
-                tagline: "Precision-built campaigns engineered for high performance.",
+                tagline:
+                  "Precision-built campaigns engineered for high performance.",
                 bullets: [
                   "Account & structure setups",
                   "Conversion pixel integrations",
                   "Ad creative development",
-                  "Multi-channel deployments"
+                  "Multi-channel deployments",
                 ],
-                rotation: -1.5
+                rotation: -1.5,
               },
               {
                 step: "03",
@@ -886,9 +1171,9 @@ export default function Home() {
                   "Creative & copy A/B tests",
                   "Dynamic budget allocation",
                   "CPA reduction sprints",
-                  "Funnel drop-off fixes"
+                  "Funnel drop-off fixes",
                 ],
-                rotation: 1.5
+                rotation: 1.5,
               },
               {
                 step: "04",
@@ -898,17 +1183,17 @@ export default function Home() {
                   "Winning asset scaling",
                   "Lookalike & broad targeting",
                   "Multi-platform expansion",
-                  "Revenue growth playbook"
+                  "Revenue growth playbook",
                 ],
-                rotation: -2
-              }
+                rotation: -2,
+              },
             ].map((item, idx) => (
               <div
                 key={idx}
                 onMouseEnter={handleCardMouseEnter}
                 style={{
                   transformOrigin: "top center",
-                  transform: `rotate(${item.rotation}deg)`
+                  transform: `rotate(${item.rotation}deg)`,
                 }}
                 className="w-full max-w-[310px] h-[310px] bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.035)] p-5 select-none transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(16,20,59,0.08)] flex flex-col justify-between relative"
               >
@@ -937,8 +1222,13 @@ export default function Home() {
                   </div>
                   <ul className="flex flex-col gap-2 border-t border-black/[0.05] pt-3.5 pb-2">
                     {item.bullets.map((b, bIdx) => (
-                      <li key={bIdx} className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-semibold">
-                        <span className="text-brand-orange font-bold text-[9px] mt-0.5">➔</span>
+                      <li
+                        key={bIdx}
+                        className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-semibold"
+                      >
+                        <span className="text-brand-orange font-bold text-[9px] mt-0.5">
+                          ➔
+                        </span>
                         <span>{b}</span>
                       </li>
                     ))}
@@ -971,7 +1261,8 @@ export default function Home() {
               Businesses We Support
             </h2>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
-              We build specialized client pipelines across diverse industry sectors and organizational scales.
+              We build specialized client pipelines across diverse industry
+              sectors and organizational scales.
             </p>
           </div>
 
@@ -981,28 +1272,35 @@ export default function Home() {
               {
                 title: "Growing Businesses",
                 desc: "Scaling companies looking to transition from basic ad buying to highly structured, predictable growth channels.",
-                icon: "📈"
+                icon: "📈",
               },
               {
                 title: "Brands Building Visibility",
                 desc: "Companies needing cross-platform presence (Meta, YouTube, Search) to dominate market share and brand recognition.",
-                icon: "📣"
+                icon: "📣",
               },
               {
                 title: "Teams Needing Support",
                 desc: "Internal marketing teams requiring external strategic audits, setup optimization, and advanced analytics integrations.",
-                icon: "🤝"
+                icon: "🤝",
               },
               {
                 title: "Independent Founders",
                 desc: "Founders managing marketing themselves who are ready to hand off operations to clear, structured automation engines.",
-                icon: "💡"
-              }
+                icon: "💡",
+              },
             ].map((profile, idx) => (
-              <div key={idx} className="bg-[#f8fafc] border border-brand-navy/5 rounded-2xl p-6 hover:shadow-md transition-all duration-300">
+              <div
+                key={idx}
+                className="bg-[#f8fafc] border border-brand-navy/5 rounded-2xl p-6 hover:shadow-md transition-all duration-300"
+              >
                 <span className="text-[28px] block mb-4">{profile.icon}</span>
-                <h4 className="text-[16px] font-extrabold text-brand-navy tracking-tight">{profile.title}</h4>
-                <p className="text-[13px] text-brand-navy/60 leading-relaxed mt-2">{profile.desc}</p>
+                <h4 className="text-[16px] font-extrabold text-brand-navy tracking-tight">
+                  {profile.title}
+                </h4>
+                <p className="text-[13px] text-brand-navy/60 leading-relaxed mt-2">
+                  {profile.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -1014,10 +1312,23 @@ export default function Home() {
             </span>
             <div className="flex flex-wrap justify-center gap-2.5 max-w-5xl mx-auto">
               {[
-                "D2C Brands", "Real Estate", "B2B Brands", "FMCG", "Hospitals", "Hospitality",
-                "Education", "Fashion", "E-Commerce", "Retail", "Travel", "Automobile"
+                "D2C Brands",
+                "Real Estate",
+                "B2B Brands",
+                "FMCG",
+                "Hospitals",
+                "Hospitality",
+                "Education",
+                "Fashion",
+                "E-Commerce",
+                "Retail",
+                "Travel",
+                "Automobile",
               ].map((industry, idx) => (
-                <div key={idx} className="px-4 py-2 bg-white border border-brand-navy/5 rounded-full text-[11px] font-black text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange transition-all duration-300">
+                <div
+                  key={idx}
+                  className="px-4 py-2 bg-white border border-brand-navy/5 rounded-full text-[11px] font-black text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange transition-all duration-300"
+                >
                   {industry}
                 </div>
               ))}
@@ -1130,13 +1441,22 @@ export default function Home() {
                 Ankit Jani — Business Head
               </h3>
               <p className="text-[15px] text-white/70 mt-4 leading-relaxed max-w-2xl">
-                Background across media channels, marketing exposure, and client partnerships. Ankit plays an instrumental role at Jukebox Media, helping businesses transform scattered marketing efforts into focused, consistent strategies built to deliver measurable, scaled impact.
+                Background across media channels, marketing exposure, and client
+                partnerships. Ankit plays an instrumental role at Jukebox Media,
+                helping businesses transform scattered marketing efforts into
+                focused, consistent strategies built to deliver measurable,
+                scaled impact.
               </p>
 
               <div className="mt-6 border-l-2 border-brand-orange pl-4">
-                <span className="text-[11px] text-brand-orange font-bold uppercase tracking-wider block">Cross-Platform Expertise</span>
+                <span className="text-[11px] text-brand-orange font-bold uppercase tracking-wider block">
+                  Cross-Platform Expertise
+                </span>
                 <p className="text-[13px] text-white/80 leading-relaxed mt-1">
-                  Bringing structure and clarity to marketing backed by extensive client exposure across **Print, Radio, Television, YouTube, Zee5, SonyLiv, Hotstar, Netflix, and custom Brand Solutions.**
+                  Bringing structure and clarity to marketing backed by
+                  extensive client exposure across **Print, Radio, Television,
+                  YouTube, Zee5, SonyLiv, Hotstar, Netflix, and custom Brand
+                  Solutions.**
                 </p>
               </div>
             </div>
@@ -1158,11 +1478,21 @@ export default function Home() {
 
               {/* Media Network Icons/badges Row */}
               <div className="grid grid-cols-5 gap-2.5 w-full items-center justify-items-center opacity-70">
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">SONY</div>
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">ZEE5</div>
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">VIACOM18</div>
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">TIMES</div>
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">MIRCHI</div>
+                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  SONY
+                </div>
+                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  ZEE5
+                </div>
+                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  VIACOM18
+                </div>
+                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  TIMES
+                </div>
+                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  MIRCHI
+                </div>
               </div>
             </div>
           </div>
@@ -1184,7 +1514,8 @@ export default function Home() {
               What Our Partners Say
             </h2>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
-              Real feedback from the business heads, directors, and campaign partners we work with.
+              Real feedback from the business heads, directors, and campaign
+              partners we work with.
             </p>
           </div>
         </div>
@@ -1203,23 +1534,29 @@ export default function Home() {
             >
               {[
                 {
-                  quote: "The structured approach Jukebox took on our D2C launch was exceptional. We went from zero database to 5x ROAS inside 4 months.",
+                  quote:
+                    "The structured approach Jukebox took on our D2C launch was exceptional. We went from zero database to 5x ROAS inside 4 months.",
                   author: "Ananya Mehta",
                   role: "Director of Brand Growth, Aura Skincare",
-                  avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
+                  avatar:
+                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
                 },
                 {
-                  quote: "Their creative strategy completely overhauled our ad campaigns. We saw an immediate 35% CPA decrease and scalable margins.",
+                  quote:
+                    "Their creative strategy completely overhauled our ad campaigns. We saw an immediate 35% CPA decrease and scalable margins.",
                   author: "Kunal Sharma",
                   role: "Founder, FitLife Nutrition",
-                  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
+                  avatar:
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
                 },
                 {
-                  quote: "Jukebox doesn't just run ads; they build the data pipes. GA4 lead tracking event validation went from 60% accuracy to 100% matches.",
+                  quote:
+                    "Jukebox doesn't just run ads; they build the data pipes. GA4 lead tracking event validation went from 60% accuracy to 100% matches.",
                   author: "Priya Iyer",
                   role: "Marketing Head, Nexa Retail",
-                  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150",
-                }
+                  avatar:
+                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150",
+                },
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -1228,7 +1565,12 @@ export default function Home() {
                   <div>
                     <div className="flex gap-1 text-brand-orange mb-5">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <svg
+                          key={i}
+                          className="w-3.5 h-3.5 fill-current"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                         </svg>
                       ))}
@@ -1265,23 +1607,29 @@ export default function Home() {
             >
               {[
                 {
-                  quote: "Unlike agencies that rely on vanity metrics, Jukebox focuses on down-funnel lead qualification. Our sales conversion rates increased by 40%.",
+                  quote:
+                    "Unlike agencies that rely on vanity metrics, Jukebox focuses on down-funnel lead qualification. Our sales conversion rates increased by 40%.",
                   author: "Siddharth Lodha",
                   role: "Managing Director, Lodha Premium Real Estate",
-                  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
+                  avatar:
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
                 },
                 {
-                  quote: "Their LinkedIn funnel architecture generated qualified demo calls at half our previous acquisition cost. Highly analytical and structured execution.",
+                  quote:
+                    "Their LinkedIn funnel architecture generated qualified demo calls at half our previous acquisition cost. Highly analytical and structured execution.",
                   author: "Rohan Verma",
                   role: "CEO, Alpha B2B Solutions",
-                  avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150&h=150",
+                  avatar:
+                    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150&h=150",
                 },
                 {
-                  quote: "Their automated WhatsApp nurture flows re-activated leads that we had written off. It paid back the entire setup cost in less than a month.",
+                  quote:
+                    "Their automated WhatsApp nurture flows re-activated leads that we had written off. It paid back the entire setup cost in less than a month.",
                   author: "Meera Kapoor",
                   role: "Director, Horizon Education",
-                  avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150",
-                }
+                  avatar:
+                    "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150",
+                },
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -1290,7 +1638,12 @@ export default function Home() {
                   <div>
                     <div className="flex gap-1 text-brand-orange mb-5">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <svg
+                          key={i}
+                          className="w-3.5 h-3.5 fill-current"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                         </svg>
                       ))}
@@ -1327,23 +1680,29 @@ export default function Home() {
             >
               {[
                 {
-                  quote: "The transition to a unified growth pipeline has saved us months of manual testing. Jukebox built an engine that runs itself.",
+                  quote:
+                    "The transition to a unified growth pipeline has saved us months of manual testing. Jukebox built an engine that runs itself.",
                   author: "Dharmendra Jani",
                   role: "Operations Head, Jani Media & Entertainment",
-                  avatar: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=150&h=150",
+                  avatar:
+                    "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=150&h=150",
                 },
                 {
-                  quote: "Standard agency retainers always lacked alignment. Jukebox's advisory consulting models reshaped our unit margins completely.",
+                  quote:
+                    "Standard agency retainers always lacked alignment. Jukebox's advisory consulting models reshaped our unit margins completely.",
                   author: "Vikram Sen",
                   role: "Co-Founder, Brew & Co.",
-                  avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
+                  avatar:
+                    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
                 },
                 {
-                  quote: "We scaled our monthly ad spends 10x while keeping ROAS completely stable. Their execution speeds and tracking detail is elite.",
+                  quote:
+                    "We scaled our monthly ad spends 10x while keeping ROAS completely stable. Their execution speeds and tracking detail is elite.",
                   author: "Tanvi Shah",
                   role: "Head of Growth, Bloom Cosmetics",
-                  avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150",
-                }
+                  avatar:
+                    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150",
+                },
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -1352,7 +1711,12 @@ export default function Home() {
                   <div>
                     <div className="flex gap-1 text-brand-orange mb-5">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <svg
+                          key={i}
+                          className="w-3.5 h-3.5 fill-current"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                         </svg>
                       ))}
@@ -1390,7 +1754,6 @@ export default function Home() {
       >
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
             {/* Left Column: Symptom Checklist (col-span 5) */}
             <div className="lg:col-span-5 bg-white border border-brand-navy/5 rounded-3xl p-6 lg:p-8 shadow-sm">
               <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
@@ -1400,20 +1763,26 @@ export default function Home() {
                 Are you facing these challenges?
               </h3>
               <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-4">
-                If your business is experiencing any of these common marketing friction points, it's time to restructure your systems.
+                If your business is experiencing any of these common marketing
+                friction points, it's time to restructure your systems.
               </p>
-              
+
               <ul className="flex flex-col gap-4 mt-8">
                 {[
                   "Your current marketing efforts feel scattered and inconsistent.",
                   "Your campaigns generate high impressions but lack clear, bottom-funnel conversions.",
                   "Your internal team is overwhelmed or lacks specialized tracking/CRO expertise.",
                   "You are managing multiple disconnected agencies and freelancers.",
-                  "You struggle to establish single-source-of-truth attribution."
+                  "You struggle to establish single-source-of-truth attribution.",
                 ].map((symptom, idx) => (
-                  <li key={idx} className="flex gap-3 items-start text-[13px] text-brand-navy/80 font-semibold leading-relaxed">
+                  <li
+                    key={idx}
+                    className="flex gap-3 items-start text-[13px] text-brand-navy/80 font-semibold leading-relaxed"
+                  >
                     <div className="h-5 w-5 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-brand-orange font-bold text-[10px]">✓</span>
+                      <span className="text-brand-orange font-bold text-[10px]">
+                        ✓
+                      </span>
                     </div>
                     <span>{symptom}</span>
                   </li>
@@ -1431,7 +1800,9 @@ export default function Home() {
                   Flexible Engagement Models
                 </h3>
                 <p className="text-[15px] text-brand-navy/60 leading-relaxed mt-4">
-                  We don't believe in one-size-fits-all agreements. Choose the exact collaboration structure that aligns with your timeline and objectives.
+                  We don't believe in one-size-fits-all agreements. Choose the
+                  exact collaboration structure that aligns with your timeline
+                  and objectives.
                 </p>
               </div>
 
@@ -1440,32 +1811,38 @@ export default function Home() {
                   {
                     title: "Ongoing Support",
                     desc: "Continuous monthly execution across search, paid social, copy, and tracking dashboard management.",
-                    pill: "Monthly Retainer"
+                    pill: "Monthly Retainer",
                   },
                   {
                     title: "Project-Based Work",
                     desc: "Structured deliverables with clear timelines—ideal for landing page CRO setups, audits, and tracking setups.",
-                    pill: "Fixed Scope"
+                    pill: "Fixed Scope",
                   },
                   {
                     title: "Guidance & Direction",
                     desc: "High-level strategic consulting and regular audits for internal teams who need directional support.",
-                    pill: "Advisory Calls"
-                  }
+                    pill: "Advisory Calls",
+                  },
                 ].map((model, idx) => (
-                  <div key={idx} className="bg-white border border-brand-navy/5 rounded-2xl p-5 shadow-sm hover:border-brand-orange/20 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+                  <div
+                    key={idx}
+                    className="bg-white border border-brand-navy/5 rounded-2xl p-5 shadow-sm hover:border-brand-orange/20 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                  >
                     <div>
                       <span className="text-[9px] font-black bg-brand-navy/5 text-brand-navy/60 px-2.5 py-1 rounded-md tracking-wider uppercase inline-block mb-4">
                         {model.pill}
                       </span>
-                      <h4 className="text-[15px] font-black text-brand-navy tracking-tight">{model.title}</h4>
-                      <p className="text-[12.5px] text-brand-navy/60 leading-relaxed mt-2.5">{model.desc}</p>
+                      <h4 className="text-[15px] font-black text-brand-navy tracking-tight">
+                        {model.title}
+                      </h4>
+                      <p className="text-[12.5px] text-brand-navy/60 leading-relaxed mt-2.5">
+                        {model.desc}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -1754,7 +2131,8 @@ const PerformanceMarketingMockup = () => {
       </div>
     </div>
   );
-};const FunnelCroMockup = () => {
+};
+const FunnelCroMockup = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLDivElement>(null);
   const splashRef = useRef<HTMLDivElement>(null);
@@ -2745,9 +3123,7 @@ const GrowthConsultingMockup = () => {
                 <div className="flex items-center gap-1">
                   <span
                     className={
-                      restructCheck1
-                        ? "text-emerald-500"
-                        : "text-brand-navy/20"
+                      restructCheck1 ? "text-emerald-500" : "text-brand-navy/20"
                     }
                   >
                     {restructCheck1 ? "✓" : "○"}
@@ -2757,9 +3133,7 @@ const GrowthConsultingMockup = () => {
                 <div className="flex items-center gap-1">
                   <span
                     className={
-                      restructCheck2
-                        ? "text-emerald-500"
-                        : "text-brand-navy/20"
+                      restructCheck2 ? "text-emerald-500" : "text-brand-navy/20"
                     }
                   >
                     {restructCheck2 ? "✓" : "○"}
@@ -2839,7 +3213,10 @@ const GrowthConsultingMockup = () => {
 
           {/* Mini Line Chart SVG */}
           <div className="bg-white border border-brand-navy/10 rounded-xl p-1.5 flex flex-col justify-between h-[45px] relative overflow-hidden">
-            <svg className="w-full h-full overflow-visible" viewBox="0 0 100 30">
+            <svg
+              className="w-full h-full overflow-visible"
+              viewBox="0 0 100 30"
+            >
               <defs>
                 <linearGradient id="projGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#e8801a" stopOpacity="0.25" />
@@ -2949,9 +3326,7 @@ const GrowthConsultingOverlay = () => {
           {c3 ? "✓" : "○"}
         </span>
         <span
-          className={
-            c3 ? "text-brand-navy/90 font-bold" : "text-brand-navy/40"
-          }
+          className={c3 ? "text-brand-navy/90 font-bold" : "text-brand-navy/40"}
         >
           Monthly Budget Expansion
         </span>
@@ -3000,7 +3375,12 @@ const MarketingAutomationMockup = () => {
       // Reset
       .call(() => {
         if (notifRef.current) {
-          gsap.to(notifRef.current, { opacity: 0, scale: 0.9, y: -15, duration: 0.3 });
+          gsap.to(notifRef.current, {
+            opacity: 0,
+            scale: 0.9,
+            y: -15,
+            duration: 0.3,
+          });
         }
       })
       .to({}, { duration: 0.3 });
@@ -3277,7 +3657,9 @@ const MarketingAutomationOverlay = () => {
           >
             <svg
               className={`w-3.5 h-3.5 transition-colors ${
-                syncState === "synced" ? "text-emerald-500" : "text-brand-orange"
+                syncState === "synced"
+                  ? "text-emerald-500"
+                  : "text-brand-orange"
               }`}
               fill="currentColor"
               viewBox="0 0 24 24"
@@ -3289,7 +3671,9 @@ const MarketingAutomationOverlay = () => {
             <span className="font-extrabold text-[9.5px]">HubSpot Sync</span>
             <span
               className={`text-[7.5px] font-bold uppercase transition-colors ${
-                syncState === "synced" ? "text-emerald-600" : "text-brand-orange"
+                syncState === "synced"
+                  ? "text-emerald-600"
+                  : "text-brand-orange"
               }`}
             >
               {syncState === "synced" ? "Synced ✓" : "Syncing DB..."}
@@ -3467,18 +3851,28 @@ const PerformanceMarketingOverlay = () => {
         >
           <div className="flex items-center gap-2 min-w-0">
             <div className="h-7 w-7 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0 border border-blue-500/20">
-              <svg className="w-3.5 h-3.5 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-6.887 4.114-4.693 0-8.511-3.818-8.511-8.511s3.818-8.511 8.511-8.511c2.14 0 4.01.785 5.485 2.067l3.24-3.24C18.665 1.512 15.69 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.73-4.96 11.73-11.95 0-.81-.07-1.59-.2-2.285H12.24z"/>
+              <svg
+                className="w-3.5 h-3.5 text-blue-600 shrink-0"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-6.887 4.114-4.693 0-8.511-3.818-8.511-8.511s3.818-8.511 8.511-8.511c2.14 0 4.01.785 5.485 2.067l3.24-3.24C18.665 1.512 15.69 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.05 0 11.73-4.96 11.73-11.95 0-.81-.07-1.59-.2-2.285H12.24z" />
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-extrabold text-[10px] text-brand-navy truncate">Google Search</span>
-              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">2s ago</span>
+              <span className="font-extrabold text-[10px] text-brand-navy truncate">
+                Google Search
+              </span>
+              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">
+                2s ago
+              </span>
             </div>
           </div>
           <div className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 shrink-0 flex items-center gap-0.5">
             <span className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-black text-[9px] text-emerald-600 tracking-tight">+$140</span>
+            <span className="font-black text-[9px] text-emerald-600 tracking-tight">
+              +$140
+            </span>
           </div>
         </div>
 
@@ -3489,18 +3883,28 @@ const PerformanceMarketingOverlay = () => {
         >
           <div className="flex items-center gap-2 min-w-0">
             <div className="h-7 w-7 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20">
-              <svg className="w-3.5 h-3.5 text-[#ff0000] shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555A3.002 3.002 0 00.5 6.163C0 8.037 0 12 0 12s0 3.963.5 5.837a3.002 3.002 0 002.112 2.107c1.868.556 9.388.556 9.388.556s7.52 0 9.388-.556a3.002 3.002 0 002.11-2.107C24 15.963 24 12 24 12s0-3.963-.5-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              <svg
+                className="w-3.5 h-3.5 text-[#ff0000] shrink-0"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555A3.002 3.002 0 00.5 6.163C0 8.037 0 12 0 12s0 3.963.5 5.837a3.002 3.002 0 002.112 2.107c1.868.556 9.388.556 9.388.556s7.52 0 9.388-.556a3.002 3.002 0 002.11-2.107C24 15.963 24 12 24 12s0-3.963-.5-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-extrabold text-[10px] text-brand-navy truncate">YouTube Ads</span>
-              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">1m ago</span>
+              <span className="font-extrabold text-[10px] text-brand-navy truncate">
+                YouTube Ads
+              </span>
+              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">
+                1m ago
+              </span>
             </div>
           </div>
           <div className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 shrink-0 flex items-center gap-0.5">
             <span className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-black text-[9px] text-emerald-600 tracking-tight">+$340</span>
+            <span className="font-black text-[9px] text-emerald-600 tracking-tight">
+              +$340
+            </span>
           </div>
         </div>
 
@@ -3511,25 +3915,35 @@ const PerformanceMarketingOverlay = () => {
         >
           <div className="flex items-center gap-2 min-w-0">
             <div className="h-7 w-7 rounded-lg bg-pink-500/10 flex items-center justify-center shrink-0 border border-pink-500/20">
-              <svg className="w-3.5 h-3.5 text-[#e1306c] shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <svg
+                className="w-3.5 h-3.5 text-[#e1306c] shrink-0"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+              >
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-extrabold text-[10px] text-brand-navy truncate">Instagram Reels</span>
-              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">Just now</span>
+              <span className="font-extrabold text-[10px] text-brand-navy truncate">
+                Instagram Reels
+              </span>
+              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">
+                Just now
+              </span>
             </div>
           </div>
           <div className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 shrink-0 flex items-center gap-0.5">
             <span className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-black text-[9px] text-emerald-600 tracking-tight">+$128</span>
+            <span className="font-black text-[9px] text-emerald-600 tracking-tight">
+              +$128
+            </span>
           </div>
         </div>
       </div>
     </div>
   );
 };
-
-
