@@ -155,38 +155,7 @@ export default function Home() {
         0,
       );
 
-      // 7. Track active sections to update navbar active state & URL path
-      const sections = [
-        "home",
-        "problem",
-        "service",
-        "blueprint",
-        "industries",
-        "about",
-        "partnership",
-        "testimonial",
-      ];
-      sections.forEach((id) => {
-        ScrollTrigger.create({
-          trigger: `#${id}`,
-          start: "top 40%",
-          end: "bottom 40%",
-          onToggle: (self) => {
-            if (self.isActive) {
-              if (isProgrammaticScroll.current) return;
-              // Ignore other sections if we are at the very top of the page to prevent load time routing issues
-              if (window.scrollY < 50 && id !== "home") {
-                return;
-              }
-              setActiveTab(id);
-              const path = id === "home" ? "/" : `/${id}`;
-              if (window.location.pathname !== path) {
-                window.history.pushState(null, "", path);
-              }
-            }
-          },
-        });
-      });
+
 
       // 8. Testimonial Belts Horizontal Scroll Animations
       if (belt1Ref.current) {
@@ -433,6 +402,48 @@ export default function Home() {
           );
         }
       });
+
+      // 11. Stacking Sections Scroll Effect
+      const handleActiveChange = (id: string) => {
+        if (isProgrammaticScroll.current) return;
+        if (window.scrollY < 50 && id !== "home") return;
+        setActiveTab(id);
+        const path = id === "home" ? "/" : `/${id}`;
+        if (window.location.pathname !== path) {
+          window.history.pushState(null, "", path);
+        }
+      };
+
+      const trackSections = ["home", "problem", "service", "blueprint", "industries", "about", "partnership", "testimonial"];
+      trackSections.forEach((id) => {
+        ScrollTrigger.create({
+          trigger: `#${id}`,
+          start: id === "home" ? "top top" : "top 40%",
+          end: id === "home" ? "bottom top" : "bottom 40%",
+          onEnter: () => handleActiveChange(id),
+          onEnterBack: () => handleActiveChange(id),
+          invalidateOnRefresh: true,
+        });
+      });
+
+      const scrollSections = ["problem", "service", "blueprint", "industries", "about", "testimonial", "partnership"];
+      
+      scrollSections.forEach((id, index) => {
+        const section = document.getElementById(id);
+        if (section) {
+          // Set incremental z-index so that subsequent sections render on top of previous ones
+          section.style.zIndex = (21 + index).toString();
+          
+          ScrollTrigger.create({
+            trigger: section,
+            start: () => section.offsetHeight > window.innerHeight ? "bottom bottom" : "top top",
+            pin: true,
+            pinSpacing: false,
+            invalidateOnRefresh: true,
+            id: `pin-${id}`
+          });
+        }
+      });
     }, container);
 
     // Handle initial route scroll on mount
@@ -449,6 +460,12 @@ export default function Home() {
       lenis.destroy();
       gsap.ticker.remove(rafHandler);
       delete (window as any).lenis;
+      
+      const scrollSections = ["problem", "service", "blueprint", "industries", "about", "partnership", "testimonial"];
+      scrollSections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.style.zIndex = "";
+      });
     };
   }, []);
 
