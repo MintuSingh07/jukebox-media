@@ -1,0 +1,12 @@
+.scroll-reveal {
+  margin: 0;
+}
+
+.scroll-reveal-text {
+  /* Let text classes from Tailwind dictate font-size, etc. */
+}
+
+.word {
+  display: inline-block;
+  white-space: pre;
+}

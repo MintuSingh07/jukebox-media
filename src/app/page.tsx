@@ -6,6 +6,7 @@ import FloatingCard from "@/components/FloatingCard";
 import DoctorBadge from "@/components/DoctorBadge";
 import LogoMarquee from "@/components/LogoMarquee";
 import Grainient from "@/components/Grainient";
+import ScrollReveal from "@/components/ScrollReveal";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -287,7 +288,7 @@ export default function Home() {
           id: "problem",
           selectors: [
             "#problem .text-center > *",
-            "#problem .flex > div"
+            "#problem .grid > div"
           ],
           start: "top 78%",
         },
@@ -783,7 +784,7 @@ export default function Home() {
       {/* The Common Situation Section (Problem Statement) */}
       <div
         id="problem"
-        className="relative z-20 w-full bg-[#f8fafc] pt-24 pb-40 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-[#f8fafc] py-20 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
@@ -807,134 +808,92 @@ export default function Home() {
             <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               The Common Situation
             </span>
-            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3">
+            <ScrollReveal
+              as="h2"
+              containerClassName="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3"
+            >
               Does your marketing feel scattered?
-            </h2>
+            </ScrollReveal>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
               Many businesses today operate in a state of fragmentation, leading
               to wasted spend and unmeasurable results.
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-16 max-w-6xl mx-auto">
-            {[
-              {
-                label: "UNPREDICTABLE REVENUE",
-                title: "Irregular Campaigns",
-                desc: "Running marketing activities in fits and starts, resulting in erratic cash flows.",
-                rotation: "-rotate-2",
-                translate: "translate-y-4",
-                icon: (
-                  <svg
-                    className="w-8 h-8 text-brand-orange"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                ),
-              },
-              {
-                label: "FRAGMENTED EFFORTS",
-                title: "Multiple Vendor Chaos",
-                desc: "Working with disconnected agencies leads to lack of alignment and data silos.",
-                rotation: "rotate-2",
-                translate: "translate-y-0",
-                icon: (
-                  <svg
-                    className="w-8 h-8 text-brand-orange"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                ),
-              },
-              {
-                label: "VANITY METRICS",
-                title: "Activity Over Direction",
-                desc: "Focusing heavily on execution instead of strategic alignment and revenue goals.",
-                rotation: "-rotate-1",
-                translate: "translate-y-6",
-                icon: (
-                  <svg
-                    className="w-8 h-8 text-brand-orange"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
-                  </svg>
-                ),
-              },
-              {
-                label: "POOR BRANDING",
-                title: "Consistency Struggles",
-                desc: "Struggling to maintain a unified brand message and consistent presence.",
-                rotation: "rotate-1",
-                translate: "translate-y-2",
-                icon: (
-                  <svg
-                    className="w-8 h-8 text-brand-orange"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12a7.5 7.5 0 0015 0 7.5 7.5 0 00-15 0z" />
-                  </svg>
-                ),
-              },
-              {
-                label: "BLIND SPOTS",
-                title: "Unclear ROI",
-                desc: "Inability to track the exact return on investment from multiple channels.",
-                rotation: "-rotate-3",
-                translate: "translate-y-8",
-                icon: (
-                  <svg
-                    className="w-8 h-8 text-brand-orange"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                ),
-              },
-            ].map((card, idx) => (
-              <div
-                key={idx}
-                className={`relative bg-white border border-brand-navy/5 rounded-[2.5rem] p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-end w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] min-h-[380px] group ${card.rotation} ${card.translate}`}
-              >
-                {/* Top visual placeholder area */}
-                <div className="absolute top-6 left-6 right-6 bottom-[120px] bg-brand-navy/[0.02] border border-brand-navy/[0.03] rounded-3xl flex items-center justify-center overflow-hidden transition-colors duration-300 group-hover:bg-brand-navy/[0.04]">
-                  <div className="h-20 w-20 rounded-2xl bg-white shadow-sm border border-brand-navy/5 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                    {card.icon}
-                  </div>
-                </div>
-
-                {/* Bottom text area */}
-                <div className="relative z-10 mt-auto pt-4">
-                  <span className="text-[10px] font-extrabold tracking-wider text-brand-navy/40 uppercase block mb-1">
-                    {card.label}
-                  </span>
-                  <h4 className="text-[18px] font-semibold text-brand-navy tracking-tight leading-tight">
-                    {card.title}
-                  </h4>
-                  <p className="text-[13px] text-brand-navy/60 leading-relaxed mt-1.5">
-                    {card.desc}
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-6xl mx-auto px-4">
+            
+            {/* Card 1 - Large */}
+            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 md:col-span-2 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
+              <div className="relative z-10 text-center mt-4">
+                <h4 className="text-[26px] font-bold text-brand-navy tracking-tight">Irregular Campaigns</h4>
+                <p className="text-[15px] text-brand-navy/60 mt-2 max-w-md mx-auto leading-relaxed">
+                  Running marketing activities in fits and starts, resulting in erratic cash flows.
+                </p>
               </div>
-            ))}
+              
+              {/* Visual Placeholder */}
+              <div className="absolute left-10 right-10 bottom-[-15%] h-[65%] bg-white rounded-t-[2.5rem] shadow-2xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-4">
+                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
+              {/* Visual Placeholder */}
+              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+              </div>
+              
+              <div className="relative z-10 text-center mt-auto">
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Multiple Vendor Chaos</h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                  Working with disconnected agencies leads to lack of alignment.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
+              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+              </div>
+              
+              <div className="relative z-10 text-center mt-auto">
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Activity Over Direction</h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                  Focusing heavily on execution instead of strategic alignment.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
+              <div className="relative z-10 text-center mt-2">
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Consistency Struggles</h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                  Struggling to maintain a unified brand message and consistent presence.
+                </p>
+              </div>
+              
+              <div className="absolute left-8 right-8 bottom-8 top-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+              </div>
+            </div>
+
+            {/* Card 5 */}
+            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
+              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+              </div>
+              
+              <div className="relative z-10 text-center mt-auto">
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Unclear ROI</h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                  Inability to track return on investment from multiple channels.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -966,9 +925,12 @@ export default function Home() {
             <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               What we do
             </span>
-            <h2 className="text-[32px] sm:text-[40px] font-extrabold text-brand-navy tracking-tight mt-2">
+            <ScrollReveal
+              as="h2"
+              containerClassName="text-[32px] sm:text-[40px] font-extrabold text-brand-navy tracking-tight mt-2"
+            >
               Our Services &amp; Expertise
-            </h2>
+            </ScrollReveal>
             <p className="text-[15px] sm:text-[17px] text-brand-navy/70 mt-2 leading-relaxed">
               We build cohesive marketing engines that turn scattered, expensive
               campaigns into predictable growth channels.
@@ -1078,9 +1040,12 @@ export default function Home() {
             <span className="border border-brand-navy/15 text-[11px] px-3.5 py-1.5 rounded-full inline-block font-bold tracking-wider text-brand-navy/60 uppercase">
               How we work
             </span>
-            <h2 className="text-[34px] lg:text-[40px] font-extrabold text-brand-navy leading-[1.15] tracking-tight mt-5">
+            <ScrollReveal
+              as="h2"
+              containerClassName="text-[34px] lg:text-[40px] font-extrabold text-brand-navy leading-[1.15] tracking-tight mt-5"
+            >
               Let us show you how we drive your brand to new heights
-            </h2>
+            </ScrollReveal>
             <p className="text-[15px] text-brand-navy/70 mt-5 leading-relaxed">
               Our structured operational framework is engineered to align,
               optimize, and scale your brand's digital presence systematically.
@@ -1248,9 +1213,12 @@ export default function Home() {
             <span className="border border-brand-navy/15 text-[11px] px-3.5 py-1.5 rounded-full inline-block font-bold tracking-wider text-brand-navy/60 uppercase">
               How we work
             </span>
-            <h2 className="text-[32px] font-extrabold text-brand-navy leading-tight tracking-tight mt-4">
+            <ScrollReveal
+              as="h2"
+              containerClassName="text-[32px] font-extrabold text-brand-navy leading-tight tracking-tight mt-4"
+            >
               Let us show you how we drive your brand to new heights
-            </h2>
+            </ScrollReveal>
             <p className="text-[14px] text-brand-navy/70 mt-3 leading-relaxed">
               Our operational framework is engineered to align, optimize, and
               scale your digital presence systematically.
@@ -1397,9 +1365,12 @@ export default function Home() {
             <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               Target Categories
             </span>
-            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3">
+            <ScrollReveal
+              as="h2"
+              containerClassName="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3"
+            >
               Businesses We Support
-            </h2>
+            </ScrollReveal>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
               We build specialized client pipelines across diverse industry
               sectors and organizational scales.
@@ -1505,9 +1476,12 @@ export default function Home() {
               <span className="text-[12px] font-bold tracking-[0.2em] text-brand-navy uppercase">
                 Who we are
               </span>
-              <h2 className="text-[36px] sm:text-[52px] font-extrabold leading-tight tracking-tight mt-3 text-white">
+              <ScrollReveal
+                as="h2"
+                containerClassName="text-[36px] sm:text-[52px] font-extrabold leading-tight tracking-tight mt-3 text-white"
+              >
                 We build growth-centric marketing systems.
-              </h2>
+              </ScrollReveal>
               <p className="text-[16px] text-white/80 mt-6 leading-relaxed">
                 Jukebox Media is a performance growth consultancy. We reject
                 random acts of marketing in favor of cohesive, metrics-driven
@@ -1684,9 +1658,12 @@ export default function Home() {
             <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               Results & Trust
             </span>
-            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3">
+            <ScrollReveal
+              as="h2"
+              containerClassName="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3"
+            >
               What Our Partners Say
-            </h2>
+            </ScrollReveal>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
               Real feedback from the business heads, directors, and campaign
               partners we work with.
