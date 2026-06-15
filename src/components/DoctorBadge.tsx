@@ -49,9 +49,9 @@ export default function DoctorBadge({
   const isLeftPointer = pointerPosition === "top-left";
   const rippleColorClass = 
     theme === "navy" 
-      ? "border-[#10143b]/40 bg-[#10143b]/10" 
+      ? "border-[#161443]/40 bg-[#161443]/10" 
       : theme === "orange" 
-        ? "border-[#e8801a]/40 bg-[#e8801a]/10" 
+        ? "border-[#f6861f]/40 bg-[#f6861f]/10" 
         : "border-white/40 bg-white/10";
   const delayStyle = delayMs ? { animationDelay: `${delayMs}ms` } : undefined;
 
@@ -110,7 +110,7 @@ export default function DoctorBadge({
         >
           <path
             d="M4 4C3.7 4 3.4 4.3 3.6 4.7L9.5 20.5C9.9 21.6 11.4 21.3 11.6 20.1L12.5 13.5L19.1 12.6C20.3 12.4 20.6 10.9 19.5 10.5L4.7 3.6C4.4 3.5 4.2 3.8 4 4Z"
-            fill={theme === "navy" ? "#10143b" : theme === "orange" ? "#e8801a" : "#10143b"}
+            fill={theme === "navy" ? "#161443" : theme === "orange" ? "#f6861f" : "#161443"}
             stroke="white"
             strokeWidth="2.5"
             strokeLinejoin="round"

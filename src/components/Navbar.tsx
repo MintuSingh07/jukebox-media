@@ -114,15 +114,15 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
           <div className="relative transition-transform duration-300 group-hover:scale-105">
             {/* Custom SVG Vinyl Record Logo matching Jukebox Media */}
             <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" fill="#10143b" stroke="#e8801a" strokeWidth="4.5"/>
-              <path d="M22 50C22 34.5 34.5 22 50 22" stroke="#e8801a" strokeWidth="3" strokeLinecap="round"/>
-              <path d="M28 50C28 37.8 37.8 28 50 28" stroke="#e8801a" strokeWidth="2.5" strokeLinecap="round"/>
-              <path d="M34 50C34 41.2 41.2 34 50 34" stroke="#e8801a" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M78 50C78 65.5 65.5 78 50 78" stroke="#e8801a" strokeWidth="3" strokeLinecap="round"/>
-              <path d="M72 50C72 62.2 62.2 72 50 72" stroke="#e8801a" strokeWidth="2.5" strokeLinecap="round"/>
-              <path d="M66 50C66 58.8 58.8 66 50 66" stroke="#e8801a" strokeWidth="2" strokeLinecap="round"/>
-              <circle cx="50" cy="50" r="18" fill="#e8801a"/>
-              <polygon points="46,42 46,58 60,50" fill="#10143b"/>
+              <circle cx="50" cy="50" r="45" fill="#161443" stroke="#f6861f" strokeWidth="4.5"/>
+              <path d="M22 50C22 34.5 34.5 22 50 22" stroke="#f6861f" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M28 50C28 37.8 37.8 28 50 28" stroke="#f6861f" strokeWidth="2.5" strokeLinecap="round"/>
+              <path d="M34 50C34 41.2 41.2 34 50 34" stroke="#f6861f" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M78 50C78 65.5 65.5 78 50 78" stroke="#f6861f" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M72 50C72 62.2 62.2 72 50 72" stroke="#f6861f" strokeWidth="2.5" strokeLinecap="round"/>
+              <path d="M66 50C66 58.8 58.8 66 50 66" stroke="#f6861f" strokeWidth="2" strokeLinecap="round"/>
+              <circle cx="50" cy="50" r="18" fill="#f6861f"/>
+              <polygon points="46,42 46,58 60,50" fill="#161443"/>
             </svg>
           </div>
           <div className="flex flex-col leading-none">
@@ -222,8 +222,8 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-8">
               <div className="flex items-center gap-2">
                 <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="45" fill="#e8801a" stroke="#ffffff" strokeWidth="4.5"/>
-                  <circle cx="50" cy="50" r="18" fill="#10143b"/>
+                  <circle cx="50" cy="50" r="45" fill="#f6861f" stroke="#ffffff" strokeWidth="4.5"/>
+                  <circle cx="50" cy="50" r="18" fill="#161443"/>
                   <polygon points="46,42 46,58 60,50" fill="#ffffff"/>
                 </svg>
                 <span className="font-bold text-white text-[18px] tracking-tight">Menu</span>
@@ -252,7 +252,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                     }}
                     className={`text-left py-2.5 px-4 rounded-xl text-[15px] font-semibold transition-all duration-300 w-full ${
                       isActive
-                        ? "bg-[#e8801a] text-white shadow-[0_4px_12px_rgba(232,128,26,0.3)]"
+                        ? "bg-[#f6861f] text-white shadow-[0_4px_12px_rgba(246,134,31,0.3)]"
                         : "text-white/70 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -266,7 +266,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
               <Link
                 href="#"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-full bg-[#e8801a] py-3 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#d67215]"
+                className="flex items-center justify-center gap-2 rounded-full bg-[#f6861f] py-3 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#e07310]"
               >
                 Let's Talk
                 <span>↗</span>

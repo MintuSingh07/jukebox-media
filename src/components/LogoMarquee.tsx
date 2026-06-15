@@ -14,17 +14,17 @@ const UnileverLogo = () => (
   >
     <path
       d="M22 6C22 26 26 36 38 36C50 36 54 26 54 6"
-      stroke="#10143b"
+      stroke="#161443"
       strokeWidth="5.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <circle cx="28" cy="14" r="2.5" fill="#e8801a" />
-    <circle cx="48" cy="14" r="2.5" fill="#e8801a" />
-    <circle cx="38" cy="22" r="2" fill="#10143b" />
+    <circle cx="28" cy="14" r="2.5" fill="#f6861f" />
+    <circle cx="48" cy="14" r="2.5" fill="#f6861f" />
+    <circle cx="38" cy="22" r="2" fill="#161443" />
     <path
       d="M38 29C35 29 34 28 34 26C34 24 36 23 38 23C40 23 42 24 42 26C42 28 41 29 38 29Z"
-      fill="#10143b"
+      fill="#161443"
     />
     <text
       x="66"
@@ -32,7 +32,7 @@ const UnileverLogo = () => (
       fontFamily="var(--font-sans), sans-serif"
       fontWeight="800"
       fontSize="20"
-      fill="#10143b"
+      fill="#161443"
       letterSpacing="-0.5"
     >
       Unilever
@@ -238,7 +238,7 @@ const MarriottLogo = () => (
       fontFamily="var(--font-sans), sans-serif"
       fontWeight="700"
       fontSize="17"
-      fill="#10143b"
+      fill="#161443"
       letterSpacing="0.5"
     >
       Marriott
@@ -356,7 +356,7 @@ const OlayLogo = () => (
       fontWeight="600"
       fontStyle="italic"
       fontSize="24"
-      fill="#10143b"
+      fill="#161443"
       letterSpacing="1"
     >
       OLAY

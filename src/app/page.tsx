@@ -10,6 +10,10 @@ import ScrollReveal from "@/components/ScrollReveal";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import IrregularCampaignsVisual from "@/components/IrregularCampaignsVisual";
+import ActivityOverDirectionVisual from "@/components/ActivityOverDirectionVisual";
+import ConsistencyStrugglesVisual from "@/components/ConsistencyStrugglesVisual";
+import UnclearROIVisual from "@/components/UnclearROIVisual";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -35,6 +39,11 @@ export default function Home() {
   const belt1Ref = useRef<HTMLDivElement>(null);
   const belt2Ref = useRef<HTMLDivElement>(null);
   const belt3Ref = useRef<HTMLDivElement>(null);
+
+  const [card1Hovered, setCard1Hovered] = useState(false);
+  const [card3Hovered, setCard3Hovered] = useState(false);
+  const [card4Hovered, setCard4Hovered] = useState(false);
+  const [card5Hovered, setCard5Hovered] = useState(false);
 
   const handleCardMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
@@ -622,14 +631,14 @@ export default function Home() {
               borderBottomLeftRadius: "0px",
               borderBottomRightRadius: "0px",
             }}
-            className="absolute bottom-0 bg-[#e8801a] overflow-visible shadow-premium border border-white/5 flex flex-col items-center justify-between"
+            className="absolute bottom-0 bg-[#f6861f] overflow-visible shadow-premium border border-white/5 flex flex-col items-center justify-between"
           >
             {/* Clipped background container */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[inherit] z-0">
               <Grainient
                 color1="#F97316"
                 color2="#ff9851"
-                color3="#10143b"
+                color3="#161443"
                 timeSpeed={0.25}
                 colorBalance={0.0}
                 warpStrength={1.0}
@@ -657,7 +666,7 @@ export default function Home() {
               <div 
                 className="absolute top-0 right-0 w-[60vw] h-[60vw] pointer-events-none z-0 mix-blend-screen"
                 style={{
-                  background: "radial-gradient(circle at top right, rgba(16, 20, 59, 0.12) 0%, rgba(16, 20, 59, 0) 70%)"
+                  background: "radial-gradient(circle at top right, rgba(22, 20, 67, 0.12) 0%, rgba(22, 20, 67, 0) 70%)"
                 }}
               />
               <div 
@@ -798,7 +807,7 @@ export default function Home() {
           <div 
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+              background: "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
             }}
           />
         </div>
@@ -823,7 +832,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-6xl mx-auto px-4">
             
             {/* Card 1 - Large */}
-            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 md:col-span-2 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
+            <div 
+              onMouseEnter={() => setCard1Hovered(true)}
+              onMouseLeave={() => setCard1Hovered(false)}
+              className="relative bg-[#eff3fe] rounded-[2rem] p-8 md:col-span-2 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+            >
               <div className="relative z-10 text-center mt-4">
                 <h4 className="text-[26px] font-bold text-brand-navy tracking-tight">Irregular Campaigns</h4>
                 <p className="text-[15px] text-brand-navy/60 mt-2 max-w-md mx-auto leading-relaxed">
@@ -832,16 +845,47 @@ export default function Home() {
               </div>
               
               {/* Visual Placeholder */}
-              <div className="absolute left-10 right-10 bottom-[-15%] h-[65%] bg-white rounded-t-[2.5rem] shadow-2xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-4">
-                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+              <div className="absolute left-10 right-10 bottom-[-5%] h-[65%] bg-white rounded-t-[2.5rem] shadow-2xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
+                <IrregularCampaignsVisual isHovered={card1Hovered} />
               </div>
             </div>
 
             {/* Card 2 */}
             <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
               {/* Visual Placeholder */}
-              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
-                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] transition-transform duration-500 group-hover:-translate-y-2">
+                {/* Clipped phone container */}
+                <div className="absolute inset-0 rounded-[2rem] overflow-hidden flex justify-center">
+                  <img 
+                    src="/phone.png" 
+                    alt="Phone Mockup" 
+                    className="absolute top-6 w-[180px] md:w-[150px] object-contain drop-shadow-2xl transition-transform duration-700 ease-out translate-y-8 group-hover:translate-y-0" 
+                  />
+                </div>
+                
+                {/* Floating Elements Container */}
+                <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[180px] md:w-[150px] h-[320px] pointer-events-none">
+                  {/* Floating Logo */}
+                  <img 
+                    src="/floating logo.png" 
+                    alt="Floating Jukebox Logo" 
+                    className="absolute -top-4 -left-6 w-[52px] md:w-[44px] object-contain drop-shadow-md z-30 pointer-events-auto opacity-0 scale-50 translate-y-4 translate-x-2 transition-all duration-500 ease-out delay-[80ms] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:translate-x-0 hover:scale-110 hover:-rotate-12"
+                  />
+                  
+                  {/* Message 1 (orange) */}
+                  <img 
+                    src="/message 1.png" 
+                    alt="Message 1" 
+                    className="absolute top-[22%] -left-[105px] md:-left-[90px] w-[170px] md:w-[140px] object-contain drop-shadow-lg z-20 pointer-events-auto opacity-0 scale-75 translate-x-4 translate-y-2 transition-all duration-500 ease-out delay-[160ms] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 hover:scale-105 hover:-translate-y-0.5"
+                  />
+                  
+                  {/* Message 2 (blue) */}
+                  <img 
+                    src="/message 2.png" 
+                    alt="Message 2" 
+                    className="absolute top-[42%] -right-[105px] md:-right-[90px] w-[170px] md:w-[140px] object-contain drop-shadow-lg z-20 pointer-events-auto opacity-0 scale-75 -translate-x-4 translate-y-2 transition-all duration-500 ease-out delay-[240ms] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 hover:scale-105 hover:-translate-y-0.5"
+                  />
+                </div>
               </div>
               
               <div className="relative z-10 text-center mt-auto">
@@ -853,9 +897,13 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
-              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
-                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+            <div 
+              onMouseEnter={() => setCard3Hovered(true)}
+              onMouseLeave={() => setCard3Hovered(false)}
+              className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+            >
+              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
+                <ActivityOverDirectionVisual isHovered={card3Hovered} />
               </div>
               
               <div className="relative z-10 text-center mt-auto">
@@ -867,7 +915,11 @@ export default function Home() {
             </div>
 
             {/* Card 4 */}
-            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
+            <div 
+              onMouseEnter={() => setCard4Hovered(true)}
+              onMouseLeave={() => setCard4Hovered(false)}
+              className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+            >
               <div className="relative z-10 text-center mt-2">
                 <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Consistency Struggles</h4>
                 <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
@@ -875,15 +927,19 @@ export default function Home() {
                 </p>
               </div>
               
-              <div className="absolute left-8 right-8 bottom-8 top-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
-                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+              <div className="absolute left-8 right-8 bottom-8 top-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
+                <ConsistencyStrugglesVisual isHovered={card4Hovered} />
               </div>
             </div>
 
             {/* Card 5 */}
-            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
-              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
-                <span className="text-[11px] font-extrabold tracking-widest text-brand-navy/30 uppercase">Visual Space</span>
+            <div 
+              onMouseEnter={() => setCard5Hovered(true)}
+              onMouseLeave={() => setCard5Hovered(false)}
+              className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+            >
+              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
+                <UnclearROIVisual isHovered={card5Hovered} />
               </div>
               
               <div className="relative z-10 text-center mt-auto">
@@ -909,7 +965,7 @@ export default function Home() {
           <div 
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+              background: "radial-gradient(circle at top right, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
             }}
           />
           <div 
@@ -1028,7 +1084,7 @@ export default function Home() {
           <div 
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+              background: "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
             }}
           />
         </div>
@@ -1349,7 +1405,7 @@ export default function Home() {
           <div 
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+              background: "radial-gradient(circle at top right, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
             }}
           />
           <div 
@@ -1451,7 +1507,7 @@ export default function Home() {
       {/* About Section */}
       <div
         id="about"
-        className="relative z-20 w-full bg-[#e8801a] text-white py-32 flex flex-col items-center overflow-hidden"
+        className="relative z-20 w-full bg-[#f6861f] text-white py-32 flex flex-col items-center overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0 pointer-events-none"></div>
@@ -1459,7 +1515,7 @@ export default function Home() {
           <div 
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(16, 20, 59, 0.12) 0%, rgba(16, 20, 59, 0) 70%)"
+              background: "radial-gradient(circle at top right, rgba(22, 20, 67, 0.12) 0%, rgba(22, 20, 67, 0) 70%)"
             }}
           />
           <div 
@@ -1647,7 +1703,7 @@ export default function Home() {
           <div 
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+              background: "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
             }}
           />
         </div>
@@ -1909,7 +1965,7 @@ export default function Home() {
           <div 
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(232, 128, 26, 0.08) 0%, rgba(232, 128, 26, 0) 70%)"
+              background: "radial-gradient(circle at top right, rgba(246, 134, 31, 0.08) 0%, rgba(246, 134, 31, 0) 70%)"
             }}
           />
           <div 
@@ -2259,8 +2315,8 @@ const PerformanceMarketingMockup = () => {
         <svg className="w-full h-24 overflow-visible" viewBox="0 0 200 80">
           <defs>
             <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#e8801a" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#e8801a" stopOpacity="0" />
+              <stop offset="0%" stopColor="#f6861f" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#f6861f" stopOpacity="0" />
             </linearGradient>
           </defs>
           <line
@@ -2268,7 +2324,7 @@ const PerformanceMarketingMockup = () => {
             y1="20"
             x2="200"
             y2="20"
-            stroke="#10143b"
+            stroke="#161443"
             strokeOpacity="0.05"
             strokeDasharray="3 3"
           />
@@ -2277,7 +2333,7 @@ const PerformanceMarketingMockup = () => {
             y1="50"
             x2="200"
             y2="50"
-            stroke="#10143b"
+            stroke="#161443"
             strokeOpacity="0.05"
             strokeDasharray="3 3"
           />
@@ -2290,11 +2346,11 @@ const PerformanceMarketingMockup = () => {
             ref={pathRef}
             d="M0 75 C 130 75, 180 45, 200 3"
             fill="none"
-            stroke="#e8801a"
+            stroke="#f6861f"
             strokeWidth="3"
             strokeLinecap="round"
           />
-          <circle ref={dotRef} cx="200" cy="3" r="0" fill="#e8801a" />
+          <circle ref={dotRef} cx="200" cy="3" r="0" fill="#f6861f" />
         </svg>
       </div>
     </div>
@@ -2873,7 +2929,7 @@ const AnalyticsTrackingMockup = () => {
         bar3,
         {
           height: "85%",
-          backgroundColor: "#e8801a",
+          backgroundColor: "#f6861f",
           duration: 0.2,
           ease: "power1.out",
         },
@@ -2966,7 +3022,7 @@ const AnalyticsTrackingMockup = () => {
           <path
             d="M30 10 L 100 60"
             fill="none"
-            stroke="#10143b"
+            stroke="#161443"
             strokeOpacity="0.1"
             strokeWidth="2"
             strokeDasharray="3 3"
@@ -2974,14 +3030,14 @@ const AnalyticsTrackingMockup = () => {
           <path
             d="M170 10 L 100 60"
             fill="none"
-            stroke="#10143b"
+            stroke="#161443"
             strokeOpacity="0.1"
             strokeWidth="2"
             strokeDasharray="3 3"
           />
           <circle cx="30" cy="10" r="4" fill="#3b82f6" fillOpacity="0.6" />
           <circle cx="170" cy="10" r="4" fill="#a259ff" fillOpacity="0.6" />
-          <circle cx="100" cy="60" r="5" fill="#e8801a" />
+          <circle cx="100" cy="60" r="5" fill="#f6861f" />
 
           {/* Animated data user particles */}
           <circle ref={dot1Ref} cx="30" cy="10" r="3.5" fill="#3b82f6" />
@@ -3387,8 +3443,8 @@ const GrowthConsultingMockup = () => {
             >
               <defs>
                 <linearGradient id="projGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#e8801a" stopOpacity="0.25" />
-                  <stop offset="100%" stopColor="#e8801a" stopOpacity="0.0" />
+                  <stop offset="0%" stopColor="#f6861f" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="#f6861f" stopOpacity="0.0" />
                 </linearGradient>
               </defs>
               {/* Grid lines */}
@@ -3397,7 +3453,7 @@ const GrowthConsultingMockup = () => {
                 y1="10"
                 x2="100"
                 y2="10"
-                stroke="#10143b"
+                stroke="#161443"
                 strokeOpacity="0.04"
                 strokeWidth="0.5"
               />
@@ -3406,7 +3462,7 @@ const GrowthConsultingMockup = () => {
                 y1="20"
                 x2="100"
                 y2="20"
-                stroke="#10143b"
+                stroke="#161443"
                 strokeOpacity="0.04"
                 strokeWidth="0.5"
               />
@@ -3416,7 +3472,7 @@ const GrowthConsultingMockup = () => {
                 ref={pathRef}
                 d="M 5 25 C 40 25, 70 15, 95 5"
                 fill="none"
-                stroke="#e8801a"
+                stroke="#f6861f"
                 strokeWidth="2"
                 strokeLinecap="round"
               />
