@@ -22,6 +22,9 @@ export default function Home() {
   const navbarRef = useRef<HTMLElement>(null);
   const [activeTab, setActiveTab] = useState("home");
   const isProgrammaticScroll = useRef(false);
+  // Stores the scroll position where each section's TOP is at viewport top.
+  // Populated after GSAP init by reading pin spacer offsetTop.
+  const sectionScrollPositions = useRef<Record<string, number>>({});
   const [activeService, setActiveService] = useState(0);
   const selectorRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -458,10 +461,13 @@ export default function Home() {
             pin: true,
             pinSpacing: false,
             invalidateOnRefresh: true,
-            id: `pin-${id}`,
+          id: `pin-${id}`,
           });
         }
       });
+
+
+
     }, container);
 
     // Handle initial route scroll on mount
@@ -469,7 +475,9 @@ export default function Home() {
     const targetElement = document.getElementById(path);
     if (targetElement) {
       setTimeout(() => {
-        lenis.scrollTo(targetElement, { immediate: true });
+        const trigger = ScrollTrigger.getById(`pin-${path}`);
+        const scrollTarget = path === "home" ? 0 : (trigger ? trigger.start : targetElement);
+        lenis.scrollTo(scrollTarget, { immediate: true });
       }, 250);
     }
 
@@ -604,9 +612,47 @@ export default function Home() {
           }
 
           if (targetElement && (window as any).lenis) {
-            (window as any).lenis.scrollTo(targetElement, {
+            const navbarHeight = navbarRef.current?.offsetHeight ?? 80;
+            let scrollTarget: number;
+
+            if (id === "home") {
+              scrollTarget = 0;
+            } else {
+              // Use the GSAP pin trigger to find where this section STARTS.
+              //
+              // Pin types:
+              //   "top top"    → trigger fires when section TOP = viewport TOP
+              //                  trigger.start = section's scroll-start position ✓
+              //
+              //   "bottom bottom" (tall sections like blueprint) → trigger fires when
+              //                  section BOTTOM = viewport BOTTOM (i.e. section END).
+              //                  trigger.start = sectionScrollStart + sectionHeight - viewportH
+              //                  So: sectionScrollStart = trigger.start - sectionHeight + viewportH
+              //
+              // In both cases, subtract navbarHeight so the section header is
+              // visible just below the floating navbar.
+              const pinTrigger = ScrollTrigger.getById(`pin-${id}`);
+
+              if (pinTrigger) {
+                const sectionHeight = targetElement.offsetHeight;
+                const viewportHeight = window.innerHeight;
+
+                // For tall sections, trigger.start is at the section END — back up to the START.
+                // For normal sections, trigger.start is already the section START.
+                const overflow = Math.max(0, sectionHeight - viewportHeight);
+                const sectionScrollStart = pinTrigger.start - overflow;
+
+                scrollTarget = Math.max(0, sectionScrollStart - navbarHeight);
+              } else {
+                // No pin trigger: scroll to the element directly
+                scrollTarget = Math.max(0, targetElement.offsetTop - navbarHeight);
+              }
+            }
+
+            (window as any).lenis.scrollTo(scrollTarget, {
               offset: 0,
               duration: 1.2,
+              easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
               onComplete: () => {
                 isProgrammaticScroll.current = false;
               },
