@@ -99,7 +99,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
     <header
       ref={ref}
       {...rest}
-      className={`fixed z-50 bg-white/40 backdrop-blur-sm ${className || ""}`}
+      className={`fixed z-50 ${className || ""}`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         {/* Logo */}
@@ -126,10 +126,10 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             </svg>
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-extrabold tracking-tight text-[18px] text-brand-navy">
+            <span className="font-bold tracking-tight text-[18px] text-brand-navy">
               Jukebox
             </span>
-            <span className="font-semibold tracking-[0.15em] text-[11px] text-brand-navy/70 uppercase mt-0.5">
+            <span className="font-medium tracking-[0.15em] text-[11px] text-brand-navy/70 uppercase mt-0.5">
               media
             </span>
           </div>
@@ -161,7 +161,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                   e.preventDefault();
                   handleTabClick(item.id);
                 }}
-                className={`relative px-3.5 py-1.5 text-[13px] font-bold rounded-full transition-colors duration-300 cursor-pointer z-10 ${
+                className={`relative px-3.5 py-1.5 text-[13px] font-semibold rounded-full transition-colors duration-300 cursor-pointer z-10 ${
                   isActive
                     ? "text-white active-nav-btn"
                     : "text-brand-navy/70 hover:text-brand-navy hover:bg-brand-navy/[0.03]"
@@ -179,7 +179,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
         <div className="flex items-center gap-3">
           <Link
             href="#"
-            className="group hidden sm:inline-flex items-center gap-2 rounded-full bg-brand-navy px-5 py-2.5 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-brand-navy-light hover:shadow-premium"
+            className="group hidden sm:inline-flex items-center gap-2 rounded-full bg-brand-navy px-5 py-2.5 text-[14px] font-medium text-white transition-all duration-300 hover:bg-brand-navy-light hover:shadow-premium"
           >
             Let's Talk
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-brand-orange">
@@ -226,7 +226,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                   <circle cx="50" cy="50" r="18" fill="#10143b"/>
                   <polygon points="46,42 46,58 60,50" fill="#ffffff"/>
                 </svg>
-                <span className="font-extrabold text-white text-[18px] tracking-tight">Menu</span>
+                <span className="font-bold text-white text-[18px] tracking-tight">Menu</span>
               </div>
             </div>
 
@@ -250,7 +250,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                       handleTabClick(item.id);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`text-left py-2.5 px-4 rounded-xl text-[15px] font-bold transition-all duration-300 w-full ${
+                    className={`text-left py-2.5 px-4 rounded-xl text-[15px] font-semibold transition-all duration-300 w-full ${
                       isActive
                         ? "bg-[#e8801a] text-white shadow-[0_4px_12px_rgba(232,128,26,0.3)]"
                         : "text-white/70 hover:text-white hover:bg-white/5"
@@ -266,7 +266,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
               <Link
                 href="#"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-full bg-[#e8801a] py-3 text-[14px] font-bold text-white transition-all duration-300 hover:bg-[#d67215]"
+                className="flex items-center justify-center gap-2 rounded-full bg-[#e8801a] py-3 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#d67215]"
               >
                 Let's Talk
                 <span>↗</span>

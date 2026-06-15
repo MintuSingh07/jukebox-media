@@ -386,7 +386,7 @@ export default function LogoMarquee() {
   return (
     <div className="w-full bg-[#fafaf9] py-8 border-y border-brand-navy/[0.04] overflow-hidden select-none pointer-events-auto">
       <div className="mx-auto max-w-7xl px-6 mb-3 text-center">
-        <span className="text-[10px] font-extrabold tracking-[0.25em] text-brand-navy/40 uppercase">
+        <span className="text-[10px] font-bold tracking-[0.25em] text-brand-navy/40 uppercase">
           Trusted By Industry Leaders &amp; Global Brands
         </span>
       </div>

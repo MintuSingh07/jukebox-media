@@ -7,7 +7,7 @@ interface DoctorBadgeProps {
   avatarUrl: string;
   name: string;
   role: string;
-  theme: "navy" | "orange";
+  theme: "navy" | "orange" | "white";
   pointerPosition: "top-left" | "top-right";
   animationClass?: string;
   className?: string;
@@ -24,14 +24,35 @@ export default function DoctorBadge({
   className = "",
   delayMs = 0,
 }: DoctorBadgeProps) {
-  const isNavy = theme === "navy";
-  const bgClass = isNavy ? "bg-brand-navy text-white" : "bg-brand-orange text-white";
-  const textRoleClass = isNavy ? "text-brand-orange-light" : "text-brand-peach";
-  const borderClass = isNavy ? "border-brand-navy-light/40" : "border-brand-orange-light/40";
+  const bgClass = 
+    theme === "navy" 
+      ? "bg-brand-navy text-white" 
+      : theme === "orange" 
+        ? "bg-brand-orange text-white" 
+        : "bg-white text-brand-navy";
+
+  const textRoleClass = 
+    theme === "navy" 
+      ? "text-brand-orange-light" 
+      : theme === "orange" 
+        ? "text-brand-peach" 
+        : "text-brand-navy/60";
+
+  const borderClass = 
+    theme === "navy" 
+      ? "border-brand-navy-light/40" 
+      : theme === "orange" 
+        ? "border-brand-orange-light/40" 
+        : "border-brand-navy/10";
 
   // Cursor pointing direction
   const isLeftPointer = pointerPosition === "top-left";
-  const rippleColorClass = isNavy ? "border-[#10143b]/40 bg-[#10143b]/10" : "border-[#e8801a]/40 bg-[#e8801a]/10";
+  const rippleColorClass = 
+    theme === "navy" 
+      ? "border-[#10143b]/40 bg-[#10143b]/10" 
+      : theme === "orange" 
+        ? "border-[#e8801a]/40 bg-[#e8801a]/10" 
+        : "border-white/40 bg-white/10";
   const delayStyle = delayMs ? { animationDelay: `${delayMs}ms` } : undefined;
 
   return (
@@ -54,8 +75,8 @@ export default function DoctorBadge({
 
         {/* Text */}
         <div className="leading-tight pr-1 whitespace-nowrap animate-text-reveal" style={delayStyle}>
-          <h5 className="text-[13px] font-bold tracking-tight">{name}</h5>
-          <p className={`text-[10px] font-semibold ${textRoleClass} mt-0.5`}>
+          <h5 className="text-[13px] font-semibold tracking-tight">{name}</h5>
+          <p className={`text-[10px] font-medium ${textRoleClass} mt-0.5`}>
             {role}
           </p>
         </div>
@@ -89,7 +110,7 @@ export default function DoctorBadge({
         >
           <path
             d="M4 4C3.7 4 3.4 4.3 3.6 4.7L9.5 20.5C9.9 21.6 11.4 21.3 11.6 20.1L12.5 13.5L19.1 12.6C20.3 12.4 20.6 10.9 19.5 10.5L4.7 3.6C4.4 3.5 4.2 3.8 4 4Z"
-            fill={isNavy ? "#10143b" : "#e8801a"}
+            fill={theme === "navy" ? "#10143b" : theme === "orange" ? "#e8801a" : "#10143b"}
             stroke="white"
             strokeWidth="2.5"
             strokeLinejoin="round"

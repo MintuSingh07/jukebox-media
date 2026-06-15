@@ -85,6 +85,7 @@ export default function Home() {
       !navbar
     )
       return;
+    let animTimeoutId: any;
 
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
@@ -208,203 +209,7 @@ export default function Home() {
         );
       }
 
-      // Helper function to split text into words recursively while preserving formatting
-      const splitTextToWords = (el: HTMLElement) => {
-        if (el.dataset.splitDone) return;
-        el.dataset.splitDone = "true";
-
-        const processNode = (node: Node) => {
-          if (node.nodeType === Node.TEXT_NODE) {
-            const text = node.textContent || "";
-            const trimmed = text.trim();
-            if (!trimmed) return;
-
-            const words = text.split(/(\s+)/);
-            const fragment = document.createDocumentFragment();
-
-            words.forEach((part) => {
-              if (/\s+/.test(part)) {
-                fragment.appendChild(document.createTextNode(part));
-              } else if (part) {
-                const span = document.createElement("span");
-                span.className =
-                  "word-span inline-block opacity-0 translate-y-[30px]";
-                span.textContent = part;
-                fragment.appendChild(span);
-              }
-            });
-
-            node.parentNode?.replaceChild(fragment, node);
-          } else if (node.nodeType === Node.ELEMENT_NODE) {
-            const elNode = node as HTMLElement;
-            if (
-              elNode.tagName !== "SCRIPT" &&
-              elNode.tagName !== "STYLE" &&
-              !elNode.classList.contains("word-span")
-            ) {
-              const children = Array.from(node.childNodes);
-              children.forEach(processNode);
-            }
-          }
-        };
-
-        processNode(el);
-      };
-
-      // 9. Dedicated Text Appear Animations (Word-by-word reveal in ease-in-out)
-      const textSections = [
-        {
-          id: "home",
-          selector: "#home h1 > span, #home p",
-          start: "top 95%",
-        },
-        {
-          id: "problem",
-          selector: "#problem .text-center > *",
-          start: "top 78%",
-        },
-        {
-          id: "service",
-          selector: "#service .text-center > *",
-          start: "top 78%",
-        },
-        {
-          id: "blueprint",
-          selector:
-            "#blueprint .hidden.lg\\:block > div.max-w-md > *, #blueprint .hidden.lg\\:block > div.left-\\[45\\%\\], #blueprint .lg\\:hidden .text-center > *, #blueprint .lg\\:hidden div.mt-10",
-          start: "top 78%",
-        },
-        {
-          id: "industries",
-          selector: "#industries .text-center > *",
-          start: "top 78%",
-        },
-        {
-          id: "about",
-          selector:
-            "#about > div > div:nth-child(1) > div:first-child > *, #about > div > div:nth-child(3) > div:first-child > *",
-          start: "top 78%",
-        },
-        {
-          id: "testimonial",
-          selector: "#testimonial .text-center > *",
-          start: "top 78%",
-        },
-        {
-          id: "partnership",
-          selector:
-            "#partnership .lg\\:col-span-5 > span, #partnership .lg\\:col-span-5 > h3, #partnership .lg\\:col-span-5 > p, #partnership .lg\\:col-span-7 > div:first-child > *",
-          start: "top 78%",
-        },
-      ];
-
-      textSections.forEach((sec) => {
-        const containers = document.querySelectorAll(sec.selector);
-        containers.forEach((container) => {
-          splitTextToWords(container as HTMLElement);
-        });
-
-        // Query the generated word spans
-        const wordSpans = gsap.utils.toArray(
-          containers.length > 0
-            ? Array.from(containers).flatMap((c) =>
-                Array.from(c.querySelectorAll(".word-span")),
-              )
-            : [],
-        );
-
-        if (wordSpans.length > 0) {
-          gsap.fromTo(
-            wordSpans,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.45,
-              stagger: 0.08,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: `#${sec.id}`,
-                start: sec.start,
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-      });
-
-      // 10. Layout/Card Appear Animations
-      const layoutSections = [
-        {
-          id: "home",
-          selector: "#home .flex.flex-row.items-center",
-          start: "top 95%",
-        },
-        {
-          id: "problem",
-          selector: "#problem .grid > div",
-          start: "top 78%",
-        },
-        {
-          id: "service",
-          selector:
-            "#service .lg\\:col-span-5 > div, #service .lg\\:col-span-7",
-          start: "top 78%",
-        },
-        {
-          id: "blueprint",
-          selector:
-            "#blueprint .hidden.lg\\:block > div.w-\\[285px\\], #blueprint .lg\\:hidden .flex.flex-col > div",
-          start: "top 78%",
-        },
-        {
-          id: "industries",
-          selector:
-            "#industries .grid > div, #industries > div > div:nth-child(3)",
-          start: "top 78%",
-        },
-        {
-          id: "about",
-          selector:
-            "#about > div > div:nth-child(1) > div:last-child, #about > div > div:nth-child(2), #about > div > div:nth-child(3) > div:last-child",
-          start: "top 78%",
-        },
-        {
-          id: "testimonial",
-          selector: "#testimonial > div:nth-child(2)",
-          start: "top 78%",
-        },
-        {
-          id: "partnership",
-          selector:
-            "#partnership .lg\\:col-span-5 > ul > li, #partnership .lg\\:col-span-7 .grid > div",
-          start: "top 78%",
-        },
-      ];
-
-      layoutSections.forEach((sec) => {
-        const els = gsap.utils.toArray(sec.selector);
-        if (els.length > 0) {
-          gsap.fromTo(
-            els,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              stagger: 0.1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: `#${sec.id}`,
-                start: sec.start,
-                toggleActions: "play none none none",
-              },
-            },
-          );
-        }
-      });
-
-      // 11. Stacking Sections Scroll Effect
+      // 10. Stacking Sections Scroll Effect
       const handleActiveChange = (id: string) => {
         if (isProgrammaticScroll.current) return;
         if (window.scrollY < 50 && id !== "home") return;
@@ -461,11 +266,135 @@ export default function Home() {
             pin: true,
             pinSpacing: false,
             invalidateOnRefresh: true,
-          id: `pin-${id}`,
+            id: `pin-${id}`,
           });
         }
       });
 
+      // 11. Unified Section Reveal Animations (Text elements, buttons, and cards fade & slide up together)
+      const animSections = [
+        {
+          id: "home",
+          selectors: [
+            "#home h1 > span",
+            "#home p",
+            "#home .flex.flex-row.items-center"
+          ],
+          start: "top 95%",
+        },
+        {
+          id: "problem",
+          selectors: [
+            "#problem .text-center > *",
+            "#problem .grid > div"
+          ],
+          start: "top 78%",
+        },
+        {
+          id: "service",
+          selectors: [
+            "#service .text-center > *",
+            "#service .lg\\:col-span-5 > div",
+            "#service .lg\\:col-span-7"
+          ],
+          start: "top 78%",
+        },
+        {
+          id: "blueprint",
+          selectors: [
+            "#blueprint .max-w-md > *",
+            "#blueprint div.w-\\[285px\\]",
+            "#blueprint .md\\:hidden .text-center > *",
+            "#blueprint div.max-w-\\[310px\\]",
+            "#blueprint .left-\\[45\\%\\] > span"
+          ],
+          start: "top 78%",
+        },
+        {
+          id: "industries",
+          selectors: [
+            "#industries .text-center > *",
+            "#industries .grid > div",
+            "#industries > div > div:nth-child(3)"
+          ],
+          start: "top 78%",
+        },
+        {
+          id: "about",
+          selectors: [
+            "#about > div > div:nth-child(1) > div:first-child > *",
+            "#about > div > div:nth-child(1) > div:last-child",
+            "#about > div > div:nth-child(2)",
+            "#about > div > div:nth-child(3) > div:first-child > *",
+            "#about > div > div:nth-child(3) > div:last-child"
+          ],
+          start: "top 78%",
+        },
+        {
+          id: "testimonial",
+          selectors: [
+            "#testimonial .text-center > *",
+            "#testimonial > div:nth-child(2)"
+          ],
+          start: "top 78%",
+        },
+        {
+          id: "partnership",
+          selectors: [
+            "#partnership .lg\\:col-span-5",
+            "#partnership .lg\\:col-span-7 > div:first-child > *",
+            "#partnership .lg\\:col-span-7 .grid > div"
+          ],
+          start: "top 78%",
+        }
+      ];
+
+      animTimeoutId = setTimeout(() => {
+        ctx.add(() => {
+          ScrollTrigger.refresh();
+
+          animSections.forEach((sec) => {
+            const elements: HTMLElement[] = [];
+            sec.selectors.forEach((sel) => {
+              document.querySelectorAll(sel).forEach((el) => {
+                elements.push(el as HTMLElement);
+              });
+            });
+
+            // Sort elements by their DOM / visual position to ensure natural stagger flow
+            elements.sort((a, b) => {
+              const position = a.compareDocumentPosition(b);
+              if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
+                return -1;
+              } else if (position & Node.DOCUMENT_POSITION_PRECEDING) {
+                return 1;
+              }
+              return 0;
+            });
+
+            // Set initial state immediately to avoid layout flash before user scrolls to the section
+            gsap.set(elements, { opacity: 0, y: 35 });
+
+            if (elements.length > 0) {
+              ScrollTrigger.create({
+                trigger: `#${sec.id} > div:first-of-type`,
+                start: sec.start,
+                onEnter: () => {
+                  gsap.to(elements, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.08,
+                    ease: "power2.out",
+                    overwrite: "auto",
+                  });
+                },
+                once: true,
+              });
+            }
+          });
+        });
+      }, 300);
 
 
     }, container);
@@ -480,8 +409,8 @@ export default function Home() {
         lenis.scrollTo(scrollTarget, { immediate: true });
       }, 250);
     }
-
     return () => {
+      clearTimeout(animTimeoutId);
       ctx.revert();
       lenis.destroy();
       gsap.ticker.remove(rafHandler);
@@ -691,24 +620,24 @@ export default function Home() {
               borderBottomLeftRadius: "0px",
               borderBottomRightRadius: "0px",
             }}
-            className="absolute bottom-0 bg-white overflow-visible shadow-premium border border-white/5 flex flex-col items-center justify-between"
+            className="absolute bottom-0 bg-[#e8801a] overflow-visible shadow-premium border border-white/5 flex flex-col items-center justify-between"
           >
             {/* Clipped background container */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[inherit] z-0">
               {/* Grid Overlay */}
-              <div className="absolute inset-0 bg-grid-pattern opacity-100 z-0"></div>
+              <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0"></div>
 
               {/* Background Ambient Spotlights */}
               <div 
                 className="absolute top-0 right-0 w-[60vw] h-[60vw] pointer-events-none z-0"
                 style={{
-                  background: "radial-gradient(circle at top right, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0) 70%)"
+                  background: "radial-gradient(circle at top right, rgba(16, 20, 59, 0.12) 0%, rgba(16, 20, 59, 0) 70%)"
                 }}
               />
               <div 
                 className="absolute bottom-0 left-0 w-[60vw] h-[60vw] pointer-events-none z-0"
                 style={{
-                  background: "radial-gradient(circle at bottom left, rgba(232, 128, 26, 0.07) 0%, rgba(232, 128, 26, 0) 70%)"
+                  background: "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%)"
                 }}
               />
             </div>
@@ -775,7 +704,7 @@ export default function Home() {
                     avatarUrl="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=150&h=150"
                     name="Dharmendra Jani"
                     role="Operations Head, Director"
-                    theme="orange"
+                    theme="white"
                     pointerPosition="top-left"
                     animationClass="animate-float-fast"
                     delayMs={600}
@@ -783,35 +712,35 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-col items-center max-w-4xl text-center select-none z-10 pointer-events-none">
-                  <h1 className="text-[42px] leading-[1.15] sm:text-[68px] sm:leading-[1.1] md:text-[86px] md:leading-[1.08] font-bold tracking-tight text-brand-navy">
+                  <h1 className="text-[42px] leading-[1.15] sm:text-[68px] sm:leading-[1.1] md:text-[86px] md:leading-[1.08] font-semibold tracking-tight text-white">
                     <span className="block">Clarity & Growth.</span>
                     <span className="block mt-1">Structured Marketing</span>
-                    <span className="block text-brand-navy/[0.08] mt-1">
+                    <span className="block text-brand-navy mt-1">
                       For Growing Brands
                     </span>
                     <span className="block mt-1">To Deliver Impact</span>
                   </h1>
-                  <p className="mt-8 text-[16px] leading-relaxed sm:text-[18px] md:text-[22px] font-normal text-brand-navy/80 max-w-2xl tracking-tight">
+                  <p className="mt-8 text-[16px] leading-relaxed sm:text-[18px] md:text-[22px] font-normal text-white/80 max-w-2xl tracking-tight">
                     Bringing{" "}
-                    <span className="font-serif italic font-semibold text-brand-orange">
+                    <span className="font-serif italic font-medium text-brand-navy">
                       clarity
                     </span>{" "}
                     and{" "}
-                    <span className="font-serif italic font-semibold text-brand-orange">
+                    <span className="font-serif italic font-medium text-brand-navy">
                       growth
                     </span>{" "}
                     to your{" "}
-                    <span className="font-serif italic font-semibold text-brand-navy">
+                    <span className="font-serif italic font-medium text-white">
                       marketing efforts
                     </span>
                   </p>
                   <div className="mt-10 flex flex-row items-center justify-center gap-4 pointer-events-auto">
-                    <button className="px-7 py-3.5 text-[15px] font-bold text-brand-navy bg-white rounded-full border border-brand-navy/[0.06] shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy/[0.02] cursor-pointer">
+                    <button className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer">
                       Our Services
                     </button>
-                    <button className="group px-7 py-3.5 text-[15px] font-bold text-white bg-brand-navy rounded-full shadow-premium flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer">
+                    <button className="group px-7 py-3.5 text-[15px] font-semibold text-brand-navy bg-white rounded-full shadow-premium flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 cursor-pointer">
                       Let's Build Together{" "}
-                      <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 text-brand-orange">
+                      <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 text-brand-navy">
                         →
                       </span>
                     </button>
@@ -850,10 +779,10 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               The Common Situation
             </span>
-            <h2 className="text-[36px] sm:text-[48px] font-black text-brand-navy tracking-tight mt-3">
+            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3">
               Does your marketing feel scattered?
             </h2>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
@@ -948,7 +877,7 @@ export default function Home() {
                 <div className="h-10 w-10 rounded-xl bg-brand-orange/5 border border-brand-orange/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                   {card.icon}
                 </div>
-                <h4 className="text-[18px] font-bold text-brand-navy tracking-tight">
+                <h4 className="text-[18px] font-semibold text-brand-navy tracking-tight">
                   {card.title}
                 </h4>
                 <p className="text-[13.5px] text-brand-navy/60 leading-relaxed mt-2.5">
@@ -984,10 +913,10 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-            <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               What we do
             </span>
-            <h2 className="text-[32px] sm:text-[40px] font-black text-brand-navy tracking-tight mt-2">
+            <h2 className="text-[32px] sm:text-[40px] font-extrabold text-brand-navy tracking-tight mt-2">
               Our Services &amp; Expertise
             </h2>
             <p className="text-[15px] sm:text-[17px] text-brand-navy/70 mt-2 leading-relaxed">
@@ -1031,7 +960,7 @@ export default function Home() {
                     </div>
                     {/* Content */}
                     <div className="flex flex-col flex-grow">
-                      <h3 className="text-[15.5px] font-bold text-brand-navy tracking-tight">
+                      <h3 className="text-[15.5px] font-semibold text-brand-navy tracking-tight">
                         {service.title}
                       </h3>
                       <div
@@ -1096,10 +1025,10 @@ export default function Home() {
         <div className="relative w-full max-w-5xl h-[1350px] hidden md:block z-10">
           {/* Header block on left */}
           <div className="absolute left-[6%] top-[4%] max-w-md">
-            <span className="border border-brand-navy/15 text-[11px] px-3.5 py-1.5 rounded-full inline-block font-extrabold tracking-wider text-brand-navy/60 uppercase">
+            <span className="border border-brand-navy/15 text-[11px] px-3.5 py-1.5 rounded-full inline-block font-bold tracking-wider text-brand-navy/60 uppercase">
               How we work
             </span>
-            <h2 className="text-[34px] lg:text-[40px] font-black text-brand-navy leading-[1.15] tracking-tight mt-5">
+            <h2 className="text-[34px] lg:text-[40px] font-extrabold text-brand-navy leading-[1.15] tracking-tight mt-5">
               Let us show you how we drive your brand to new heights
             </h2>
             <p className="text-[15px] text-brand-navy/70 mt-5 leading-relaxed">
@@ -1226,14 +1155,14 @@ export default function Home() {
               <div className="pt-6 px-1 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-baseline justify-between border-b border-black/[0.05] pb-3.5 mb-3.5">
-                    <span className="text-[12px] font-extrabold tracking-wider text-brand-navy/60 font-mono">
+                    <span className="text-[12px] font-bold tracking-wider text-brand-navy/60 font-mono">
                       {item.step}
                     </span>
-                    <span className="text-[15px] font-extrabold text-brand-orange tracking-tight uppercase">
+                    <span className="text-[15px] font-bold text-brand-orange tracking-tight uppercase">
                       {item.phase}
                     </span>
                   </div>
-                  <p className="text-[13px] text-brand-navy font-bold leading-snug mb-3">
+                  <p className="text-[13px] text-brand-navy font-semibold leading-snug mb-3">
                     {item.tagline}
                   </p>
                 </div>
@@ -1241,9 +1170,9 @@ export default function Home() {
                   {item.bullets.map((b, bIdx) => (
                     <li
                       key={bIdx}
-                      className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-semibold"
+                      className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-medium"
                     >
-                      <span className="text-brand-orange font-bold text-[9px] mt-0.5">
+                      <span className="text-brand-orange font-semibold text-[9px] mt-0.5">
                         ➔
                       </span>
                       <span>{b}</span>
@@ -1266,10 +1195,10 @@ export default function Home() {
         <div className="w-full max-w-md flex flex-col items-center px-4 md:hidden z-10">
           {/* Mobile Header */}
           <div className="text-center mb-10">
-            <span className="border border-brand-navy/15 text-[11px] px-3.5 py-1.5 rounded-full inline-block font-extrabold tracking-wider text-brand-navy/60 uppercase">
+            <span className="border border-brand-navy/15 text-[11px] px-3.5 py-1.5 rounded-full inline-block font-bold tracking-wider text-brand-navy/60 uppercase">
               How we work
             </span>
-            <h2 className="text-[32px] font-black text-brand-navy leading-tight tracking-tight mt-4">
+            <h2 className="text-[32px] font-extrabold text-brand-navy leading-tight tracking-tight mt-4">
               Let us show you how we drive your brand to new heights
             </h2>
             <p className="text-[14px] text-brand-navy/70 mt-3 leading-relaxed">
@@ -1353,14 +1282,14 @@ export default function Home() {
                 <div className="pt-6 px-1 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex items-baseline justify-between border-b border-black/[0.05] pb-3.5 mb-3.5">
-                      <span className="text-[12px] font-extrabold tracking-wider text-brand-navy/60 font-mono">
+                      <span className="text-[12px] font-bold tracking-wider text-brand-navy/60 font-mono">
                         {item.step}
                       </span>
-                      <span className="text-[15px] font-extrabold text-brand-orange tracking-tight uppercase">
+                      <span className="text-[15px] font-bold text-brand-orange tracking-tight uppercase">
                         {item.phase}
                       </span>
                     </div>
-                    <p className="text-[13px] text-brand-navy font-bold leading-snug mb-3">
+                    <p className="text-[13px] text-brand-navy font-semibold leading-snug mb-3">
                       {item.tagline}
                     </p>
                   </div>
@@ -1368,9 +1297,9 @@ export default function Home() {
                     {item.bullets.map((b, bIdx) => (
                       <li
                         key={bIdx}
-                        className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-semibold"
+                        className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-medium"
                       >
-                        <span className="text-brand-orange font-bold text-[9px] mt-0.5">
+                        <span className="text-brand-orange font-semibold text-[9px] mt-0.5">
                           ➔
                         </span>
                         <span>{b}</span>
@@ -1415,10 +1344,10 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               Target Categories
             </span>
-            <h2 className="text-[36px] sm:text-[48px] font-black text-brand-navy tracking-tight mt-3">
+            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3">
               Businesses We Support
             </h2>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
@@ -1456,7 +1385,7 @@ export default function Home() {
                 className="bg-[#f8fafc] border border-brand-navy/5 rounded-2xl p-6 hover:shadow-md transition-all duration-300"
               >
                 <span className="text-[28px] block mb-4">{profile.icon}</span>
-                <h4 className="text-[16px] font-extrabold text-brand-navy tracking-tight">
+                <h4 className="text-[16px] font-bold text-brand-navy tracking-tight">
                   {profile.title}
                 </h4>
                 <p className="text-[13px] text-brand-navy/60 leading-relaxed mt-2">
@@ -1468,7 +1397,7 @@ export default function Home() {
 
           {/* Industry Sectors Marquee/Pills Grid */}
           <div className="border border-brand-navy/5 bg-[#fafaf9] rounded-2xl p-6 lg:p-8 text-center shadow-sm">
-            <span className="text-[10px] font-extrabold tracking-[0.25em] text-brand-navy/40 uppercase block mb-6">
+            <span className="text-[10px] font-bold tracking-[0.25em] text-brand-navy/40 uppercase block mb-6">
               Expertise Across Multiple Industry Verticals
             </span>
             <div className="flex flex-wrap justify-center gap-2.5 max-w-5xl mx-auto">
@@ -1488,7 +1417,7 @@ export default function Home() {
               ].map((industry, idx) => (
                 <div
                   key={idx}
-                  className="px-4 py-2 bg-white border border-brand-navy/5 rounded-full text-[11px] font-black text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange transition-all duration-300"
+                  className="px-4 py-2 bg-white border border-brand-navy/5 rounded-full text-[11px] font-extrabold text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange transition-all duration-300"
                 >
                   {industry}
                 </div>
@@ -1523,10 +1452,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-navy uppercase">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-navy uppercase">
                 Who we are
               </span>
-              <h2 className="text-[36px] sm:text-[52px] font-black leading-tight tracking-tight mt-3 text-white">
+              <h2 className="text-[36px] sm:text-[52px] font-extrabold leading-tight tracking-tight mt-3 text-white">
                 We build growth-centric marketing systems.
               </h2>
               <p className="text-[16px] text-white/80 mt-6 leading-relaxed">
@@ -1537,18 +1466,18 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-8 mt-10">
                 <div>
-                  <h4 className="text-[36px] font-black text-brand-navy">
+                  <h4 className="text-[36px] font-extrabold text-brand-navy">
                     $50M+
                   </h4>
-                  <p className="text-[13px] text-white/70 font-bold uppercase mt-1">
+                  <p className="text-[13px] text-white/70 font-semibold uppercase mt-1">
                     Client Revenue Generated
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-[36px] font-black text-brand-navy">
+                  <h4 className="text-[36px] font-extrabold text-brand-navy">
                     5.2x
                   </h4>
-                  <p className="text-[13px] text-white/70 font-bold uppercase mt-1">
+                  <p className="text-[13px] text-white/70 font-semibold uppercase mt-1">
                     Average Account ROAS
                   </p>
                 </div>
@@ -1556,7 +1485,7 @@ export default function Home() {
             </div>
 
             <div className="bg-white/10 rounded-3xl p-8 lg:p-12 border border-white/15 backdrop-blur-md">
-              <h3 className="text-[24px] font-bold tracking-tight text-white mb-6">
+              <h3 className="text-[24px] font-semibold tracking-tight text-white mb-6">
                 Structured Performance
               </h3>
               <ul className="flex flex-col gap-6">
@@ -1592,7 +1521,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <div>
-                      <h5 className="text-[16px] font-bold text-white tracking-tight">
+                      <h5 className="text-[16px] font-semibold text-white tracking-tight">
                         {item.title}
                       </h5>
                       <p className="text-[13px] text-white/70 leading-relaxed mt-1">
@@ -1612,10 +1541,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Bio Card (col-span 7) */}
             <div className="lg:col-span-7 flex flex-col justify-center select-none">
-              <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-navy uppercase">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-navy uppercase">
                 The Force Behind Jukebox
               </span>
-              <h3 className="text-[28px] sm:text-[36px] font-black tracking-tight mt-3 text-white">
+              <h3 className="text-[28px] sm:text-[36px] font-extrabold tracking-tight mt-3 text-white">
                 Ankit Jani — Business Head
               </h3>
               <p className="text-[15px] text-white/80 mt-4 leading-relaxed max-w-2xl">
@@ -1627,7 +1556,7 @@ export default function Home() {
               </p>
 
               <div className="mt-6 border-l-2 border-white pl-4">
-                <span className="text-[11px] text-white font-bold uppercase tracking-wider block">
+                <span className="text-[11px] text-white font-semibold uppercase tracking-wider block">
                   Cross-Platform Expertise
                 </span>
                 <p className="text-[13px] text-white/80 leading-relaxed mt-1">
@@ -1650,25 +1579,25 @@ export default function Home() {
                 />
               </div>
 
-              <span className="text-[10px] font-extrabold tracking-[0.25em] text-white/50 uppercase block mb-4">
+              <span className="text-[10px] font-bold tracking-[0.25em] text-white/50 uppercase block mb-4">
                 Prior Network Exposure
               </span>
 
               {/* Media Network Icons/badges Row */}
               <div className="grid grid-cols-5 gap-2.5 w-full items-center justify-items-center opacity-70">
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
                   SONY
                 </div>
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
                   ZEE5
                 </div>
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
                   VIACOM18
                 </div>
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
                   TIMES
                 </div>
-                <div className="text-[8.5px] font-black bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
                   MIRCHI
                 </div>
               </div>
@@ -1702,10 +1631,10 @@ export default function Home() {
         {/* Heading container */}
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10 mb-20">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               Results & Trust
             </span>
-            <h2 className="text-[36px] sm:text-[48px] font-black text-brand-navy tracking-tight mt-3">
+            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3">
               What Our Partners Say
             </h2>
             <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
@@ -1781,10 +1710,10 @@ export default function Home() {
                       className="h-9 w-9 rounded-full object-cover border border-brand-navy/[0.04] shadow-premium"
                     />
                     <div className="leading-tight">
-                      <h5 className="text-[13px] font-bold text-brand-navy tracking-tight whitespace-normal">
+                      <h5 className="text-[13px] font-semibold text-brand-navy tracking-tight whitespace-normal">
                         {item.author}
                       </h5>
-                      <p className="text-[10px] text-brand-navy/60 font-semibold mt-0.5 whitespace-normal">
+                      <p className="text-[10px] text-brand-navy/60 font-medium mt-0.5 whitespace-normal">
                         {item.role}
                       </p>
                     </div>
@@ -1854,10 +1783,10 @@ export default function Home() {
                       className="h-9 w-9 rounded-full object-cover border border-brand-navy/[0.04] shadow-premium"
                     />
                     <div className="leading-tight">
-                      <h5 className="text-[13px] font-bold text-brand-navy tracking-tight whitespace-normal">
+                      <h5 className="text-[13px] font-semibold text-brand-navy tracking-tight whitespace-normal">
                         {item.author}
                       </h5>
-                      <p className="text-[10px] text-brand-navy/60 font-semibold mt-0.5 whitespace-normal">
+                      <p className="text-[10px] text-brand-navy/60 font-medium mt-0.5 whitespace-normal">
                         {item.role}
                       </p>
                     </div>
@@ -1927,10 +1856,10 @@ export default function Home() {
                       className="h-9 w-9 rounded-full object-cover border border-brand-navy/[0.04] shadow-premium"
                     />
                     <div className="leading-tight">
-                      <h5 className="text-[13px] font-bold text-brand-navy tracking-tight whitespace-normal">
+                      <h5 className="text-[13px] font-semibold text-brand-navy tracking-tight whitespace-normal">
                         {item.author}
                       </h5>
-                      <p className="text-[10px] text-brand-navy/60 font-semibold mt-0.5 whitespace-normal">
+                      <p className="text-[10px] text-brand-navy/60 font-medium mt-0.5 whitespace-normal">
                         {item.role}
                       </p>
                     </div>
@@ -1945,7 +1874,7 @@ export default function Home() {
       {/* Engagement Models & Symptom Checklist Section */}
       <div
         id="partnership"
-        className="relative z-20 w-full bg-[#f8fafc] py-24 border-t border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-brand-navy py-24 border-t border-white/[0.04] flex flex-col items-center select-none overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
@@ -1953,13 +1882,13 @@ export default function Home() {
           <div 
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+              background: "radial-gradient(circle at top right, rgba(232, 128, 26, 0.08) 0%, rgba(232, 128, 26, 0) 70%)"
             }}
           />
           <div 
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+              background: "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)"
             }}
           />
         </div>
@@ -1967,14 +1896,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Symptom Checklist (col-span 5) */}
-            <div className="lg:col-span-5 bg-white border border-brand-navy/5 rounded-3xl p-6 lg:p-8 shadow-sm">
-              <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
+            <div className="lg:col-span-5 bg-white/5 border border-white/10 rounded-3xl p-6 lg:p-8 shadow-sm">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
                 When to reach out
               </span>
-              <h3 className="text-[28px] sm:text-[32px] font-black tracking-tight text-brand-navy mt-3 leading-tight">
+              <h3 className="text-[28px] sm:text-[32px] font-extrabold tracking-tight text-white mt-3 leading-tight">
                 Are you facing these challenges?
               </h3>
-              <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-4">
+              <p className="text-[14px] text-white/60 leading-relaxed mt-4">
                 If your business is experiencing any of these common marketing
                 friction points, it's time to restructure your systems.
               </p>
@@ -1989,10 +1918,10 @@ export default function Home() {
                 ].map((symptom, idx) => (
                   <li
                     key={idx}
-                    className="flex gap-3 items-start text-[13px] text-brand-navy/80 font-semibold leading-relaxed"
+                    className="flex gap-3 items-start text-[13px] text-white/80 font-medium leading-relaxed"
                   >
                     <div className="h-5 w-5 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-brand-orange font-bold text-[10px]">
+                      <span className="text-brand-orange font-semibold text-[10px]">
                         ✓
                       </span>
                     </div>
@@ -2005,13 +1934,13 @@ export default function Home() {
             {/* Right Column: Engagement Models Grid (col-span 7) */}
             <div className="lg:col-span-7 flex flex-col justify-between h-full gap-6">
               <div>
-                <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
+                <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
                   How we work with you
                 </span>
-                <h3 className="text-[28px] sm:text-[36px] font-black tracking-tight text-brand-navy mt-3 leading-tight">
+                <h3 className="text-[28px] sm:text-[36px] font-extrabold tracking-tight text-white mt-3 leading-tight">
                   Flexible Engagement Models
                 </h3>
-                <p className="text-[15px] text-brand-navy/60 leading-relaxed mt-4">
+                <p className="text-[15px] text-white/60 leading-relaxed mt-4">
                   We don't believe in one-size-fits-all agreements. Choose the
                   exact collaboration structure that aligns with your timeline
                   and objectives.
@@ -2038,16 +1967,16 @@ export default function Home() {
                 ].map((model, idx) => (
                   <div
                     key={idx}
-                    className="bg-white border border-brand-navy/5 rounded-2xl p-5 shadow-sm hover:border-brand-orange/20 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                    className="bg-white/5 border border-white/10 rounded-2xl p-5 shadow-sm hover:border-brand-orange/40 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between"
                   >
                     <div>
-                      <span className="text-[9px] font-black bg-brand-navy/5 text-brand-navy/60 px-2.5 py-1 rounded-md tracking-wider uppercase inline-block mb-4">
+                      <span className="text-[9px] font-extrabold bg-brand-orange/10 text-brand-orange px-2.5 py-1 rounded-md tracking-wider uppercase inline-block mb-4">
                         {model.pill}
                       </span>
-                      <h4 className="text-[15px] font-black text-brand-navy tracking-tight">
+                      <h4 className="text-[15px] font-extrabold text-white tracking-tight">
                         {model.title}
                       </h4>
-                      <p className="text-[12.5px] text-brand-navy/60 leading-relaxed mt-2.5">
+                      <p className="text-[12.5px] text-white/60 leading-relaxed mt-2.5">
                         {model.desc}
                       </p>
                     </div>
@@ -2267,11 +2196,11 @@ const PerformanceMarketingMockup = () => {
   return (
     <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
       <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-2">
-        <span className="text-[11px] font-bold text-brand-navy/80">
+        <span className="text-[11px] font-semibold text-brand-navy/80">
           Meta &amp; Google Ads Campaign
         </span>
         <div className="flex items-center gap-1.5">
-          <span className="text-[9px] font-extrabold text-emerald-500 uppercase tracking-wider animate-pulse">
+          <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider animate-pulse">
             Scaling Spend
           </span>
           <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -2279,22 +2208,22 @@ const PerformanceMarketingMockup = () => {
       </div>
       <div className="grid grid-cols-3 gap-2">
         <div className="bg-brand-navy/5 p-2 rounded-lg text-center">
-          <span className="text-[9px] block text-brand-navy/50 font-bold uppercase">
+          <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
             CTR
           </span>
-          <span className="text-[13px] font-black text-brand-navy">{ctr}</span>
+          <span className="text-[13px] font-extrabold text-brand-navy">{ctr}</span>
         </div>
         <div className="bg-brand-navy/5 p-2 rounded-lg text-center">
-          <span className="text-[9px] block text-brand-navy/50 font-bold uppercase">
+          <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
             CPC
           </span>
-          <span className="text-[13px] font-black text-brand-navy">{cpc}</span>
+          <span className="text-[13px] font-extrabold text-brand-navy">{cpc}</span>
         </div>
         <div className="bg-brand-navy/5 p-2 rounded-lg text-center">
-          <span className="text-[9px] block text-brand-navy/50 font-bold uppercase">
+          <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
             ROAS
           </span>
-          <span className="text-[13px] font-black text-brand-orange">
+          <span className="text-[13px] font-extrabold text-brand-orange">
             {roas}
           </span>
         </div>
@@ -2416,10 +2345,10 @@ const FunnelCroMockup = () => {
     <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none relative">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-brand-navy/10 pb-1.5 mb-1.5">
-        <span className="text-[11px] font-bold text-brand-navy/80">
+        <span className="text-[11px] font-semibold text-brand-navy/80">
           Conversion Rate Optimizer
         </span>
-        <span className="text-[9px] font-extrabold text-brand-orange uppercase tracking-wider">
+        <span className="text-[9px] font-bold text-brand-orange uppercase tracking-wider">
           Split Testing
         </span>
       </div>
@@ -2450,7 +2379,7 @@ const FunnelCroMockup = () => {
 
         {/* Column A: Control Version */}
         <div className="border border-brand-navy/10 bg-white rounded-xl p-2 flex flex-col justify-between relative overflow-hidden opacity-70">
-          <div className="absolute top-1 right-1 bg-brand-navy/10 text-[6.5px] text-brand-navy/70 px-1 rounded font-bold uppercase tracking-wider">
+          <div className="absolute top-1 right-1 bg-brand-navy/10 text-[6.5px] text-brand-navy/70 px-1 rounded font-semibold uppercase tracking-wider">
             Page A: Control
           </div>
 
@@ -2461,17 +2390,17 @@ const FunnelCroMockup = () => {
             <div className="h-4 w-full bg-brand-navy/5 border border-brand-navy/10 rounded mt-1 flex items-center px-1 text-[6.5px] text-brand-navy/30">
               Email Address
             </div>
-            <div className="h-4.5 w-full bg-brand-navy/20 text-brand-navy/60 rounded flex items-center justify-center text-[7.5px] font-bold mt-1">
+            <div className="h-4.5 w-full bg-brand-navy/20 text-brand-navy/60 rounded flex items-center justify-center text-[7.5px] font-semibold mt-1">
               Submit
             </div>
           </div>
 
           {/* Metric conversion badge */}
           <div className="mt-2 bg-brand-navy/5 rounded-lg p-1.5 flex flex-col items-center">
-            <span className="text-[6px] text-brand-navy/40 font-bold uppercase tracking-wider">
+            <span className="text-[6px] text-brand-navy/40 font-semibold uppercase tracking-wider">
               Conversion Rate
             </span>
-            <span className="text-[12px] font-black text-brand-navy/60 mt-0.5">
+            <span className="text-[12px] font-extrabold text-brand-navy/60 mt-0.5">
               {valA}
             </span>
           </div>
@@ -2479,20 +2408,20 @@ const FunnelCroMockup = () => {
 
         {/* Column B: Optimized Version */}
         <div className="border border-brand-orange/20 bg-white rounded-xl p-2 flex flex-col justify-between relative overflow-hidden shadow-sm shadow-brand-orange/5 animate-fade-in">
-          <div className="absolute top-1 right-1 bg-brand-orange/10 text-[6.5px] text-brand-orange px-1 rounded font-black uppercase tracking-wider">
+          <div className="absolute top-1 right-1 bg-brand-orange/10 text-[6.5px] text-brand-orange px-1 rounded font-extrabold uppercase tracking-wider">
             Page B: Optimized
           </div>
 
           {/* Winner badge overlay */}
           {showWinner && (
             <div className="absolute inset-0 bg-brand-navy/95 text-white flex flex-col items-center justify-center p-2 text-center animate-fade-in z-30">
-              <span className="text-brand-orange text-[7.5px] font-black uppercase tracking-widest block mb-0.5 animate-pulse">
+              <span className="text-brand-orange text-[7.5px] font-extrabold uppercase tracking-widest block mb-0.5 animate-pulse">
                 Winner Verified
               </span>
-              <span className="text-[12.5px] font-black tracking-tight">
+              <span className="text-[12.5px] font-extrabold tracking-tight">
                 +141% Lift
               </span>
-              <span className="text-[6.5px] text-white/50 font-bold mt-0.5 block leading-normal">
+              <span className="text-[6.5px] text-white/50 font-semibold mt-0.5 block leading-normal">
                 Conversion Rate: 5.8%
               </span>
             </div>
@@ -2514,7 +2443,7 @@ const FunnelCroMockup = () => {
             {/* Interactive Button */}
             <div
               ref={btnRef}
-              className="h-4.5 w-full bg-brand-orange text-white rounded flex items-center justify-center text-[7.5px] font-black mt-1 shadow-sm transition-transform cursor-pointer"
+              className="h-4.5 w-full bg-brand-orange text-white rounded flex items-center justify-center text-[7.5px] font-extrabold mt-1 shadow-sm transition-transform cursor-pointer"
             >
               Get My Blueprint ➔
             </div>
@@ -2522,10 +2451,10 @@ const FunnelCroMockup = () => {
 
           {/* Metric conversion badge */}
           <div className="mt-2 bg-brand-orange/5 border border-brand-orange/10 rounded-lg p-1.5 flex flex-col items-center">
-            <span className="text-[6px] text-brand-orange/60 font-bold uppercase tracking-wider">
+            <span className="text-[6px] text-brand-orange/60 font-semibold uppercase tracking-wider">
               Conversion Rate
             </span>
-            <span className="text-[12px] font-black text-brand-orange mt-0.5">
+            <span className="text-[12px] font-extrabold text-brand-orange mt-0.5">
               {valB}
             </span>
           </div>
@@ -2578,13 +2507,13 @@ const FunnelCroOverlay = () => {
 
   return (
     <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-black text-brand-navy/40 uppercase tracking-widest block mb-1">
+      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
         CRO Checklist
       </span>
       <div className="flex items-center justify-between text-[11px] border-b border-brand-navy/5 pb-1">
         <span>Page Speed Test</span>
         <span
-          className={`font-extrabold ${speed.includes("0.8") ? "text-emerald-500" : "text-brand-navy/50"}`}
+          className={`font-bold ${speed.includes("0.8") ? "text-emerald-500" : "text-brand-navy/50"}`}
         >
           {speed}
         </span>
@@ -2592,7 +2521,7 @@ const FunnelCroOverlay = () => {
       <div className="flex items-center justify-between text-[11px] border-b border-brand-navy/5 pb-1">
         <span>Mobile Audit</span>
         <span
-          className={`font-extrabold ${mobileAudit === "Passed" ? "text-emerald-500 animate-pulse" : "text-brand-navy/50"}`}
+          className={`font-bold ${mobileAudit === "Passed" ? "text-emerald-500 animate-pulse" : "text-brand-navy/50"}`}
         >
           {mobileAudit}
         </span>
@@ -2600,7 +2529,7 @@ const FunnelCroOverlay = () => {
       <div className="flex items-center justify-between text-[11px] border-b border-brand-navy/5 pb-1">
         <span>Form Optimization</span>
         <span
-          className={`font-extrabold ${formsOpt === "Optimized" ? "text-brand-orange" : "text-brand-navy/50"}`}
+          className={`font-bold ${formsOpt === "Optimized" ? "text-brand-orange" : "text-brand-navy/50"}`}
         >
           {formsOpt}
         </span>
@@ -2608,7 +2537,7 @@ const FunnelCroOverlay = () => {
       <div className="flex items-center justify-between text-[11px] pt-1">
         <span>Conversion Increase</span>
         <span
-          className={`font-extrabold ${lift !== "+0%" ? "text-emerald-500 text-[13px]" : "text-brand-navy/50"}`}
+          className={`font-bold ${lift !== "+0%" ? "text-emerald-500 text-[13px]" : "text-brand-navy/50"}`}
         >
           {lift}
         </span>
@@ -2723,10 +2652,10 @@ const CreativeStrategyMockup = () => {
   return (
     <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none relative overflow-hidden">
       <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-1.5">
-        <span className="text-[11px] font-bold text-brand-navy/80">
+        <span className="text-[11px] font-semibold text-brand-navy/80">
           Figma Creative Workspace
         </span>
-        <span className="text-[9px] font-extrabold text-[#a259ff] uppercase tracking-wider">
+        <span className="text-[9px] font-bold text-[#a259ff] uppercase tracking-wider">
           Design System
         </span>
       </div>
@@ -2746,7 +2675,7 @@ const CreativeStrategyMockup = () => {
 
         {/* Ad Header */}
         <div className="flex items-center gap-2 relative z-10">
-          <div className="h-6 w-6 rounded-full bg-white/20 flex items-center justify-center font-black text-[9px]">
+          <div className="h-6 w-6 rounded-full bg-white/20 flex items-center justify-center font-extrabold text-[9px]">
             J
           </div>
           <div>
@@ -2757,7 +2686,7 @@ const CreativeStrategyMockup = () => {
 
         {/* Ad Copy (Typewriter Headline) */}
         <div className="my-2 z-10 min-h-[36px]">
-          <h4 className="text-[14px] font-extrabold tracking-tight min-h-[14px]">
+          <h4 className="text-[14px] font-bold tracking-tight min-h-[14px]">
             {headline}
             <span className="inline-block w-0.5 h-3.5 bg-brand-orange ml-0.5 animate-pulse" />
           </h4>
@@ -2773,10 +2702,10 @@ const CreativeStrategyMockup = () => {
             ref={element1Ref}
             className="bg-white/10 border border-white/10 rounded-md p-1.5 flex-1 flex flex-col items-center justify-center"
           >
-            <span className="text-[7.5px] font-bold text-white/50">
+            <span className="text-[7.5px] font-semibold text-white/50">
               ROAS Target
             </span>
-            <span className="text-[11px] font-extrabold text-brand-orange mt-0.5">
+            <span className="text-[11px] font-bold text-brand-orange mt-0.5">
               5.0x
             </span>
           </div>
@@ -2785,10 +2714,10 @@ const CreativeStrategyMockup = () => {
             ref={element2Ref}
             className="bg-white/10 border border-white/10 rounded-md p-1.5 flex-1 flex flex-col items-center justify-center"
           >
-            <span className="text-[7.5px] font-bold text-white/50">
+            <span className="text-[7.5px] font-semibold text-white/50">
               Engagement
             </span>
-            <span className="text-[11px] font-extrabold text-emerald-400 mt-0.5">
+            <span className="text-[11px] font-bold text-emerald-400 mt-0.5">
               High
             </span>
           </div>
@@ -2796,12 +2725,12 @@ const CreativeStrategyMockup = () => {
 
         {/* Ad Footer / Reactions */}
         <div className="flex items-center justify-between z-10 mt-1 border-t border-white/10 pt-1.5">
-          <span className="text-[8px] bg-brand-orange text-white px-2 py-0.5 rounded-full font-bold">
+          <span className="text-[8px] bg-brand-orange text-white px-2 py-0.5 rounded-full font-semibold">
             Shop Now ↗
           </span>
           <div className="flex items-center gap-1 text-[8.5px] text-white/60">
             <span>🔥</span>
-            <span className="font-extrabold">{likes} Likes</span>
+            <span className="font-bold">{likes} Likes</span>
           </div>
         </div>
       </div>
@@ -2841,32 +2770,32 @@ const CreativeStrategyOverlay = () => {
 
   return (
     <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-black text-brand-navy/40 uppercase tracking-widest block mb-1">
+      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
         Copywriting Angles
       </span>
       <div className="border border-brand-navy/5 rounded-lg p-2 bg-brand-navy/5">
-        <span className="text-[9px] text-brand-navy/40 block font-bold">
+        <span className="text-[9px] text-brand-navy/40 block font-semibold">
           Headline Tester A:
         </span>
         <span
-          className={`text-[10px] font-bold transition-all duration-300 ${headlineIdx === 0 ? "text-brand-orange" : "text-brand-navy"}`}
+          className={`text-[10px] font-semibold transition-all duration-300 ${headlineIdx === 0 ? "text-brand-orange" : "text-brand-navy"}`}
         >
           "Scale your revenue with Jukebox systems."
         </span>
       </div>
       <div className="border border-brand-navy/5 rounded-lg p-2 bg-brand-navy/5">
-        <span className="text-[9px] text-brand-navy/40 block font-bold">
+        <span className="text-[9px] text-brand-navy/40 block font-semibold">
           Headline Tester B:
         </span>
         <span
-          className={`text-[10px] font-bold transition-all duration-300 ${headlineIdx === 1 ? "text-brand-orange text-[10.5px]" : "text-brand-navy"}`}
+          className={`text-[10px] font-semibold transition-all duration-300 ${headlineIdx === 1 ? "text-brand-orange text-[10.5px]" : "text-brand-navy"}`}
         >
           "Predictable pipeline growth on autoplay."
         </span>
       </div>
       <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-brand-navy/5">
         <span>Predictive CTR Score:</span>
-        <span className="font-extrabold text-emerald-500">
+        <span className="font-bold text-emerald-500">
           {feedbackScore.toFixed(1)}/10
         </span>
       </div>
@@ -2992,11 +2921,11 @@ const AnalyticsTrackingMockup = () => {
   return (
     <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
       <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-1">
-        <span className="text-[11px] font-bold text-brand-navy/80">
+        <span className="text-[11px] font-semibold text-brand-navy/80">
           GA4 Real-Time Traffic Stream
         </span>
         <div className="flex items-center gap-1">
-          <span className="text-[9px] font-extrabold text-emerald-500 uppercase tracking-wider">
+          <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider">
             Live Tracking
           </span>
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
@@ -3031,7 +2960,7 @@ const AnalyticsTrackingMockup = () => {
           <circle ref={dot1Ref} cx="30" cy="10" r="3.5" fill="#3b82f6" />
           <circle ref={dot2Ref} cx="170" cy="10" r="3.5" fill="#a259ff" />
         </svg>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 border border-brand-navy/10 px-2 py-0.5 rounded shadow-sm text-[8px] font-black">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 border border-brand-navy/10 px-2 py-0.5 rounded shadow-sm text-[8px] font-extrabold">
           API Router Gate
         </div>
       </div>
@@ -3058,15 +2987,15 @@ const AnalyticsTrackingMockup = () => {
 
       {/* Traffic source indicators */}
       <div className="flex flex-col gap-1 border-t border-brand-navy/5 pt-1.5">
-        <div className="flex items-center justify-between text-[9px] font-bold text-brand-navy/70">
+        <div className="flex items-center justify-between text-[9px] font-semibold text-brand-navy/70">
           <span>Active Attribute Channel</span>
           <span>Live Conversions</span>
         </div>
         <div className="flex items-center justify-between text-[10.5px]">
-          <span className="font-extrabold text-brand-orange animate-pulse">
+          <span className="font-bold text-brand-orange animate-pulse">
             {activeTabName}
           </span>
-          <span className="font-extrabold text-brand-navy">
+          <span className="font-bold text-brand-navy">
             {liveConvs} / min
           </span>
         </div>
@@ -3104,7 +3033,7 @@ const AnalyticsTrackingOverlay = () => {
 
   return (
     <div className="flex flex-col gap-2 animate-fade-in text-brand-navy select-none min-h-[142px]">
-      <span className="text-[9px] font-black text-brand-navy/40 uppercase tracking-widest block mb-1">
+      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
         Pixel Debugger Logs
       </span>
       <div className="bg-brand-navy text-emerald-400 p-2 rounded-lg font-mono text-[8.5px] leading-relaxed flex flex-col justify-between h-[95px] overflow-hidden border border-brand-navy-light shadow-inner">
@@ -3235,10 +3164,10 @@ const GrowthConsultingMockup = () => {
   return (
     <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
       <div className="flex items-center justify-between border-b border-brand-navy/10 pb-1.5 mb-1">
-        <span className="text-[11px] font-bold text-brand-navy/80">
+        <span className="text-[11px] font-semibold text-brand-navy/80">
           Scaling Roadmap
         </span>
-        <span className="text-[9px] font-extrabold text-brand-orange uppercase tracking-wider">
+        <span className="text-[9px] font-bold text-brand-orange uppercase tracking-wider">
           Growth Consulting
         </span>
       </div>
@@ -3258,25 +3187,25 @@ const GrowthConsultingMockup = () => {
           >
             <div className="flex items-center justify-between">
               <span
-                className={`text-[8.5px] font-extrabold block leading-tight ${
+                className={`text-[8.5px] font-bold block leading-tight ${
                   activePhase >= 1 ? "text-brand-navy" : "text-brand-navy/40"
                 }`}
               >
                 1. System Audit
               </span>
               {activePhase > 1 && (
-                <span className="text-emerald-500 text-[8px] font-black">
+                <span className="text-emerald-500 text-[8px] font-extrabold">
                   COMPLETE ✓
                 </span>
               )}
               {activePhase === 1 && (
-                <span className="text-brand-orange text-[8px] font-black animate-pulse">
+                <span className="text-brand-orange text-[8px] font-extrabold animate-pulse">
                   ACTIVE
                 </span>
               )}
             </div>
             {activePhase >= 1 && (
-              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-semibold animate-fade-in">
+              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-medium animate-fade-in">
                 <div className="flex items-center gap-1">
                   <span
                     className={
@@ -3313,25 +3242,25 @@ const GrowthConsultingMockup = () => {
           >
             <div className="flex items-center justify-between">
               <span
-                className={`text-[8.5px] font-extrabold block leading-tight ${
+                className={`text-[8.5px] font-bold block leading-tight ${
                   activePhase >= 2 ? "text-brand-navy" : "text-brand-navy/40"
                 }`}
               >
                 2. Funnel Restructure
               </span>
               {activePhase > 2 && (
-                <span className="text-emerald-500 text-[8px] font-black">
+                <span className="text-emerald-500 text-[8px] font-extrabold">
                   COMPLETE ✓
                 </span>
               )}
               {activePhase === 2 && (
-                <span className="text-brand-orange text-[8px] font-black animate-pulse">
+                <span className="text-brand-orange text-[8px] font-extrabold animate-pulse">
                   ACTIVE
                 </span>
               )}
             </div>
             {activePhase >= 2 && (
-              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-semibold animate-fade-in">
+              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-medium animate-fade-in">
                 <div className="flex items-center gap-1">
                   <span
                     className={
@@ -3366,20 +3295,20 @@ const GrowthConsultingMockup = () => {
           >
             <div className="flex items-center justify-between">
               <span
-                className={`text-[8.5px] font-extrabold block leading-tight ${
+                className={`text-[8.5px] font-bold block leading-tight ${
                   activePhase >= 3 ? "text-brand-navy" : "text-brand-navy/40"
                 }`}
               >
                 3. Scaling & Budgets
               </span>
               {activePhase === 3 && (
-                <span className="text-brand-orange text-[8px] font-black animate-bounce">
+                <span className="text-brand-orange text-[8px] font-extrabold animate-bounce">
                   SCALING 🚀
                 </span>
               )}
             </div>
             {activePhase >= 3 && (
-              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-semibold animate-fade-in">
+              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-medium animate-fade-in">
                 <div className="flex items-center gap-1">
                   <span className="text-brand-orange">➔</span>
                   <span>Scale Daily Budget to $1,500/day</span>
@@ -3398,10 +3327,10 @@ const GrowthConsultingMockup = () => {
           {/* Revenue Dial Card */}
           <div className="bg-brand-navy text-white p-2 rounded-xl border border-brand-navy-light flex flex-col justify-between relative overflow-hidden shadow-lg min-h-[56px]">
             <div className="absolute top-0 right-0 w-12 h-12 rounded-full bg-brand-orange/20 blur-lg pointer-events-none" />
-            <span className="text-[6.5px] text-white/50 block font-bold uppercase tracking-wider">
+            <span className="text-[6.5px] text-white/50 block font-semibold uppercase tracking-wider">
               Projected Monthly Revenue
             </span>
-            <span className="text-[12px] font-black text-white mt-1 leading-none tracking-tight block">
+            <span className="text-[12px] font-extrabold text-white mt-1 leading-none tracking-tight block">
               {revenue}
             </span>
           </div>
@@ -3409,15 +3338,15 @@ const GrowthConsultingMockup = () => {
           {/* ROAS Indicator */}
           <div className="bg-white border border-brand-navy/10 p-2 rounded-xl flex items-center justify-between shadow-sm min-h-[38px]">
             <div className="flex flex-col">
-              <span className="text-[6.5px] text-brand-navy/40 font-bold uppercase tracking-wider">
+              <span className="text-[6.5px] text-brand-navy/40 font-semibold uppercase tracking-wider">
                 Target ROAS
               </span>
-              <span className="text-[11px] font-black text-brand-navy mt-0.5 leading-none">
+              <span className="text-[11px] font-extrabold text-brand-navy mt-0.5 leading-none">
                 {roas}
               </span>
             </div>
             <div className="h-6 w-6 rounded-lg bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center shrink-0">
-              <span className="text-[8px] font-black text-brand-orange">
+              <span className="text-[8px] font-extrabold text-brand-orange">
                 ×5
               </span>
             </div>
@@ -3500,18 +3429,18 @@ const GrowthConsultingOverlay = () => {
 
   return (
     <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-black text-brand-navy/40 uppercase tracking-widest block mb-1">
+      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
         Strategic Checklist
       </span>
       <div className="flex items-center gap-2 text-[11px] border-b border-brand-navy/5 pb-1 transition-opacity duration-300">
         <span
-          className={`font-bold transition-all duration-300 ${c1 ? "text-emerald-500 scale-110" : "text-brand-navy/20"}`}
+          className={`font-semibold transition-all duration-300 ${c1 ? "text-emerald-500 scale-110" : "text-brand-navy/20"}`}
         >
           {c1 ? "✓" : "○"}
         </span>
         <span
           className={
-            c1 ? "text-brand-navy/90 font-semibold" : "text-brand-navy/40"
+            c1 ? "text-brand-navy/90 font-medium" : "text-brand-navy/40"
           }
         >
           Competitor Ad Gap Audit
@@ -3519,13 +3448,13 @@ const GrowthConsultingOverlay = () => {
       </div>
       <div className="flex items-center gap-2 text-[11px] border-b border-brand-navy/5 pb-1 transition-opacity duration-300">
         <span
-          className={`font-bold transition-all duration-300 ${c2 ? "text-emerald-500 scale-110" : "text-brand-navy/20"}`}
+          className={`font-semibold transition-all duration-300 ${c2 ? "text-emerald-500 scale-110" : "text-brand-navy/20"}`}
         >
           {c2 ? "✓" : "○"}
         </span>
         <span
           className={
-            c2 ? "text-brand-navy/90 font-semibold" : "text-brand-navy/40"
+            c2 ? "text-brand-navy/90 font-medium" : "text-brand-navy/40"
           }
         >
           Offer Optimization Plan
@@ -3533,12 +3462,12 @@ const GrowthConsultingOverlay = () => {
       </div>
       <div className="flex items-center gap-2 text-[11px] pt-1 transition-opacity duration-300">
         <span
-          className={`font-bold transition-all duration-300 ${c3 ? "text-brand-orange scale-110" : "text-brand-navy/20"}`}
+          className={`font-semibold transition-all duration-300 ${c3 ? "text-brand-orange scale-110" : "text-brand-navy/20"}`}
         >
           {c3 ? "✓" : "○"}
         </span>
         <span
-          className={c3 ? "text-brand-navy/90 font-bold" : "text-brand-navy/40"}
+          className={c3 ? "text-brand-navy/90 font-semibold" : "text-brand-navy/40"}
         >
           Monthly Budget Expansion
         </span>
@@ -3605,10 +3534,10 @@ const MarketingAutomationMockup = () => {
   return (
     <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
       <div className="flex items-center justify-between border-b border-brand-navy/10 pb-1.5 mb-1">
-        <span className="text-[11px] font-bold text-brand-navy/80">
+        <span className="text-[11px] font-semibold text-brand-navy/80">
           Workflow Logic Builder
         </span>
-        <span className="text-[9px] font-extrabold text-emerald-500 uppercase tracking-wider">
+        <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider">
           CRM Sync Active
         </span>
       </div>
@@ -3624,7 +3553,7 @@ const MarketingAutomationMockup = () => {
                 : "bg-white border-brand-navy/10"
             }`}
           >
-            <span className="text-[8.5px] font-extrabold block leading-tight">
+            <span className="text-[8.5px] font-bold block leading-tight">
               1. Form Submit
             </span>
             <span className="text-[7px] text-brand-navy/40 leading-none">
@@ -3651,7 +3580,7 @@ const MarketingAutomationMockup = () => {
                 : "bg-white border-brand-navy/10"
             }`}
           >
-            <span className="text-[8.5px] font-extrabold block leading-tight">
+            <span className="text-[8.5px] font-bold block leading-tight">
               2. API Router Delay
             </span>
             <span className="text-[7px] text-brand-navy/40 leading-none">
@@ -3678,7 +3607,7 @@ const MarketingAutomationMockup = () => {
                 : "bg-white border-brand-navy/10"
             }`}
           >
-            <span className="text-[8.5px] font-extrabold block leading-tight">
+            <span className="text-[8.5px] font-bold block leading-tight">
               3. WhatsApp Alert
             </span>
             <span className="text-[7px] text-brand-navy/40 leading-none">
@@ -3695,7 +3624,7 @@ const MarketingAutomationMockup = () => {
               {/* Top notch */}
               <div className="h-1.5 w-6 bg-black rounded-full mb-1" />
               {/* Lock screen clock */}
-              <span className="text-[9px] font-black text-white/50 leading-none tracking-tighter">
+              <span className="text-[9px] font-extrabold text-white/50 leading-none tracking-tighter">
                 09:41
               </span>
 
@@ -3714,7 +3643,7 @@ const MarketingAutomationMockup = () => {
                   </svg>
                 </div>
                 <div className="flex flex-col min-w-0 leading-tight">
-                  <span className="font-extrabold text-[5.5px] text-brand-navy truncate">
+                  <span className="font-bold text-[5.5px] text-brand-navy truncate">
                     Jukebox Media
                   </span>
                   <span className="text-[5px] text-brand-navy/60 leading-none">
@@ -3789,7 +3718,7 @@ const MarketingAutomationOverlay = () => {
 
   return (
     <div className="flex flex-col gap-2 text-brand-navy select-none min-h-[170px] animate-fade-in">
-      <span className="text-[9px] font-black text-brand-navy/40 uppercase tracking-widest block mb-1">
+      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
         Live Integration Hub
       </span>
 
@@ -3806,8 +3735,8 @@ const MarketingAutomationOverlay = () => {
             </svg>
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="font-extrabold text-[9.5px]">WhatsApp CRM</span>
-            <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase">
+            <span className="font-bold text-[9.5px]">WhatsApp CRM</span>
+            <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase">
               Instant trigger
             </span>
           </div>
@@ -3817,7 +3746,7 @@ const MarketingAutomationOverlay = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
           </span>
-          <span className="text-[8px] font-black text-emerald-600">ACTIVE</span>
+          <span className="text-[8px] font-extrabold text-emerald-600">ACTIVE</span>
         </div>
       </div>
 
@@ -3840,13 +3769,13 @@ const MarketingAutomationOverlay = () => {
             </svg>
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="font-extrabold text-[9.5px]">Email Sequence</span>
-            <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase">
+            <span className="font-bold text-[9.5px]">Email Sequence</span>
+            <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase">
               Nurture Campaign
             </span>
           </div>
         </div>
-        <div className="px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 text-[8px] font-black shrink-0">
+        <div className="px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 text-[8px] font-extrabold shrink-0">
           98% DELIV.
         </div>
       </div>
@@ -3880,9 +3809,9 @@ const MarketingAutomationOverlay = () => {
             </svg>
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="font-extrabold text-[9.5px]">HubSpot Sync</span>
+            <span className="font-bold text-[9.5px]">HubSpot Sync</span>
             <span
-              className={`text-[7.5px] font-bold uppercase transition-colors ${
+              className={`text-[7.5px] font-semibold uppercase transition-colors ${
                 syncState === "synced"
                   ? "text-emerald-600"
                   : "text-brand-orange"
@@ -3897,7 +3826,7 @@ const MarketingAutomationOverlay = () => {
         <div className="shrink-0">
           {syncState === "syncing" ? (
             <div className="flex items-center gap-1.5 bg-brand-orange/5 border border-brand-orange/10 px-1.5 py-0.5 rounded-lg">
-              <span className="text-[8.5px] font-black text-brand-orange">
+              <span className="text-[8.5px] font-extrabold text-brand-orange">
                 {syncProgress}%
               </span>
               <svg
@@ -4052,7 +3981,7 @@ const PerformanceMarketingOverlay = () => {
 
   return (
     <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none min-h-[185px]">
-      <span className="text-[9px] font-black text-brand-navy/40 uppercase tracking-widest block mb-1">
+      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
         Live Attribution Feed
       </span>
       <div className="relative h-[155px] overflow-hidden">
@@ -4072,17 +4001,17 @@ const PerformanceMarketingOverlay = () => {
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-extrabold text-[10px] text-brand-navy truncate">
+              <span className="font-bold text-[10px] text-brand-navy truncate">
                 Google Search
               </span>
-              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">
+              <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase tracking-wider">
                 2s ago
               </span>
             </div>
           </div>
           <div className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 shrink-0 flex items-center gap-0.5">
             <span className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-black text-[9px] text-emerald-600 tracking-tight">
+            <span className="font-extrabold text-[9px] text-emerald-600 tracking-tight">
               +$140
             </span>
           </div>
@@ -4104,17 +4033,17 @@ const PerformanceMarketingOverlay = () => {
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-extrabold text-[10px] text-brand-navy truncate">
+              <span className="font-bold text-[10px] text-brand-navy truncate">
                 YouTube Ads
               </span>
-              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">
+              <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase tracking-wider">
                 1m ago
               </span>
             </div>
           </div>
           <div className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 shrink-0 flex items-center gap-0.5">
             <span className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-black text-[9px] text-emerald-600 tracking-tight">
+            <span className="font-extrabold text-[9px] text-emerald-600 tracking-tight">
               +$340
             </span>
           </div>
@@ -4140,17 +4069,17 @@ const PerformanceMarketingOverlay = () => {
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-extrabold text-[10px] text-brand-navy truncate">
+              <span className="font-bold text-[10px] text-brand-navy truncate">
                 Instagram Reels
               </span>
-              <span className="text-[7.5px] text-brand-navy/40 font-bold uppercase tracking-wider">
+              <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase tracking-wider">
                 Just now
               </span>
             </div>
           </div>
           <div className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 shrink-0 flex items-center gap-0.5">
             <span className="h-1 w-1 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-black text-[9px] text-emerald-600 tracking-tight">
+            <span className="font-extrabold text-[9px] text-emerald-600 tracking-tight">
               +$128
             </span>
           </div>

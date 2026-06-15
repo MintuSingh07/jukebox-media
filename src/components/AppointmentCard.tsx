@@ -78,10 +78,10 @@ export default function AppointmentCard() {
       <div className="w-[190px]">
         {/* Top Orange Container */}
         <div className="bg-brand-orange p-3.5 pb-4 text-white leading-tight">
-          <p className="text-[10px] font-semibold text-white/80">
+          <p className="text-[10px] font-medium text-white/80">
             Discovery Call with
           </p>
-          <h4 className="text-[15px] font-bold mt-0.5 tracking-tight">
+          <h4 className="text-[15px] font-semibold mt-0.5 tracking-tight">
             Ankit Jani
           </h4>
         </div>
@@ -90,18 +90,18 @@ export default function AppointmentCard() {
         <div className="p-3 bg-white flex flex-col gap-2">
           {/* Tags */}
           <div className="flex gap-1.5">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-brand-navy/[0.06] bg-brand-navy/[0.03] text-[9px] font-bold text-brand-navy">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-brand-navy/[0.06] bg-brand-navy/[0.03] text-[9px] font-semibold text-brand-navy">
               <span className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]"></span>
               Strategy
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-brand-navy/[0.06] bg-brand-navy/[0.03] text-[9px] font-bold text-brand-navy">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-brand-navy/[0.06] bg-brand-navy/[0.03] text-[9px] font-semibold text-brand-navy">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-orange"></span>
               Growth
             </span>
           </div>
 
           {/* Time/Date */}
-          <div className="flex items-center gap-1.5 text-[9.5px] font-bold text-brand-navy/70 mt-1">
+          <div className="flex items-center gap-1.5 text-[9.5px] font-semibold text-brand-navy/70 mt-1">
             {/* Calendar SVG */}
             <svg
               className="h-3.5 w-3.5 text-brand-orange"

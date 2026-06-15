@@ -51,10 +51,10 @@ export default function FloatingCard({
 
         {/* Content */}
         <div className="min-w-0 flex-1 leading-tight">
-          <h4 className="truncate text-[14px] font-bold text-brand-navy tracking-tight">
+          <h4 className="truncate text-[14px] font-semibold text-brand-navy tracking-tight">
             {name}
           </h4>
-          <p className="truncate text-[10px] font-semibold text-brand-navy/50 mt-0.5">
+          <p className="truncate text-[10px] font-medium text-brand-navy/50 mt-0.5">
             {startDate}
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function FloatingCard({
 
       {/* Progress Section */}
       <div className="mt-4 pt-3 border-t border-brand-navy/[0.04]">
-        <div className="flex items-center justify-between text-[11px] font-bold text-brand-navy/70">
+        <div className="flex items-center justify-between text-[11px] font-semibold text-brand-navy/70">
           <span>{weekText}</span>
         </div>
         <div className="mt-2 h-1.5 w-full rounded-full bg-brand-navy/[0.03] overflow-hidden">
