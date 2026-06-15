@@ -810,7 +810,7 @@ export default function Home() {
             </span>
             <ScrollReveal
               as="h2"
-              containerClassName="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3"
+              containerClassName="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3 leading-[1.1]"
             >
               Does your marketing feel scattered?
             </ScrollReveal>
