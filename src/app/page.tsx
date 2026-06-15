@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import FloatingCard from "@/components/FloatingCard";
 import DoctorBadge from "@/components/DoctorBadge";
 import LogoMarquee from "@/components/LogoMarquee";
+import Grainient from "@/components/Grainient";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -286,7 +287,7 @@ export default function Home() {
           id: "problem",
           selectors: [
             "#problem .text-center > *",
-            "#problem .grid > div"
+            "#problem .flex > div"
           ],
           start: "top 78%",
         },
@@ -624,18 +625,42 @@ export default function Home() {
           >
             {/* Clipped background container */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[inherit] z-0">
+              <Grainient
+                color1="#F97316"
+                color2="#ff9851"
+                color3="#10143b"
+                timeSpeed={0.25}
+                colorBalance={0.0}
+                warpStrength={1.0}
+                warpFrequency={5.0}
+                warpSpeed={2.0}
+                warpAmplitude={50.0}
+                blendAngle={0.0}
+                blendSoftness={0.05}
+                rotationAmount={500.0}
+                noiseScale={2.0}
+                grainAmount={0.1}
+                grainScale={2.0}
+                grainAnimated={false}
+                contrast={1.5}
+                gamma={1.0}
+                saturation={1.0}
+                centerX={0.0}
+                centerY={0.0}
+                zoom={0.9}
+              />
               {/* Grid Overlay */}
               <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0"></div>
 
               {/* Background Ambient Spotlights */}
               <div 
-                className="absolute top-0 right-0 w-[60vw] h-[60vw] pointer-events-none z-0"
+                className="absolute top-0 right-0 w-[60vw] h-[60vw] pointer-events-none z-0 mix-blend-screen"
                 style={{
                   background: "radial-gradient(circle at top right, rgba(16, 20, 59, 0.12) 0%, rgba(16, 20, 59, 0) 70%)"
                 }}
               />
               <div 
-                className="absolute bottom-0 left-0 w-[60vw] h-[60vw] pointer-events-none z-0"
+                className="absolute bottom-0 left-0 w-[60vw] h-[60vw] pointer-events-none z-0 mix-blend-screen"
                 style={{
                   background: "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%)"
                 }}
@@ -758,7 +783,7 @@ export default function Home() {
       {/* The Common Situation Section (Problem Statement) */}
       <div
         id="problem"
-        className="relative z-20 w-full bg-[#f8fafc] py-24 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-[#f8fafc] pt-24 pb-40 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
@@ -791,98 +816,123 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-16 max-w-6xl mx-auto">
             {[
               {
+                label: "UNPREDICTABLE REVENUE",
                 title: "Irregular Campaigns",
-                desc: "Running marketing activities in fits and starts, resulting in erratic cash flows and inconsistent client acquisition.",
+                desc: "Running marketing activities in fits and starts, resulting in erratic cash flows.",
+                rotation: "-rotate-2",
+                translate: "translate-y-4",
                 icon: (
                   <svg
-                    className="w-5 h-5 text-brand-orange"
+                    className="w-8 h-8 text-brand-orange"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2.5"
+                    strokeWidth="2"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 ),
               },
               {
+                label: "FRAGMENTED EFFORTS",
                 title: "Multiple Vendor Chaos",
-                desc: "Working with disconnected agencies and freelancers leads to fragmented data, lack of alignment, and finger-pointing.",
+                desc: "Working with disconnected agencies leads to lack of alignment and data silos.",
+                rotation: "rotate-2",
+                translate: "translate-y-0",
                 icon: (
                   <svg
-                    className="w-5 h-5 text-brand-orange"
+                    className="w-8 h-8 text-brand-orange"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2.5"
+                    strokeWidth="2"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 ),
               },
               {
+                label: "VANITY METRICS",
                 title: "Activity Over Direction",
-                desc: "Focusing heavily on execution and vanity metrics (likes, impressions) instead of strategic alignment and revenue goals.",
+                desc: "Focusing heavily on execution instead of strategic alignment and revenue goals.",
+                rotation: "-rotate-1",
+                translate: "translate-y-6",
                 icon: (
                   <svg
-                    className="w-5 h-5 text-brand-orange"
+                    className="w-8 h-8 text-brand-orange"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2.5"
+                    strokeWidth="2"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
                   </svg>
                 ),
               },
               {
+                label: "POOR BRANDING",
                 title: "Consistency Struggles",
-                desc: "Struggling to maintain a unified brand message and consistent campaign presence, reducing trust in the market.",
+                desc: "Struggling to maintain a unified brand message and consistent presence.",
+                rotation: "rotate-1",
+                translate: "translate-y-2",
                 icon: (
                   <svg
-                    className="w-5 h-5 text-brand-orange"
+                    className="w-8 h-8 text-brand-orange"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2.5"
+                    strokeWidth="2"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12a7.5 7.5 0 0015 0 7.5 7.5 0 00-15 0z"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12a7.5 7.5 0 0015 0 7.5 7.5 0 00-15 0z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "BLIND SPOTS",
+                title: "Unclear ROI",
+                desc: "Inability to track the exact return on investment from multiple channels.",
+                rotation: "-rotate-3",
+                translate: "translate-y-8",
+                icon: (
+                  <svg
+                    className="w-8 h-8 text-brand-orange"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                 ),
               },
             ].map((card, idx) => (
               <div
                 key={idx}
-                className="bg-white border border-brand-navy/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-brand-orange/20 transition-all duration-300 group"
+                className={`relative bg-white border border-brand-navy/5 rounded-[2.5rem] p-6 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-end w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] min-h-[380px] group ${card.rotation} ${card.translate}`}
               >
-                <div className="h-10 w-10 rounded-xl bg-brand-orange/5 border border-brand-orange/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                  {card.icon}
+                {/* Top visual placeholder area */}
+                <div className="absolute top-6 left-6 right-6 bottom-[120px] bg-brand-navy/[0.02] border border-brand-navy/[0.03] rounded-3xl flex items-center justify-center overflow-hidden transition-colors duration-300 group-hover:bg-brand-navy/[0.04]">
+                  <div className="h-20 w-20 rounded-2xl bg-white shadow-sm border border-brand-navy/5 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                    {card.icon}
+                  </div>
                 </div>
-                <h4 className="text-[18px] font-semibold text-brand-navy tracking-tight">
-                  {card.title}
-                </h4>
-                <p className="text-[13.5px] text-brand-navy/60 leading-relaxed mt-2.5">
-                  {card.desc}
-                </p>
+
+                {/* Bottom text area */}
+                <div className="relative z-10 mt-auto pt-4">
+                  <span className="text-[10px] font-extrabold tracking-wider text-brand-navy/40 uppercase block mb-1">
+                    {card.label}
+                  </span>
+                  <h4 className="text-[18px] font-semibold text-brand-navy tracking-tight leading-tight">
+                    {card.title}
+                  </h4>
+                  <p className="text-[13px] text-brand-navy/60 leading-relaxed mt-1.5">
+                    {card.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
