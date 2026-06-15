@@ -155,8 +155,6 @@ export default function Home() {
         0,
       );
 
-
-
       // 8. Testimonial Belts Horizontal Scroll Animations
       if (belt1Ref.current) {
         gsap.fromTo(
@@ -227,7 +225,7 @@ export default function Home() {
               } else if (part) {
                 const span = document.createElement("span");
                 span.className =
-                  "word-span inline-block opacity-0 translate-y-[12px]";
+                  "word-span inline-block opacity-0 translate-y-[30px]";
                 span.textContent = part;
                 fragment.appendChild(span);
               }
@@ -270,7 +268,7 @@ export default function Home() {
         {
           id: "blueprint",
           selector:
-            "#blueprint .hidden.md\\:block > div.max-w-md > *, #blueprint .hidden.md\\:block > div.left-\\[45\\%\\], #blueprint .md\\:hidden .text-center > *, #blueprint .md\\:hidden div.mt-10",
+            "#blueprint .hidden.lg\\:block > div.max-w-md > *, #blueprint .hidden.lg\\:block > div.left-\\[45\\%\\], #blueprint .lg\\:hidden .text-center > *, #blueprint .lg\\:hidden div.mt-10",
           start: "top 78%",
         },
         {
@@ -315,13 +313,13 @@ export default function Home() {
         if (wordSpans.length > 0) {
           gsap.fromTo(
             wordSpans,
-            { opacity: 0, y: 12 },
+            { opacity: 0, y: 30 },
             {
               opacity: 1,
               y: 0,
-              duration: 0.7,
-              stagger: 0.02,
-              ease: "power2.inOut",
+              duration: 0.45,
+              stagger: 0.08,
+              ease: "power2.out",
               scrollTrigger: {
                 trigger: `#${sec.id}`,
                 start: sec.start,
@@ -353,7 +351,7 @@ export default function Home() {
         {
           id: "blueprint",
           selector:
-            "#blueprint .hidden.md\\:block > div.w-\\[285px\\], #blueprint .md\\:hidden .flex.flex-col > div",
+            "#blueprint .hidden.lg\\:block > div.w-\\[285px\\], #blueprint .lg\\:hidden .flex.flex-col > div",
           start: "top 78%",
         },
         {
@@ -414,7 +412,16 @@ export default function Home() {
         }
       };
 
-      const trackSections = ["home", "problem", "service", "blueprint", "industries", "about", "partnership", "testimonial"];
+      const trackSections = [
+        "home",
+        "problem",
+        "service",
+        "blueprint",
+        "industries",
+        "about",
+        "partnership",
+        "testimonial",
+      ];
       trackSections.forEach((id) => {
         ScrollTrigger.create({
           trigger: `#${id}`,
@@ -426,21 +433,32 @@ export default function Home() {
         });
       });
 
-      const scrollSections = ["problem", "service", "blueprint", "industries", "about", "testimonial", "partnership"];
-      
+      const scrollSections = [
+        "problem",
+        "service",
+        "blueprint",
+        "industries",
+        "about",
+        "testimonial",
+        "partnership",
+      ];
+
       scrollSections.forEach((id, index) => {
         const section = document.getElementById(id);
         if (section) {
           // Set incremental z-index so that subsequent sections render on top of previous ones
           section.style.zIndex = (21 + index).toString();
-          
+
           ScrollTrigger.create({
             trigger: section,
-            start: () => section.offsetHeight > window.innerHeight ? "bottom bottom" : "top top",
+            start: () =>
+              section.offsetHeight > window.innerHeight
+                ? "bottom bottom"
+                : "top top",
             pin: true,
             pinSpacing: false,
             invalidateOnRefresh: true,
-            id: `pin-${id}`
+            id: `pin-${id}`,
           });
         }
       });
@@ -460,8 +478,16 @@ export default function Home() {
       lenis.destroy();
       gsap.ticker.remove(rafHandler);
       delete (window as any).lenis;
-      
-      const scrollSections = ["problem", "service", "blueprint", "industries", "about", "partnership", "testimonial"];
+
+      const scrollSections = [
+        "problem",
+        "service",
+        "blueprint",
+        "industries",
+        "about",
+        "partnership",
+        "testimonial",
+      ];
       scrollSections.forEach((id) => {
         const el = document.getElementById(id);
         if (el) el.style.zIndex = "";
