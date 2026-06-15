@@ -698,10 +698,19 @@ export default function Home() {
               {/* Grid Overlay */}
               <div className="absolute inset-0 bg-grid-pattern opacity-100 z-0"></div>
 
-              {/* Background Radial Glow Effects */}
-              <div className="absolute top-[20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-brand-peach/30 blur-[120px] z-0"></div>
-              <div className="absolute top-[35%] left-[10%] w-[35vw] h-[35vw] rounded-full bg-brand-yellow/20 blur-[100px] z-0"></div>
-              <div className="absolute top-[15%] right-[-10%] w-[55vw] h-[55vw] rounded-full bg-brand-orange/[0.06] blur-[130px] z-0"></div>
+              {/* Background Ambient Spotlights */}
+              <div 
+                className="absolute top-0 right-0 w-[60vw] h-[60vw] pointer-events-none z-0"
+                style={{
+                  background: "radial-gradient(circle at top right, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0) 70%)"
+                }}
+              />
+              <div 
+                className="absolute bottom-0 left-0 w-[60vw] h-[60vw] pointer-events-none z-0"
+                style={{
+                  background: "radial-gradient(circle at bottom left, rgba(232, 128, 26, 0.07) 0%, rgba(232, 128, 26, 0) 70%)"
+                }}
+              />
             </div>
 
             {/* Hero Content Section */}
@@ -820,9 +829,26 @@ export default function Home() {
       {/* The Common Situation Section (Problem Statement) */}
       <div
         id="problem"
-        className="relative z-20 w-full bg-[#f8fafc] py-24 border-y border-brand-navy/[0.04] flex flex-col items-center select-none"
+        className="relative z-20 w-full bg-[#f8fafc] py-24 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        {/* Grid pattern & soft ambient spotlights */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div 
+            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+            }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at bottom left, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
               The Common Situation
@@ -937,9 +963,26 @@ export default function Home() {
       {/* Service Section */}
       <div
         id="service"
-        className="relative z-20 w-full bg-white py-12 md:py-16 border-t border-brand-navy/[0.04] flex flex-col items-center"
+        className="relative z-20 w-full bg-white py-12 md:py-16 border-t border-brand-navy/[0.04] flex flex-col items-center overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        {/* Grid pattern & soft ambient spotlights */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div 
+            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at top right, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+            }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
             <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
               What we do
@@ -1034,8 +1077,20 @@ export default function Home() {
         className="relative z-20 w-full bg-[#f8fafc] text-brand-navy py-28 flex flex-col items-center select-none overflow-hidden"
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.06] z-0"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-blue-500/[0.04] blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[10%] left-[-10%] w-[35vw] h-[35vw] rounded-full bg-brand-orange/[0.03] blur-[100px] pointer-events-none" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div 
+            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+            }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at bottom left, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+            }}
+          />
+        </div>
 
         {/* Desktop Absolute Layout (>= md) */}
         <div className="relative w-full max-w-5xl h-[1350px] hidden md:block z-10">
@@ -1339,9 +1394,26 @@ export default function Home() {
       {/* Who We Support Section */}
       <div
         id="industries"
-        className="relative z-20 w-full bg-white py-24 flex flex-col items-center select-none"
+        className="relative z-20 w-full bg-white py-24 flex flex-col items-center select-none overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        {/* Grid pattern & soft ambient spotlights */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div 
+            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at top right, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+            }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange uppercase">
               Target Categories
@@ -1429,18 +1501,35 @@ export default function Home() {
       {/* About Section */}
       <div
         id="about"
-        className="relative z-20 w-full bg-brand-navy text-white py-32 flex flex-col items-center"
+        className="relative z-20 w-full bg-[#e8801a] text-white py-32 flex flex-col items-center overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        {/* Grid pattern & soft ambient spotlights */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div 
+            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at top right, rgba(16, 20, 59, 0.12) 0%, rgba(16, 20, 59, 0) 70%)"
+            }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%)"
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange-light uppercase">
+              <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-navy uppercase">
                 Who we are
               </span>
               <h2 className="text-[36px] sm:text-[52px] font-black leading-tight tracking-tight mt-3 text-white">
                 We build growth-centric marketing systems.
               </h2>
-              <p className="text-[16px] text-white/70 mt-6 leading-relaxed">
+              <p className="text-[16px] text-white/80 mt-6 leading-relaxed">
                 Jukebox Media is a performance growth consultancy. We reject
                 random acts of marketing in favor of cohesive, metrics-driven
                 architectures.
@@ -1448,25 +1537,25 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-8 mt-10">
                 <div>
-                  <h4 className="text-[36px] font-black text-brand-orange">
+                  <h4 className="text-[36px] font-black text-brand-navy">
                     $50M+
                   </h4>
-                  <p className="text-[13px] text-white/50 font-bold uppercase mt-1">
+                  <p className="text-[13px] text-white/70 font-bold uppercase mt-1">
                     Client Revenue Generated
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-[36px] font-black text-brand-orange">
+                  <h4 className="text-[36px] font-black text-brand-navy">
                     5.2x
                   </h4>
-                  <p className="text-[13px] text-white/50 font-bold uppercase mt-1">
+                  <p className="text-[13px] text-white/70 font-bold uppercase mt-1">
                     Average Account ROAS
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white/5 rounded-3xl p-8 lg:p-12 border border-white/10 backdrop-blur-md">
+            <div className="bg-white/10 rounded-3xl p-8 lg:p-12 border border-white/15 backdrop-blur-md">
               <h3 className="text-[24px] font-bold tracking-tight text-white mb-6">
                 Structured Performance
               </h3>
@@ -1486,7 +1575,7 @@ export default function Home() {
                   },
                 ].map((item, idx) => (
                   <li key={idx} className="flex gap-4 items-start">
-                    <div className="h-6 w-6 rounded-full bg-brand-orange flex items-center justify-center shrink-0 mt-0.5 text-white">
+                    <div className="h-6 w-6 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5 text-brand-navy">
                       <svg
                         className="w-3.5 h-3.5"
                         fill="none"
@@ -1506,7 +1595,7 @@ export default function Home() {
                       <h5 className="text-[16px] font-bold text-white tracking-tight">
                         {item.title}
                       </h5>
-                      <p className="text-[13px] text-white/60 leading-relaxed mt-1">
+                      <p className="text-[13px] text-white/70 leading-relaxed mt-1">
                         {item.desc}
                       </p>
                     </div>
@@ -1517,19 +1606,19 @@ export default function Home() {
           </div>
 
           {/* Divider line */}
-          <div className="w-full h-px bg-white/10 my-16"></div>
+          <div className="w-full h-px bg-white/15 my-16"></div>
 
           {/* Leadership and Background block */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Bio Card (col-span 7) */}
             <div className="lg:col-span-7 flex flex-col justify-center select-none">
-              <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-orange-light uppercase">
+              <span className="text-[12px] font-extrabold tracking-[0.2em] text-brand-navy uppercase">
                 The Force Behind Jukebox
               </span>
               <h3 className="text-[28px] sm:text-[36px] font-black tracking-tight mt-3 text-white">
                 Ankit Jani — Business Head
               </h3>
-              <p className="text-[15px] text-white/70 mt-4 leading-relaxed max-w-2xl">
+              <p className="text-[15px] text-white/80 mt-4 leading-relaxed max-w-2xl">
                 Background across media channels, marketing exposure, and client
                 partnerships. Ankit plays an instrumental role at Jukebox Media,
                 helping businesses transform scattered marketing efforts into
@@ -1537,8 +1626,8 @@ export default function Home() {
                 scaled impact.
               </p>
 
-              <div className="mt-6 border-l-2 border-brand-orange pl-4">
-                <span className="text-[11px] text-brand-orange font-bold uppercase tracking-wider block">
+              <div className="mt-6 border-l-2 border-white pl-4">
+                <span className="text-[11px] text-white font-bold uppercase tracking-wider block">
                   Cross-Platform Expertise
                 </span>
                 <p className="text-[13px] text-white/80 leading-relaxed mt-1">
@@ -1551,9 +1640,9 @@ export default function Home() {
             </div>
 
             {/* Right Column: Profile Image + Media Houses Logos (col-span 5) */}
-            <div className="lg:col-span-5 bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col justify-between items-center shadow-lg relative overflow-hidden backdrop-blur-sm select-none">
+            <div className="lg:col-span-5 bg-white/10 border border-white/15 rounded-3xl p-6 flex flex-col justify-between items-center shadow-lg relative overflow-hidden backdrop-blur-sm select-none">
               {/* Profile image container */}
-              <div className="relative h-28 w-28 rounded-full border-2 border-brand-orange overflow-hidden mb-6 flex items-center justify-center bg-brand-navy shadow-lg shrink-0">
+              <div className="relative h-28 w-28 rounded-full border-2 border-white overflow-hidden mb-6 flex items-center justify-center bg-brand-navy shadow-lg shrink-0">
                 <img
                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=250&h=250"
                   alt="Ankit Jani"
@@ -1561,7 +1650,7 @@ export default function Home() {
                 />
               </div>
 
-              <span className="text-[10px] font-extrabold tracking-[0.25em] text-white/40 uppercase block mb-4">
+              <span className="text-[10px] font-extrabold tracking-[0.25em] text-white/50 uppercase block mb-4">
                 Prior Network Exposure
               </span>
 
@@ -1593,6 +1682,23 @@ export default function Home() {
         id="testimonial"
         className="relative z-20 w-full bg-white py-32 border-t border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
       >
+        {/* Grid pattern & soft ambient spotlights */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div 
+            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+            }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at bottom left, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+            }}
+          />
+        </div>
+
         {/* Heading container */}
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10 mb-20">
           <div className="text-center max-w-3xl mx-auto">
@@ -1839,9 +1945,26 @@ export default function Home() {
       {/* Engagement Models & Symptom Checklist Section */}
       <div
         id="partnership"
-        className="relative z-20 w-full bg-[#f8fafc] py-24 border-t border-brand-navy/[0.04] flex flex-col items-center select-none"
+        className="relative z-20 w-full bg-[#f8fafc] py-24 border-t border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        {/* Grid pattern & soft ambient spotlights */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div 
+            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at top right, rgba(232, 128, 26, 0.06) 0%, rgba(232, 128, 26, 0) 70%)"
+            }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background: "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: Symptom Checklist (col-span 5) */}
             <div className="lg:col-span-5 bg-white border border-brand-navy/5 rounded-3xl p-6 lg:p-8 shadow-sm">
