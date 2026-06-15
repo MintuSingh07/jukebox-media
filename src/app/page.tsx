@@ -11,6 +11,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import IrregularCampaignsVisual from "@/components/IrregularCampaignsVisual";
+import MultipleVendorChaosVisual from "@/components/MultipleVendorChaosVisual";
 import ActivityOverDirectionVisual from "@/components/ActivityOverDirectionVisual";
 import ConsistencyStrugglesVisual from "@/components/ConsistencyStrugglesVisual";
 import UnclearROIVisual from "@/components/UnclearROIVisual";
@@ -41,6 +42,7 @@ export default function Home() {
   const belt3Ref = useRef<HTMLDivElement>(null);
 
   const [card1Hovered, setCard1Hovered] = useState(false);
+  const [card2Hovered, setCard2Hovered] = useState(false);
   const [card3Hovered, setCard3Hovered] = useState(false);
   const [card4Hovered, setCard4Hovered] = useState(false);
   const [card5Hovered, setCard5Hovered] = useState(false);
@@ -851,41 +853,14 @@ export default function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors">
+            <div 
+              onMouseEnter={() => setCard2Hovered(true)}
+              onMouseLeave={() => setCard2Hovered(false)}
+              className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+            >
               {/* Visual Placeholder */}
-              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] transition-transform duration-500 group-hover:-translate-y-2">
-                {/* Clipped phone container */}
-                <div className="absolute inset-0 rounded-[2rem] overflow-hidden flex justify-center">
-                  <img 
-                    src="/phone.png" 
-                    alt="Phone Mockup" 
-                    className="absolute top-6 w-[180px] md:w-[150px] object-contain drop-shadow-2xl transition-transform duration-700 ease-out translate-y-8 group-hover:translate-y-0" 
-                  />
-                </div>
-                
-                {/* Floating Elements Container */}
-                <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[180px] md:w-[150px] h-[320px] pointer-events-none">
-                  {/* Floating Logo */}
-                  <img 
-                    src="/floating logo.png" 
-                    alt="Floating Jukebox Logo" 
-                    className="absolute -top-4 -left-6 w-[52px] md:w-[44px] object-contain drop-shadow-md z-30 pointer-events-auto opacity-0 scale-50 translate-y-4 translate-x-2 transition-all duration-500 ease-out delay-[80ms] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:translate-x-0 hover:scale-110 hover:-rotate-12"
-                  />
-                  
-                  {/* Message 1 (orange) */}
-                  <img 
-                    src="/message 1.png" 
-                    alt="Message 1" 
-                    className="absolute top-[22%] -left-[105px] md:-left-[90px] w-[170px] md:w-[140px] object-contain drop-shadow-lg z-20 pointer-events-auto opacity-0 scale-75 translate-x-4 translate-y-2 transition-all duration-500 ease-out delay-[160ms] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 hover:scale-105 hover:-translate-y-0.5"
-                  />
-                  
-                  {/* Message 2 (blue) */}
-                  <img 
-                    src="/message 2.png" 
-                    alt="Message 2" 
-                    className="absolute top-[42%] -right-[105px] md:-right-[90px] w-[170px] md:w-[140px] object-contain drop-shadow-lg z-20 pointer-events-auto opacity-0 scale-75 -translate-x-4 translate-y-2 transition-all duration-500 ease-out delay-[240ms] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 hover:scale-105 hover:-translate-y-0.5"
-                  />
-                </div>
+              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+                <MultipleVendorChaosVisual isHovered={card2Hovered} />
               </div>
               
               <div className="relative z-10 text-center mt-auto">
