@@ -13,6 +13,7 @@ import ActivityOverDirectionVisual from "@/components/ActivityOverDirectionVisua
 import ConsistencyStrugglesVisual from "@/components/ConsistencyStrugglesVisual";
 import UnclearROIVisual from "@/components/UnclearROIVisual";
 import LogoWall from "@/components/LogoWall";
+import TestimonialsEditorial from "@/components/ui/editorial-testimonial";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -32,9 +33,6 @@ export default function Home() {
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const prevActiveService = useRef<number | null>(null);
   const descRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const belt1Ref = useRef<HTMLDivElement>(null);
-  const belt2Ref = useRef<HTMLDivElement>(null);
-  const belt3Ref = useRef<HTMLDivElement>(null);
 
   const [card1Hovered, setCard1Hovered] = useState(false);
   const [card2Hovered, setCard2Hovered] = useState(false);
@@ -79,12 +77,7 @@ export default function Home() {
     const container = containerRef.current;
     const navbar = navbarRef.current;
 
-    if (
-      !card ||
-      !container ||
-      !navbar
-    )
-      return;
+    if (!card || !container || !navbar) return;
     let animTimeoutId: any;
 
     // Initialize Lenis smooth scroll
@@ -160,56 +153,6 @@ export default function Home() {
         0,
       );
 
-      // 8. Testimonial Belts Horizontal Scroll Animations
-      if (belt1Ref.current) {
-        gsap.fromTo(
-          belt1Ref.current,
-          { x: -160 },
-          {
-            x: 160,
-            ease: "none",
-            scrollTrigger: {
-              trigger: "#testimonial",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          },
-        );
-      }
-      if (belt2Ref.current) {
-        gsap.fromTo(
-          belt2Ref.current,
-          { x: 160 },
-          {
-            x: -160,
-            ease: "none",
-            scrollTrigger: {
-              trigger: "#testimonial",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          },
-        );
-      }
-      if (belt3Ref.current) {
-        gsap.fromTo(
-          belt3Ref.current,
-          { x: -160 },
-          {
-            x: 160,
-            ease: "none",
-            scrollTrigger: {
-              trigger: "#testimonial",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          },
-        );
-      }
-
       // 10. Stacking Sections Scroll Effect
       const handleActiveChange = (id: string) => {
         if (isProgrammaticScroll.current) return;
@@ -280,16 +223,13 @@ export default function Home() {
           selectors: [
             "#home h1 > span",
             "#home p",
-            "#home .flex.flex-row.items-center"
+            "#home .flex.flex-row.items-center",
           ],
           start: "top 95%",
         },
         {
           id: "problem",
-          selectors: [
-            "#problem .text-center > *",
-            "#problem .grid > div"
-          ],
+          selectors: ["#problem .text-center > *", "#problem .grid > div"],
           start: "top 78%",
         },
         {
@@ -297,7 +237,7 @@ export default function Home() {
           selectors: [
             "#service .text-center > *",
             "#service .lg\\:col-span-5 > div",
-            "#service .lg\\:col-span-7"
+            "#service .lg\\:col-span-7",
           ],
           start: "top 78%",
         },
@@ -308,7 +248,7 @@ export default function Home() {
             "#blueprint div.w-\\[285px\\]",
             "#blueprint .md\\:hidden .text-center > *",
             "#blueprint div.max-w-\\[310px\\]",
-            "#blueprint .left-\\[45\\%\\] > span"
+            "#blueprint .left-\\[45\\%\\] > span",
           ],
           start: "top 78%",
         },
@@ -317,7 +257,7 @@ export default function Home() {
           selectors: [
             "#industries .text-center > *",
             "#industries .grid > div",
-            "#industries > div > div:nth-child(3)"
+            "#industries > div > div:nth-child(3)",
           ],
           start: "top 78%",
         },
@@ -328,7 +268,7 @@ export default function Home() {
             "#about > div > div:nth-child(1) > div:last-child",
             "#about > div > div:nth-child(2)",
             "#about > div > div:nth-child(3) > div:first-child > *",
-            "#about > div > div:nth-child(3) > div:last-child"
+            "#about > div > div:nth-child(3) > div:last-child",
           ],
           start: "top 78%",
         },
@@ -336,7 +276,7 @@ export default function Home() {
           id: "testimonial",
           selectors: [
             "#testimonial .text-center > *",
-            "#testimonial > div:nth-child(2)"
+            "#testimonial > div:nth-child(2)",
           ],
           start: "top 78%",
         },
@@ -345,10 +285,10 @@ export default function Home() {
           selectors: [
             "#partnership .lg\\:col-span-5",
             "#partnership .lg\\:col-span-7 > div:first-child > *",
-            "#partnership .lg\\:col-span-7 .grid > div"
+            "#partnership .lg\\:col-span-7 .grid > div",
           ],
           start: "top 78%",
-        }
+        },
       ];
 
       animTimeoutId = setTimeout(() => {
@@ -397,8 +337,6 @@ export default function Home() {
           });
         });
       }, 300);
-
-
     }, container);
 
     // Handle initial route scroll on mount
@@ -407,7 +345,8 @@ export default function Home() {
     if (targetElement) {
       setTimeout(() => {
         const trigger = ScrollTrigger.getById(`pin-${path}`);
-        const scrollTarget = path === "home" ? 0 : (trigger ? trigger.start : targetElement);
+        const scrollTarget =
+          path === "home" ? 0 : trigger ? trigger.start : targetElement;
         lenis.scrollTo(scrollTarget, { immediate: true });
       }, 250);
     }
@@ -561,8 +500,6 @@ export default function Home() {
               //                  trigger.start = sectionScrollStart + sectionHeight - viewportH
               //                  So: sectionScrollStart = trigger.start - sectionHeight + viewportH
               //
-              // In both cases, subtract navbarHeight so the section header is
-              // visible just below the floating navbar.
               const pinTrigger = ScrollTrigger.getById(`pin-${id}`);
 
               if (pinTrigger) {
@@ -574,10 +511,13 @@ export default function Home() {
                 const overflow = Math.max(0, sectionHeight - viewportHeight);
                 const sectionScrollStart = pinTrigger.start - overflow;
 
-                scrollTarget = Math.max(0, sectionScrollStart - navbarHeight);
+                scrollTarget = Math.max(0, sectionScrollStart);
               } else {
                 // No pin trigger: scroll to the element directly
-                scrollTarget = Math.max(0, targetElement.offsetTop - navbarHeight);
+                scrollTarget = Math.max(
+                  0,
+                  targetElement.offsetTop,
+                );
               }
             }
 
@@ -660,16 +600,18 @@ export default function Home() {
               <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0"></div>
 
               {/* Background Ambient Spotlights */}
-              <div 
+              <div
                 className="absolute top-0 right-0 w-[60vw] h-[60vw] pointer-events-none z-0 mix-blend-screen"
                 style={{
-                  background: "radial-gradient(circle at top right, rgba(22, 20, 67, 0.12) 0%, rgba(22, 20, 67, 0) 70%)"
+                  background:
+                    "radial-gradient(circle at top right, rgba(22, 20, 67, 0.12) 0%, rgba(22, 20, 67, 0) 70%)",
                 }}
               />
-              <div 
+              <div
                 className="absolute bottom-0 left-0 w-[60vw] h-[60vw] pointer-events-none z-0 mix-blend-screen"
                 style={{
-                  background: "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%)"
+                  background:
+                    "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%)",
                 }}
               />
             </div>
@@ -727,7 +669,7 @@ export default function Home() {
         <LogoWall />
       </section>
 
-      {/* The Common Situation Section (Problem Statement) */}
+      {/* The Common Problem Section (Problem Statement) */}
       <div
         id="problem"
         className="relative z-20 w-full bg-[#f8fafc] py-20 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
@@ -735,16 +677,18 @@ export default function Home() {
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div 
+          <div
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+              background:
+                "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
             }}
           />
-          <div 
+          <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
+              background:
+                "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)",
             }}
           />
         </div>
@@ -752,7 +696,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
-              The Common Situation
+              The Common Problem
             </span>
             <ScrollReveal
               as="h2"
@@ -767,20 +711,22 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-6xl mx-auto px-4">
-            
             {/* Card 1 - Large */}
-            <div 
+            <div
               onMouseEnter={() => setCard1Hovered(true)}
               onMouseLeave={() => setCard1Hovered(false)}
               className="relative bg-[#eff3fe] rounded-[2rem] p-8 md:col-span-2 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
             >
               <div className="relative z-10 text-center mt-4">
-                <h4 className="text-[26px] font-bold text-brand-navy tracking-tight">Irregular Campaigns</h4>
+                <h4 className="text-[26px] font-bold text-brand-navy tracking-tight">
+                  Irregular Campaigns
+                </h4>
                 <p className="text-[15px] text-brand-navy/60 mt-2 max-w-md mx-auto leading-relaxed">
-                  Running marketing activities in fits and starts, resulting in erratic cash flows.
+                  Running marketing activities in fits and starts, resulting in
+                  erratic cash flows.
                 </p>
               </div>
-              
+
               {/* Visual Placeholder */}
               <div className="absolute left-10 right-10 bottom-[-5%] h-[65%] bg-white rounded-t-[2.5rem] shadow-2xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
                 <IrregularCampaignsVisual isHovered={card1Hovered} />
@@ -788,7 +734,7 @@ export default function Home() {
             </div>
 
             {/* Card 2 */}
-            <div 
+            <div
               onMouseEnter={() => setCard2Hovered(true)}
               onMouseLeave={() => setCard2Hovered(false)}
               className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
@@ -797,9 +743,11 @@ export default function Home() {
               <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
                 <MultipleVendorChaosVisual isHovered={card2Hovered} />
               </div>
-              
+
               <div className="relative z-10 text-center mt-auto">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Multiple Vendor Chaos</h4>
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  Multiple Vendor Chaos
+                </h4>
                 <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
                   Working with disconnected agencies leads to lack of alignment.
                 </p>
@@ -807,7 +755,7 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div 
+            <div
               onMouseEnter={() => setCard3Hovered(true)}
               onMouseLeave={() => setCard3Hovered(false)}
               className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
@@ -815,9 +763,11 @@ export default function Home() {
               <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
                 <ActivityOverDirectionVisual isHovered={card3Hovered} />
               </div>
-              
+
               <div className="relative z-10 text-center mt-auto">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Activity Over Direction</h4>
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  Activity Over Direction
+                </h4>
                 <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
                   Focusing heavily on execution instead of strategic alignment.
                 </p>
@@ -825,25 +775,28 @@ export default function Home() {
             </div>
 
             {/* Card 4 */}
-            <div 
+            <div
               onMouseEnter={() => setCard4Hovered(true)}
               onMouseLeave={() => setCard4Hovered(false)}
               className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
             >
               <div className="relative z-10 text-center mt-2">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Consistency Struggles</h4>
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  Consistency Struggles
+                </h4>
                 <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
-                  Struggling to maintain a unified brand message and consistent presence.
+                  Struggling to maintain a unified brand message and consistent
+                  presence.
                 </p>
               </div>
-              
+
               <div className="absolute left-8 right-8 bottom-8 top-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
                 <ConsistencyStrugglesVisual isHovered={card4Hovered} />
               </div>
             </div>
 
             {/* Card 5 */}
-            <div 
+            <div
               onMouseEnter={() => setCard5Hovered(true)}
               onMouseLeave={() => setCard5Hovered(false)}
               className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
@@ -851,15 +804,17 @@ export default function Home() {
               <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
                 <UnclearROIVisual isHovered={card5Hovered} />
               </div>
-              
+
               <div className="relative z-10 text-center mt-auto">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Unclear ROI</h4>
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  Unclear ROI
+                </h4>
                 <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
-                  Inability to track return on investment from multiple channels.
+                  Inability to track return on investment from multiple
+                  channels.
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -872,16 +827,18 @@ export default function Home() {
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div 
+          <div
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
+              background:
+                "radial-gradient(circle at top right, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)",
             }}
           />
-          <div 
+          <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+              background:
+                "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
             }}
           />
         </div>
@@ -889,7 +846,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
             <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
-              What we do
+              The Solution
             </span>
             <ScrollReveal
               as="h2"
@@ -985,16 +942,18 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.06] z-0"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div 
+          <div
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+              background:
+                "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
             }}
           />
-          <div 
+          <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
+              background:
+                "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)",
             }}
           />
         </div>
@@ -1122,7 +1081,7 @@ export default function Home() {
                 transformOrigin: "top center",
                 transform: `rotate(${item.rotation}deg)`,
               }}
-              className={`absolute ${item.position} w-[285px] h-[310px] bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.035)] p-5 select-none transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(16,20,59,0.08)] flex flex-col justify-between`}
+              className={`absolute ${item.position} w-[285px] h-[310px] bg-[#f6861f] rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(246,134,31,0.15)] p-5 select-none transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(246,134,31,0.3)] flex flex-col justify-between`}
             >
               {/* Grommet metallic ring hole */}
               <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-4.5 h-4.5 rounded-full bg-slate-100 border-2 border-slate-300 flex items-center justify-center shadow-inner">
@@ -1130,30 +1089,30 @@ export default function Home() {
               </div>
 
               {/* Double line/inset border */}
-              <div className="absolute inset-2.5 rounded-[12px] border border-black/[0.03] pointer-events-none" />
+              <div className="absolute inset-2.5 rounded-[12px] border border-white/10 pointer-events-none" />
 
               {/* Card Content */}
               <div className="pt-6 px-1 flex-1 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-baseline justify-between border-b border-black/[0.05] pb-3.5 mb-3.5">
-                    <span className="text-[12px] font-bold tracking-wider text-brand-navy/60 font-mono">
+                  <div className="flex items-baseline justify-between border-b border-white/15 pb-3.5 mb-3.5">
+                    <span className="text-[12px] font-extrabold tracking-wider text-brand-navy font-mono">
                       {item.step}
                     </span>
-                    <span className="text-[15px] font-bold text-brand-orange tracking-tight uppercase">
+                    <span className="text-[15px] font-extrabold text-brand-navy tracking-tight uppercase">
                       {item.phase}
                     </span>
                   </div>
-                  <p className="text-[13px] text-brand-navy font-semibold leading-snug mb-3">
+                  <p className="text-[13px] text-white font-bold leading-snug mb-3">
                     {item.tagline}
                   </p>
                 </div>
-                <ul className="flex flex-col gap-2 border-t border-black/[0.05] pt-3.5 pb-2">
+                <ul className="flex flex-col gap-2 border-t border-white/15 pt-3.5 pb-2">
                   {item.bullets.map((b, bIdx) => (
                     <li
                       key={bIdx}
-                      className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-medium"
+                      className="flex items-start gap-2 text-[11.5px] text-white/85 font-medium"
                     >
-                      <span className="text-brand-orange font-semibold text-[9px] mt-0.5">
+                      <span className="text-brand-navy font-extrabold text-[9px] mt-0.5">
                         ➔
                       </span>
                       <span>{b}</span>
@@ -1252,7 +1211,7 @@ export default function Home() {
                   transformOrigin: "top center",
                   transform: `rotate(${item.rotation}deg)`,
                 }}
-                className="w-full max-w-[310px] h-[310px] bg-white rounded-2xl border border-black/[0.06] shadow-[0_8px_30px_rgba(0,0,0,0.035)] p-5 select-none transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(16,20,59,0.08)] flex flex-col justify-between relative"
+                className="w-full max-w-[310px] h-[310px] bg-[#f6861f] rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(246,134,31,0.15)] p-5 select-none transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(246,134,31,0.3)] flex flex-col justify-between relative"
               >
                 {/* Grommet metallic ring hole */}
                 <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-4.5 h-4.5 rounded-full bg-slate-100 border-2 border-slate-300 flex items-center justify-center shadow-inner">
@@ -1260,30 +1219,30 @@ export default function Home() {
                 </div>
 
                 {/* Double line/inset border */}
-                <div className="absolute inset-2.5 rounded-[12px] border border-black/[0.03] pointer-events-none" />
+                <div className="absolute inset-2.5 rounded-[12px] border border-white/10 pointer-events-none" />
 
                 {/* Card Content */}
                 <div className="pt-6 px-1 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-baseline justify-between border-b border-black/[0.05] pb-3.5 mb-3.5">
-                      <span className="text-[12px] font-bold tracking-wider text-brand-navy/60 font-mono">
+                    <div className="flex items-baseline justify-between border-b border-white/15 pb-3.5 mb-3.5">
+                      <span className="text-[12px] font-extrabold tracking-wider text-brand-navy font-mono">
                         {item.step}
                       </span>
-                      <span className="text-[15px] font-bold text-brand-orange tracking-tight uppercase">
+                      <span className="text-[15px] font-extrabold text-brand-navy tracking-tight uppercase">
                         {item.phase}
                       </span>
                     </div>
-                    <p className="text-[13px] text-brand-navy font-semibold leading-snug mb-3">
+                    <p className="text-[13px] text-white font-bold leading-snug mb-3">
                       {item.tagline}
                     </p>
                   </div>
-                  <ul className="flex flex-col gap-2 border-t border-black/[0.05] pt-3.5 pb-2">
+                  <ul className="flex flex-col gap-2 border-t border-white/15 pt-3.5 pb-2">
                     {item.bullets.map((b, bIdx) => (
                       <li
                         key={bIdx}
-                        className="flex items-start gap-2 text-[11.5px] text-brand-navy/70 font-medium"
+                        className="flex items-start gap-2 text-[11.5px] text-white/85 font-medium"
                       >
-                        <span className="text-brand-orange font-semibold text-[9px] mt-0.5">
+                        <span className="text-brand-navy font-extrabold text-[9px] mt-0.5">
                           ➔
                         </span>
                         <span>{b}</span>
@@ -1312,16 +1271,18 @@ export default function Home() {
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div 
+          <div
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
+              background:
+                "radial-gradient(circle at top right, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)",
             }}
           />
-          <div 
+          <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+              background:
+                "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
             }}
           />
         </div>
@@ -1417,21 +1378,23 @@ export default function Home() {
       {/* About Section */}
       <div
         id="about"
-        className="relative z-20 w-full bg-[#f6861f] text-white py-32 flex flex-col items-center overflow-hidden"
+        className="relative z-20 w-full bg-[#161443] text-white py-32 flex flex-col items-center overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0 pointer-events-none"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div 
+          <div
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(22, 20, 67, 0.12) 0%, rgba(22, 20, 67, 0) 70%)"
+              background:
+                "radial-gradient(circle at top right, rgba(246, 134, 31, 0.1) 0%, rgba(246, 134, 31, 0) 70%)",
             }}
           />
-          <div 
+          <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%)"
+              background:
+                "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)",
             }}
           />
         </div>
@@ -1439,7 +1402,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-navy uppercase">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-[#f6861f] uppercase">
                 Who we are
               </span>
               <ScrollReveal
@@ -1456,7 +1419,7 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-8 mt-10">
                 <div>
-                  <h4 className="text-[36px] font-extrabold text-brand-navy">
+                  <h4 className="text-[36px] font-extrabold text-[#f6861f]">
                     $50M+
                   </h4>
                   <p className="text-[13px] text-white/70 font-semibold uppercase mt-1">
@@ -1464,7 +1427,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-[36px] font-extrabold text-brand-navy">
+                  <h4 className="text-[36px] font-extrabold text-[#f6861f]">
                     5.2x
                   </h4>
                   <p className="text-[13px] text-white/70 font-semibold uppercase mt-1">
@@ -1494,7 +1457,7 @@ export default function Home() {
                   },
                 ].map((item, idx) => (
                   <li key={idx} className="flex gap-4 items-start">
-                    <div className="h-6 w-6 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5 text-brand-navy">
+                    <div className="h-6 w-6 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5 text-[#f6861f]">
                       <svg
                         className="w-3.5 h-3.5"
                         fill="none"
@@ -1531,7 +1494,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Bio Card (col-span 7) */}
             <div className="lg:col-span-7 flex flex-col justify-center select-none">
-              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-navy uppercase">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-[#f6861f] uppercase">
                 The Force Behind Jukebox
               </span>
               <h3 className="text-[28px] sm:text-[36px] font-extrabold tracking-tight mt-3 text-white">
@@ -1545,7 +1508,7 @@ export default function Home() {
                 scaled impact.
               </p>
 
-              <div className="mt-6 border-l-2 border-white pl-4">
+              <div className="mt-6 border-l-2 border-[#f6861f] pl-4">
                 <span className="text-[11px] text-white font-semibold uppercase tracking-wider block">
                   Cross-Platform Expertise
                 </span>
@@ -1599,27 +1562,29 @@ export default function Home() {
       {/* Testimonial Section */}
       <div
         id="testimonial"
-        className="relative z-20 w-full bg-white py-32 border-t border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-white py-24 border-t border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div 
+          <div
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)"
+              background:
+                "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
             }}
           />
-          <div 
+          <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)"
+              background:
+                "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.06) 0%, rgba(246, 134, 31, 0) 70%)",
             }}
           />
         </div>
 
         {/* Heading container */}
-        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 mb-20">
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 mb-10">
           <div className="text-center max-w-3xl mx-auto">
             <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
               Results & Trust
@@ -1637,230 +1602,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Belts container */}
-        <div className="relative w-full overflow-hidden flex flex-col gap-6 md:gap-8">
-          {/* Side Fadeout Gradient Overlays (fadeout strap on both sides) */}
-          <div className="absolute inset-y-0 left-0 w-16 sm:w-44 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none z-10" />
-          <div className="absolute inset-y-0 right-0 w-16 sm:w-44 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none z-10" />
-
-          {/* Row 1 (Left to Right) */}
-          <div className="w-full overflow-visible">
-            <div
-              ref={belt1Ref}
-              className="flex gap-6 w-max px-16 md:px-32 whitespace-nowrap"
-            >
-              {[
-                {
-                  quote:
-                    "The structured approach Jukebox took on our D2C launch was exceptional. We went from zero database to 5x ROAS inside 4 months.",
-                  author: "Ananya Mehta",
-                  role: "Director of Brand Growth, Aura Skincare",
-                  avatar:
-                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-                {
-                  quote:
-                    "Their creative strategy completely overhauled our ad campaigns. We saw an immediate 35% CPA decrease and scalable margins.",
-                  author: "Kunal Sharma",
-                  role: "Founder, FitLife Nutrition",
-                  avatar:
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-                {
-                  quote:
-                    "Jukebox doesn't just run ads; they build the data pipes. GA4 lead tracking event validation went from 60% accuracy to 100% matches.",
-                  author: "Priya Iyer",
-                  role: "Marketing Head, Nexa Retail",
-                  avatar:
-                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="w-[310px] md:w-[370px] shrink-0 rounded-2xl border border-brand-navy/[0.04] bg-white p-6 md:p-8 shadow-premium transition-all duration-300 hover:shadow-card-hover flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex gap-1 text-brand-orange mb-5">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className="w-3.5 h-3.5 fill-current"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="text-[13px] md:text-[14px] text-brand-navy/80 italic leading-relaxed whitespace-normal">
-                      "{item.quote}"
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3.5 mt-6 pt-5 border-t border-brand-navy/[0.04]">
-                    <img
-                      src={item.avatar}
-                      alt={item.author}
-                      className="h-9 w-9 rounded-full object-cover border border-brand-navy/[0.04] shadow-premium"
-                    />
-                    <div className="leading-tight">
-                      <h5 className="text-[13px] font-semibold text-brand-navy tracking-tight whitespace-normal">
-                        {item.author}
-                      </h5>
-                      <p className="text-[10px] text-brand-navy/60 font-medium mt-0.5 whitespace-normal">
-                        {item.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2 (Right to Left) */}
-          <div className="w-full overflow-visible">
-            <div
-              ref={belt2Ref}
-              className="flex gap-6 w-max px-16 md:px-32 whitespace-nowrap"
-            >
-              {[
-                {
-                  quote:
-                    "Unlike agencies that rely on vanity metrics, Jukebox focuses on down-funnel lead qualification. Our sales conversion rates increased by 40%.",
-                  author: "Siddharth Lodha",
-                  role: "Managing Director, Lodha Premium Real Estate",
-                  avatar:
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-                {
-                  quote:
-                    "Their LinkedIn funnel architecture generated qualified demo calls at half our previous acquisition cost. Highly analytical and structured execution.",
-                  author: "Rohan Verma",
-                  role: "CEO, Alpha B2B Solutions",
-                  avatar:
-                    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-                {
-                  quote:
-                    "Their automated WhatsApp nurture flows re-activated leads that we had written off. It paid back the entire setup cost in less than a month.",
-                  author: "Meera Kapoor",
-                  role: "Director, Horizon Education",
-                  avatar:
-                    "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="w-[310px] md:w-[370px] shrink-0 rounded-2xl border border-brand-navy/[0.04] bg-white p-6 md:p-8 shadow-premium transition-all duration-300 hover:shadow-card-hover flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex gap-1 text-brand-orange mb-5">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className="w-3.5 h-3.5 fill-current"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="text-[13px] md:text-[14px] text-brand-navy/80 italic leading-relaxed whitespace-normal">
-                      "{item.quote}"
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3.5 mt-6 pt-5 border-t border-brand-navy/[0.04]">
-                    <img
-                      src={item.avatar}
-                      alt={item.author}
-                      className="h-9 w-9 rounded-full object-cover border border-brand-navy/[0.04] shadow-premium"
-                    />
-                    <div className="leading-tight">
-                      <h5 className="text-[13px] font-semibold text-brand-navy tracking-tight whitespace-normal">
-                        {item.author}
-                      </h5>
-                      <p className="text-[10px] text-brand-navy/60 font-medium mt-0.5 whitespace-normal">
-                        {item.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 3 (Left to Right) */}
-          <div className="w-full overflow-visible">
-            <div
-              ref={belt3Ref}
-              className="flex gap-6 w-max px-16 md:px-32 whitespace-nowrap"
-            >
-              {[
-                {
-                  quote:
-                    "The transition to a unified growth pipeline has saved us months of manual testing. Jukebox built an engine that runs itself.",
-                  author: "Dharmendra Jani",
-                  role: "Operations Head, Jani Media & Entertainment",
-                  avatar:
-                    "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-                {
-                  quote:
-                    "Standard agency retainers always lacked alignment. Jukebox's advisory consulting models reshaped our unit margins completely.",
-                  author: "Vikram Sen",
-                  role: "Co-Founder, Brew & Co.",
-                  avatar:
-                    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-                {
-                  quote:
-                    "We scaled our monthly ad spends 10x while keeping ROAS completely stable. Their execution speeds and tracking detail is elite.",
-                  author: "Tanvi Shah",
-                  role: "Head of Growth, Bloom Cosmetics",
-                  avatar:
-                    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="w-[310px] md:w-[370px] shrink-0 rounded-2xl border border-brand-navy/[0.04] bg-white p-6 md:p-8 shadow-premium transition-all duration-300 hover:shadow-card-hover flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex gap-1 text-brand-orange mb-5">
-                      {[...Array(5)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className="w-3.5 h-3.5 fill-current"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="text-[13px] md:text-[14px] text-brand-navy/80 italic leading-relaxed whitespace-normal">
-                      "{item.quote}"
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3.5 mt-6 pt-5 border-t border-brand-navy/[0.04]">
-                    <img
-                      src={item.avatar}
-                      alt={item.author}
-                      className="h-9 w-9 rounded-full object-cover border border-brand-navy/[0.04] shadow-premium"
-                    />
-                    <div className="leading-tight">
-                      <h5 className="text-[13px] font-semibold text-brand-navy tracking-tight whitespace-normal">
-                        {item.author}
-                      </h5>
-                      <p className="text-[10px] text-brand-navy/60 font-medium mt-0.5 whitespace-normal">
-                        {item.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Testimonials component */}
+        <div className="w-full relative z-10">
+          <TestimonialsEditorial />
         </div>
       </div>
 
@@ -1872,16 +1616,18 @@ export default function Home() {
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div 
+          <div
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at top right, rgba(246, 134, 31, 0.08) 0%, rgba(246, 134, 31, 0) 70%)"
+              background:
+                "radial-gradient(circle at top right, rgba(246, 134, 31, 0.08) 0%, rgba(246, 134, 31, 0) 70%)",
             }}
           />
-          <div 
+          <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
-              background: "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)"
+              background:
+                "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)",
             }}
           />
         </div>
@@ -2204,13 +1950,17 @@ const PerformanceMarketingMockup = () => {
           <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
             CTR
           </span>
-          <span className="text-[13px] font-extrabold text-brand-navy">{ctr}</span>
+          <span className="text-[13px] font-extrabold text-brand-navy">
+            {ctr}
+          </span>
         </div>
         <div className="bg-brand-navy/5 p-2 rounded-lg text-center">
           <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
             CPC
           </span>
-          <span className="text-[13px] font-extrabold text-brand-navy">{cpc}</span>
+          <span className="text-[13px] font-extrabold text-brand-navy">
+            {cpc}
+          </span>
         </div>
         <div className="bg-brand-navy/5 p-2 rounded-lg text-center">
           <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
@@ -2988,9 +2738,7 @@ const AnalyticsTrackingMockup = () => {
           <span className="font-bold text-brand-orange animate-pulse">
             {activeTabName}
           </span>
-          <span className="font-bold text-brand-navy">
-            {liveConvs} / min
-          </span>
+          <span className="font-bold text-brand-navy">{liveConvs} / min</span>
         </div>
       </div>
     </div>
@@ -3460,7 +3208,9 @@ const GrowthConsultingOverlay = () => {
           {c3 ? "✓" : "○"}
         </span>
         <span
-          className={c3 ? "text-brand-navy/90 font-semibold" : "text-brand-navy/40"}
+          className={
+            c3 ? "text-brand-navy/90 font-semibold" : "text-brand-navy/40"
+          }
         >
           Monthly Budget Expansion
         </span>
@@ -3739,7 +3489,9 @@ const MarketingAutomationOverlay = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
           </span>
-          <span className="text-[8px] font-extrabold text-emerald-600">ACTIVE</span>
+          <span className="text-[8px] font-extrabold text-emerald-600">
+            ACTIVE
+          </span>
         </div>
       </div>
 

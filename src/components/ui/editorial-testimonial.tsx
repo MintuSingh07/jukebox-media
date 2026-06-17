@@ -1,0 +1,211 @@
+"use client"
+
+import { useState } from "react"
+import Image from "next/image"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+
+const testimonials = [
+  {
+    id: 1,
+    title: "Exceptional D2C Launch & 5x ROAS",
+    quote: "The structured approach Jukebox took on our D2C launch was exceptional. We went from zero database to 5x ROAS inside 4 months.",
+    author: "Ananya Mehta",
+    role: "Director of Brand Growth",
+    company: "Aura Skincare",
+    rating: 5,
+    verified: true,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 2,
+    title: "Immediate 35% CPA Decrease",
+    quote: "Their creative strategy completely overhauled our ad campaigns. We saw an immediate 35% CPA decrease and scalable margins.",
+    author: "Kunal Sharma",
+    role: "Founder",
+    company: "FitLife Nutrition",
+    rating: 5,
+    verified: true,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 3,
+    title: "100% GA4 Event Tracking Accuracy",
+    quote: "Jukebox doesn't just run ads; they build the data pipes. GA4 lead tracking event validation went from 60% accuracy to 100% matches.",
+    author: "Priya Iyer",
+    role: "Marketing Head",
+    company: "Nexa Retail",
+    rating: 5,
+    verified: true,
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 4,
+    title: "40% Increase in Sales Conversions",
+    quote: "Unlike agencies that rely on vanity metrics, Jukebox focuses on down-funnel lead qualification. Our sales conversion rates increased by 40%.",
+    author: "Siddharth Lodha",
+    role: "Managing Director",
+    company: "Lodha Premium Real Estate",
+    rating: 5,
+    verified: true,
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 5,
+    title: "Qualified Leads at Half the Cost",
+    quote: "Their LinkedIn funnel architecture generated qualified demo calls at half our previous acquisition cost. Highly analytical and structured execution.",
+    author: "Rohan Verma",
+    role: "CEO",
+    company: "Alpha B2B Solutions",
+    rating: 5,
+    verified: true,
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
+  },
+]
+
+export default function TestimonialsEditorial() {
+  const [active, setActive] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  const handleChange = (index: number) => {
+    if (index === active || isTransitioning) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setActive(index)
+      setTimeout(() => setIsTransitioning(false), 50)
+    }, 300)
+  }
+
+  const handlePrev = () => {
+    const newIndex = active === 0 ? testimonials.length - 1 : active - 1
+    handleChange(newIndex)
+  }
+
+  const handleNext = () => {
+    const newIndex = active === testimonials.length - 1 ? 0 : active + 1
+    handleChange(newIndex)
+  }
+
+  const current = testimonials[active]
+
+  return (
+    <div className="w-full max-w-3xl mx-auto px-6 py-4">
+      {/* Large index number and quote container */}
+      <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+        <span
+          className="text-[64px] sm:text-[120px] font-light leading-none text-[#161443]/10 select-none transition-all duration-500 sm:-mt-2"
+          style={{ fontFeatureSettings: '"tnum"' }}
+        >
+          {String(active + 1).padStart(2, "0")}
+        </span>
+
+        <div className="flex-1 pt-1 sm:pt-3">
+          {/* Star Rating & Verified Badge */}
+          <div className="flex flex-wrap items-center gap-3 mb-4 select-none">
+            <div className="flex gap-1 text-[#f6861f]">
+              {[...Array(current.rating)].map((_, i) => (
+                <svg
+                  key={i}
+                  className="w-4 h-4 fill-current"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+              ))}
+            </div>
+            {current.verified && (
+              <span className="inline-flex items-center gap-1.5 text-[9px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 border border-emerald-500/15 px-2 py-0.5 rounded-full">
+                <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="3.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                Verified Partner
+              </span>
+            )}
+          </div>
+
+          {/* Headline */}
+          <h4
+            className={`text-lg md:text-xl font-bold text-[#161443] tracking-tight mb-3 transition-all duration-300 ${
+              isTransitioning ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
+            }`}
+          >
+            {current.title}
+          </h4>
+
+          {/* Quote with curly double quotes */}
+          <blockquote
+            className={`text-base md:text-lg font-light leading-relaxed text-[#161443]/85 tracking-tight transition-all duration-300 ${
+              isTransitioning ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
+            }`}
+          >
+            “{current.quote}”
+          </blockquote>
+
+          {/* Author info with hover reveal */}
+          <div
+            className={`mt-8 group cursor-default transition-all duration-300 delay-100 ${
+              isTransitioning ? "opacity-0" : "opacity-100"
+            }`}
+          >
+            <div className="flex items-center gap-4">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#161443]/10 group-hover:ring-[#161443]/30 transition-all duration-300 shadow-sm">
+                <Image
+                  src={current.image || "/placeholder.svg"}
+                  alt={current.author}
+                  fill
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                  sizes="48px"
+                />
+              </div>
+              <div>
+                <p className="font-semibold text-[#161443]">{current.author}</p>
+                <p className="text-sm text-[#161443]/60 font-medium">
+                  {current.role}
+                  <span className="mx-2 text-[#161443]/20">/</span>
+                  <span className="group-hover:text-[#f6861f] transition-colors duration-300">{current.company}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation - vertical line selector */}
+      <div className="mt-10 flex items-center justify-between">
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
+            {testimonials.map((_, index) => (
+              <button key={index} onClick={() => handleChange(index)} className="group relative py-4 cursor-pointer">
+                <span
+                  className={`block h-0.5 transition-all duration-500 ease-out ${
+                    index === active
+                      ? "w-12 bg-[#f6861f]"
+                      : "w-6 bg-[#161443]/20 group-hover:w-8 group-hover:bg-[#161443]/40"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+          <span className="text-xs text-[#161443]/60 tracking-widest uppercase">
+            {String(active + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-1">
+          <button
+            onClick={handlePrev}
+            className="p-2 rounded-full text-[#161443]/40 hover:text-[#f6861f] hover:bg-[#161443]/5 transition-all duration-300 cursor-pointer"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="p-2 rounded-full text-[#161443]/40 hover:text-[#f6861f] hover:bg-[#161443]/5 transition-all duration-300 cursor-pointer"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}

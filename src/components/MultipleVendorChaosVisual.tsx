@@ -137,13 +137,13 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
             {/* iOS Navigation Bar */}
             <div className="px-3 py-1.5 border-b border-slate-200/60 bg-white/95 backdrop-blur flex items-center justify-between">
               <div className="flex items-center gap-1">
-                <svg className="w-2.5 h-2.5 text-blue-500" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                <svg className="w-2.5 h-2.5 text-[#161443]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
-                <span className="text-[7.5px] font-medium text-blue-500">Filters</span>
+                <span className="text-[7.5px] font-medium text-[#161443]">Filters</span>
               </div>
               <span className="text-[8.5px] font-bold text-slate-900 pr-3">Messages</span>
-              <svg className="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 text-[#161443]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
               </svg>
             </div>
@@ -153,7 +153,7 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
               
               {/* Vendor Thread 1 */}
               <div className="flex items-center gap-2 p-1.5 rounded-xl bg-white border border-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.02)]">
-                <div className="w-5 h-5 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-[7.5px] font-bold text-orange-600 flex-shrink-0">
+                <div className="w-5 h-5 rounded-full bg-[#f6861f]/10 border border-[#f6861f]/20 flex items-center justify-center text-[7.5px] font-bold text-[#f6861f] flex-shrink-0">
                   AD
                 </div>
                 <div className="flex-1 min-w-0">
@@ -167,7 +167,7 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
 
               {/* Vendor Thread 2 */}
               <div className="flex items-center gap-2 p-1.5 rounded-xl bg-white border border-slate-100 shadow-[0_2px_4px_rgba(0,0,0,0.02)]">
-                <div className="w-5 h-5 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[7.5px] font-bold text-blue-600 flex-shrink-0">
+                <div className="w-5 h-5 rounded-full bg-[#161443]/10 border border-[#161443]/20 flex items-center justify-center text-[7.5px] font-bold text-[#161443] flex-shrink-0">
                   MB
                 </div>
                 <div className="flex-1 min-w-0">
@@ -220,56 +220,51 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
           ref={logoRef}
           className="absolute -top-4 -left-6 w-[52px] md:w-[44px] h-[52px] md:h-[44px] z-30 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-12 cursor-pointer group"
         >
-          {/* Custom Vinyl SVG matching Jukebox branding */}
-          <svg className="w-full h-full drop-shadow-lg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45" fill="#161443" stroke="#f6861f" strokeWidth="4.5"/>
-            <path d="M22 50C22 34.5 34.5 22 50 22" stroke="#f6861f" strokeWidth="3" strokeLinecap="round"/>
-            <path d="M28 50C28 37.8 37.8 28 50 28" stroke="#f6861f" strokeWidth="2.5" strokeLinecap="round"/>
-            <path d="M34 50C34 41.2 41.2 34 50 34" stroke="#f6861f" strokeWidth="2" strokeLinecap="round"/>
-            <path d="M78 50C78 65.5 65.5 78 50 78" stroke="#f6861f" strokeWidth="3" strokeLinecap="round"/>
-            <path d="M72 50C72 62.2 62.2 72 50 72" stroke="#f6861f" strokeWidth="2.5" strokeLinecap="round"/>
-            <path d="M66 50C66 58.8 58.8 66 50 66" stroke="#f6861f" strokeWidth="2" strokeLinecap="round"/>
-            <circle cx="50" cy="50" r="18" fill="#f6861f"/>
-            <polygon points="46,42 46,58 60,50" fill="#161443"/>
-          </svg>
+          {/* Floating logo image */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/floating logo.png"
+            alt="Jukebox Logo"
+            className="w-full h-full object-contain drop-shadow-lg"
+          />
         </div>
 
         {/* Message 1 (orange accent) - Floats to the left, out of the card boundaries */}
         <div
           ref={message1Ref}
-          className="absolute top-[22%] -left-[105px] md:-left-[95px] w-[170px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-orange-100 shadow-[0_8px_30px_rgba(246,134,31,0.12)] rounded-2xl p-2.5 flex items-start gap-2 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
+          className="absolute top-[22%] -left-[105px] md:-left-[95px] w-[170px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#f6861f]/20 shadow-[0_8px_30px_rgba(246,134,31,0.12)] rounded-2xl p-2.5 flex items-start gap-2 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
         >
-          <div className="w-6 h-6 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-[9px] font-bold text-orange-600 flex-shrink-0">
+          <div className="w-6 h-6 rounded-full bg-[#f6861f]/10 border border-[#f6861f]/20 flex items-center justify-center text-[9px] font-bold text-[#f6861f] flex-shrink-0">
             A
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold text-orange-950 truncate">Agency A</span>
-              <span className="text-[7px] text-orange-500/80">10:42 AM</span>
+              <span className="text-[9px] font-bold text-[#161443] truncate">Agency A</span>
+              <span className="text-[7px] text-[#f6861f]/80">10:42 AM</span>
             </div>
-            <p className="text-[8px] leading-tight text-orange-800 mt-0.5">Need copy feedback asap!</p>
+            <p className="text-[8px] leading-tight text-[#f6861f] mt-0.5">Need copy feedback asap!</p>
           </div>
           {/* Pointed Speech Bubble Tail */}
-          <div className="absolute bottom-[-5px] right-[16px] w-2.5 h-2.5 bg-white border-r border-b border-orange-100 rotate-45 pointer-events-none" />
+          <div className="absolute bottom-[-5px] right-[16px] w-2.5 h-2.5 bg-white border-r border-b border-[#f6861f]/20 rotate-45 pointer-events-none" />
         </div>
 
         {/* Message 2 (blue accent) - Floats to the right, out of the card boundaries */}
         <div
           ref={message2Ref}
-          className="absolute top-[42%] -right-[105px] md:-right-[95px] w-[170px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-blue-100 shadow-[0_8px_30px_rgba(59,130,246,0.12)] rounded-2xl p-2.5 flex items-start gap-2 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
+          className="absolute top-[42%] -right-[105px] md:-right-[95px] w-[170px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#161443]/20 shadow-[0_8px_30px_rgba(22,20,67,0.12)] rounded-2xl p-2.5 flex items-start gap-2 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
         >
-          <div className="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-[9px] font-bold text-blue-600 flex-shrink-0">
+          <div className="w-6 h-6 rounded-full bg-[#161443]/10 border border-[#161443]/20 flex items-center justify-center text-[9px] font-bold text-[#161443] flex-shrink-0">
             B
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex justify-between items-center">
-              <span className="text-[9px] font-bold text-blue-950 truncate">Buyer B</span>
-              <span className="text-[7px] text-blue-500/80">10:45 AM</span>
+              <span className="text-[9px] font-bold text-[#161443] truncate">Buyer B</span>
+              <span className="text-[7px] text-[#161443]/80">10:45 AM</span>
             </div>
-            <p className="text-[8px] leading-tight text-blue-800 mt-0.5">Wait, where is the link?</p>
+            <p className="text-[8px] leading-tight text-[#161443] mt-0.5">Wait, where is the link?</p>
           </div>
           {/* Pointed Speech Bubble Tail */}
-          <div className="absolute bottom-[-5px] left-[16px] w-2.5 h-2.5 bg-white border-l border-b border-blue-100 rotate-45 pointer-events-none" />
+          <div className="absolute bottom-[-5px] left-[16px] w-2.5 h-2.5 bg-white border-l border-b border-[#161443]/20 rotate-45 pointer-events-none" />
         </div>
 
       </div>

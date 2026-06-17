@@ -128,8 +128,8 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
           />
           {[
             { name: "Home", id: "home" },
-            { name: "Situation", id: "problem" },
-            { name: "Services", id: "service" },
+            { name: "Problem", id: "problem" },
+            { name: "Solution", id: "service" },
             { name: "Process", id: "blueprint" },
             { name: "Sectors", id: "industries" },
             { name: "About", id: "about" },
@@ -216,8 +216,8 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             <nav className="flex flex-col gap-4">
               {[
                 { name: "Home", id: "home" },
-                { name: "Situation", id: "problem" },
-                { name: "Services", id: "service" },
+                { name: "Problem", id: "problem" },
+                { name: "Solution", id: "service" },
                 { name: "Process", id: "blueprint" },
                 { name: "Sectors", id: "industries" },
                 { name: "About", id: "about" },
