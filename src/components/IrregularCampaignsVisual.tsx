@@ -11,70 +11,76 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  
+
   const pillsRef = useRef<(HTMLDivElement | null)[]>([]);
   const pillInnersRef = useRef<(HTMLDivElement | null)[]>([]);
   const gapsRef = useRef<(HTMLDivElement | null)[]>([]);
-  
-  const badge1Ref = useRef<HTMLDivElement>(null);
-  const badge2Ref = useRef<HTMLDivElement>(null);
-  const badge3Ref = useRef<HTMLDivElement>(null);
+
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const conflictFlash1Ref = useRef<HTMLDivElement>(null);
+  const conflictFlash2Ref = useRef<HTMLDivElement>(null);
+
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   const eventPills = [
     {
       id: 0,
       label: "Campaign A",
-      start: { col: 2, row: 0 }, // Week 1, Wed
-      end: { col: 2, row: 0 },   // Week 1, Wed (Consistent)
+      start: { col: 0, row: 2 },
+      end: { col: 1, row: 2 },
       color: "navy",
-      rotation: -2.5,
+      startRotation: -3,
+      endRotation: -18,
     },
     {
       id: 1,
       label: "Social Ad",
-      start: { col: 0, row: 2 }, // Week 3, Mon (Crammed)
-      end: { col: 2, row: 1 },   // Week 2, Wed (Consistent)
+      start: { col: 2, row: 2 },
+      end: { col: 1.4, row: 2 },
       color: "orange",
-      rotation: 3.5,
+      startRotation: 4,
+      endRotation: 15,
     },
     {
       id: 2,
       label: "Newsletter",
-      start: { col: 2, row: 2 }, // Week 3, Wed (Crammed)
-      end: { col: 2, row: 2 },   // Week 3, Wed (Consistent)
+      start: { col: 3, row: 2 },
+      end: { col: 2, row: 2 },
       color: "navy",
-      rotation: -1.8,
+      startRotation: -2,
+      endRotation: -12,
     },
     {
       id: 3,
       label: "PR Launch",
-      start: { col: 4, row: 2 }, // Week 3, Fri (Crammed)
-      end: { col: 2, row: 3 },   // Week 4, Wed (Consistent)
+      start: { col: 5, row: 2 },
+      end: { col: 2.5, row: 2 },
       color: "orange",
-      rotation: 2.2,
-    }
+      startRotation: 3,
+      endRotation: 20,
+    },
   ];
 
-  // Coordinates of warning dots (gaps) on empty weeks in default state
   const gapDots = [
-    { col: 3, row: 1 }, // Week 2, Thu
-    { col: 1, row: 3 }, // Week 4, Tue
-    { col: 5, row: 3 }, // Week 4, Sat
+    { col: 3, row: 0, isExtra: false },
+    { col: 2, row: 1, isExtra: false },
+    { col: 3, row: 3, isExtra: false },
+    { col: 1, row: 0, isExtra: true },
+    { col: 5, row: 1, isExtra: true },
+    { col: 1, row: 3, isExtra: true },
+    { col: 5, row: 3, isExtra: true },
   ];
 
+  // Build timeline ONCE on mount
   useEffect(() => {
     // Set initial GSAP states
-    gsap.set(cardRef.current, { y: 24 });
-    gsap.set(headerRef.current, { opacity: 0.4 });
-    
-    // Set initial states for floating elements
-    gsap.set([badge1Ref.current, badge2Ref.current, badge3Ref.current], {
+    gsap.set(cardRef.current, { y: 20 });
+    gsap.set(headerRef.current, { opacity: 0.45 });
+    gsap.set(badgeRef.current, { opacity: 0, scale: 0.6, y: 15 });
+    gsap.set([conflictFlash1Ref.current, conflictFlash2Ref.current], {
       opacity: 0,
-      scale: 0.7,
-      y: 12,
     });
 
-    // Set initial positions for event pills
     eventPills.forEach((pill) => {
       const el = pillsRef.current[pill.id];
       const inner = pillInnersRef.current[pill.id];
@@ -86,107 +92,120 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
       }
       if (inner) {
         gsap.set(inner, {
-          rotate: pill.rotation,
-          backgroundColor: pill.color === "navy" ? "rgba(22, 20, 67, 0.08)" : "rgba(246, 134, 31, 0.1)",
-          borderColor: pill.color === "navy" ? "rgba(22, 20, 67, 0.12)" : "rgba(246, 134, 31, 0.15)",
-          color: pill.color === "navy" ? "rgba(22, 20, 67, 0.65)" : "rgba(246, 134, 31, 0.75)",
+          rotate: pill.startRotation,
+          backgroundColor:
+            pill.color === "navy"
+              ? "rgba(22, 20, 67, 0.08)"
+              : "rgba(246, 134, 31, 0.1)",
+          borderColor:
+            pill.color === "navy"
+              ? "rgba(22, 20, 67, 0.12)"
+              : "rgba(246, 134, 31, 0.15)",
+          color:
+            pill.color === "navy"
+              ? "rgba(22, 20, 67, 0.65)"
+              : "rgba(246, 134, 31, 0.75)",
         });
       }
     });
 
-    // Set initial states for gap dots
-    gapsRef.current.forEach((gap) => {
-      if (gap) {
-        gsap.set(gap, { opacity: 0.35 });
+    gapDots.forEach((gap, i) => {
+      const el = gapsRef.current[i];
+      if (el) {
+        if (gap.isExtra) {
+          gsap.set(el, { opacity: 0, scale: 0 });
+        } else {
+          gsap.set(el, { opacity: 0.35, scale: 1 });
+        }
       }
     });
-  }, []);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ paused: true });
+    // Build the master timeline (paused)
+    const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
 
-      // 1. Calendar card lifts up
-      tl.to(cardRef.current, {
-        y: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      }, 0);
+    // 1. Calendar card lifts up
+    tl.to(cardRef.current, { y: 0, duration: 0.5 }, 0);
 
-      // 2. Header text sharpens
-      tl.to(headerRef.current, {
-        opacity: 1,
-        duration: 0.3,
-      }, 0);
+    // 2. Header sharpens
+    tl.to(headerRef.current, { opacity: 1, duration: 0.3 }, 0);
 
-      // 3. Event pills smoothly redistribute, straighten and intensify
-      eventPills.forEach((pill) => {
-        const el = pillsRef.current[pill.id];
-        const inner = pillInnersRef.current[pill.id];
-        if (el) {
-          tl.to(el, {
+    // 3. Pills cluster tighter and rotate wildly
+    eventPills.forEach((pill) => {
+      const el = pillsRef.current[pill.id];
+      const inner = pillInnersRef.current[pill.id];
+      if (el) {
+        tl.to(
+          el,
+          {
             left: `${pill.end.col * 14.2857}%`,
             top: `${pill.end.row * 25}%`,
-            duration: 0.6,
+            duration: 0.55,
             ease: "power3.out",
-          }, 0);
-        }
-        if (inner) {
-          tl.to(inner, {
-            rotate: 0,
-            backgroundColor: pill.color === "navy" ? "rgba(22, 20, 67, 0.22)" : "rgba(246, 134, 31, 0.25)",
-            borderColor: pill.color === "navy" ? "rgba(22, 20, 67, 0.35)" : "rgba(246, 134, 31, 0.4)",
-            color: pill.color === "navy" ? "rgba(22, 20, 67, 0.95)" : "rgba(246, 134, 31, 1)",
-            duration: 0.5,
-            ease: "power2.out",
-          }, 0);
-        }
-      });
-
-      // 4. Gap indicators fade out
-      gapsRef.current.forEach((gap) => {
-        if (gap) {
-          tl.to(gap, {
-            opacity: 0,
-            scale: 0.5,
-            duration: 0.3,
-          }, 0);
-        }
-      });
-
-      // 5. Floating badges pop in with staggered delays
-      tl.to(badge1Ref.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.4,
-        ease: "back.out(1.5)",
-      }, 0.08); // 80ms delay
-
-      tl.to(badge2Ref.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.4,
-        ease: "back.out(1.5)",
-      }, 0.16); // 160ms delay
-
-      tl.to(badge3Ref.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.4,
-        ease: "back.out(1.5)",
-      }, 0.24); // 240ms delay
-
-      if (isHovered) {
-        tl.play();
-      } else {
-        tl.reverse();
+          },
+          0
+        );
       }
-    }, containerRef);
+      if (inner) {
+        const isConflict = pill.id === 1 || pill.id === 3;
+        tl.to(
+          inner,
+          {
+            rotate: pill.endRotation,
+            borderColor: isConflict
+              ? "rgba(239, 68, 68, 0.7)"
+              : pill.color === "navy"
+                ? "rgba(22, 20, 67, 0.25)"
+                : "rgba(246, 134, 31, 0.3)",
+            backgroundColor: isConflict
+              ? "rgba(239, 68, 68, 0.08)"
+              : pill.color === "navy"
+                ? "rgba(22, 20, 67, 0.12)"
+                : "rgba(246, 134, 31, 0.14)",
+            color:
+              pill.color === "navy"
+                ? "rgba(22, 20, 67, 0.85)"
+                : "rgba(246, 134, 31, 0.95)",
+            scale: isConflict ? 1.05 : 1,
+            duration: 0.5,
+          },
+          0
+        );
+      }
+    });
 
-    return () => ctx.revert();
+    // 4. Warning dots grow / new ones appear
+    gapDots.forEach((gap, i) => {
+      const el = gapsRef.current[i];
+      if (!el) return;
+      if (gap.isExtra) {
+        tl.to(el, { opacity: 0.6, scale: 1, duration: 0.35, ease: "back.out(1.5)" }, 0.1 + i * 0.04);
+      } else {
+        tl.to(el, { opacity: 0.8, scale: 1.6, duration: 0.4 }, 0);
+      }
+    });
+
+    // 5. Conflict flash overlays
+    tl.to(conflictFlash1Ref.current, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0.15);
+    tl.to(conflictFlash2Ref.current, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0.22);
+
+    // 6. Red warning badge
+    tl.to(badgeRef.current, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.5)" }, 0.12);
+
+    tlRef.current = tl;
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
+  // Play / reverse on hover change
+  useEffect(() => {
+    if (!tlRef.current) return;
+    if (isHovered) {
+      tlRef.current.timeScale(1).play();
+    } else {
+      tlRef.current.timeScale(0.85).reverse();
+    }
   }, [isHovered]);
 
   return (
@@ -241,11 +260,13 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
             ))}
           </div>
 
-          {/* Empty Week Gaps / Warnings (hidden on hover) */}
+          {/* Empty Week Gaps / Warning Dots */}
           {gapDots.map((gap, i) => (
             <div
               key={i}
-              ref={(el) => { gapsRef.current[i] = el; }}
+              ref={(el) => {
+                gapsRef.current[i] = el;
+              }}
               className="absolute pointer-events-none flex items-center justify-center"
               style={{
                 left: `${gap.col * 14.2857}%`,
@@ -258,19 +279,49 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
             </div>
           ))}
 
+          {/* Conflict Flash Overlays */}
+          <div
+            ref={conflictFlash1Ref}
+            className="absolute pointer-events-none flex items-center justify-center z-20"
+            style={{
+              left: `${1.2 * 14.2857}%`,
+              top: `${2 * 25}%`,
+              width: "14.2857%",
+              height: "25%",
+            }}
+          >
+            <div className="w-3 h-3 rounded-full bg-red-500/20 animate-ping" />
+          </div>
+          <div
+            ref={conflictFlash2Ref}
+            className="absolute pointer-events-none flex items-center justify-center z-20"
+            style={{
+              left: `${2.3 * 14.2857}%`,
+              top: `${2 * 25}%`,
+              width: "14.2857%",
+              height: "25%",
+            }}
+          >
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/25 animate-ping" />
+          </div>
+
           {/* Event Pills Layer */}
           {eventPills.map((pill) => (
             <div
               key={pill.id}
-              ref={(el) => { pillsRef.current[pill.id] = el; }}
-              className="absolute flex items-center justify-center p-[2px]"
+              ref={(el) => {
+                pillsRef.current[pill.id] = el;
+              }}
+              className="absolute flex items-center justify-center p-[2px] z-10"
               style={{
                 width: "14.2857%",
                 height: "25%",
               }}
             >
               <div
-                ref={(el) => { pillInnersRef.current[pill.id] = el; }}
+                ref={(el) => {
+                  pillInnersRef.current[pill.id] = el;
+                }}
                 className="w-full h-full rounded-[4px] border text-[6.5px] font-extrabold flex items-center justify-center tracking-tighter truncate px-0.5 select-none shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
               >
                 {pill.label}
@@ -280,53 +331,13 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
         </div>
       </div>
 
-      {/* FLOATING ACCENTS */}
-      
-      {/* 1. "✓ Scheduled" Orange badge - top right */}
+      {/* FLOATING ACCENT: Red Warning Badge */}
       <div
-        ref={badge1Ref}
-        className="absolute top-[10%] right-[3%] bg-[#f6861f] text-white px-2.5 py-1 rounded-full text-[9px] font-bold shadow-[0_4px_12px_rgba(246,134,31,0.25)] flex items-center gap-1 z-20"
+        ref={badgeRef}
+        className="absolute top-[10%] right-[3%] bg-red-500 text-white px-2.5 py-1 rounded-full text-[9px] font-bold shadow-[0_4px_12px_rgba(239,68,68,0.3)] flex items-center gap-1 z-20"
       >
-        <svg
-          className="w-2.5 h-2.5 text-white"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-        </svg>
-        <span>Scheduled</span>
-      </div>
-
-      {/* 2. Clock Icon badge - bottom left */}
-      <div
-        ref={badge2Ref}
-        className="absolute bottom-[20%] left-[4%] bg-white border border-black/[0.04] w-7 h-7 rounded-lg flex items-center justify-center shadow-[0_4px_10px_rgba(0,0,0,0.06)] z-20"
-      >
-        <svg
-          className="w-3.5 h-3.5 text-brand-navy"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </div>
-
-      {/* 3. Streak Card badge - bottom right */}
-      <div
-        ref={badge3Ref}
-        className="absolute bottom-[8%] right-[4%] bg-white border border-black/[0.04] px-2 py-1 rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.08)] flex items-center gap-1 z-20"
-      >
-        <span className="text-[9px] font-extrabold text-brand-navy tracking-tight whitespace-nowrap">
-          4-week streak 🔥
-        </span>
+        <span className="text-[10px]">❌</span>
+        <span>No Cadence</span>
       </div>
     </div>
   );
