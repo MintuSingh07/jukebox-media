@@ -109,30 +109,13 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             e.preventDefault();
             handleTabClick("home");
           }}
-          className="flex items-center gap-2.5 group cursor-pointer"
+          className="flex items-center group cursor-pointer"
         >
-          <div className="relative transition-transform duration-300 group-hover:scale-105">
-            {/* Custom SVG Vinyl Record Logo matching Jukebox Media */}
-            <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" fill="#161443" stroke="#f6861f" strokeWidth="4.5"/>
-              <path d="M22 50C22 34.5 34.5 22 50 22" stroke="#f6861f" strokeWidth="3" strokeLinecap="round"/>
-              <path d="M28 50C28 37.8 37.8 28 50 28" stroke="#f6861f" strokeWidth="2.5" strokeLinecap="round"/>
-              <path d="M34 50C34 41.2 41.2 34 50 34" stroke="#f6861f" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M78 50C78 65.5 65.5 78 50 78" stroke="#f6861f" strokeWidth="3" strokeLinecap="round"/>
-              <path d="M72 50C72 62.2 62.2 72 50 72" stroke="#f6861f" strokeWidth="2.5" strokeLinecap="round"/>
-              <path d="M66 50C66 58.8 58.8 66 50 66" stroke="#f6861f" strokeWidth="2" strokeLinecap="round"/>
-              <circle cx="50" cy="50" r="18" fill="#f6861f"/>
-              <polygon points="46,42 46,58 60,50" fill="#161443"/>
-            </svg>
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-bold tracking-tight text-[18px] text-brand-navy">
-              Jukebox
-            </span>
-            <span className="font-medium tracking-[0.15em] text-[11px] text-brand-navy/70 uppercase mt-0.5">
-              media
-            </span>
-          </div>
+          <img
+            src="/final logo-TM.png"
+            alt="Jukebox Media"
+            className="h-10 md:h-[52px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </a>
 
         {/* Center Pill Navigation Dock */}

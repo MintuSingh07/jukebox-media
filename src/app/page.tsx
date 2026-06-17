@@ -2,9 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
-import FloatingCard from "@/components/FloatingCard";
-import DoctorBadge from "@/components/DoctorBadge";
-import LogoMarquee from "@/components/LogoMarquee";
 import Grainient from "@/components/Grainient";
 import ScrollReveal from "@/components/ScrollReveal";
 import gsap from "gsap";
@@ -21,11 +18,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const homeRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const leftCardRef = useRef<HTMLDivElement>(null);
-  const rightCardRef = useRef<HTMLDivElement>(null);
-  const leftBadgeRef = useRef<HTMLDivElement>(null);
-  const rightBadgeRef = useRef<HTMLDivElement>(null);
   const navbarRef = useRef<HTMLElement>(null);
   const [activeTab, setActiveTab] = useState("home");
   const isProgrammaticScroll = useRef(false);
@@ -82,19 +76,11 @@ export default function Home() {
   useEffect(() => {
     const card = cardRef.current;
     const container = containerRef.current;
-    const leftCard = leftCardRef.current;
-    const rightCard = rightCardRef.current;
-    const leftBadge = leftBadgeRef.current;
-    const rightBadge = rightBadgeRef.current;
     const navbar = navbarRef.current;
 
     if (
       !card ||
       !container ||
-      !leftCard ||
-      !rightCard ||
-      !leftBadge ||
-      !rightBadge ||
       !navbar
     )
       return;
@@ -121,13 +107,26 @@ export default function Home() {
 
     // GSAP Context handles cleanups on unmount
     const ctx = gsap.context(() => {
+      // Pin the inner home container so it stays fixed in place while subsequent sections scroll over it
+      if (homeRef.current) {
+        ScrollTrigger.create({
+          trigger: container,
+          start: "top top",
+          end: "max",
+          pin: homeRef.current,
+          pinSpacing: false,
+          invalidateOnRefresh: true,
+          id: "pin-home",
+        });
+      }
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
           start: "top top",
           end: "+=350",
           scrub: true,
-          pin: true,
+          pin: false,
           invalidateOnRefresh: true,
         },
       });
@@ -145,18 +144,6 @@ export default function Home() {
         },
         0,
       );
-
-      // 2. Slide left card inward from halfway out
-      tl.fromTo(leftCard, { x: -235 }, { x: -100, ease: "none" }, 0);
-
-      // 3. Slide right card inward from halfway out
-      tl.fromTo(rightCard, { x: -10 }, { x: -100, ease: "none" }, 0);
-
-      // 4. Slide left badge inward
-      tl.fromTo(leftBadge, { x: 0 }, { x: 100, ease: "none" }, 0);
-
-      // 5. Slide right badge inward
-      tl.fromTo(rightBadge, { x: 0 }, { x: -100, ease: "none" }, 0);
 
       // 6. Animate Navbar to sticky top
       tl.to(
@@ -255,6 +242,7 @@ export default function Home() {
       });
 
       const scrollSections = [
+        "blank",
         "problem",
         "service",
         "blueprint",
@@ -430,6 +418,7 @@ export default function Home() {
       delete (window as any).lenis;
 
       const scrollSections = [
+        "blank",
         "problem",
         "service",
         "blueprint",
@@ -618,9 +607,14 @@ export default function Home() {
         ref={containerRef}
         id="home"
         className="relative w-full bg-[#0c0c0e]"
+        style={{ height: "calc(100vh + 350px)" }}
       >
-        {/* Viewport Wrapper to center content and align card at bottom */}
-        <div className="relative h-screen w-full overflow-hidden flex items-end justify-center bg-transparent">
+        {/* Viewport Wrapper (pinned container) */}
+        <div
+          ref={homeRef}
+          id="home-inner"
+          className="relative h-screen w-full overflow-hidden flex items-end justify-center bg-transparent z-10"
+        >
           {/* Expanding Hero Box (Flush with bottom, centered with left/right space) */}
           <div
             ref={cardRef}
@@ -638,23 +632,23 @@ export default function Home() {
             {/* Clipped background container */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[inherit] z-0">
               <Grainient
-                color1="#F97316"
-                color2="#ff9851"
+                color1="#f6861f"
+                color2="#f6861f"
                 color3="#161443"
-                timeSpeed={0.25}
-                colorBalance={0.0}
-                warpStrength={1.0}
-                warpFrequency={5.0}
-                warpSpeed={2.0}
-                warpAmplitude={50.0}
-                blendAngle={0.0}
-                blendSoftness={0.05}
-                rotationAmount={500.0}
-                noiseScale={2.0}
-                grainAmount={0.1}
-                grainScale={2.0}
+                timeSpeed={0.2}
+                colorBalance={0.35}
+                warpStrength={1.8}
+                warpFrequency={7.0}
+                warpSpeed={1.5}
+                warpAmplitude={45.0}
+                blendAngle={30.0}
+                blendSoftness={0.08}
+                rotationAmount={400.0}
+                noiseScale={2.8}
+                grainAmount={0.08}
+                grainScale={1.5}
                 grainAnimated={false}
-                contrast={1.5}
+                contrast={1.4}
                 gamma={1.0}
                 saturation={1.0}
                 centerX={0.0}
@@ -683,71 +677,6 @@ export default function Home() {
             <main className="relative flex flex-col flex-1 items-center justify-center w-full max-w-7xl px-6 py-28 md:py-36 z-10">
               {/* Core Layout Relative Wrapper for Absolute Cards */}
               <div className="relative w-full flex flex-col items-center">
-                {/* FLOATING CARD 1: Aura Skincare Campaign (Top Left) */}
-                <div
-                  ref={leftCardRef}
-                  className="hidden lg:block lg:left-0 xl:left-4 top-[-20px] absolute z-20"
-                >
-                  <div className="animate-card-intro-left">
-                    <FloatingCard
-                      avatarUrl="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150"
-                      name="Aura Skincare"
-                      startDate="D2C Brand Campaign"
-                      weekText="Active: 5x ROAS Goal"
-                      progressPercent={82}
-                      animationClass="animate-float-slow"
-                    />
-                  </div>
-                </div>
-
-                {/* FLOATING CARD 2: Lodha Premium Campaign (Top Right) */}
-                <div
-                  ref={rightCardRef}
-                  className="hidden lg:block lg:right-0 xl:right-4 top-[10px] absolute z-20"
-                >
-                  <div className="animate-card-intro-right">
-                    <FloatingCard
-                      avatarUrl="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
-                      name="Lodha Premium"
-                      startDate="Real Estate Lead Gen"
-                      weekText="Active: 500 Leads Target"
-                      progressPercent={68}
-                      animationClass="animate-float-medium"
-                    />
-                  </div>
-                </div>
-
-                {/* DOCTOR BADGE 1: Ankit Jani (Bottom Left) */}
-                <div
-                  ref={leftBadgeRef}
-                  className="hidden lg:flex lg:-left-2 xl:-left-4 bottom-[140px] absolute z-20"
-                >
-                  <DoctorBadge
-                    avatarUrl="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=150&h=150"
-                    name="Ankit Jani"
-                    role="Business Head"
-                    theme="navy"
-                    pointerPosition="top-right"
-                    animationClass="animate-float-medium"
-                  />
-                </div>
-
-                {/* DOCTOR BADGE 2: Growth Architect (Bottom Right) */}
-                <div
-                  ref={rightBadgeRef}
-                  className="hidden lg:flex lg:-right-2 xl:-right-4 bottom-[100px] absolute z-20"
-                >
-                  <DoctorBadge
-                    avatarUrl="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=150&h=150"
-                    name="Dharmendra Jani"
-                    role="Operations Head, Director"
-                    theme="white"
-                    pointerPosition="top-left"
-                    animationClass="animate-float-fast"
-                    delayMs={600}
-                  />
-                </div>
-
                 <div className="flex flex-col items-center max-w-4xl text-center select-none z-10 pointer-events-none">
                   <h1 className="text-[42px] leading-[1.15] sm:text-[68px] sm:leading-[1.1] md:text-[86px] md:leading-[1.08] font-semibold tracking-tight text-white">
                     <span className="block">Clarity & Growth.</span>
@@ -789,8 +718,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Brand Logo Marquee Belt */}
-      <LogoMarquee />
+      {/* Blank Section replacing Trusted By Strip */}
+      <section
+        id="blank"
+        className="relative z-20 w-full bg-white h-screen border-b border-brand-navy/[0.04]"
+      ></section>
 
       {/* The Common Situation Section (Problem Statement) */}
       <div

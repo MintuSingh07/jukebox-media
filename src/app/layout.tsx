@@ -28,8 +28,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${plusJakartaSans.variable} ${caveat.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full bg-[#fafaf9] text-[#0f0f10]">
+      <body className="min-h-full bg-[#fafaf9] text-[#0f0f10]" suppressHydrationWarning>
         {children}
       </body>
     </html>
