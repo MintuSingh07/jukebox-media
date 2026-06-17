@@ -12,6 +12,7 @@ import MultipleVendorChaosVisual from "@/components/MultipleVendorChaosVisual";
 import ActivityOverDirectionVisual from "@/components/ActivityOverDirectionVisual";
 import ConsistencyStrugglesVisual from "@/components/ConsistencyStrugglesVisual";
 import UnclearROIVisual from "@/components/UnclearROIVisual";
+import LogoWall from "@/components/LogoWall";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -721,8 +722,10 @@ export default function Home() {
       {/* Blank Section replacing Trusted By Strip */}
       <section
         id="blank"
-        className="relative z-20 w-full bg-white h-screen border-b border-brand-navy/[0.04]"
-      ></section>
+        className="relative z-20 w-full bg-white h-screen border-b border-brand-navy/[0.04] flex items-center justify-center"
+      >
+        <LogoWall />
+      </section>
 
       {/* The Common Situation Section (Problem Statement) */}
       <div
@@ -1163,7 +1166,7 @@ export default function Home() {
 
           {/* Footer cursive script text */}
           <div className="absolute left-[45%] top-[90%] flex flex-col items-start select-none">
-            <span className="font-cursive text-[32px] lg:text-[36px] text-brand-orange rotate-[-4deg] tracking-wide">
+            <span className="font-cursive text-[32px] lg:text-[36px] text-[#161443] rotate-[-4deg] tracking-wide">
               Ready to be delivered!
             </span>
           </div>
@@ -1294,7 +1297,7 @@ export default function Home() {
 
           {/* Mobile Footer text */}
           <div className="mt-10 select-none">
-            <span className="font-cursive text-[30px] text-brand-orange rotate-[-2deg] tracking-wide inline-block">
+            <span className="font-cursive text-[30px] text-[#161443] rotate-[-2deg] tracking-wide inline-block">
               Ready to be delivered!
             </span>
           </div>
