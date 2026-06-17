@@ -1526,7 +1526,7 @@ export default function Home() {
               {/* Profile image container */}
               <div className="relative h-28 w-28 rounded-full border-2 border-white overflow-hidden mb-6 flex items-center justify-center bg-brand-navy shadow-lg shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=250&h=250"
+                  src="/ankit.jpeg"
                   alt="Ankit Jani"
                   className="h-full w-full object-cover"
                 />
