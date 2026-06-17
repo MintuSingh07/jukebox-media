@@ -19,6 +19,81 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
   const bubbleRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
+  const [budget, setBudget] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const formRef = useRef<HTMLDivElement>(null);
+  const formContentRef = useRef<HTMLFormElement>(null);
+
+  const openForm = () => {
+    setName('');
+    setEmail('');
+    setContact('');
+    setBudget('');
+    setIsFormOpen(true);
+    setIsSubmitted(false);
+    requestAnimationFrame(() => {
+      if (formRef.current) {
+        formRef.current.style.display = "block";
+        gsap.fromTo(formRef.current,
+          { clipPath: "circle(0% at 85% 0%)" },
+          { clipPath: "circle(150% at 85% 0%)", duration: 0.65, ease: "power3.out" }
+        );
+        if (formContentRef.current) {
+          const elements = formContentRef.current.querySelectorAll('.animate-field');
+          gsap.fromTo(elements,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power2.out", delay: 0.1 }
+          );
+        }
+      }
+    });
+  };
+
+  const closeForm = () => {
+    if (formRef.current) {
+      if (formContentRef.current) {
+        const elements = formContentRef.current.querySelectorAll('.animate-field');
+        gsap.to(elements, {
+          opacity: 0,
+          y: -10,
+          duration: 0.2,
+          stagger: 0.02,
+          ease: "power2.in",
+        });
+      }
+      gsap.to(formRef.current, {
+        clipPath: "circle(0% at 85% 0%)",
+        duration: 0.55,
+        ease: "power3.inOut",
+        onComplete: () => {
+          setIsFormOpen(false);
+          if (formRef.current) formRef.current.style.display = "none";
+        }
+      });
+    } else {
+      setIsFormOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (isFormOpen && formRef.current && !formRef.current.contains(e.target as Node)) {
+        const target = e.target as HTMLElement;
+        if (!target.closest('.lets-talk-btn')) {
+          closeForm();
+        }
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isFormOpen]);
+
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -159,16 +234,167 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
         </nav>
 
         {/* Let's Talk CTA & Mobile Hamburger Button */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="#"
-            className="group hidden sm:inline-flex items-center gap-2 rounded-full bg-brand-navy px-5 py-2.5 text-[14px] font-medium text-white transition-all duration-300 hover:bg-brand-navy-light hover:shadow-premium"
+        <div className="flex items-center gap-3 relative">
+          <button
+            onClick={openForm}
+            className="lets-talk-btn group hidden sm:inline-flex items-center gap-2 rounded-full bg-brand-navy px-5 py-2.5 text-[14px] font-medium text-white transition-all duration-300 hover:bg-brand-navy-light hover:shadow-premium cursor-pointer"
           >
             Let's Talk
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-brand-orange">
               ↗
             </span>
-          </Link>
+          </button>
+
+          {isFormOpen && (
+            <div
+              ref={formRef}
+              className="absolute right-0 top-full mt-3.5 w-[330px] max-w-[92vw] bg-white border border-brand-navy/15 rounded-2xl shadow-[0_20px_50px_rgba(22,20,67,0.15)] p-5 backdrop-blur-md z-50 overflow-hidden text-left"
+              style={{ display: "none", clipPath: "circle(0% at 85% 0%)" }}
+            >
+              {isSubmitted ? (
+                <div className="flex flex-col items-center justify-center py-8 text-center animate-field">
+                  <div className="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-500 shadow-sm animate-bounce">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </div>
+                  <h4 className="text-base font-bold text-brand-navy">Message Sent!</h4>
+                  <p className="text-xs text-brand-navy/60 mt-1 max-w-[200px]">
+                    Thank you. Ankit will get in touch with you shortly.
+                  </p>
+                </div>
+              ) : (
+                <form
+                  ref={formContentRef}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setIsSubmitted(true);
+                    setTimeout(() => {
+                      closeForm();
+                    }, 2500);
+                  }}
+                  className="flex flex-col gap-4"
+                >
+                  {/* Header */}
+                  <div className="flex items-center justify-between border-b border-slate-100 pb-2.5 animate-field">
+                    <h3 className="text-sm font-extrabold text-brand-navy uppercase tracking-wider">
+                      Let's Connect
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={closeForm}
+                      className="p-1 rounded-full text-slate-400 hover:text-brand-orange hover:bg-slate-50 transition-colors cursor-pointer"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Name field */}
+                  <div className="flex flex-col gap-1 animate-field">
+                    <label className="text-[11px] font-bold text-brand-navy/60 uppercase tracking-wider">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Your Name"
+                      className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
+                    />
+                  </div>
+
+                  {/* Email field */}
+                  <div className="flex flex-col gap-1 animate-field">
+                    <label className="text-[11px] font-bold text-brand-navy/60 uppercase tracking-wider">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="name@company.com"
+                      className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
+                    />
+                  </div>
+
+                  {/* Contact field */}
+                  <div className="flex flex-col gap-1 animate-field">
+                    <label className="text-[11px] font-bold text-brand-navy/60 uppercase tracking-wider">
+                      Contact Number
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                      placeholder={currency === 'INR' ? "+91 XXXXX XXXXX" : "+1 (XXX) XXX-XXXX"}
+                      className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
+                    />
+                  </div>
+
+                  {/* Campaign Budget field */}
+                  <div className="flex flex-col gap-1.5 animate-field">
+                    <div className="flex items-center justify-between">
+                      <label className="text-[11px] font-bold text-brand-navy/60 uppercase tracking-wider">
+                        Campaign Budget
+                      </label>
+                      <div className="relative flex items-center bg-slate-100 p-0.5 rounded-full w-28 h-6 select-none border border-slate-200/50">
+                        {/* Sliding active bubble */}
+                        <div
+                          className={`absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] bg-brand-navy rounded-full transition-all duration-300 ease-out shadow-sm ${
+                            currency === 'INR' ? 'left-[2px]' : 'left-[calc(50%)]'
+                          }`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setCurrency('INR')}
+                          className={`w-1/2 text-center text-[9px] font-bold z-10 transition-colors duration-300 cursor-pointer ${
+                            currency === 'INR' ? 'text-white' : 'text-brand-navy/60'
+                          }`}
+                        >
+                          ₹ INR
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setCurrency('USD')}
+                          className={`w-1/2 text-center text-[9px] font-bold z-10 transition-colors duration-300 cursor-pointer ${
+                            currency === 'USD' ? 'text-white' : 'text-brand-navy/60'
+                          }`}
+                        >
+                          $ USD
+                        </button>
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-brand-navy/60 font-bold">
+                        {currency === 'INR' ? '₹' : '$'}
+                      </span>
+                      <input
+                        type="number"
+                        required
+                        value={budget}
+                        onChange={(e) => setBudget(e.target.value)}
+                        placeholder="Enter Budget"
+                        className="w-full pl-7 pr-3 py-1.5 border border-slate-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit button */}
+                  <button
+                    type="submit"
+                    className="w-full py-2 mt-2 bg-brand-orange hover:bg-brand-orange/90 text-white rounded-lg text-xs font-bold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer animate-field"
+                  >
+                    Submit Request
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
 
           {/* Hamburger toggle button */}
           <button
@@ -246,14 +472,16 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             </nav>
 
             <div className="mt-auto pt-8 border-t border-white/10">
-              <Link
-                href="#"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-full bg-[#f6861f] py-3 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#e07310]"
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openForm();
+                }}
+                className="lets-talk-btn flex items-center justify-center gap-2 rounded-full bg-[#f6861f] py-3 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#e07310] w-full cursor-pointer"
               >
                 Let's Talk
                 <span>↗</span>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
