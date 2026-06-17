@@ -24,6 +24,7 @@ export default function Home() {
   const cardRef = useRef<HTMLDivElement>(null);
   const navbarRef = useRef<HTMLElement>(null);
   const [activeTab, setActiveTab] = useState("home");
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
   const isProgrammaticScroll = useRef(false);
   // Stores the scroll position where each section's TOP is at viewport top.
   // Populated after GSAP init by reading pin spacer offsetTop.
@@ -171,8 +172,8 @@ export default function Home() {
         "blueprint",
         "industries",
         "about",
-        "partnership",
         "testimonial",
+        "pricing",
       ];
       trackSections.forEach((id) => {
         ScrollTrigger.create({
@@ -193,7 +194,7 @@ export default function Home() {
         "industries",
         "about",
         "testimonial",
-        "partnership",
+        "pricing",
       ];
 
       scrollSections.forEach((id, index) => {
@@ -281,11 +282,10 @@ export default function Home() {
           start: "top 78%",
         },
         {
-          id: "partnership",
+          id: "pricing",
           selectors: [
-            "#partnership .lg\\:col-span-5",
-            "#partnership .lg\\:col-span-7 > div:first-child > *",
-            "#partnership .lg\\:col-span-7 .grid > div",
+            "#pricing .text-center > *",
+            "#pricing .grid > div",
           ],
           start: "top 78%",
         },
@@ -364,8 +364,8 @@ export default function Home() {
         "blueprint",
         "industries",
         "about",
-        "partnership",
         "testimonial",
+        "pricing",
       ];
       scrollSections.forEach((id) => {
         const el = document.getElementById(id);
@@ -700,7 +700,7 @@ export default function Home() {
             </span>
             <ScrollReveal
               as="h2"
-              containerClassName="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3 leading-[1.1]"
+              containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3 leading-[1.1]"
             >
               Does your marketing feel scattered?
             </ScrollReveal>
@@ -850,7 +850,7 @@ export default function Home() {
             </span>
             <ScrollReveal
               as="h2"
-              containerClassName="text-[32px] sm:text-[40px] font-extrabold text-brand-navy tracking-tight mt-2"
+              containerClassName="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight mt-2"
             >
               Our Services &amp; Expertise
             </ScrollReveal>
@@ -967,7 +967,7 @@ export default function Home() {
             </span>
             <ScrollReveal
               as="h2"
-              containerClassName="text-[34px] lg:text-[40px] font-extrabold text-brand-navy leading-[1.15] tracking-tight mt-5"
+              containerClassName="text-[34px] lg:text-[40px] font-bold text-brand-navy leading-[1.15] tracking-tight mt-5"
             >
               Let us show you how we drive your brand to new heights
             </ScrollReveal>
@@ -1140,7 +1140,7 @@ export default function Home() {
             </span>
             <ScrollReveal
               as="h2"
-              containerClassName="text-[32px] font-extrabold text-brand-navy leading-tight tracking-tight mt-4"
+              containerClassName="text-[32px] font-bold text-brand-navy leading-tight tracking-tight mt-4"
             >
               Let us show you how we drive your brand to new heights
             </ScrollReveal>
@@ -1294,7 +1294,7 @@ export default function Home() {
             </span>
             <ScrollReveal
               as="h2"
-              containerClassName="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3"
+              containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
             >
               Businesses We Support
             </ScrollReveal>
@@ -1407,7 +1407,7 @@ export default function Home() {
               </span>
               <ScrollReveal
                 as="h2"
-                containerClassName="text-[36px] sm:text-[52px] font-extrabold leading-tight tracking-tight mt-3 text-white"
+                containerClassName="text-[36px] sm:text-[52px] font-bold leading-tight tracking-tight mt-3 text-white"
               >
                 We build growth-centric marketing systems.
               </ScrollReveal>
@@ -1497,7 +1497,7 @@ export default function Home() {
               <span className="text-[12px] font-bold tracking-[0.2em] text-[#f6861f] uppercase">
                 The Force Behind Jukebox
               </span>
-              <h3 className="text-[28px] sm:text-[36px] font-extrabold tracking-tight mt-3 text-white">
+              <h3 className="text-[28px] sm:text-[36px] font-bold tracking-tight mt-3 text-white">
                 Ankit Jani — Business Head
               </h3>
               <p className="text-[15px] text-white/80 mt-4 leading-relaxed max-w-2xl">
@@ -1591,7 +1591,7 @@ export default function Home() {
             </span>
             <ScrollReveal
               as="h2"
-              containerClassName="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight mt-3"
+              containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
             >
               What Our Partners Say
             </ScrollReveal>
@@ -1608,120 +1608,239 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Engagement Models & Symptom Checklist Section */}
+      {/* Pricing Section */}
       <div
-        id="partnership"
-        className="relative z-20 w-full bg-brand-navy py-24 border-t border-white/[0.04] flex flex-col items-center select-none overflow-hidden"
+        id="pricing"
+        className="relative z-20 w-full min-h-screen bg-[#f6861f] py-28 border-t border-white/[0.08] flex flex-col items-center justify-center select-none overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] z-0 pointer-events-none"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
-                "radial-gradient(circle at top right, rgba(246, 134, 31, 0.08) 0%, rgba(246, 134, 31, 0) 70%)",
+                "radial-gradient(circle at top right, rgba(22, 20, 67, 0.15) 0%, rgba(22, 20, 67, 0) 70%)",
             }}
           />
           <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
-                "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)",
+                "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%)",
             }}
           />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Left Column: Symptom Checklist (col-span 5) */}
-            <div className="lg:col-span-5 bg-white/5 border border-white/10 rounded-3xl p-6 lg:p-8 shadow-sm">
-              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
-                When to reach out
-              </span>
-              <h3 className="text-[28px] sm:text-[32px] font-extrabold tracking-tight text-white mt-3 leading-tight">
-                Are you facing these challenges?
-              </h3>
-              <p className="text-[14px] text-white/60 leading-relaxed mt-4">
-                If your business is experiencing any of these common marketing
-                friction points, it's time to restructure your systems.
-              </p>
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16 animate-field">
+            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-navy uppercase">
+              Pricing Plans
+            </span>
+            <ScrollReveal
+              as="h2"
+              containerClassName="text-[36px] sm:text-[48px] font-bold text-white tracking-tight mt-3"
+            >
+              Transparent Pricing Packages
+            </ScrollReveal>
+            <p className="text-[16px] sm:text-[18px] text-white/85 mt-4 leading-relaxed">
+              No hidden fees. Choose the plan that fits your team size and campaign targets.
+            </p>
 
-              <ul className="flex flex-col gap-4 mt-8">
-                {[
-                  "Your current marketing efforts feel scattered and inconsistent.",
-                  "Your campaigns generate high impressions but lack clear, bottom-funnel conversions.",
-                  "Your internal team is overwhelmed or lacks specialized tracking/CRO expertise.",
-                  "You are managing multiple disconnected agencies and freelancers.",
-                  "You struggle to establish single-source-of-truth attribution.",
-                ].map((symptom, idx) => (
-                  <li
-                    key={idx}
-                    className="flex gap-3 items-start text-[13px] text-white/80 font-medium leading-relaxed"
-                  >
-                    <div className="h-5 w-5 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-brand-orange font-semibold text-[10px]">
-                        ✓
-                      </span>
-                    </div>
-                    <span>{symptom}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Monthly / Yearly Toggle Capsule */}
+            <div className="flex justify-center mt-8">
+              <div className="relative bg-white/10 backdrop-blur-md border border-white/20 p-1 rounded-full flex items-center gap-1">
+                <button
+                  onClick={() => setBillingPeriod("monthly")}
+                  className={`px-6 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    billingPeriod === "monthly"
+                      ? "bg-white text-brand-navy shadow-md"
+                      : "text-white hover:text-white/80"
+                  }`}
+                >
+                  Monthly
+                </button>
+                <button
+                  onClick={() => setBillingPeriod("yearly")}
+                  className={`px-6 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    billingPeriod === "yearly"
+                      ? "bg-white text-brand-navy shadow-md"
+                      : "text-white hover:text-white/80"
+                  }`}
+                >
+                  Yearly
+                  <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-extrabold uppercase ${
+                    billingPeriod === "yearly" ? "bg-brand-orange text-white" : "bg-white/20 text-white"
+                  }`}>
+                    Save 20%
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4 items-center">
+            {/* Card 1: Starter Plan (Light) */}
+            <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between min-h-[580px] shadow-[0_10px_35px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_15px_45px_rgba(0,0,0,0.05)] hover:-translate-y-1">
+              <div>
+                <span className="text-[14px] font-semibold text-brand-navy block tracking-tight">
+                  Starter Plan
+                </span>
+                <div className="flex items-baseline gap-1 mt-4">
+                  <span className="text-[56px] font-extrabold tracking-tight text-brand-navy leading-none">
+                    {billingPeriod === "monthly" ? "$50" : "$40"}
+                  </span>
+                  <span className="text-[13px] font-medium text-brand-navy/60">
+                    /month
+                  </span>
+                </div>
+                {billingPeriod === "yearly" && (
+                  <span className="text-[10px] font-semibold text-brand-navy/55 block mt-1">
+                    Billed annually ($480/yr)
+                  </span>
+                )}
+                <p className="text-[13.5px] text-slate-500 font-medium leading-relaxed mt-4">
+                  Perfect for small teams and growing brands ready to build visibility.
+                </p>
+
+                <div className="mt-8">
+                  <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
+                    Features:
+                  </span>
+                  <ul className="flex flex-col gap-3.5">
+                    {[
+                      "1 Active advertising channel",
+                      "Basic campaign management",
+                      "Monthly growth reports",
+                      "Standard creative templates",
+                      "Email support",
+                    ].map((feature, idx) => (
+                      <li key={idx} className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold">
+                        <div className="w-5 h-5 rounded-full bg-brand-navy flex items-center justify-center shrink-0 mt-0.5 text-white">
+                          <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                          </svg>
+                        </div>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <button className="w-full py-3.5 mt-8 bg-brand-navy hover:bg-brand-navy-light text-white rounded-xl text-xs font-bold transition-all hover:scale-[1.01] active:scale-100 cursor-pointer text-center">
+                Get Started
+              </button>
             </div>
 
-            {/* Right Column: Engagement Models Grid (col-span 7) */}
-            <div className="lg:col-span-7 flex flex-col justify-between h-full gap-6">
+            {/* Card 2: Starter Plan (Selected - bg-brand-navy #161443) */}
+            <div className="bg-brand-navy border border-white/10 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between min-h-[610px] shadow-[0_20px_50px_rgba(0,0,0,0.25)] text-white relative overflow-hidden transition-all duration-300 md:scale-105 z-10 hover:-translate-y-1">
+              {/* Highlight border flare */}
+              <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-transparent via-brand-orange/40 to-transparent" />
               <div>
-                <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
-                  How we work with you
+                <span className="text-[14px] font-semibold text-white/50 block tracking-tight">
+                  Professional Plan
                 </span>
-                <h3 className="text-[28px] sm:text-[36px] font-extrabold tracking-tight text-white mt-3 leading-tight">
-                  Flexible Engagement Models
-                </h3>
-                <p className="text-[15px] text-white/60 leading-relaxed mt-4">
-                  We don't believe in one-size-fits-all agreements. Choose the
-                  exact collaboration structure that aligns with your timeline
-                  and objectives.
+                <div className="flex items-baseline gap-1 mt-4">
+                  <span className="text-[56px] font-extrabold tracking-tight text-white leading-none">
+                    {billingPeriod === "monthly" ? "$99" : "$79"}
+                  </span>
+                  <span className="text-[13px] font-medium text-white/40">
+                    /month
+                  </span>
+                </div>
+                {billingPeriod === "yearly" && (
+                  <span className="text-[10px] font-semibold text-white/50 block mt-1">
+                    Billed annually ($948/yr)
+                  </span>
+                )}
+                <p className="text-[13.5px] text-white/60 font-medium leading-relaxed mt-4">
+                  Our most popular plan for businesses aiming to maximize acquisition and ROAS.
                 </p>
+
+                <div className="mt-8">
+                  <span className="text-[11px] font-extrabold text-white uppercase tracking-wider block mb-4">
+                    Features:
+                  </span>
+                  <ul className="flex flex-col gap-3.5">
+                    {[
+                      "Up to 3 active ad channels",
+                      "Weekly growth audits & optimization",
+                      "Custom ad creative & copy briefs",
+                      "Dedicated growth manager",
+                      "Priority Slack & email support",
+                    ].map((feature, idx) => (
+                      <li key={idx} className="flex gap-3 items-start text-[13px] text-white/80 font-semibold">
+                        <div className="w-5 h-5 rounded-full bg-brand-orange flex items-center justify-center shrink-0 mt-0.5 text-brand-navy">
+                          <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                          </svg>
+                        </div>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                {[
-                  {
-                    title: "Ongoing Support",
-                    desc: "Continuous monthly execution across search, paid social, copy, and tracking dashboard management.",
-                    pill: "Monthly Retainer",
-                  },
-                  {
-                    title: "Project-Based Work",
-                    desc: "Structured deliverables with clear timelines—ideal for landing page CRO setups, audits, and tracking setups.",
-                    pill: "Fixed Scope",
-                  },
-                  {
-                    title: "Guidance & Direction",
-                    desc: "High-level strategic consulting and regular audits for internal teams who need directional support.",
-                    pill: "Advisory Calls",
-                  },
-                ].map((model, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white/5 border border-white/10 rounded-2xl p-5 shadow-sm hover:border-brand-orange/40 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between"
-                  >
-                    <div>
-                      <span className="text-[9px] font-extrabold bg-brand-orange/10 text-brand-orange px-2.5 py-1 rounded-md tracking-wider uppercase inline-block mb-4">
-                        {model.pill}
-                      </span>
-                      <h4 className="text-[15px] font-extrabold text-white tracking-tight">
-                        {model.title}
-                      </h4>
-                      <p className="text-[12.5px] text-white/60 leading-relaxed mt-2.5">
-                        {model.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+              <button className="w-full py-3.5 mt-8 bg-white hover:bg-slate-50 text-brand-navy rounded-xl text-xs font-bold transition-all hover:scale-[1.01] active:scale-100 cursor-pointer text-center">
+                Get Started
+              </button>
+            </div>
+
+            {/* Card 3: Starter Plan (Light) */}
+            <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between min-h-[580px] shadow-[0_10px_35px_rgba(0,0,0,0.02)] transition-all duration-300 hover:shadow-[0_15px_45px_rgba(0,0,0,0.05)] hover:-translate-y-1">
+              <div>
+                <span className="text-[14px] font-semibold text-brand-navy block tracking-tight">
+                  Enterprise Plan
+                </span>
+                <div className="flex items-baseline gap-1 mt-4">
+                  <span className="text-[56px] font-extrabold tracking-tight text-brand-navy leading-none">
+                    {billingPeriod === "monthly" ? "$199" : "$159"}
+                  </span>
+                  <span className="text-[13px] font-medium text-brand-navy/60">
+                    /month
+                  </span>
+                </div>
+                {billingPeriod === "yearly" && (
+                  <span className="text-[10px] font-semibold text-brand-navy/55 block mt-1">
+                    Billed annually ($1908/yr)
+                  </span>
+                )}
+                <p className="text-[13.5px] text-slate-500 font-medium leading-relaxed mt-4">
+                  Custom marketing engines engineered for multi-brand and high-scale setups.
+                </p>
+
+                <div className="mt-8">
+                  <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
+                    Features:
+                  </span>
+                  <ul className="flex flex-col gap-3.5">
+                    {[
+                      "Unlimited advertising channels",
+                      "Daily campaign management",
+                      "Custom analytics & attribution setup",
+                      "Full creative production (video/design)",
+                      "24/7 Priority consulting & Slack support",
+                    ].map((feature, idx) => (
+                      <li key={idx} className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold">
+                        <div className="w-5 h-5 rounded-full bg-brand-navy flex items-center justify-center shrink-0 mt-0.5 text-white">
+                          <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                          </svg>
+                        </div>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
+
+              <button className="w-full py-3.5 mt-8 bg-brand-navy hover:bg-brand-navy-light text-white rounded-xl text-xs font-bold transition-all hover:scale-[1.01] active:scale-100 cursor-pointer text-center">
+                Get Started
+              </button>
             </div>
           </div>
         </div>

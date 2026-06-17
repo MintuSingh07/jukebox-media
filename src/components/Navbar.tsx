@@ -209,7 +209,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             { name: "Sectors", id: "industries" },
             { name: "About", id: "about" },
             { name: "Results", id: "testimonial" },
-            { name: "Partnership", id: "partnership" },
+            { name: "Pricing", id: "pricing" },
           ].map((item) => {
             const isActive = activeTab.toLowerCase() === item.id.toLowerCase();
             return (
@@ -448,7 +448,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                 { name: "Sectors", id: "industries" },
                 { name: "About", id: "about" },
                 { name: "Results", id: "testimonial" },
-                { name: "Partnership", id: "partnership" },
+                { name: "Pricing", id: "pricing" },
               ].map((item) => {
                 const isActive = activeTab.toLowerCase() === item.id.toLowerCase();
                 return (
