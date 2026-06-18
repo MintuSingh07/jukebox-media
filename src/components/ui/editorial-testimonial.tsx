@@ -171,7 +171,7 @@ export default function TestimonialsEditorial() {
       </div>
 
       {/* Navigation - vertical line selector */}
-      <div className="mt-10 flex items-center justify-between">
+      <div className="mt-6 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
             {testimonials.map((_, index) => (

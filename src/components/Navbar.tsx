@@ -162,6 +162,16 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
     };
   }, [activeTab]);
 
+  useEffect(() => {
+    const handleOpenFormEvent = () => {
+      openForm();
+    };
+    window.addEventListener("openContactForm", handleOpenFormEvent);
+    return () => {
+      window.removeEventListener("openContactForm", handleOpenFormEvent);
+    };
+  }, []);
+
   const handleTabClick = (name: string) => {
     if (onTabClick) {
       onTabClick(name);
@@ -198,7 +208,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
           {/* Sliding Active Bubble */}
           <div
             ref={bubbleRef}
-            className="absolute bg-[#11143B] rounded-full shadow-[0_2px_6px_rgba(17,20,59,0.15)] z-0"
+            className="absolute bg-[#161443] rounded-full shadow-[0_2px_6px_rgba(22,20,67,0.15)] z-0"
             style={{ opacity: 0 }}
           />
           {[
@@ -477,7 +487,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                   setIsMobileMenuOpen(false);
                   openForm();
                 }}
-                className="lets-talk-btn flex items-center justify-center gap-2 rounded-full bg-[#f6861f] py-3 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#e07310] w-full cursor-pointer"
+                className="lets-talk-btn flex items-center justify-center gap-2 rounded-full bg-[#f6861f] py-3 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#f6861f]/90 w-full cursor-pointer"
               >
                 Let's Talk
                 <span>↗</span>
