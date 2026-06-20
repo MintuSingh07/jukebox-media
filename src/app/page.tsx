@@ -534,7 +534,7 @@ export default function Home() {
           borderBottomLeftRadius: "32px",
           borderBottomRightRadius: "32px",
         }}
-        className="left-4 right-4 md:left-[8vw] md:right-[8vw] lg:left-[12vw] lg:right-[12vw] px-6 py-1.5 md:px-8 md:py-2 bg-white/50 backdrop-blur-xl border border-brand-navy/12 shadow-[0_8px_32px_rgba(22,20,67,0.08)]"
+        className="left-4 right-4 md:left-[8vw] md:right-[8vw] lg:left-[12vw] lg:right-[12vw] px-6 py-1.5 md:px-8 md:py-2 bg-white/[0.12] backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(22,20,67,0.08)]"
       />
       <div
         ref={containerRef}
