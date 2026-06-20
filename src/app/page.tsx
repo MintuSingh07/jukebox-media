@@ -662,7 +662,7 @@ export default function Home() {
       {/* Blank Section replacing Trusted By Strip */}
       <section
         id="blank"
-        className="relative z-20 w-full bg-white h-screen border-b border-brand-navy/[0.04] flex items-center justify-center"
+        className="relative z-20 w-full bg-white h-auto md:h-screen min-h-[600px] md:min-h-screen border-b border-brand-navy/[0.04] flex items-center justify-center py-16 md:py-0"
       >
         <LogoWall />
       </section>
@@ -1405,28 +1405,28 @@ export default function Home() {
               <span className="text-[12px] font-bold tracking-[0.2em] text-[#f6861f] uppercase">
                 Who we are
               </span>
-              <h3 className="text-[28px] sm:text-[36px] font-bold tracking-tight mt-3 text-white">
-                Ankit Jani — Business Head
+              <h3 className="text-[32px] sm:text-[40px] font-bold tracking-tight mt-3 text-white">
+                Ankit Jani
               </h3>
-              <p className="text-[15px] text-white/80 mt-4 leading-relaxed max-w-2xl">
-                Background across media channels, marketing exposure, and client
-                partnerships. Ankit plays an instrumental role at Jukebox Media,
-                helping businesses transform scattered marketing efforts into
-                focused, consistent strategies built to deliver measurable,
-                scaled impact.
+              <p className="text-[14px] sm:text-[16px] font-bold text-[#f6861f] tracking-[0.1em] uppercase mt-1">
+                Business Head
+              </p>
+              <p className="text-[15px] sm:text-[16px] text-white/90 mt-5 leading-relaxed max-w-2xl font-light">
+                Background across media, marketing exposure and client partnerships, having worked closely with businesses and brands on communication, campaigns and market visibility.
               </p>
 
               <div className="mt-6 border-l-2 border-[#f6861f] pl-4">
-                <span className="text-[11px] text-white font-semibold uppercase tracking-wider block">
-                  Cross-Platform Expertise
+                <span className="text-[12px] text-white font-bold uppercase tracking-wider block">
+                  Focus today:
                 </span>
-                <p className="text-[13px] text-white/80 leading-relaxed mt-1">
-                  Bringing structure and clarity to marketing backed by
-                  extensive client exposure across **Print, Radio, Television,
-                  YouTube, Zee5, SonyLiv, Hotstar, Netflix, and custom Brand
-                  Solutions.**
+                <p className="text-[14px] text-white/80 leading-relaxed mt-1 font-light">
+                  Bringing structure and clarity to marketing, backed by extensive cross-platform experience across Print, Radio, Television, YouTube, Zee5, SonyLiv, Hotstar, Netflix, along with expertise in Brand Solutions.
                 </p>
               </div>
+
+              <p className="text-[15px] sm:text-[16px] text-white/90 mt-6 leading-relaxed max-w-2xl font-light">
+                Ankit plays an instrumental role at Jukebox Media, helping businesses transform scattered marketing efforts into focused, consistent strategies aligned with their broader business objectives and built to deliver measurable impact.
+              </p>
             </div>
 
             {/* Right Column: Profile Image + Media Houses Logos (col-span 5) */}
