@@ -694,9 +694,6 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
-              The Common Problem
-            </span>
             <ScrollReveal
               as="h2"
               containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3 leading-[1.1]"
@@ -844,9 +841,6 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
-              The Solution
-            </span>
             <ScrollReveal
               as="h2"
               containerClassName="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight mt-2"
@@ -961,9 +955,6 @@ export default function Home() {
         <div className="relative w-full max-w-5xl h-[1350px] hidden md:block z-10">
           {/* Header block on left */}
           <div className="absolute left-[6%] top-[4%] max-w-md">
-            <span className="border border-brand-navy/15 text-[11px] px-3.5 py-1.5 rounded-full inline-block font-bold tracking-wider text-brand-navy/60 uppercase">
-              How we work
-            </span>
             <ScrollReveal
               as="h2"
               containerClassName="text-[34px] lg:text-[40px] font-bold text-brand-navy leading-[1.15] tracking-tight mt-5"
@@ -1134,9 +1125,6 @@ export default function Home() {
         <div className="w-full max-w-md flex flex-col items-center px-4 md:hidden z-10">
           {/* Mobile Header */}
           <div className="text-center mb-10">
-            <span className="border border-brand-navy/15 text-[11px] px-3.5 py-1.5 rounded-full inline-block font-bold tracking-wider text-brand-navy/60 uppercase">
-              How we work
-            </span>
             <ScrollReveal
               as="h2"
               containerClassName="text-[32px] font-bold text-brand-navy leading-tight tracking-tight mt-4"
@@ -1288,9 +1276,6 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
-              Target Categories
-            </span>
             <ScrollReveal
               as="h2"
               containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
@@ -1344,9 +1329,6 @@ export default function Home() {
 
           {/* Industry Sectors Marquee/Pills Grid */}
           <div className="border border-brand-navy/5 bg-[#fafaf9] rounded-2xl p-6 lg:p-8 text-center shadow-sm">
-            <span className="text-[10px] font-bold tracking-[0.25em] text-brand-navy/40 uppercase block mb-6">
-              Expertise Across Multiple Industry Verticals
-            </span>
             <div className="flex flex-wrap justify-center gap-2.5 max-w-5xl mx-auto">
               {[
                 "D2C Brands",
@@ -1403,9 +1385,6 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Bio Card (col-span 7) */}
             <div className="lg:col-span-7 flex flex-col justify-center select-none">
-              <span className="text-[12px] font-bold tracking-[0.2em] text-[#f6861f] uppercase">
-                Who we are
-              </span>
               <h3 className="text-[32px] sm:text-[40px] font-bold tracking-tight mt-3 text-white">
                 Ankit Jani
               </h3>
@@ -1419,7 +1398,7 @@ export default function Home() {
               </p>
 
               <div className="mt-6 border-l-2 border-[#f6861f] pl-4">
-                <span className="text-[12px] text-white font-bold uppercase tracking-wider block">
+                <span className="text-[12px] text-white font-bold uppercase tracking-wider block mb-4">
                   Focus today:
                 </span>
                 <p className="text-[14px] text-white/80 leading-relaxed mt-1 font-light">
@@ -1448,10 +1427,6 @@ export default function Home() {
                   className="h-full w-full object-cover"
                 />
               </div>
-
-              <span className="text-[10px] font-bold tracking-[0.25em] text-white/50 uppercase block mb-4">
-                Prior Network Exposure
-              </span>
 
               {/* Media Network Icons/badges Row */}
               <div className="grid grid-cols-5 gap-2.5 w-full items-center justify-items-center opacity-70">
@@ -1503,9 +1478,6 @@ export default function Home() {
         {/* Heading container */}
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10 mb-6">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-brand-orange uppercase">
-              Results & Trust
-            </span>
             <ScrollReveal
               as="h2"
               containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
@@ -1536,9 +1508,6 @@ export default function Home() {
         <div className="max-w-[1600px] mx-auto px-6 w-full relative z-10">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 animate-field">
-            <span className="text-[12px] font-bold tracking-[0.2em] text-[#161443] uppercase">
-              Pricing Plans
-            </span>
             <ScrollReveal
               as="h2"
               containerClassName="text-[36px] sm:text-[48px] font-bold text-white tracking-tight mt-3"
@@ -1559,9 +1528,6 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <span className="text-[11px] font-extrabold text-[#f6861f] uppercase tracking-widest block mb-1">
-                    01 . Entry Plan
-                  </span>
                   <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
                     Jukebox Starter
                   </h3>
@@ -1637,10 +1603,7 @@ export default function Home() {
 
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-extrabold text-[#f6861f] uppercase tracking-widest block">
-                      02 . Best Seller
-                    </span>
+                  <div className="flex items-center justify-end">
                     <span className="text-[9px] px-2.5 py-0.5 rounded-full font-black uppercase bg-[#f6861f] text-white shadow-[0_2px_8px_rgba(246,134,31,0.4)]">
                       Most Popular
                     </span>
@@ -1721,9 +1684,6 @@ export default function Home() {
 
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <span className="text-[11px] font-extrabold text-[#f6861f] uppercase tracking-widest block mb-1">
-                    03 . Premium Plan
-                  </span>
                   <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
                     Jukebox Retainer
                   </h3>
@@ -1828,9 +1788,6 @@ export default function Home() {
 
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <span className="text-[11px] font-extrabold text-[#f6861f] uppercase tracking-widest block mb-1">
-                    04 . Growth Plan
-                  </span>
                   <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
                     Jukebox Performance
                   </h3>
@@ -2083,30 +2040,6 @@ export default function Home() {
                     ),
                     url: "https://instagram.com",
                   },
-                  {
-                    icon: (
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                      </svg>
-                    ),
-                    url: "https://twitter.com",
-                  },
-                  {
-                    icon: (
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z" />
-                      </svg>
-                    ),
-                    url: "https://facebook.com",
-                  },
                 ].map((badge, index) => (
                   <a
                     key={index}
@@ -2160,17 +2093,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom Row: Giant logo text without logo mark */}
-          <div className="flex items-center justify-center mt-16 md:mt-24 select-none pointer-events-none w-full">
-            <div className="flex flex-col items-center text-center">
-              <span className="text-[10vw] sm:text-[12vw] font-black tracking-widest text-[#f6861f] leading-none uppercase whitespace-nowrap">
-                Jukebox
-              </span>
-              <span className="text-[2.5vw] sm:text-[3vw] font-light tracking-[0.4em] text-[#f6861f] leading-none uppercase mt-2 whitespace-nowrap">
-                MEDIA
-              </span>
-            </div>
-          </div>
+          {/* Bottom Row: Giant logo text removed */}
         </div>
       </footer>
     </>
