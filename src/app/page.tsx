@@ -24,7 +24,9 @@ export default function Home() {
   const cardRef = useRef<HTMLDivElement>(null);
   const navbarRef = useRef<HTMLElement>(null);
   const [activeTab, setActiveTab] = useState("home");
-  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">(
+    "monthly",
+  );
   const isProgrammaticScroll = useRef(false);
   // Stores the scroll position where each section's TOP is at viewport top.
   // Populated after GSAP init by reading pin spacer offsetTop.
@@ -140,15 +142,15 @@ export default function Home() {
         0,
       );
 
-      // 6. Animate Navbar to sticky top
+      // 6. Animate Navbar to sticky top (remains floating)
       tl.to(
         navbar,
         {
-          top: "0px",
-          left: "0vw",
-          right: "0vw",
-          borderTopLeftRadius: "0px",
-          borderTopRightRadius: "0px",
+          top: "20px",
+          borderTopLeftRadius: "32px",
+          borderTopRightRadius: "32px",
+          borderBottomLeftRadius: "32px",
+          borderBottomRightRadius: "32px",
           ease: "none",
         },
         0,
@@ -282,10 +284,7 @@ export default function Home() {
         },
         {
           id: "pricing",
-          selectors: [
-            "#pricing .text-center > *",
-            "#pricing .grid > div",
-          ],
+          selectors: ["#pricing .text-center > *", "#pricing .grid > div"],
           start: "top 78%",
         },
       ];
@@ -512,10 +511,7 @@ export default function Home() {
                 scrollTarget = Math.max(0, sectionScrollStart);
               } else {
                 // No pin trigger: scroll to the element directly
-                scrollTarget = Math.max(
-                  0,
-                  targetElement.offsetTop,
-                );
+                scrollTarget = Math.max(0, targetElement.offsetTop);
               }
             }
 
@@ -532,15 +528,13 @@ export default function Home() {
           }
         }}
         style={{
-          left: "3vw",
-          right: "3vw",
           top: "6vh",
           borderTopLeftRadius: "32px",
           borderTopRightRadius: "32px",
-          borderBottomLeftRadius: "0px",
-          borderBottomRightRadius: "0px",
+          borderBottomLeftRadius: "32px",
+          borderBottomRightRadius: "32px",
         }}
-        className="px-6 py-4 md:px-12 md:py-6"
+        className="left-4 right-4 md:left-[8vw] md:right-[8vw] lg:left-[12vw] lg:right-[12vw] px-6 py-1.5 md:px-8 md:py-2 bg-white/50 backdrop-blur-xl border border-brand-navy/12 shadow-[0_8px_32px_rgba(22,20,67,0.08)]"
       />
       <div
         ref={containerRef}
@@ -552,7 +546,7 @@ export default function Home() {
         <div
           ref={homeRef}
           id="home-inner"
-          className="relative h-screen w-full overflow-hidden flex items-end justify-center bg-transparent z-10"
+          className="relative h-screen w-full overflow-hidden flex items-end justify-center bg-[#0c0c0e] z-10"
         >
           {/* Expanding Hero Box (Flush with bottom, centered with left/right space) */}
           <div
@@ -609,7 +603,7 @@ export default function Home() {
                 className="absolute bottom-0 left-0 w-[60vw] h-[60vw] pointer-events-none z-0 mix-blend-screen"
                 style={{
                   background:
-                    "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%)",
+                    "radial-gradient(circle at bottom left, rgba(246, 134, 31, 0.15) 0%, rgba(246, 134, 31, 0) 70%)",
                 }}
               />
             </div>
@@ -645,7 +639,14 @@ export default function Home() {
                     <button className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer">
                       Our Services
                     </button>
-                    <button className="group px-7 py-3.5 text-[15px] font-semibold text-brand-navy bg-white rounded-full shadow-premium flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 cursor-pointer">
+                    <button
+                      onClick={() => {
+                        window.dispatchEvent(
+                          new CustomEvent("openContactForm"),
+                        );
+                      }}
+                      className="lets-talk-btn group px-7 py-3.5 text-[15px] font-semibold text-brand-navy bg-white rounded-full shadow-premium flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 cursor-pointer"
+                    >
                       Let's Build Together{" "}
                       <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 text-brand-navy">
                         →
@@ -679,7 +680,7 @@ export default function Home() {
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
-                "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
+                "radial-gradient(circle at top right, rgba(22, 20, 67, 0.07) 0%, rgba(22, 20, 67, 0) 70%)",
             }}
           />
           <div
@@ -836,7 +837,7 @@ export default function Home() {
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
-                "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
+                "radial-gradient(circle at bottom left, rgba(22, 20, 67, 0.07) 0%, rgba(22, 20, 67, 0) 70%)",
             }}
           />
         </div>
@@ -944,7 +945,7 @@ export default function Home() {
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
-                "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
+                "radial-gradient(circle at top right, rgba(22, 20, 67, 0.07) 0%, rgba(22, 20, 67, 0) 70%)",
             }}
           />
           <div
@@ -1280,7 +1281,7 @@ export default function Home() {
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
-                "radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
+                "radial-gradient(circle at bottom left, rgba(22, 20, 67, 0.07) 0%, rgba(22, 20, 67, 0) 70%)",
             }}
           />
         </div>
@@ -1392,7 +1393,7 @@ export default function Home() {
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
-                "radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)",
+                "radial-gradient(circle at bottom left, rgba(22, 20, 67, 0.05) 0%, rgba(22, 20, 67, 0) 70%)",
             }}
           />
         </div>
@@ -1412,7 +1413,9 @@ export default function Home() {
                 Business Head
               </p>
               <p className="text-[15px] sm:text-[16px] text-white/90 mt-5 leading-relaxed max-w-2xl font-light">
-                Background across media, marketing exposure and client partnerships, having worked closely with businesses and brands on communication, campaigns and market visibility.
+                Background across media, marketing exposure and client
+                partnerships, having worked closely with businesses and brands
+                on communication, campaigns and market visibility.
               </p>
 
               <div className="mt-6 border-l-2 border-[#f6861f] pl-4">
@@ -1420,12 +1423,18 @@ export default function Home() {
                   Focus today:
                 </span>
                 <p className="text-[14px] text-white/80 leading-relaxed mt-1 font-light">
-                  Bringing structure and clarity to marketing, backed by extensive cross-platform experience across Print, Radio, Television, YouTube, Zee5, SonyLiv, Hotstar, Netflix, along with expertise in Brand Solutions.
+                  Bringing structure and clarity to marketing, backed by
+                  extensive cross-platform experience across Print, Radio,
+                  Television, YouTube, Zee5, SonyLiv, Hotstar, Netflix, along
+                  with expertise in Brand Solutions.
                 </p>
               </div>
 
               <p className="text-[15px] sm:text-[16px] text-white/90 mt-6 leading-relaxed max-w-2xl font-light">
-                Ankit plays an instrumental role at Jukebox Media, helping businesses transform scattered marketing efforts into focused, consistent strategies aligned with their broader business objectives and built to deliver measurable impact.
+                Ankit plays an instrumental role at Jukebox Media, helping
+                businesses transform scattered marketing efforts into focused,
+                consistent strategies aligned with their broader business
+                objectives and built to deliver measurable impact.
               </p>
             </div>
 
@@ -1479,7 +1488,7 @@ export default function Home() {
             className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
-                "radial-gradient(circle at top right, rgba(59, 130, 246, 0.07) 0%, rgba(59, 130, 246, 0) 70%)",
+                "radial-gradient(circle at top right, rgba(22, 20, 67, 0.07) 0%, rgba(22, 20, 67, 0) 70%)",
             }}
           />
           <div
@@ -1537,7 +1546,8 @@ export default function Home() {
               Transparent Pricing Packages
             </ScrollReveal>
             <p className="text-[16px] sm:text-[18px] text-white/85 mt-4 leading-relaxed">
-              No hidden fees. Choose the plan that fits your team size and campaign targets.
+              No hidden fees. Choose the plan that fits your team size and
+              campaign targets.
             </p>
           </div>
 
@@ -1555,7 +1565,7 @@ export default function Home() {
                   <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
                     Jukebox Starter
                   </h3>
-                  
+
                   <div className="flex flex-col mt-4">
                     <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
                       ₹24,000
@@ -1571,7 +1581,8 @@ export default function Home() {
                   <div className="w-full h-[1px] bg-slate-100 my-5" />
 
                   <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
-                    Ideal for businesses looking to establish a consistent social media presence.
+                    Ideal for businesses looking to establish a consistent
+                    social media presence.
                   </p>
 
                   <div className="mt-6">
@@ -1587,10 +1598,23 @@ export default function Home() {
                         "Basic Editing",
                         "Posting Schedule",
                       ].map((feature, idx) => (
-                        <li key={idx} className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold">
+                        <li
+                          key={idx}
+                          className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
+                        >
                           <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            <svg
+                              className="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M4.5 12.75l6 6 9-13.5"
+                              />
                             </svg>
                           </div>
                           <span className="mt-0.5">{feature}</span>
@@ -1607,24 +1631,24 @@ export default function Home() {
             </div>
 
             {/* Card 2: Jukebox Growth Package */}
-            <div className="bg-gradient-to-br from-[#161443] to-[#0d0c2b] border border-white/10 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-500 ease-out hover:shadow-[0_30px_70px_rgba(246,134,31,0.25)] hover:-translate-y-2 hover:border-[#f6861f]/40 h-full relative overflow-hidden group">
+            <div className="bg-[#161443] border border-white/10 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-500 ease-out hover:shadow-[0_30px_70px_rgba(246,134,31,0.25)] hover:-translate-y-2 hover:border-[#f6861f]/40 h-full relative overflow-hidden group">
               {/* Highlight flare line */}
               <div className="absolute top-0 inset-x-0 h-[4px] bg-gradient-to-r from-transparent via-[#f6861f] to-transparent animate-pulse" />
-              
+
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] font-extrabold text-[#f6861f] uppercase tracking-widest block">
                       02 . Best Seller
                     </span>
-                    <span className="text-[9px] px-2.5 py-0.5 rounded-full font-black uppercase bg-gradient-to-r from-[#f6861f] to-[#ff9f43] text-white shadow-[0_2px_8px_rgba(246,134,31,0.4)]">
+                    <span className="text-[9px] px-2.5 py-0.5 rounded-full font-black uppercase bg-[#f6861f] text-white shadow-[0_2px_8px_rgba(246,134,31,0.4)]">
                       Most Popular
                     </span>
                   </div>
                   <h3 className="text-[22px] font-black text-white tracking-tight mt-1">
                     Jukebox Growth
                   </h3>
-                  
+
                   <div className="flex flex-col mt-4">
                     <span className="text-[40px] font-black tracking-tight text-white leading-none">
                       ₹53,000
@@ -1640,7 +1664,8 @@ export default function Home() {
                   <div className="w-full h-[1px] bg-white/10 my-5" />
 
                   <p className="text-[13px] text-white/70 font-semibold leading-relaxed">
-                    Ideal for brands looking to combine consistent content with short-form video.
+                    Ideal for brands looking to combine consistent content with
+                    short-form video.
                   </p>
 
                   <div className="mt-6">
@@ -1657,10 +1682,23 @@ export default function Home() {
                         "Video Editing",
                         "Posting Schedule",
                       ].map((feature, idx) => (
-                        <li key={idx} className="flex gap-3 items-start text-[13px] text-white/90 font-semibold">
+                        <li
+                          key={idx}
+                          className="flex gap-3 items-start text-[13px] text-white/90 font-semibold"
+                        >
                           <div className="w-5 h-5 rounded-full bg-[#f6861f]/10 text-[#f6861f] flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            <svg
+                              className="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M4.5 12.75l6 6 9-13.5"
+                              />
                             </svg>
                           </div>
                           <span className="mt-0.5">{feature}</span>
@@ -1680,7 +1718,7 @@ export default function Home() {
             <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
               {/* Corner decor tag */}
               <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
-              
+
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
                   <span className="text-[11px] font-extrabold text-[#f6861f] uppercase tracking-widest block mb-1">
@@ -1689,7 +1727,7 @@ export default function Home() {
                   <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
                     Jukebox Retainer
                   </h3>
-                  
+
                   <div className="flex flex-col mt-4">
                     <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
                       ₹64,000
@@ -1712,7 +1750,7 @@ export default function Home() {
                     <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block">
                       Scope:
                     </span>
-                    
+
                     {/* Strategy Block */}
                     <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
                       <span className="text-[10px] font-black text-brand-navy uppercase tracking-wider block mb-1.5">
@@ -1721,7 +1759,9 @@ export default function Home() {
                       <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
                         <li className="flex gap-2 items-start">
                           <span className="text-emerald-500 font-bold">✓</span>
-                          <span>Brand Strategy Deck (Created once per brand)</span>
+                          <span>
+                            Brand Strategy Deck (Created once per brand)
+                          </span>
                         </li>
                         <li className="flex gap-2 items-start">
                           <span className="text-emerald-500 font-bold">✓</span>
@@ -1767,9 +1807,10 @@ export default function Home() {
                         </li>
                       </ul>
                     </div>
-                    
+
                     <p className="text-[11px] text-slate-400 font-semibold italic mt-2">
-                      * Advertising spend is billed directly by Meta, Google and other platforms.
+                      * Advertising spend is billed directly by Meta, Google and
+                      other platforms.
                     </p>
                   </div>
                 </div>
@@ -1784,7 +1825,7 @@ export default function Home() {
             <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
               {/* Corner decor tag */}
               <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
-              
+
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
                   <span className="text-[11px] font-extrabold text-[#f6861f] uppercase tracking-widest block mb-1">
@@ -1793,7 +1834,7 @@ export default function Home() {
                   <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
                     Jukebox Performance
                   </h3>
-                  
+
                   <div className="flex flex-col mt-4">
                     <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
                       ₹26,000
@@ -1809,7 +1850,8 @@ export default function Home() {
                   <div className="w-full h-[1px] bg-slate-100 my-5" />
 
                   <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
-                    For businesses focused on lead generation, conversions and measurable growth.
+                    For businesses focused on lead generation, conversions and
+                    measurable growth.
                   </p>
 
                   <div className="mt-6">
@@ -1826,10 +1868,23 @@ export default function Home() {
                         "Audience Research",
                         "Monthly Reporting & Performance Review",
                       ].map((feature, idx) => (
-                        <li key={idx} className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold">
+                        <li
+                          key={idx}
+                          className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
+                        >
                           <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            <svg
+                              className="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M4.5 12.75l6 6 9-13.5"
+                              />
                             </svg>
                           </div>
                           <span className="mt-0.5">{feature}</span>
@@ -1837,7 +1892,9 @@ export default function Home() {
                       ))}
                     </ul>
                     <p className="text-[11px] text-slate-400 font-semibold leading-relaxed italic mt-4">
-                      * Advertising spend is billed directly by Meta, Google and other platforms. This package doesn&apos;t include Ad Creatives.
+                      * Advertising spend is billed directly by Meta, Google and
+                      other platforms. This package doesn&apos;t include Ad
+                      Creatives.
                     </p>
                   </div>
                 </div>
@@ -1850,7 +1907,10 @@ export default function Home() {
           </div>
 
           {/* Bottom Info: Common Features + Additional Charges */}
-          <div id="pricing-additional" className="mt-20 max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-white relative z-10">
+          <div
+            id="pricing-additional"
+            className="mt-20 max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-white relative z-10"
+          >
             {/* Common Features Card */}
             <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
               <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2 mb-6">
@@ -1864,9 +1924,12 @@ export default function Home() {
                   "Editing & Optimization",
                   "Content Calendar",
                   "Posting Schedule",
-                  "Content Shoot using iPhone 16 or above"
+                  "Content Shoot using iPhone 16 or above",
                 ].map((feature, idx) => (
-                  <li key={idx} className="flex gap-2.5 items-start text-[13px] text-white/85 font-semibold leading-snug">
+                  <li
+                    key={idx}
+                    className="flex gap-2.5 items-start text-[13px] text-white/85 font-semibold leading-snug"
+                  >
                     <div className="text-white shrink-0 mt-0.5">•</div>
                     <span>{feature}</span>
                   </li>
@@ -1889,24 +1952,31 @@ export default function Home() {
                   "Advanced Video Production",
                   "Travel & Location Costs",
                 ].map((charge, idx) => (
-                  <li key={idx} className="flex gap-2.5 items-start text-[13px] text-white/85 font-semibold leading-snug">
+                  <li
+                    key={idx}
+                    className="flex gap-2.5 items-start text-[13px] text-white/85 font-semibold leading-snug"
+                  >
                     <div className="text-white shrink-0 mt-0.5">•</div>
                     <span>{charge}</span>
                   </li>
                 ))}
               </ul>
-              
+
               <div className="mt-6 pt-6 border-t border-white/10 space-y-4">
                 <div className="flex gap-2.5 items-start text-[12.5px] text-white/80 font-semibold leading-relaxed">
                   <div className="text-white shrink-0 mt-0.5">•</div>
                   <span>
-                    Creative revisions for static posts and videos are limited to two rounds. Any revisions beyond this will be charged at 10% of the total package value per revision. Corrections relating to approved content are not considered revisions.
+                    Creative revisions for static posts and videos are limited
+                    to two rounds. Any revisions beyond this will be charged at
+                    10% of the total package value per revision. Corrections
+                    relating to approved content are not considered revisions.
                   </span>
                 </div>
                 <div className="flex gap-2.5 items-start text-[12.5px] text-white/80 font-semibold leading-relaxed">
                   <div className="text-white shrink-0 mt-0.5">•</div>
                   <span>
-                    Platform-specific advertising support (LinkedIn, Reddit, JioHotstar and other premium media platforms)
+                    Platform-specific advertising support (LinkedIn, Reddit,
+                    JioHotstar and other premium media platforms)
                   </span>
                 </div>
               </div>
@@ -1939,7 +2009,11 @@ export default function Home() {
                   <li key={idx}>
                     {link.id === "contact" ? (
                       <button
-                        onClick={() => window.dispatchEvent(new CustomEvent("openContactForm"))}
+                        onClick={() =>
+                          window.dispatchEvent(
+                            new CustomEvent("openContactForm"),
+                          )
+                        }
                         className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300 cursor-pointer text-left"
                       >
                         {link.name}
@@ -1949,7 +2023,8 @@ export default function Home() {
                         href={link.id}
                         onClick={(e) => {
                           e.preventDefault();
-                          if ((window as any).lenis) (window as any).lenis.scrollTo(link.id);
+                          if ((window as any).lenis)
+                            (window as any).lenis.scrollTo(link.id);
                         }}
                         className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300 cursor-pointer"
                       >
@@ -1980,38 +2055,54 @@ export default function Home() {
                   +91-9998526134
                 </a>
               </div>
-              
+
               {/* Social Media Badges */}
               <div className="flex gap-3 mt-4">
                 {[
                   {
                     icon: (
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                      <svg
+                        className="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
                       </svg>
                     ),
                     url: "https://linkedin.com",
                   },
                   {
                     icon: (
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m12.4 2.75a.75.75 0 0 1-.75.75.75.75 0 0 1-.75-.75.75.75 0 0 1 .75-.75.75.75 0 0 1 .75.75M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                      <svg
+                        className="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m12.4 2.75a.75.75 0 0 1-.75.75.75.75 0 0 1-.75-.75.75.75 0 0 1 .75-.75.75.75 0 0 1 .75.75M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
                       </svg>
                     ),
                     url: "https://instagram.com",
                   },
                   {
                     icon: (
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      <svg
+                        className="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                       </svg>
                     ),
                     url: "https://twitter.com",
                   },
                   {
                     icon: (
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+                      <svg
+                        className="w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z" />
                       </svg>
                     ),
                     url: "https://facebook.com",
@@ -2037,7 +2128,9 @@ export default function Home() {
               </span>
               <div className="text-[14px] font-semibold text-white/70 leading-relaxed mt-2 select-none">
                 <p>Operating Globally | Based in India</p>
-                <p className="text-white/40 mt-1 text-[12px] font-medium">CIN: U73100GJ2025PTC171031</p>
+                <p className="text-white/40 mt-1 text-[12px] font-medium">
+                  CIN: U73100GJ2025PTC171031
+                </p>
               </div>
             </div>
           </div>
@@ -2048,12 +2141,20 @@ export default function Home() {
               © {new Date().getFullYear()} Jukebox Media. All Rights Reserved.
             </div>
             <div className="text-center">
-              <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-[#f6861f] transition-all duration-300">
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="hover:text-[#f6861f] transition-all duration-300"
+              >
                 Terms & Conditions
               </a>
             </div>
             <div className="text-right">
-              <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-[#f6861f] transition-all duration-300">
+              <a
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="hover:text-[#f6861f] transition-all duration-300"
+              >
                 Privacy Policy
               </a>
             </div>
@@ -2840,7 +2941,7 @@ const CreativeStrategyMockup = () => {
 
       <div
         ref={bannerRef}
-        className="flex-1 rounded-xl bg-gradient-to-br from-brand-navy to-brand-navy-light p-3 flex flex-col justify-between text-white relative overflow-hidden"
+        className="flex-1 rounded-xl bg-brand-navy p-3 flex flex-col justify-between text-white relative overflow-hidden"
       >
         {/* Glow backdrop */}
         <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-brand-orange/20 blur-xl pointer-events-none" />
@@ -4309,7 +4410,10 @@ const BrandStorytellingMockup = () => {
 
     const threadLength = thread.getTotalLength() || 120;
     gsap.set([w1, w2, w3], { opacity: 0, x: 20 });
-    gsap.set(thread, { strokeDasharray: threadLength, strokeDashoffset: threadLength });
+    gsap.set(thread, {
+      strokeDasharray: threadLength,
+      strokeDashoffset: threadLength,
+    });
     gsap.set(heart, { scale: 0, opacity: 0 });
     gsap.set(tagline, { opacity: 0, y: 8 });
 
@@ -4317,23 +4421,34 @@ const BrandStorytellingMockup = () => {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.0 });
 
     // Typewriter
-    tl.to({ idx: 0 }, {
-      idx: fullText.length,
-      duration: 1.8,
-      ease: "none",
-      onUpdate: function () {
-        setTypedText(fullText.slice(0, Math.round(this.targets()[0].idx)));
+    tl.to(
+      { idx: 0 },
+      {
+        idx: fullText.length,
+        duration: 1.8,
+        ease: "none",
+        onUpdate: function () {
+          setTypedText(fullText.slice(0, Math.round(this.targets()[0].idx)));
+        },
       },
-    })
+    )
       // Brand values appear
       .to(w1, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, "+=0.3")
       .to(w2, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, "-=0.2")
       .to(w3, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, "-=0.2")
       // Thread draws
-      .to(thread, { strokeDashoffset: 0, duration: 1.2, ease: "power1.inOut" }, "-=0.3")
+      .to(
+        thread,
+        { strokeDashoffset: 0, duration: 1.2, ease: "power1.inOut" },
+        "-=0.3",
+      )
       // Heart pops
       .to(heart, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" })
-      .to(tagline, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.3")
+      .to(
+        tagline,
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+        "-=0.3",
+      )
       // Hold
       .to({}, { duration: 2.0 })
       // Reset
@@ -4344,7 +4459,9 @@ const BrandStorytellingMockup = () => {
       .set(heart, { scale: 0 })
       .set(tagline, { y: 8 });
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -4374,18 +4491,27 @@ const BrandStorytellingMockup = () => {
       <div className="flex flex-col gap-1.5 relative">
         <div ref={word1Ref} className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-brand-orange/80 shadow-[0_0_6px_rgba(246,134,31,0.5)]" />
-          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">Trust</span>
+          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">
+            Trust
+          </span>
         </div>
         <div ref={word2Ref} className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-brand-orange/80 shadow-[0_0_6px_rgba(246,134,31,0.5)]" />
-          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">Vision</span>
+          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">
+            Vision
+          </span>
         </div>
         <div ref={word3Ref} className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-brand-orange/80 shadow-[0_0_6px_rgba(246,134,31,0.5)]" />
-          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">Impact</span>
+          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">
+            Impact
+          </span>
         </div>
         {/* Connecting Thread SVG */}
-        <svg className="absolute left-[5px] top-0 w-4 h-full overflow-visible" viewBox="0 0 10 60">
+        <svg
+          className="absolute left-[5px] top-0 w-4 h-full overflow-visible"
+          viewBox="0 0 10 60"
+        >
           <path
             ref={threadRef}
             d="M5 5 L5 20 L5 35 L5 55"
@@ -4400,8 +4526,13 @@ const BrandStorytellingMockup = () => {
 
       {/* Heart + Tagline */}
       <div className="flex flex-col items-center mt-3 gap-1">
-        <div ref={heartRef} className="text-[18px]">💛</div>
-        <div ref={taglineRef} className="text-[9px] font-bold text-brand-navy/50 uppercase tracking-widest">
+        <div ref={heartRef} className="text-[18px]">
+          💛
+        </div>
+        <div
+          ref={taglineRef}
+          className="text-[9px] font-bold text-brand-navy/50 uppercase tracking-widest"
+        >
           Your Story, Their Connection
         </div>
       </div>
@@ -4429,10 +4560,11 @@ const BrandStorytellingOverlay = () => {
         setBeforeBar(Math.round(metrics.before));
         setAfterBar(Math.round(metrics.after));
       },
-    })
-      .to({}, { duration: 3.0 });
+    }).to({}, { duration: 3.0 });
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -4441,21 +4573,37 @@ const BrandStorytellingOverlay = () => {
         Story Score
       </span>
       <div className="flex items-end justify-between">
-        <span className="text-[28px] font-extrabold text-brand-orange leading-none">{score}</span>
-        <span className="text-[8px] font-bold text-brand-navy/40 uppercase">/10</span>
+        <span className="text-[28px] font-extrabold text-brand-orange leading-none">
+          {score}
+        </span>
+        <span className="text-[8px] font-bold text-brand-navy/40 uppercase">
+          /10
+        </span>
       </div>
-      <span className="text-[8px] font-semibold text-brand-navy/50 -mt-1">Emotional Resonance</span>
+      <span className="text-[8px] font-semibold text-brand-navy/50 -mt-1">
+        Emotional Resonance
+      </span>
       <div className="flex flex-col gap-1.5 mt-1">
         <div className="flex items-center gap-2">
-          <span className="text-[7px] font-bold text-brand-navy/40 w-8">Before</span>
+          <span className="text-[7px] font-bold text-brand-navy/40 w-8">
+            Before
+          </span>
           <div className="flex-1 h-2 bg-brand-navy/5 rounded-full overflow-hidden">
-            <div className="h-full bg-brand-navy/20 rounded-full transition-all duration-300" style={{ width: `${beforeBar}%` }} />
+            <div
+              className="h-full bg-brand-navy/20 rounded-full transition-all duration-300"
+              style={{ width: `${beforeBar}%` }}
+            />
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[7px] font-bold text-brand-orange w-8">After</span>
+          <span className="text-[7px] font-bold text-brand-orange w-8">
+            After
+          </span>
           <div className="flex-1 h-2 bg-brand-orange/10 rounded-full overflow-hidden">
-            <div className="h-full bg-brand-orange rounded-full transition-all duration-300" style={{ width: `${afterBar}%` }} />
+            <div
+              className="h-full bg-brand-orange rounded-full transition-all duration-300"
+              style={{ width: `${afterBar}%` }}
+            />
           </div>
         </div>
       </div>
@@ -4487,7 +4635,10 @@ const PersonalBrandingMockup = () => {
     if (!circle || !name || !title || !b1 || !b2 || !counter) return;
 
     const circumference = 2 * Math.PI * 36;
-    gsap.set(circle, { strokeDasharray: circumference, strokeDashoffset: circumference });
+    gsap.set(circle, {
+      strokeDasharray: circumference,
+      strokeDashoffset: circumference,
+    });
     gsap.set([name, title], { opacity: 0, y: 15 });
     gsap.set([b1, b2], { opacity: 0, scale: 0 });
     gsap.set(counter, { opacity: 0 });
@@ -4504,10 +4655,18 @@ const PersonalBrandingMockup = () => {
       // Name slides up
       .to(name, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" })
       // Title fades in
-      .to(title, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.2")
+      .to(
+        title,
+        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+        "-=0.2",
+      )
       // Social badges pop
       .to(b1, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" })
-      .to(b2, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, "-=0.2")
+      .to(
+        b2,
+        { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" },
+        "-=0.2",
+      )
       // Follower count
       .to(counter, { opacity: 1, duration: 0.3 })
       .to(metrics, {
@@ -4516,19 +4675,26 @@ const PersonalBrandingMockup = () => {
         ease: "power1.inOut",
         onUpdate: () => {
           const v = metrics.followers;
-          setFollowerCount(v >= 1000 ? `${(v / 1000).toFixed(1)}K` : Math.round(v).toString());
+          setFollowerCount(
+            v >= 1000 ? `${(v / 1000).toFixed(1)}K` : Math.round(v).toString(),
+          );
         },
       })
       // Hold
       .to({}, { duration: 2.0 })
       // Reset
       .to([name, title, b1, b2, counter], { opacity: 0, duration: 0.4 })
-      .call(() => { setInitials(false); setFollowerCount("0"); })
+      .call(() => {
+        setInitials(false);
+        setFollowerCount("0");
+      })
       .set(circle, { strokeDashoffset: circumference })
       .set([name, title], { y: 15 })
       .set([b1, b2], { scale: 0 });
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -4566,35 +4732,72 @@ const PersonalBrandingMockup = () => {
 
       {/* Name + Title */}
       <div className="flex flex-col items-center gap-0.5">
-        <div ref={nameRef} className="text-[14px] font-extrabold text-brand-navy tracking-tight">
+        <div
+          ref={nameRef}
+          className="text-[14px] font-extrabold text-brand-navy tracking-tight"
+        >
           Siddharth Jain
         </div>
-        <div ref={titleRef} className="text-[10px] font-semibold text-brand-navy/50">
+        <div
+          ref={titleRef}
+          className="text-[10px] font-semibold text-brand-navy/50"
+        >
           Founder & Strategist
         </div>
       </div>
 
       {/* Social Badges */}
       <div className="flex items-center gap-2">
-        <div ref={badge1Ref} className="h-6 w-6 rounded-full bg-[#0077b5]/10 border border-[#0077b5]/25 flex items-center justify-center">
-          <svg className="w-3 h-3 text-[#0077b5]" fill="currentColor" viewBox="0 0 24 24">
+        <div
+          ref={badge1Ref}
+          className="h-6 w-6 rounded-full bg-[#0077b5]/10 border border-[#0077b5]/25 flex items-center justify-center"
+        >
+          <svg
+            className="w-3 h-3 text-[#0077b5]"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
           </svg>
         </div>
-        <div ref={badge2Ref} className="h-6 w-6 rounded-full bg-brand-navy/5 border border-brand-navy/10 flex items-center justify-center">
-          <svg className="w-3 h-3 text-brand-navy" fill="currentColor" viewBox="0 0 24 24">
+        <div
+          ref={badge2Ref}
+          className="h-6 w-6 rounded-full bg-brand-navy/5 border border-brand-navy/10 flex items-center justify-center"
+        >
+          <svg
+            className="w-3 h-3 text-brand-navy"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
           </svg>
         </div>
       </div>
 
       {/* Follower Counter */}
-      <div ref={counterRef} className="flex items-center gap-1.5 bg-brand-navy/[0.03] border border-brand-navy/5 rounded-lg px-3 py-1.5">
-        <svg className="w-3.5 h-3.5 text-brand-orange" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+      <div
+        ref={counterRef}
+        className="flex items-center gap-1.5 bg-brand-navy/[0.03] border border-brand-navy/5 rounded-lg px-3 py-1.5"
+      >
+        <svg
+          className="w-3.5 h-3.5 text-brand-orange"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+          />
         </svg>
-        <span className="text-[14px] font-extrabold text-brand-navy">{followerCount}</span>
-        <span className="text-[8px] font-bold text-brand-navy/40 uppercase">Followers</span>
+        <span className="text-[14px] font-extrabold text-brand-navy">
+          {followerCount}
+        </span>
+        <span className="text-[8px] font-bold text-brand-navy/40 uppercase">
+          Followers
+        </span>
       </div>
     </div>
   );
@@ -4617,10 +4820,11 @@ const PersonalBrandingOverlay = () => {
         setAuthority(metrics.authority.toFixed(1));
         setRingProgress(Math.round(metrics.ring));
       },
-    })
-      .to({}, { duration: 3.0 });
+    }).to({}, { duration: 3.0 });
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   const circumference = 2 * Math.PI * 20;
@@ -4634,7 +4838,15 @@ const PersonalBrandingOverlay = () => {
       <div className="flex items-center gap-3">
         {/* Ring */}
         <svg width="50" height="50" viewBox="0 0 50 50" className="shrink-0">
-          <circle cx="25" cy="25" r="20" stroke="#161443" strokeOpacity="0.05" strokeWidth="4" fill="none" />
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            stroke="#161443"
+            strokeOpacity="0.05"
+            strokeWidth="4"
+            fill="none"
+          />
           <circle
             cx="25"
             cy="25"
@@ -4648,13 +4860,24 @@ const PersonalBrandingOverlay = () => {
             transform="rotate(-90 25 25)"
             className="transition-all duration-100"
           />
-          <text x="25" y="27" textAnchor="middle" fontSize="11" fontWeight="800" fill="#161443">
+          <text
+            x="25"
+            y="27"
+            textAnchor="middle"
+            fontSize="11"
+            fontWeight="800"
+            fill="#161443"
+          >
             {authority}
           </text>
         </svg>
         <div className="flex flex-col">
-          <span className="text-[9px] font-bold text-brand-navy/50">Trust Index</span>
-          <span className="text-[11px] font-extrabold text-brand-orange">{ringProgress}%</span>
+          <span className="text-[9px] font-bold text-brand-navy/50">
+            Trust Index
+          </span>
+          <span className="text-[11px] font-extrabold text-brand-orange">
+            {ringProgress}%
+          </span>
         </div>
       </div>
     </div>
@@ -4690,12 +4913,28 @@ const StrategyMockup = () => {
     const l4 = line4Ref.current;
     const n4 = node4Ref.current;
     const check = checkRef.current;
-    if (!target || !targetInner || !l1 || !n1 || !l2 || !n2 || !l3 || !n3 || !l4 || !n4 || !check) return;
+    if (
+      !target ||
+      !targetInner ||
+      !l1 ||
+      !n1 ||
+      !l2 ||
+      !n2 ||
+      !l3 ||
+      !n3 ||
+      !l4 ||
+      !n4 ||
+      !check
+    )
+      return;
 
     const circum = 2 * Math.PI * 14;
     const circum2 = 2 * Math.PI * 7;
     gsap.set(target, { strokeDasharray: circum, strokeDashoffset: circum });
-    gsap.set(targetInner, { strokeDasharray: circum2, strokeDashoffset: circum2 });
+    gsap.set(targetInner, {
+      strokeDasharray: circum2,
+      strokeDashoffset: circum2,
+    });
     gsap.set([l1, l2, l3, l4], { scaleX: 0, transformOrigin: "left center" });
     gsap.set([n1, n2, n3, n4], { opacity: 0, scale: 0.5 });
     gsap.set(check, { opacity: 0, y: 8 });
@@ -4705,7 +4944,11 @@ const StrategyMockup = () => {
     tl
       // Draw target
       .to(target, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" })
-      .to(targetInner, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, "-=0.3")
+      .to(
+        targetInner,
+        { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" },
+        "-=0.3",
+      )
       // Line 1 + Audience node
       .to(l1, { scaleX: 1, duration: 0.4, ease: "power2.out" })
       .to(n1, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.5)" })
@@ -4738,7 +4981,9 @@ const StrategyMockup = () => {
       .set([n1, n2, n3, n4], { scale: 0.5, boxShadow: "none" })
       .set(check, { y: 8 });
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -4756,57 +5001,151 @@ const StrategyMockup = () => {
       {/* Roadmap Visual */}
       <div className="flex-1 relative flex flex-col gap-3 pl-8">
         {/* Target / Bullseye */}
-        <svg className="absolute left-0 top-0 w-6 h-6 overflow-visible" viewBox="0 0 32 32">
-          <circle ref={targetRef} cx="16" cy="16" r="14" stroke="#f6861f" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-          <circle ref={targetInnerRef} cx="16" cy="16" r="7" stroke="#161443" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <svg
+          className="absolute left-0 top-0 w-6 h-6 overflow-visible"
+          viewBox="0 0 32 32"
+        >
+          <circle
+            ref={targetRef}
+            cx="16"
+            cy="16"
+            r="14"
+            stroke="#f6861f"
+            strokeWidth="2.5"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <circle
+            ref={targetInnerRef}
+            cx="16"
+            cy="16"
+            r="7"
+            stroke="#161443"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          />
           <circle cx="16" cy="16" r="2" fill="#f6861f" />
         </svg>
 
         {/* Node Row 1: Audience */}
         <div className="flex items-center gap-2 mt-1">
-          <svg className="w-12 h-[2px] overflow-visible shrink-0" viewBox="0 0 50 2">
-            <line ref={line1Ref} x1="0" y1="1" x2="50" y2="1" stroke="#f6861f" strokeWidth="2" strokeDasharray="4 3" />
+          <svg
+            className="w-12 h-[2px] overflow-visible shrink-0"
+            viewBox="0 0 50 2"
+          >
+            <line
+              ref={line1Ref}
+              x1="0"
+              y1="1"
+              x2="50"
+              y2="1"
+              stroke="#f6861f"
+              strokeWidth="2"
+              strokeDasharray="4 3"
+            />
           </svg>
-          <div ref={node1Ref} className="px-2.5 py-1 rounded-lg bg-brand-orange/10 border border-brand-orange/20 text-[9px] font-bold text-brand-navy whitespace-nowrap">
+          <div
+            ref={node1Ref}
+            className="px-2.5 py-1 rounded-lg bg-brand-orange/10 border border-brand-orange/20 text-[9px] font-bold text-brand-navy whitespace-nowrap"
+          >
             🎯 Audience
           </div>
         </div>
 
         {/* Node Row 2: Channels */}
         <div className="flex items-center gap-2">
-          <svg className="w-12 h-[2px] overflow-visible shrink-0" viewBox="0 0 50 2">
-            <line ref={line2Ref} x1="0" y1="1" x2="50" y2="1" stroke="#f6861f" strokeWidth="2" strokeDasharray="4 3" />
+          <svg
+            className="w-12 h-[2px] overflow-visible shrink-0"
+            viewBox="0 0 50 2"
+          >
+            <line
+              ref={line2Ref}
+              x1="0"
+              y1="1"
+              x2="50"
+              y2="1"
+              stroke="#f6861f"
+              strokeWidth="2"
+              strokeDasharray="4 3"
+            />
           </svg>
-          <div ref={node2Ref} className="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-[9px] font-bold text-brand-navy whitespace-nowrap">
+          <div
+            ref={node2Ref}
+            className="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-[9px] font-bold text-brand-navy whitespace-nowrap"
+          >
             📡 Channels
           </div>
         </div>
 
         {/* Node Row 3: Content */}
         <div className="flex items-center gap-2">
-          <svg className="w-12 h-[2px] overflow-visible shrink-0" viewBox="0 0 50 2">
-            <line ref={line3Ref} x1="0" y1="1" x2="50" y2="1" stroke="#f6861f" strokeWidth="2" strokeDasharray="4 3" />
+          <svg
+            className="w-12 h-[2px] overflow-visible shrink-0"
+            viewBox="0 0 50 2"
+          >
+            <line
+              ref={line3Ref}
+              x1="0"
+              y1="1"
+              x2="50"
+              y2="1"
+              stroke="#f6861f"
+              strokeWidth="2"
+              strokeDasharray="4 3"
+            />
           </svg>
-          <div ref={node3Ref} className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-bold text-brand-navy whitespace-nowrap">
+          <div
+            ref={node3Ref}
+            className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-bold text-brand-navy whitespace-nowrap"
+          >
             ✍️ Content
           </div>
         </div>
 
         {/* Node Row 4: Growth */}
         <div className="flex items-center gap-2">
-          <svg className="w-12 h-[2px] overflow-visible shrink-0" viewBox="0 0 50 2">
-            <line ref={line4Ref} x1="0" y1="1" x2="50" y2="1" stroke="#f6861f" strokeWidth="2" strokeDasharray="4 3" />
+          <svg
+            className="w-12 h-[2px] overflow-visible shrink-0"
+            viewBox="0 0 50 2"
+          >
+            <line
+              ref={line4Ref}
+              x1="0"
+              y1="1"
+              x2="50"
+              y2="1"
+              stroke="#f6861f"
+              strokeWidth="2"
+              strokeDasharray="4 3"
+            />
           </svg>
-          <div ref={node4Ref} className="px-2.5 py-1 rounded-lg bg-brand-orange/10 border border-brand-orange/25 text-[9px] font-bold text-brand-navy whitespace-nowrap shadow-sm">
+          <div
+            ref={node4Ref}
+            className="px-2.5 py-1 rounded-lg bg-brand-orange/10 border border-brand-orange/25 text-[9px] font-bold text-brand-navy whitespace-nowrap shadow-sm"
+          >
             🚀 Growth
           </div>
         </div>
       </div>
 
       {/* Strategy Locked */}
-      <div ref={checkRef} className="flex items-center justify-center gap-1.5 mt-2 py-1.5 bg-emerald-500/5 border border-emerald-500/15 rounded-lg">
-        <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      <div
+        ref={checkRef}
+        className="flex items-center justify-center gap-1.5 mt-2 py-1.5 bg-emerald-500/5 border border-emerald-500/15 rounded-lg"
+      >
+        <svg
+          className="w-3.5 h-3.5 text-emerald-500"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12.75l6 6 9-13.5"
+          />
         </svg>
         <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider">
           Strategy Locked
@@ -4825,23 +5164,32 @@ const StrategyOverlay = () => {
     if (!curve) return;
 
     const curveLength = curve.getTotalLength() || 80;
-    gsap.set(curve, { strokeDasharray: curveLength, strokeDashoffset: curveLength });
+    gsap.set(curve, {
+      strokeDasharray: curveLength,
+      strokeDashoffset: curveLength,
+    });
 
     const metrics = { mult: 1.0 };
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 3.0 });
 
     tl.to(curve, { strokeDashoffset: 0, duration: 1.8, ease: "power1.inOut" })
-      .to(metrics, {
-        mult: 4.2,
-        duration: 1.8,
-        ease: "power2.out",
-        onUpdate: () => {
-          setMultiplier(`${metrics.mult.toFixed(1)}x`);
+      .to(
+        metrics,
+        {
+          mult: 4.2,
+          duration: 1.8,
+          ease: "power2.out",
+          onUpdate: () => {
+            setMultiplier(`${metrics.mult.toFixed(1)}x`);
+          },
         },
-      }, 0)
+        0,
+      )
       .to({}, { duration: 3.0 });
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -4851,7 +5199,15 @@ const StrategyOverlay = () => {
       </span>
       {/* Mini Chart */}
       <svg className="w-full h-12 overflow-visible" viewBox="0 0 140 40">
-        <line x1="0" y1="35" x2="140" y2="35" stroke="#161443" strokeOpacity="0.06" strokeWidth="0.5" />
+        <line
+          x1="0"
+          y1="35"
+          x2="140"
+          y2="35"
+          stroke="#161443"
+          strokeOpacity="0.06"
+          strokeWidth="0.5"
+        />
         <path
           ref={curveRef}
           d="M5 35 C 30 34, 50 30, 70 22 C 90 14, 110 6, 135 3"
@@ -4863,8 +5219,12 @@ const StrategyOverlay = () => {
       </svg>
       <div className="flex items-end justify-between -mt-1">
         <div className="flex flex-col">
-          <span className="text-[8px] font-bold text-brand-navy/40 uppercase">ROI Multiplier</span>
-          <span className="text-[22px] font-extrabold text-brand-orange leading-none">{multiplier}</span>
+          <span className="text-[8px] font-bold text-brand-navy/40 uppercase">
+            ROI Multiplier
+          </span>
+          <span className="text-[22px] font-extrabold text-brand-orange leading-none">
+            {multiplier}
+          </span>
         </div>
         <span className="text-[7px] font-bold text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-500/20">
           ↑ Projected
@@ -4918,44 +5278,76 @@ const ContentCreationMockup = () => {
       // Gradient wipe
       .to(gradient, { scaleX: 1, duration: 0.8, ease: "power2.inOut" })
       // Typewriter headline
-      .to({ idx: 0 }, {
-        idx: fullHeadline.length,
-        duration: 1.4,
-        ease: "none",
-        onUpdate: function () {
-          setHeadline(fullHeadline.slice(0, Math.round(this.targets()[0].idx)));
+      .to(
+        { idx: 0 },
+        {
+          idx: fullHeadline.length,
+          duration: 1.4,
+          ease: "none",
+          onUpdate: function () {
+            setHeadline(
+              fullHeadline.slice(0, Math.round(this.targets()[0].idx)),
+            );
+          },
         },
-      })
+      )
       // CTA slides up
       .to(cta, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.5)" })
       // Counters appear and tick
       .to(counters, { opacity: 1, duration: 0.3 })
-      .to(metrics, {
-        likes: 2400,
-        comments: 847,
-        shares: 1200,
-        duration: 1.5,
-        ease: "power1.inOut",
-        onUpdate: () => {
-          setLikes(metrics.likes >= 1000 ? `${(metrics.likes / 1000).toFixed(1)}K` : Math.round(metrics.likes).toString());
-          setComments(Math.round(metrics.comments).toString());
-          setShares(metrics.shares >= 1000 ? `${(metrics.shares / 1000).toFixed(1)}K` : Math.round(metrics.shares).toString());
+      .to(
+        metrics,
+        {
+          likes: 2400,
+          comments: 847,
+          shares: 1200,
+          duration: 1.5,
+          ease: "power1.inOut",
+          onUpdate: () => {
+            setLikes(
+              metrics.likes >= 1000
+                ? `${(metrics.likes / 1000).toFixed(1)}K`
+                : Math.round(metrics.likes).toString(),
+            );
+            setComments(Math.round(metrics.comments).toString());
+            setShares(
+              metrics.shares >= 1000
+                ? `${(metrics.shares / 1000).toFixed(1)}K`
+                : Math.round(metrics.shares).toString(),
+            );
+          },
         },
-      }, "-=0.3")
+        "-=0.3",
+      )
       // Emoji reactions float up
       .to(e1, { opacity: 1, y: -10, duration: 0.5, ease: "power2.out" })
-      .to(e2, { opacity: 1, y: -18, duration: 0.5, ease: "power2.out" }, "-=0.3")
-      .to(e3, { opacity: 1, y: -12, duration: 0.5, ease: "power2.out" }, "-=0.3")
+      .to(
+        e2,
+        { opacity: 1, y: -18, duration: 0.5, ease: "power2.out" },
+        "-=0.3",
+      )
+      .to(
+        e3,
+        { opacity: 1, y: -12, duration: 0.5, ease: "power2.out" },
+        "-=0.3",
+      )
       // Hold
       .to({}, { duration: 2.0 })
       // Reset
       .to([canvas, counters, e1, e2, e3, cta], { opacity: 0, duration: 0.4 })
-      .call(() => { setHeadline(""); setLikes("0"); setComments("0"); setShares("0"); })
+      .call(() => {
+        setHeadline("");
+        setLikes("0");
+        setComments("0");
+        setShares("0");
+      })
       .set(gradient, { scaleX: 0 })
       .set(cta, { y: 15 })
       .set([e1, e2, e3], { y: 20 });
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -4974,29 +5366,53 @@ const ContentCreationMockup = () => {
       </div>
 
       {/* Canvas Area */}
-      <div ref={canvasRef} className="flex-1 relative rounded-xl overflow-hidden border border-brand-navy/10 bg-brand-navy/[0.02] min-h-[120px]">
+      <div
+        ref={canvasRef}
+        className="flex-1 relative rounded-xl overflow-hidden border border-brand-navy/10 bg-brand-navy/[0.02] min-h-[120px]"
+      >
         {/* Grid lines */}
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(#161443 1px, transparent 1px), linear-gradient(90deg, #161443 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#161443 1px, transparent 1px), linear-gradient(90deg, #161443 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
+          }}
+        />
 
         {/* Gradient Background Wipe */}
-        <div ref={gradientRef} className="absolute inset-0 bg-gradient-to-r from-brand-orange/30 via-brand-orange/15 to-brand-navy/20 rounded-xl" />
+        <div
+          ref={gradientRef}
+          className="absolute inset-0 bg-gradient-to-r from-brand-orange/30 via-brand-orange/15 to-brand-navy/20 rounded-xl"
+        />
 
         {/* Content Overlay */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full p-3 gap-2">
           <span className="text-[14px] font-extrabold text-brand-navy text-center tracking-tight leading-tight min-h-[18px]">
             {headline}
-            {headline.length < 20 && headline.length > 0 && <span className="animate-pulse text-brand-orange">|</span>}
+            {headline.length < 20 && headline.length > 0 && (
+              <span className="animate-pulse text-brand-orange">|</span>
+            )}
           </span>
-          <div ref={ctaRef} className="px-3 py-1 bg-brand-orange text-white text-[8px] font-extrabold rounded-full shadow-sm uppercase tracking-wider">
+          <div
+            ref={ctaRef}
+            className="px-3 py-1 bg-brand-orange text-white text-[8px] font-extrabold rounded-full shadow-sm uppercase tracking-wider"
+          >
             Learn More →
           </div>
         </div>
 
         {/* Floating Emojis */}
         <div className="absolute bottom-1 right-2 flex gap-1">
-          <span ref={emoji1Ref} className="text-[14px]">🔥</span>
-          <span ref={emoji2Ref} className="text-[14px]">❤️</span>
-          <span ref={emoji3Ref} className="text-[14px]">🚀</span>
+          <span ref={emoji1Ref} className="text-[14px]">
+            🔥
+          </span>
+          <span ref={emoji2Ref} className="text-[14px]">
+            ❤️
+          </span>
+          <span ref={emoji3Ref} className="text-[14px]">
+            🚀
+          </span>
         </div>
       </div>
 
@@ -5004,15 +5420,23 @@ const ContentCreationMockup = () => {
       <div ref={countersRef} className="grid grid-cols-3 gap-1.5 mt-2">
         <div className="bg-pink-500/5 border border-pink-500/10 rounded-lg p-1.5 text-center">
           <span className="text-[7px] text-pink-500 font-bold block">❤️</span>
-          <span className="text-[11px] font-extrabold text-brand-navy">{likes}</span>
+          <span className="text-[11px] font-extrabold text-brand-navy">
+            {likes}
+          </span>
         </div>
         <div className="bg-blue-500/5 border border-blue-500/10 rounded-lg p-1.5 text-center">
           <span className="text-[7px] text-blue-500 font-bold block">💬</span>
-          <span className="text-[11px] font-extrabold text-brand-navy">{comments}</span>
+          <span className="text-[11px] font-extrabold text-brand-navy">
+            {comments}
+          </span>
         </div>
         <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-lg p-1.5 text-center">
-          <span className="text-[7px] text-emerald-500 font-bold block">🔁</span>
-          <span className="text-[11px] font-extrabold text-brand-navy">{shares}</span>
+          <span className="text-[7px] text-emerald-500 font-bold block">
+            🔁
+          </span>
+          <span className="text-[11px] font-extrabold text-brand-navy">
+            {shares}
+          </span>
         </div>
       </div>
     </div>
@@ -5035,14 +5459,23 @@ const ContentCreationOverlay = () => {
       duration: 2.2,
       ease: "power2.out",
       onUpdate: () => {
-        setReach(metrics.reach >= 1000 ? `${(metrics.reach / 1000).toFixed(1)}K` : Math.round(metrics.reach).toString());
-        setSaves(metrics.saves >= 1000 ? `${(metrics.saves / 1000).toFixed(1)}K` : Math.round(metrics.saves).toString());
+        setReach(
+          metrics.reach >= 1000
+            ? `${(metrics.reach / 1000).toFixed(1)}K`
+            : Math.round(metrics.reach).toString(),
+        );
+        setSaves(
+          metrics.saves >= 1000
+            ? `${(metrics.saves / 1000).toFixed(1)}K`
+            : Math.round(metrics.saves).toString(),
+        );
         setQuality(Math.round(metrics.quality));
       },
-    })
-      .to({}, { duration: 3.0 });
+    }).to({}, { duration: 3.0 });
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   const circumference = 2 * Math.PI * 18;
@@ -5063,7 +5496,15 @@ const ContentCreationOverlay = () => {
       </div>
       <div className="flex items-center gap-2 pt-1">
         <svg width="44" height="44" viewBox="0 0 44 44" className="shrink-0">
-          <circle cx="22" cy="22" r="18" stroke="#161443" strokeOpacity="0.05" strokeWidth="3.5" fill="none" />
+          <circle
+            cx="22"
+            cy="22"
+            r="18"
+            stroke="#161443"
+            strokeOpacity="0.05"
+            strokeWidth="3.5"
+            fill="none"
+          />
           <circle
             cx="22"
             cy="22"
@@ -5077,13 +5518,24 @@ const ContentCreationOverlay = () => {
             transform="rotate(-90 22 22)"
             className="transition-all duration-100"
           />
-          <text x="22" y="24" textAnchor="middle" fontSize="10" fontWeight="800" fill="#f6861f">
+          <text
+            x="22"
+            y="24"
+            textAnchor="middle"
+            fontSize="10"
+            fontWeight="800"
+            fill="#f6861f"
+          >
             {quality}%
           </text>
         </svg>
         <div className="flex flex-col">
-          <span className="text-[8px] font-bold text-brand-navy/40 uppercase">Quality Score</span>
-          <span className="text-[10px] font-extrabold text-emerald-500">Excellent</span>
+          <span className="text-[8px] font-bold text-brand-navy/40 uppercase">
+            Quality Score
+          </span>
+          <span className="text-[10px] font-extrabold text-emerald-500">
+            Excellent
+          </span>
         </div>
       </div>
     </div>

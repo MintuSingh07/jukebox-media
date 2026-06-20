@@ -112,11 +112,8 @@ export default function LogoWall() {
     <div className="w-full h-full flex flex-col items-center justify-start pt-24 pb-16 px-8 gap-2">
       {/* Section header */}
       <div className="text-center mb-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#f6861f] mb-2">
-          Trusted By Industry Leaders
-        </p>
         <h2 className="text-2xl md:text-3xl font-extrabold text-brand-navy tracking-tight">
-          Brands that choose us
+          Experience across brands
         </h2>
       </div>
 

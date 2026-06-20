@@ -14,41 +14,56 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
   const [localActiveTab, setLocalActiveTab] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const activeTab = propActiveTab !== undefined ? propActiveTab : localActiveTab;
+  const activeTab =
+    propActiveTab !== undefined ? propActiveTab : localActiveTab;
   const navContainerRef = useRef<HTMLDivElement>(null);
   const bubbleRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [contact, setContact] = useState('');
-  const [budget, setBudget] = useState('');
+  const [currency, setCurrency] = useState<"INR" | "USD">("INR");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
+  const [budget, setBudget] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const formRef = useRef<HTMLDivElement>(null);
   const formContentRef = useRef<HTMLFormElement>(null);
 
   const openForm = () => {
-    setName('');
-    setEmail('');
-    setContact('');
-    setBudget('');
+    setName("");
+    setEmail("");
+    setContact("");
+    setBudget("");
     setIsFormOpen(true);
     setIsSubmitted(false);
     requestAnimationFrame(() => {
       if (formRef.current) {
         formRef.current.style.display = "block";
-        gsap.fromTo(formRef.current,
+        gsap.fromTo(
+          formRef.current,
           { clipPath: "circle(0% at 85% 0%)" },
-          { clipPath: "circle(150% at 85% 0%)", duration: 0.65, ease: "power3.out" }
+          {
+            clipPath: "circle(150% at 85% 0%)",
+            duration: 0.65,
+            ease: "power3.out",
+          },
         );
         if (formContentRef.current) {
-          const elements = formContentRef.current.querySelectorAll('.animate-field');
-          gsap.fromTo(elements,
+          const elements =
+            formContentRef.current.querySelectorAll(".animate-field");
+          gsap.fromTo(
+            elements,
             { opacity: 0, y: 15 },
-            { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power2.out", delay: 0.1 }
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              stagger: 0.05,
+              ease: "power2.out",
+              delay: 0.1,
+            },
           );
         }
       }
@@ -58,7 +73,8 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
   const closeForm = () => {
     if (formRef.current) {
       if (formContentRef.current) {
-        const elements = formContentRef.current.querySelectorAll('.animate-field');
+        const elements =
+          formContentRef.current.querySelectorAll(".animate-field");
         gsap.to(elements, {
           opacity: 0,
           y: -10,
@@ -74,7 +90,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
         onComplete: () => {
           setIsFormOpen(false);
           if (formRef.current) formRef.current.style.display = "none";
-        }
+        },
       });
     } else {
       setIsFormOpen(false);
@@ -83,9 +99,13 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
-      if (isFormOpen && formRef.current && !formRef.current.contains(e.target as Node)) {
+      if (
+        isFormOpen &&
+        formRef.current &&
+        !formRef.current.contains(e.target as Node)
+      ) {
         const target = e.target as HTMLElement;
-        if (!target.closest('.lets-talk-btn')) {
+        if (!target.closest(".lets-talk-btn")) {
           closeForm();
         }
       }
@@ -107,7 +127,9 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
 
   useEffect(() => {
     const updatePosition = (immediate = false) => {
-      const activeEl = navContainerRef.current?.querySelector(".active-nav-btn") as HTMLButtonElement;
+      const activeEl = navContainerRef.current?.querySelector(
+        ".active-nav-btn",
+      ) as HTMLButtonElement;
       if (activeEl && bubbleRef.current) {
         const targetLeft = activeEl.offsetLeft;
         const targetWidth = activeEl.offsetWidth;
@@ -181,11 +203,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
   };
 
   return (
-    <header
-      ref={ref}
-      {...rest}
-      className={`fixed z-50 ${className || ""}`}
-    >
+    <header ref={ref} {...rest} className={`fixed z-50 ${className || ""}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         {/* Logo */}
         <a
@@ -204,7 +222,10 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
         </a>
 
         {/* Center Pill Navigation Dock */}
-        <nav ref={navContainerRef} className="relative hidden lg:flex items-center gap-0.5 rounded-full border border-brand-navy/[0.04] bg-white/75 p-1 backdrop-blur-md shadow-premium">
+        <nav
+          ref={navContainerRef}
+          className="relative hidden lg:flex items-center gap-0.5 rounded-full p-1 bg-brand-navy/[0.02]"
+        >
           {/* Sliding Active Bubble */}
           <div
             ref={bubbleRef}
@@ -235,9 +256,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                     : "text-brand-navy/70 hover:text-brand-navy hover:bg-brand-navy/[0.03]"
                 }`}
               >
-                <span className="flex items-center gap-1">
-                  {item.name}
-                </span>
+                <span className="flex items-center gap-1">{item.name}</span>
               </button>
             );
           })}
@@ -264,11 +283,23 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
               {isSubmitted ? (
                 <div className="flex flex-col items-center justify-center py-8 text-center animate-field">
                   <div className="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-4 text-emerald-500 shadow-sm animate-bounce">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4.5 12.75l6 6 9-13.5"
+                      />
                     </svg>
                   </div>
-                  <h4 className="text-base font-bold text-brand-navy">Message Sent!</h4>
+                  <h4 className="text-base font-bold text-brand-navy">
+                    Message Sent!
+                  </h4>
                   <p className="text-xs text-brand-navy/60 mt-1 max-w-[200px]">
                     Thank you. Ankit will get in touch with you shortly.
                   </p>
@@ -295,8 +326,18 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                       onClick={closeForm}
                       className="p-1 rounded-full text-slate-400 hover:text-brand-orange hover:bg-slate-50 transition-colors cursor-pointer"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
                       </svg>
                     </button>
                   </div>
@@ -341,7 +382,11 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                       required
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
-                      placeholder={currency === 'INR' ? "+91 XXXXX XXXXX" : "+1 (XXX) XXX-XXXX"}
+                      placeholder={
+                        currency === "INR"
+                          ? "+91 XXXXX XXXXX"
+                          : "+1 (XXX) XXX-XXXX"
+                      }
                       className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent"
                     />
                   </div>
@@ -356,23 +401,29 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                         {/* Sliding active bubble */}
                         <div
                           className={`absolute top-0.5 bottom-0.5 w-[calc(50%-2px)] bg-brand-navy rounded-full transition-all duration-300 ease-out shadow-sm ${
-                            currency === 'INR' ? 'left-[2px]' : 'left-[calc(50%)]'
+                            currency === "INR"
+                              ? "left-[2px]"
+                              : "left-[calc(50%)]"
                           }`}
                         />
                         <button
                           type="button"
-                          onClick={() => setCurrency('INR')}
+                          onClick={() => setCurrency("INR")}
                           className={`w-1/2 text-center text-[9px] font-bold z-10 transition-colors duration-300 cursor-pointer ${
-                            currency === 'INR' ? 'text-white' : 'text-brand-navy/60'
+                            currency === "INR"
+                              ? "text-white"
+                              : "text-brand-navy/60"
                           }`}
                         >
                           ₹ INR
                         </button>
                         <button
                           type="button"
-                          onClick={() => setCurrency('USD')}
+                          onClick={() => setCurrency("USD")}
                           className={`w-1/2 text-center text-[9px] font-bold z-10 transition-colors duration-300 cursor-pointer ${
-                            currency === 'USD' ? 'text-white' : 'text-brand-navy/60'
+                            currency === "USD"
+                              ? "text-white"
+                              : "text-brand-navy/60"
                           }`}
                         >
                           $ USD
@@ -381,7 +432,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                     </div>
                     <div className="relative">
                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-brand-navy/60 font-bold">
-                        {currency === 'INR' ? '₹' : '$'}
+                        {currency === "INR" ? "₹" : "$"}
                       </span>
                       <input
                         type="number"
@@ -413,9 +464,15 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             aria-label="Toggle mobile menu"
           >
             <div className="relative w-5 h-4">
-              <span className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 ${isMobileMenuOpen ? "top-1.5 rotate-45" : "top-0"}`} />
-              <span className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 top-1.5 ${isMobileMenuOpen ? "opacity-0 scale-x-0" : "opacity-100"}`} />
-              <span className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 ${isMobileMenuOpen ? "top-1.5 -rotate-45" : "top-3"}`} />
+              <span
+                className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 ${isMobileMenuOpen ? "top-1.5 rotate-45" : "top-0"}`}
+              />
+              <span
+                className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 top-1.5 ${isMobileMenuOpen ? "opacity-0 scale-x-0" : "opacity-100"}`}
+              />
+              <span
+                className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 ${isMobileMenuOpen ? "top-1.5 -rotate-45" : "top-3"}`}
+              />
             </div>
           </button>
         </div>
@@ -423,7 +480,9 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
         {/* Mobile Navigation Drawer */}
         <div
           className={`fixed inset-0 z-40 transition-all duration-500 lg:hidden ${
-            isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            isMobileMenuOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
           }`}
         >
           {/* Backdrop */}
@@ -431,7 +490,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             className="absolute inset-0 bg-brand-navy/30 backdrop-blur-md"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          
+
           {/* Menu Card */}
           <div
             className={`absolute top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-brand-navy border-l border-white/10 shadow-2xl flex flex-col p-8 transition-transform duration-500 ease-out z-10 ${
@@ -440,12 +499,27 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
           >
             <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-8">
               <div className="flex items-center gap-2">
-                <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="45" fill="#f6861f" stroke="#ffffff" strokeWidth="4.5"/>
-                  <circle cx="50" cy="50" r="18" fill="#161443"/>
-                  <polygon points="46,42 46,58 60,50" fill="#ffffff"/>
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    fill="#f6861f"
+                    stroke="#ffffff"
+                    strokeWidth="4.5"
+                  />
+                  <circle cx="50" cy="50" r="18" fill="#161443" />
+                  <polygon points="46,42 46,58 60,50" fill="#ffffff" />
                 </svg>
-                <span className="font-bold text-white text-[18px] tracking-tight">Menu</span>
+                <span className="font-bold text-white text-[18px] tracking-tight">
+                  Menu
+                </span>
               </div>
             </div>
 
@@ -460,7 +534,8 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                 { name: "Results", id: "testimonial" },
                 { name: "Pricing", id: "pricing" },
               ].map((item) => {
-                const isActive = activeTab.toLowerCase() === item.id.toLowerCase();
+                const isActive =
+                  activeTab.toLowerCase() === item.id.toLowerCase();
                 return (
                   <button
                     key={item.id}
