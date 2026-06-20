@@ -7,14 +7,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const testimonials = [
   {
     id: 1,
-    title: "Exceptional D2C Launch & 5x ROAS",
-    quote: "The structured approach Jukebox took on our D2C launch was exceptional. We went from zero database to 5x ROAS inside 4 months.",
-    author: "Ananya Mehta",
-    role: "Director of Brand Growth",
-    company: "Aura Skincare",
+    title: "Passion, Responsiveness & Deep Business Understanding",
+    quote: "Having worked with all kinds and sizes of agencies over my career, what stands out with Jukebox is their passion, responsiveness and willingness to spend the time & effort to understand the business context. These are all especially useful when the brand is in its early stages and there are many experimental elements to the marketing effort. Wishing all the best to Ankit and his team, and hopefully One20mins will be one of their marquee success stories in the time to come.",
+    author: "The Founders",
+    role: "Boards Games & Café — An edutainment brand",
+    company: "One20mins (IG: @one20mins)",
     rating: 5,
     verified: true,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80",
+    image: "/one20mins-logo.jpg",
   },
   {
     id: 2,
@@ -26,39 +26,6 @@ const testimonials = [
     rating: 5,
     verified: true,
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
-  },
-  {
-    id: 3,
-    title: "100% GA4 Event Tracking Accuracy",
-    quote: "Jukebox doesn't just run ads; they build the data pipes. GA4 lead tracking event validation went from 60% accuracy to 100% matches.",
-    author: "Priya Iyer",
-    role: "Marketing Head",
-    company: "Nexa Retail",
-    rating: 5,
-    verified: true,
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
-  },
-  {
-    id: 4,
-    title: "40% Increase in Sales Conversions",
-    quote: "Unlike agencies that rely on vanity metrics, Jukebox focuses on down-funnel lead qualification. Our sales conversion rates increased by 40%.",
-    author: "Siddharth Lodha",
-    role: "Managing Director",
-    company: "Lodha Premium Real Estate",
-    rating: 5,
-    verified: true,
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80",
-  },
-  {
-    id: 5,
-    title: "Qualified Leads at Half the Cost",
-    quote: "Their LinkedIn funnel architecture generated qualified demo calls at half our previous acquisition cost. Highly analytical and structured execution.",
-    author: "Rohan Verma",
-    role: "CEO",
-    company: "Alpha B2B Solutions",
-    rating: 5,
-    verified: true,
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
   },
 ]
 
@@ -148,12 +115,12 @@ export default function TestimonialsEditorial() {
             }`}
           >
             <div className="flex items-center gap-4">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#161443]/10 group-hover:ring-[#161443]/30 transition-all duration-300 shadow-sm">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#161443]/10 shadow-sm bg-white">
                 <Image
                   src={current.image || "/placeholder.svg"}
                   alt={current.author}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                  className={`object-cover ${current.image.includes("one20mins") ? "scale-110" : ""}`}
                   sizes="48px"
                 />
               </div>
