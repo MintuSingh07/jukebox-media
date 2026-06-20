@@ -909,7 +909,7 @@ export default function Home() {
             {/* Right Column: iPad Horizontal Mockup + Floating Overlay Card (col-span 7) */}
             <div className="lg:col-span-7 flex justify-center items-center relative py-4 lg:py-6">
               {/* Horizontal iPad Frame */}
-              <div className="relative w-full max-w-[460px] aspect-[4/3] bg-brand-navy rounded-[30px] p-3.5 shadow-2xl border-4 border-brand-navy-light/80 flex items-center justify-center z-10">
+              <div className="relative w-full max-w-[680px] aspect-[4/3] bg-brand-navy rounded-[30px] p-3.5 shadow-2xl border-4 border-brand-navy-light/80 flex items-center justify-center z-10">
                 {/* Screen area */}
                 <div className="w-full h-full bg-[#f8fafc] rounded-[18px] overflow-hidden relative border border-brand-navy/10 flex flex-col p-3.5">
                   <ActiveMockup index={activeService} />
@@ -920,7 +920,7 @@ export default function Home() {
               </div>
 
               {/* Floating Card Overlay */}
-              <div className="absolute right-[-10px] md:right-[15px] lg:right-[-10px] top-[6%] w-[200px] bg-white rounded-xl p-4 shadow-premium border border-brand-navy/[0.04] transition-all duration-300 z-20 hover:scale-[1.02] hover:shadow-card-hover">
+              <div className="absolute right-[-10px] md:right-[15px] lg:right-[-10px] top-[6%] w-[180px] bg-white rounded-xl p-3 shadow-premium border border-brand-navy/[0.04] transition-all duration-300 z-20 hover:scale-[1.02] hover:shadow-card-hover">
                 <ActiveOverlay index={activeService} />
               </div>
             </div>
@@ -2322,7 +2322,7 @@ const PerformanceMarketingMockup = () => {
       .to(
         dot,
         {
-          attr: { r: 4 },
+          attr: { r: 6 },
           opacity: 1,
           duration: 0.4,
           ease: "back.out(1.8)",
@@ -2352,46 +2352,46 @@ const PerformanceMarketingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-2">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
+      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-brand-navy/90">
           Meta &amp; Google Ads Campaign
         </span>
-        <div className="flex items-center gap-1.5">
-          <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider animate-pulse">
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-extrabold text-emerald-500 uppercase tracking-wider animate-pulse">
             Scaling Spend
           </span>
-          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-2">
-        <div className="bg-brand-navy/5 p-2 rounded-lg text-center">
-          <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
+      <div className="grid grid-cols-3 gap-4">
+        <div className="bg-brand-navy/5 p-3.5 rounded-xl text-center shadow-sm">
+          <span className="text-[11px] block text-brand-navy/50 font-bold uppercase mb-0.5">
             CTR
           </span>
-          <span className="text-[13px] font-extrabold text-brand-navy">
+          <span className="text-[22px] font-extrabold text-brand-navy tracking-tight">
             {ctr}
           </span>
         </div>
-        <div className="bg-brand-navy/5 p-2 rounded-lg text-center">
-          <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
+        <div className="bg-brand-navy/5 p-3.5 rounded-xl text-center shadow-sm">
+          <span className="text-[11px] block text-brand-navy/50 font-bold uppercase mb-0.5">
             CPC
           </span>
-          <span className="text-[13px] font-extrabold text-brand-navy">
+          <span className="text-[22px] font-extrabold text-brand-navy tracking-tight">
             {cpc}
           </span>
         </div>
-        <div className="bg-brand-navy/5 p-2 rounded-lg text-center">
-          <span className="text-[9px] block text-brand-navy/50 font-semibold uppercase">
+        <div className="bg-brand-navy/5 p-3.5 rounded-xl text-center shadow-sm">
+          <span className="text-[11px] block text-brand-navy/50 font-bold uppercase mb-0.5">
             ROAS
           </span>
-          <span className="text-[13px] font-extrabold text-brand-orange">
+          <span className="text-[22px] font-extrabold text-brand-orange tracking-tight">
             {roas}
           </span>
         </div>
       </div>
-      <div className="flex-1 mt-4 relative flex items-end">
-        <svg className="w-full h-24 overflow-visible" viewBox="0 0 200 80">
+      <div className="flex-grow mt-6 relative flex items-end">
+        <svg className="w-full h-44 overflow-visible" viewBox="0 0 200 80">
           <defs>
             <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#f6861f" stopOpacity="0.3" />
@@ -2426,7 +2426,7 @@ const PerformanceMarketingMockup = () => {
             d="M0 75 C 130 75, 180 45, 200 3"
             fill="none"
             stroke="#f6861f"
-            strokeWidth="3"
+            strokeWidth="5"
             strokeLinecap="round"
           />
           <circle ref={dotRef} cx="200" cy="3" r="0" fill="#f6861f" />
@@ -2812,22 +2812,22 @@ const CreativeStrategyMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none relative overflow-hidden">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-1.5">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none relative overflow-hidden p-2">
+      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-brand-navy/90">
           Figma Creative Workspace
         </span>
-        <span className="text-[9px] font-bold text-[#a259ff] uppercase tracking-wider">
+        <span className="text-[11px] font-extrabold text-[#a259ff] uppercase tracking-wider">
           Design System
         </span>
       </div>
 
       <div
         ref={bannerRef}
-        className="flex-1 rounded-xl bg-brand-navy p-3 flex flex-col justify-between text-white relative overflow-hidden"
+        className="flex-grow rounded-2xl bg-brand-navy p-5 flex flex-col justify-between text-white relative overflow-hidden min-h-[220px]"
       >
         {/* Glow backdrop */}
-        <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-brand-orange/20 blur-xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-brand-orange/20 blur-2xl pointer-events-none" />
 
         {/* Emojis float layer */}
         <div
@@ -2836,61 +2836,61 @@ const CreativeStrategyMockup = () => {
         />
 
         {/* Ad Header */}
-        <div className="flex items-center gap-2 relative z-10">
-          <div className="h-6 w-6 rounded-full bg-white/20 flex items-center justify-center font-extrabold text-[9px]">
+        <div className="flex items-center gap-3 relative z-10">
+          <div className="h-9 w-9 rounded-full bg-white/20 flex items-center justify-center font-extrabold text-[13px]">
             J
           </div>
           <div>
-            <div className="h-2 w-16 bg-white/40 rounded-full" />
-            <div className="h-1.5 w-10 bg-white/25 rounded-full mt-1" />
+            <div className="h-3 w-24 bg-white/40 rounded-full" />
+            <div className="h-2 w-14 bg-white/25 rounded-full mt-1.5" />
           </div>
         </div>
 
         {/* Ad Copy (Typewriter Headline) */}
-        <div className="my-2 z-10 min-h-[36px]">
-          <h4 className="text-[14px] font-bold tracking-tight min-h-[14px]">
+        <div className="my-4 z-10 min-h-[50px]">
+          <h4 className="text-[22px] font-extrabold tracking-tight min-h-[24px] leading-tight text-white">
             {headline}
-            <span className="inline-block w-0.5 h-3.5 bg-brand-orange ml-0.5 animate-pulse" />
+            <span className="inline-block w-0.5 h-5 bg-brand-orange ml-1.5 animate-pulse" />
           </h4>
-          <p className="text-[8.5px] text-white/60 mt-0.5 leading-normal max-w-[150px]">
+          <p className="text-[12px] text-white/60 mt-1.5 leading-normal max-w-[240px]">
             Custom creative designed to drive clicks and purchases.
           </p>
         </div>
 
         {/* Slider elements (assemblages) */}
-        <div className="flex items-center justify-between gap-1.5 mt-1 relative z-10">
+        <div className="flex items-center justify-between gap-3.5 mt-2 relative z-10">
           {/* Option A element */}
           <div
             ref={element1Ref}
-            className="bg-white/10 border border-white/10 rounded-md p-1.5 flex-1 flex flex-col items-center justify-center"
+            className="bg-white/10 border border-white/10 rounded-xl p-3 flex-1 flex flex-col items-center justify-center shadow-sm"
           >
-            <span className="text-[7.5px] font-semibold text-white/50">
+            <span className="text-[11px] font-bold text-white/50">
               ROAS Target
             </span>
-            <span className="text-[11px] font-bold text-brand-orange mt-0.5">
+            <span className="text-[18px] font-extrabold text-brand-orange mt-0.5">
               5.0x
             </span>
           </div>
           {/* Option B element */}
           <div
             ref={element2Ref}
-            className="bg-white/10 border border-white/10 rounded-md p-1.5 flex-1 flex flex-col items-center justify-center"
+            className="bg-white/10 border border-white/10 rounded-xl p-3 flex-1 flex flex-col items-center justify-center shadow-sm"
           >
-            <span className="text-[7.5px] font-semibold text-white/50">
+            <span className="text-[11px] font-bold text-white/50">
               Engagement
             </span>
-            <span className="text-[11px] font-bold text-emerald-400 mt-0.5">
+            <span className="text-[18px] font-extrabold text-emerald-400 mt-0.5">
               High
             </span>
           </div>
         </div>
 
         {/* Ad Footer / Reactions */}
-        <div className="flex items-center justify-between z-10 mt-1 border-t border-white/10 pt-1.5">
-          <span className="text-[8px] bg-brand-orange text-white px-2 py-0.5 rounded-full font-semibold">
+        <div className="flex items-center justify-between z-10 mt-3 border-t border-white/10 pt-3.5">
+          <span className="text-[11px] bg-brand-orange text-white px-4.5 py-1.5 rounded-full font-extrabold tracking-wide uppercase transition-transform hover:scale-105 active:scale-95 cursor-pointer">
             Shop Now ↗
           </span>
-          <div className="flex items-center gap-1 text-[8.5px] text-white/60">
+          <div className="flex items-center gap-1.5 text-[12px] text-white/60">
             <span>🔥</span>
             <span className="font-bold">{likes} Likes</span>
           </div>
@@ -3322,22 +3322,22 @@ const GrowthConsultingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-1.5 mb-1">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
+      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-brand-navy/90">
           Scaling Roadmap
         </span>
-        <span className="text-[9px] font-bold text-brand-orange uppercase tracking-wider">
+        <span className="text-[11px] font-extrabold text-brand-orange uppercase tracking-wider">
           Growth Consulting
         </span>
       </div>
 
-      <div className="flex-grow grid grid-cols-12 gap-3 items-center min-h-0 py-1">
+      <div className="flex-grow grid grid-cols-12 gap-4 items-center min-h-0 py-2">
         {/* Left Column: Milestones (7 col-span) */}
-        <div className="col-span-7 flex flex-col gap-1.5 justify-center">
+        <div className="col-span-7 flex flex-col gap-3 justify-center">
           {/* Card 1: Audit */}
           <div
-            className={`p-1.5 rounded-lg border transition-all duration-300 ${
+            className={`p-3 rounded-xl border transition-all duration-300 shadow-sm ${
               activePhase === 1
                 ? "bg-brand-navy/5 border-brand-navy scale-[1.02]"
                 : activePhase > 1
@@ -3347,26 +3347,26 @@ const GrowthConsultingMockup = () => {
           >
             <div className="flex items-center justify-between">
               <span
-                className={`text-[8.5px] font-bold block leading-tight ${
+                className={`text-[12px] font-bold block leading-tight ${
                   activePhase >= 1 ? "text-brand-navy" : "text-brand-navy/40"
                 }`}
               >
                 1. System Audit
               </span>
               {activePhase > 1 && (
-                <span className="text-emerald-500 text-[8px] font-extrabold">
+                <span className="text-emerald-500 text-[10px] font-extrabold">
                   COMPLETE ✓
                 </span>
               )}
               {activePhase === 1 && (
-                <span className="text-brand-orange text-[8px] font-extrabold animate-pulse">
+                <span className="text-brand-orange text-[10px] font-extrabold animate-pulse">
                   ACTIVE
                 </span>
               )}
             </div>
             {activePhase >= 1 && (
-              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-medium animate-fade-in">
-                <div className="flex items-center gap-1">
+              <div className="mt-2 flex flex-col gap-1 text-[10px] text-brand-navy/60 font-semibold animate-fade-in">
+                <div className="flex items-center gap-1.5">
                   <span
                     className={
                       auditCheck1 ? "text-emerald-500" : "text-brand-navy/20"
@@ -3376,7 +3376,7 @@ const GrowthConsultingMockup = () => {
                   </span>
                   <span>Meta Pixel & Conversions API Audit</span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   <span
                     className={
                       auditCheck2 ? "text-emerald-500" : "text-brand-navy/20"
@@ -3392,7 +3392,7 @@ const GrowthConsultingMockup = () => {
 
           {/* Card 2: Restructure */}
           <div
-            className={`p-1.5 rounded-lg border transition-all duration-300 ${
+            className={`p-3 rounded-xl border transition-all duration-300 shadow-sm ${
               activePhase === 2
                 ? "bg-brand-navy/5 border-brand-navy scale-[1.02]"
                 : activePhase > 2
@@ -3402,26 +3402,26 @@ const GrowthConsultingMockup = () => {
           >
             <div className="flex items-center justify-between">
               <span
-                className={`text-[8.5px] font-bold block leading-tight ${
+                className={`text-[12px] font-bold block leading-tight ${
                   activePhase >= 2 ? "text-brand-navy" : "text-brand-navy/40"
                 }`}
               >
                 2. Funnel Restructure
               </span>
               {activePhase > 2 && (
-                <span className="text-emerald-500 text-[8px] font-extrabold">
+                <span className="text-emerald-500 text-[10px] font-extrabold">
                   COMPLETE ✓
                 </span>
               )}
               {activePhase === 2 && (
-                <span className="text-brand-orange text-[8px] font-extrabold animate-pulse">
+                <span className="text-brand-orange text-[10px] font-extrabold animate-pulse">
                   ACTIVE
                 </span>
               )}
             </div>
             {activePhase >= 2 && (
-              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-medium animate-fade-in">
-                <div className="flex items-center gap-1">
+              <div className="mt-2 flex flex-col gap-1 text-[10px] text-brand-navy/60 font-semibold animate-fade-in">
+                <div className="flex items-center gap-1.5">
                   <span
                     className={
                       restructCheck1 ? "text-emerald-500" : "text-brand-navy/20"
@@ -3431,7 +3431,7 @@ const GrowthConsultingMockup = () => {
                   </span>
                   <span>Funnel Strategy Realignment</span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   <span
                     className={
                       restructCheck2 ? "text-emerald-500" : "text-brand-navy/20"
@@ -3447,7 +3447,7 @@ const GrowthConsultingMockup = () => {
 
           {/* Card 3: Scale Up */}
           <div
-            className={`p-1.5 rounded-lg border transition-all duration-300 ${
+            className={`p-3 rounded-xl border transition-all duration-300 shadow-sm ${
               activePhase === 3
                 ? "bg-brand-orange/10 border-brand-orange scale-[1.02] shadow-[0_4px_12px_rgba(232,128,26,0.05)]"
                 : "bg-white border-brand-navy/5"
@@ -3455,26 +3455,26 @@ const GrowthConsultingMockup = () => {
           >
             <div className="flex items-center justify-between">
               <span
-                className={`text-[8.5px] font-bold block leading-tight ${
+                className={`text-[12px] font-bold block leading-tight ${
                   activePhase >= 3 ? "text-brand-navy" : "text-brand-navy/40"
                 }`}
               >
                 3. Scaling & Budgets
               </span>
               {activePhase === 3 && (
-                <span className="text-brand-orange text-[8px] font-extrabold animate-bounce">
+                <span className="text-brand-orange text-[10px] font-extrabold animate-bounce">
                   SCALING 🚀
                 </span>
               )}
             </div>
             {activePhase >= 3 && (
-              <div className="mt-1 flex flex-col gap-0.5 text-[7px] text-brand-navy/60 font-medium animate-fade-in">
-                <div className="flex items-center gap-1">
-                  <span className="text-brand-orange">➔</span>
+              <div className="mt-2 flex flex-col gap-1 text-[10px] text-brand-navy/60 font-semibold animate-fade-in">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-brand-orange font-bold">➔</span>
                   <span>Scale Daily Budget to $1,500/day</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-brand-orange">➔</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-brand-orange font-bold">➔</span>
                   <span>Maximize Profit margins at scale</span>
                 </div>
               </div>
@@ -3483,37 +3483,37 @@ const GrowthConsultingMockup = () => {
         </div>
 
         {/* Right Column: Visual Dashboard Charts (5 col-span) */}
-        <div className="col-span-5 h-full flex flex-col gap-1.5 justify-center py-1">
+        <div className="col-span-5 h-full flex flex-col gap-3 justify-center py-1">
           {/* Revenue Dial Card */}
-          <div className="bg-brand-navy text-white p-2 rounded-xl border border-brand-navy-light flex flex-col justify-between relative overflow-hidden shadow-lg min-h-[56px]">
-            <div className="absolute top-0 right-0 w-12 h-12 rounded-full bg-brand-orange/20 blur-lg pointer-events-none" />
-            <span className="text-[6.5px] text-white/50 block font-semibold uppercase tracking-wider">
+          <div className="bg-brand-navy text-white p-3 rounded-2xl border border-brand-navy-light flex flex-col justify-between relative overflow-hidden shadow-lg min-h-[76px]">
+            <div className="absolute top-0 right-0 w-16 h-16 rounded-full bg-brand-orange/20 blur-xl pointer-events-none" />
+            <span className="text-[9px] text-white/50 block font-bold uppercase tracking-wider">
               Projected Monthly Revenue
             </span>
-            <span className="text-[12px] font-extrabold text-white mt-1 leading-none tracking-tight block">
+            <span className="text-[20px] font-extrabold text-white mt-2 leading-none tracking-tight block">
               {revenue}
             </span>
           </div>
 
           {/* ROAS Indicator */}
-          <div className="bg-white border border-brand-navy/10 p-2 rounded-xl flex items-center justify-between shadow-sm min-h-[38px]">
+          <div className="bg-white border border-brand-navy/10 p-3 rounded-2xl flex items-center justify-between shadow-sm min-h-[56px]">
             <div className="flex flex-col">
-              <span className="text-[6.5px] text-brand-navy/40 font-semibold uppercase tracking-wider">
+              <span className="text-[9px] text-brand-navy/40 font-bold uppercase tracking-wider">
                 Target ROAS
               </span>
-              <span className="text-[11px] font-extrabold text-brand-navy mt-0.5 leading-none">
+              <span className="text-[16px] font-extrabold text-brand-navy mt-1 leading-none">
                 {roas}
               </span>
             </div>
-            <div className="h-6 w-6 rounded-lg bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center shrink-0">
-              <span className="text-[8px] font-extrabold text-brand-orange">
+            <div className="h-8 w-8 rounded-xl bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center shrink-0">
+              <span className="text-[12px] font-extrabold text-brand-orange">
                 ×5
               </span>
             </div>
           </div>
 
           {/* Mini Line Chart SVG */}
-          <div className="bg-white border border-brand-navy/10 rounded-xl p-1.5 flex flex-col justify-between h-[45px] relative overflow-hidden">
+          <div className="bg-white border border-brand-navy/10 rounded-2xl p-3 flex flex-col justify-between h-[85px] relative overflow-hidden shadow-sm">
             <svg
               className="w-full h-full overflow-visible"
               viewBox="0 0 100 30"
@@ -3550,7 +3550,7 @@ const GrowthConsultingMockup = () => {
                 d="M 5 25 C 40 25, 70 15, 95 5"
                 fill="none"
                 stroke="#f6861f"
-                strokeWidth="2"
+                strokeWidth="3.5"
                 strokeLinecap="round"
               />
             </svg>
@@ -3694,39 +3694,39 @@ const MarketingAutomationMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-1.5 mb-1">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
+      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-brand-navy/90">
           Workflow Logic Builder
         </span>
-        <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider">
+        <span className="text-[11px] font-extrabold text-emerald-500 uppercase tracking-wider">
           CRM Sync Active
         </span>
       </div>
 
-      <div className="flex-1 grid grid-cols-12 gap-2.5 items-center">
+      <div className="flex-1 grid grid-cols-12 gap-4 items-center">
         {/* Left: Logic Flow Nodes (col-span 7) */}
-        <div className="col-span-7 flex flex-col justify-center items-center gap-1.5 relative py-1">
+        <div className="col-span-7 flex flex-col justify-center items-center gap-3 relative py-2">
           {/* Node 1 */}
           <div
-            className={`w-full px-2.5 py-1.5 rounded-lg border text-center transition-all duration-300 ${
+            className={`w-full px-4 py-2.5 rounded-xl border text-center transition-all duration-300 shadow-sm ${
               pulsePos === "node1"
                 ? "bg-brand-orange/10 border-brand-orange scale-[1.03]"
                 : "bg-white border-brand-navy/10"
             }`}
           >
-            <span className="text-[8.5px] font-bold block leading-tight">
+            <span className="text-[12px] font-bold block leading-tight">
               1. Form Submit
             </span>
-            <span className="text-[7px] text-brand-navy/40 leading-none">
+            <span className="text-[9.5px] text-brand-navy/40 leading-none">
               Capture Lead
             </span>
           </div>
 
           {/* Line 1 */}
-          <div className="h-3 w-0.5 bg-brand-navy/15 relative">
+          <div className="h-4 w-0.5 bg-brand-navy/15 relative">
             <div
-              className={`absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-brand-orange transition-all duration-300 ${
+              className={`absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-brand-orange transition-all duration-300 ${
                 pulsePos === "line1"
                   ? "opacity-100 top-[6px] scale-110"
                   : "opacity-0 top-0 scale-75"
@@ -3736,24 +3736,24 @@ const MarketingAutomationMockup = () => {
 
           {/* Node 2 */}
           <div
-            className={`w-full px-2.5 py-1.5 rounded-lg border text-center transition-all duration-300 ${
+            className={`w-full px-4 py-2.5 rounded-xl border text-center transition-all duration-300 shadow-sm ${
               pulsePos === "node2"
                 ? "bg-brand-orange/10 border-brand-orange scale-[1.03]"
                 : "bg-white border-brand-navy/10"
             }`}
           >
-            <span className="text-[8.5px] font-bold block leading-tight">
+            <span className="text-[12px] font-bold block leading-tight">
               2. API Router Delay
             </span>
-            <span className="text-[7px] text-brand-navy/40 leading-none">
+            <span className="text-[9.5px] text-brand-navy/40 leading-none">
               Wait: 2 minutes
             </span>
           </div>
 
           {/* Line 2 */}
-          <div className="h-3 w-0.5 bg-brand-navy/15 relative">
+          <div className="h-4 w-0.5 bg-brand-navy/15 relative">
             <div
-              className={`absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-brand-orange transition-all duration-300 ${
+              className={`absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-brand-orange transition-all duration-300 ${
                 pulsePos === "line2"
                   ? "opacity-100 top-[6px] scale-110"
                   : "opacity-0 top-0 scale-75"
@@ -3763,16 +3763,16 @@ const MarketingAutomationMockup = () => {
 
           {/* Node 3 */}
           <div
-            className={`w-full px-2.5 py-1.5 rounded-lg border text-center transition-all duration-300 ${
+            className={`w-full px-4 py-2.5 rounded-xl border text-center transition-all duration-300 shadow-sm ${
               pulsePos === "node3"
                 ? "bg-emerald-500/10 border-emerald-500 scale-[1.03]"
                 : "bg-white border-brand-navy/10"
             }`}
           >
-            <span className="text-[8.5px] font-bold block leading-tight">
+            <span className="text-[12px] font-bold block leading-tight">
               3. WhatsApp Alert
             </span>
-            <span className="text-[7px] text-brand-navy/40 leading-none">
+            <span className="text-[9.5px] text-brand-navy/40 leading-none">
               Send Client Blueprint
             </span>
           </div>
@@ -3780,24 +3780,24 @@ const MarketingAutomationMockup = () => {
 
         {/* Right: Phone Simulator (col-span 5) */}
         <div className="col-span-5 flex justify-center py-1">
-          <div className="relative w-full aspect-[9/16] max-w-[85px] bg-[#0c0c0e] rounded-xl border border-brand-navy-light/80 p-1 flex flex-col justify-start overflow-hidden shadow-lg">
+          <div className="relative w-[145px] aspect-[9/16] bg-[#0c0c0e] rounded-2xl border border-brand-navy-light/80 p-1.5 flex flex-col justify-start overflow-hidden shadow-lg shrink-0">
             {/* Screen background (lockscreen) */}
-            <div className="absolute inset-0 bg-[#1e293b] flex flex-col items-center justify-start p-1 pointer-events-none">
+            <div className="absolute inset-0 bg-[#1e293b] flex flex-col items-center justify-start p-1.5 pointer-events-none">
               {/* Top notch */}
-              <div className="h-1.5 w-6 bg-black rounded-full mb-1" />
+              <div className="h-2 w-10 bg-black rounded-full mb-1.5" />
               {/* Lock screen clock */}
-              <span className="text-[9px] font-extrabold text-white/50 leading-none tracking-tighter">
+              <span className="text-[13px] font-extrabold text-white/50 leading-none tracking-tighter">
                 09:41
               </span>
 
               {/* Push notification banner */}
               <div
                 ref={notifRef}
-                className="w-full bg-white/95 border border-white/20 rounded-md p-1 mt-1.5 shadow-md flex items-center gap-1 opacity-0"
+                className="w-full bg-white/95 border border-white/20 rounded-lg p-1.5 mt-2.5 shadow-md flex items-center gap-1.5 opacity-0"
               >
-                <div className="h-3.5 w-3.5 rounded bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
+                <div className="h-5.5 w-5.5 rounded bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
                   <svg
-                    className="w-2.5 h-2.5 text-emerald-500"
+                    className="w-3.5 h-3.5 text-emerald-500"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -3805,10 +3805,10 @@ const MarketingAutomationMockup = () => {
                   </svg>
                 </div>
                 <div className="flex flex-col min-w-0 leading-tight">
-                  <span className="font-bold text-[5.5px] text-brand-navy truncate">
+                  <span className="font-extrabold text-[9.5px] text-brand-navy truncate">
                     Jukebox Media
                   </span>
-                  <span className="text-[5px] text-brand-navy/60 leading-none">
+                  <span className="text-[8.5px] text-brand-navy/60 font-semibold leading-none">
                     Ready! 📄
                   </span>
                 </div>
@@ -4152,11 +4152,11 @@ const PerformanceMarketingOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none min-h-[185px]">
+    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none min-h-[200px]">
       <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
         Live Attribution Feed
       </span>
-      <div className="relative h-[155px] overflow-hidden">
+      <div className="relative h-[170px] overflow-hidden">
         {/* Card 1 */}
         <div
           ref={card1Ref}
@@ -4340,73 +4340,73 @@ const BrandStorytellingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-2">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-brand-navy/90">
           Brand Narrative Studio
         </span>
-        <div className="flex items-center gap-1.5">
-          <span className="text-[9px] font-bold text-brand-orange uppercase tracking-wider animate-pulse">
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-extrabold text-brand-orange uppercase tracking-wider animate-pulse">
             Crafting
           </span>
-          <span className="h-2 w-2 rounded-full bg-brand-orange animate-pulse" />
+          <span className="h-2.5 w-2.5 rounded-full bg-brand-orange animate-pulse" />
         </div>
       </div>
 
       {/* Page 1 — Typewriter */}
-      <div className="bg-brand-navy/[0.03] rounded-lg p-3 border border-brand-navy/5 mb-2">
-        <span className="text-[13px] font-bold text-brand-navy tracking-tight font-[Caveat]">
+      <div className="bg-brand-navy/[0.03] rounded-xl p-4 border border-brand-navy/5 mb-3 flex items-center min-h-[50px]">
+        <span className="text-[20px] font-bold text-brand-navy tracking-tight font-[Caveat] leading-snug">
           {typedText}
           <span className="animate-pulse text-brand-orange">|</span>
         </span>
       </div>
 
       {/* Page 2 — Brand Values */}
-      <div className="flex flex-col gap-1.5 relative">
-        <div ref={word1Ref} className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-brand-orange/80 shadow-[0_0_6px_rgba(246,134,31,0.5)]" />
-          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">
+      <div className="flex flex-col gap-3 relative py-2 pl-4">
+        <div ref={word1Ref} className="flex items-center gap-3">
+          <span className="h-3 w-3 rounded-full bg-brand-orange/80 shadow-[0_0_8px_rgba(246,134,31,0.6)]" />
+          <span className="text-[15px] font-extrabold text-brand-navy tracking-tight">
             Trust
           </span>
         </div>
-        <div ref={word2Ref} className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-brand-orange/80 shadow-[0_0_6px_rgba(246,134,31,0.5)]" />
-          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">
+        <div ref={word2Ref} className="flex items-center gap-3">
+          <span className="h-3 w-3 rounded-full bg-brand-orange/80 shadow-[0_0_8px_rgba(246,134,31,0.6)]" />
+          <span className="text-[15px] font-extrabold text-brand-navy tracking-tight">
             Vision
           </span>
         </div>
-        <div ref={word3Ref} className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-brand-orange/80 shadow-[0_0_6px_rgba(246,134,31,0.5)]" />
-          <span className="text-[11px] font-extrabold text-brand-navy tracking-tight">
+        <div ref={word3Ref} className="flex items-center gap-3">
+          <span className="h-3 w-3 rounded-full bg-brand-orange/80 shadow-[0_0_8px_rgba(246,134,31,0.6)]" />
+          <span className="text-[15px] font-extrabold text-brand-navy tracking-tight">
             Impact
           </span>
         </div>
         {/* Connecting Thread SVG */}
         <svg
-          className="absolute left-[5px] top-0 w-4 h-full overflow-visible"
-          viewBox="0 0 10 60"
+          className="absolute left-[20px] top-0 w-5 h-full overflow-visible"
+          viewBox="0 0 10 70"
         >
           <path
             ref={threadRef}
-            d="M5 5 L5 20 L5 35 L5 55"
+            d="M5 6 L5 24 L5 42 L5 62"
             stroke="#f6861f"
-            strokeWidth="1.5"
+            strokeWidth="2.5"
             fill="none"
-            strokeDasharray="3 3"
+            strokeDasharray="4 4"
             strokeLinecap="round"
           />
         </svg>
       </div>
 
       {/* Heart + Tagline */}
-      <div className="flex flex-col items-center mt-3 gap-1">
-        <div ref={heartRef} className="text-[18px]">
+      <div className="flex flex-col items-center mt-4 gap-2">
+        <div ref={heartRef} className="text-[28px]">
           💛
         </div>
         <div
           ref={taglineRef}
-          className="text-[9px] font-bold text-brand-navy/50 uppercase tracking-widest"
+          className="text-[11px] font-extrabold text-brand-navy/50 uppercase tracking-widest"
         >
           Your Story, Their Connection
         </div>
@@ -4573,62 +4573,62 @@ const PersonalBrandingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full items-center justify-center animate-fade-in text-brand-navy select-none gap-3">
+    <div className="flex flex-col h-full justify-between items-center animate-fade-in text-brand-navy select-none p-2 gap-4">
       {/* Header */}
-      <div className="flex items-center justify-between w-full border-b border-brand-navy/10 pb-2 mb-1">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+      <div className="flex items-center justify-between w-full border-b border-brand-navy/10 pb-3 mb-2">
+        <span className="text-[15px] font-bold text-brand-navy/90">
           Identity Builder
         </span>
-        <span className="text-[9px] font-bold text-brand-orange uppercase tracking-wider animate-pulse">
+        <span className="text-[11px] font-extrabold text-brand-orange uppercase tracking-wider animate-pulse">
           Assembling
         </span>
       </div>
 
       {/* Avatar Circle */}
-      <div className="relative w-[80px] h-[80px] flex items-center justify-center">
-        <svg className="absolute inset-0" viewBox="0 0 80 80">
+      <div className="relative w-[110px] h-[110px] flex items-center justify-center my-1">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 80 80">
           <circle
             ref={circleRef}
             cx="40"
             cy="40"
             r="36"
             stroke="#f6861f"
-            strokeWidth="3"
+            strokeWidth="4.5"
             fill="none"
             strokeLinecap="round"
           />
         </svg>
         {initials && (
-          <span className="text-[22px] font-extrabold text-brand-navy animate-fade-in">
+          <span className="text-[32px] font-extrabold text-brand-navy animate-fade-in">
             SJ
           </span>
         )}
       </div>
 
       {/* Name + Title */}
-      <div className="flex flex-col items-center gap-0.5">
+      <div className="flex flex-col items-center gap-1">
         <div
           ref={nameRef}
-          className="text-[14px] font-extrabold text-brand-navy tracking-tight"
+          className="text-[20px] font-extrabold text-brand-navy tracking-tight"
         >
           Siddharth Jain
         </div>
         <div
           ref={titleRef}
-          className="text-[10px] font-semibold text-brand-navy/50"
+          className="text-[13px] font-bold text-brand-navy/50"
         >
           Founder & Strategist
         </div>
       </div>
 
       {/* Social Badges */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <div
           ref={badge1Ref}
-          className="h-6 w-6 rounded-full bg-[#0077b5]/10 border border-[#0077b5]/25 flex items-center justify-center"
+          className="h-9 w-9 rounded-full bg-[#0077b5]/10 border border-[#0077b5]/25 flex items-center justify-center transition-transform hover:scale-110"
         >
           <svg
-            className="w-3 h-3 text-[#0077b5]"
+            className="w-4.5 h-4.5 text-[#0077b5]"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -4637,10 +4637,10 @@ const PersonalBrandingMockup = () => {
         </div>
         <div
           ref={badge2Ref}
-          className="h-6 w-6 rounded-full bg-brand-navy/5 border border-brand-navy/10 flex items-center justify-center"
+          className="h-9 w-9 rounded-full bg-brand-navy/5 border border-brand-navy/10 flex items-center justify-center transition-transform hover:scale-110"
         >
           <svg
-            className="w-3 h-3 text-brand-navy"
+            className="w-4.5 h-4.5 text-brand-navy"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -4652,10 +4652,10 @@ const PersonalBrandingMockup = () => {
       {/* Follower Counter */}
       <div
         ref={counterRef}
-        className="flex items-center gap-1.5 bg-brand-navy/[0.03] border border-brand-navy/5 rounded-lg px-3 py-1.5"
+        className="flex items-center gap-2.5 bg-brand-navy/[0.03] border border-brand-navy/5 rounded-xl px-5 py-2.5 shadow-sm"
       >
         <svg
-          className="w-3.5 h-3.5 text-brand-orange"
+          className="w-5 h-5 text-brand-orange"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"
@@ -4667,10 +4667,10 @@ const PersonalBrandingMockup = () => {
             d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
           />
         </svg>
-        <span className="text-[14px] font-extrabold text-brand-navy">
+        <span className="text-[20px] font-extrabold text-brand-navy tracking-tight">
           {followerCount}
         </span>
-        <span className="text-[8px] font-bold text-brand-navy/40 uppercase">
+        <span className="text-[11px] font-bold text-brand-navy/40 uppercase tracking-wide">
           Followers
         </span>
       </div>
@@ -4862,22 +4862,22 @@ const StrategyMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full animate-fade-in text-brand-navy select-none">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-3">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-brand-navy/90">
           Growth Blueprint
         </span>
-        <span className="text-[9px] font-bold text-brand-orange uppercase tracking-wider animate-pulse">
+        <span className="text-[11px] font-extrabold text-brand-orange uppercase tracking-wider animate-pulse">
           Mapping
         </span>
       </div>
 
       {/* Roadmap Visual */}
-      <div className="flex-1 relative flex flex-col gap-3 pl-8">
+      <div className="flex-grow relative flex flex-col justify-center gap-5 pl-14 py-4">
         {/* Target / Bullseye */}
         <svg
-          className="absolute left-0 top-0 w-6 h-6 overflow-visible"
+          className="absolute left-0 top-[22%] w-10 h-10 overflow-visible"
           viewBox="0 0 32 32"
         >
           <circle
@@ -4904,9 +4904,9 @@ const StrategyMockup = () => {
         </svg>
 
         {/* Node Row 1: Audience */}
-        <div className="flex items-center gap-2 mt-1">
+        <div className="flex items-center gap-2">
           <svg
-            className="w-12 h-[2px] overflow-visible shrink-0"
+            className="w-20 h-[3px] overflow-visible shrink-0"
             viewBox="0 0 50 2"
           >
             <line
@@ -4922,7 +4922,7 @@ const StrategyMockup = () => {
           </svg>
           <div
             ref={node1Ref}
-            className="px-2.5 py-1 rounded-lg bg-brand-orange/10 border border-brand-orange/20 text-[9px] font-bold text-brand-navy whitespace-nowrap"
+            className="px-4 py-2 rounded-xl bg-brand-orange/10 border border-brand-orange/20 text-[13px] font-bold text-brand-navy whitespace-nowrap shadow-sm"
           >
             🎯 Audience
           </div>
@@ -4931,7 +4931,7 @@ const StrategyMockup = () => {
         {/* Node Row 2: Channels */}
         <div className="flex items-center gap-2">
           <svg
-            className="w-12 h-[2px] overflow-visible shrink-0"
+            className="w-20 h-[3px] overflow-visible shrink-0"
             viewBox="0 0 50 2"
           >
             <line
@@ -4947,7 +4947,7 @@ const StrategyMockup = () => {
           </svg>
           <div
             ref={node2Ref}
-            className="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-[9px] font-bold text-brand-navy whitespace-nowrap"
+            className="px-4 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-[13px] font-bold text-brand-navy whitespace-nowrap shadow-sm"
           >
             📡 Channels
           </div>
@@ -4956,7 +4956,7 @@ const StrategyMockup = () => {
         {/* Node Row 3: Content */}
         <div className="flex items-center gap-2">
           <svg
-            className="w-12 h-[2px] overflow-visible shrink-0"
+            className="w-20 h-[3px] overflow-visible shrink-0"
             viewBox="0 0 50 2"
           >
             <line
@@ -4972,7 +4972,7 @@ const StrategyMockup = () => {
           </svg>
           <div
             ref={node3Ref}
-            className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-bold text-brand-navy whitespace-nowrap"
+            className="px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[13px] font-bold text-brand-navy whitespace-nowrap shadow-sm"
           >
             ✍️ Content
           </div>
@@ -4981,7 +4981,7 @@ const StrategyMockup = () => {
         {/* Node Row 4: Growth */}
         <div className="flex items-center gap-2">
           <svg
-            className="w-12 h-[2px] overflow-visible shrink-0"
+            className="w-20 h-[3px] overflow-visible shrink-0"
             viewBox="0 0 50 2"
           >
             <line
@@ -4997,7 +4997,7 @@ const StrategyMockup = () => {
           </svg>
           <div
             ref={node4Ref}
-            className="px-2.5 py-1 rounded-lg bg-brand-orange/10 border border-brand-orange/25 text-[9px] font-bold text-brand-navy whitespace-nowrap shadow-sm"
+            className="px-4 py-2 rounded-xl bg-brand-orange/10 border border-brand-orange/25 text-[13px] font-bold text-brand-navy whitespace-nowrap shadow-md"
           >
             🚀 Growth
           </div>
@@ -5007,10 +5007,10 @@ const StrategyMockup = () => {
       {/* Strategy Locked */}
       <div
         ref={checkRef}
-        className="flex items-center justify-center gap-1.5 mt-2 py-1.5 bg-emerald-500/5 border border-emerald-500/15 rounded-lg"
+        className="flex items-center justify-center gap-2 py-3 bg-emerald-500/5 border border-emerald-500/15 rounded-xl mt-2"
       >
         <svg
-          className="w-3.5 h-3.5 text-emerald-500"
+          className="w-5 h-5 text-emerald-500"
           fill="none"
           stroke="currentColor"
           strokeWidth="3"
@@ -5022,7 +5022,7 @@ const StrategyMockup = () => {
             d="M4.5 12.75l6 6 9-13.5"
           />
         </svg>
-        <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider">
+        <span className="text-[13px] font-extrabold text-emerald-600 uppercase tracking-wider">
           Strategy Locked
         </span>
       </div>
@@ -5226,24 +5226,24 @@ const ContentCreationMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full animate-fade-in text-brand-navy select-none">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-2">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-brand-navy/90">
           Content Studio
         </span>
-        <div className="flex items-center gap-1.5">
-          <span className="text-[9px] font-bold text-brand-orange uppercase tracking-wider animate-pulse">
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-extrabold text-brand-orange uppercase tracking-wider animate-pulse">
             Designing
           </span>
-          <span className="h-2 w-2 rounded-full bg-brand-orange animate-pulse" />
+          <span className="h-2.5 w-2.5 rounded-full bg-brand-orange animate-pulse" />
         </div>
       </div>
 
       {/* Canvas Area */}
       <div
         ref={canvasRef}
-        className="flex-1 relative rounded-xl overflow-hidden border border-brand-navy/10 bg-brand-navy/[0.02] min-h-[120px]"
+        className="flex-grow relative rounded-xl overflow-hidden border border-brand-navy/10 bg-brand-navy/[0.02] min-h-[200px]"
       >
         {/* Grid lines */}
         <div
@@ -5251,7 +5251,7 @@ const ContentCreationMockup = () => {
           style={{
             backgroundImage:
               "linear-gradient(#161443 1px, transparent 1px), linear-gradient(90deg, #161443 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
+            backgroundSize: "24px 24px",
           }}
         />
 
@@ -5262,8 +5262,8 @@ const ContentCreationMockup = () => {
         />
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full p-3 gap-2">
-          <span className="text-[14px] font-extrabold text-brand-navy text-center tracking-tight leading-tight min-h-[18px]">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full p-4 gap-4">
+          <span className="text-[22px] font-extrabold text-brand-navy text-center tracking-tight leading-tight min-h-[30px]">
             {headline}
             {headline.length < 20 && headline.length > 0 && (
               <span className="animate-pulse text-brand-orange">|</span>
@@ -5271,45 +5271,45 @@ const ContentCreationMockup = () => {
           </span>
           <div
             ref={ctaRef}
-            className="px-3 py-1 bg-brand-orange text-white text-[8px] font-extrabold rounded-full shadow-sm uppercase tracking-wider"
+            className="px-5 py-2 bg-brand-orange text-white text-[11px] font-extrabold rounded-full shadow-md uppercase tracking-wider transition-transform hover:scale-105 active:scale-95 cursor-pointer"
           >
             Learn More →
           </div>
         </div>
 
         {/* Floating Emojis */}
-        <div className="absolute bottom-1 right-2 flex gap-1">
-          <span ref={emoji1Ref} className="text-[14px]">
+        <div className="absolute bottom-2 right-3 flex gap-2">
+          <span ref={emoji1Ref} className="text-[20px]">
             🔥
           </span>
-          <span ref={emoji2Ref} className="text-[14px]">
+          <span ref={emoji2Ref} className="text-[20px]">
             ❤️
           </span>
-          <span ref={emoji3Ref} className="text-[14px]">
+          <span ref={emoji3Ref} className="text-[20px]">
             🚀
           </span>
         </div>
       </div>
 
       {/* Engagement Counters */}
-      <div ref={countersRef} className="grid grid-cols-3 gap-1.5 mt-2">
-        <div className="bg-pink-500/5 border border-pink-500/10 rounded-lg p-1.5 text-center">
-          <span className="text-[7px] text-pink-500 font-bold block">❤️</span>
-          <span className="text-[11px] font-extrabold text-brand-navy">
+      <div ref={countersRef} className="grid grid-cols-3 gap-3 mt-4">
+        <div className="bg-pink-500/5 border border-pink-500/10 rounded-xl p-2.5 text-center">
+          <span className="text-[11px] text-pink-500 font-bold block mb-0.5">❤️</span>
+          <span className="text-[15px] font-extrabold text-brand-navy">
             {likes}
           </span>
         </div>
-        <div className="bg-blue-500/5 border border-blue-500/10 rounded-lg p-1.5 text-center">
-          <span className="text-[7px] text-blue-500 font-bold block">💬</span>
-          <span className="text-[11px] font-extrabold text-brand-navy">
+        <div className="bg-blue-500/5 border border-blue-500/10 rounded-xl p-2.5 text-center">
+          <span className="text-[11px] text-blue-500 font-bold block mb-0.5">💬</span>
+          <span className="text-[15px] font-extrabold text-brand-navy">
             {comments}
           </span>
         </div>
-        <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-lg p-1.5 text-center">
-          <span className="text-[7px] text-emerald-500 font-bold block">
+        <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-xl p-2.5 text-center">
+          <span className="text-[11px] text-emerald-500 font-bold block mb-0.5">
             🔁
           </span>
-          <span className="text-[11px] font-extrabold text-brand-navy">
+          <span className="text-[15px] font-extrabold text-brand-navy">
             {shares}
           </span>
         </div>
