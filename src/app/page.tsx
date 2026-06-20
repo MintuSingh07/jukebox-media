@@ -2106,173 +2106,7 @@ export default function Home() {
 
 const servicesData = [
   {
-    title: "Performance Marketing",
-    description:
-      "Paid ads across Meta, Google and YouTube focused on leads and revenue growth.",
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Funnel Strategy & CRO",
-    description:
-      "High-converting landing pages and optimization to improve lead and sales conversions.",
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 3c-1.2 0-2.4 0-3.6.48a6 6 0 00-3.8 5.64v2.76c0 .72.24 1.4.67 1.97l4.06 5.4c.43.57.67 1.25.67 1.97v1.03a1.5 1.5 0 002.4 1.2l1.2-.9a1.5 1.5 0 00.6-1.2v-1.13c0-.72.24-1.4.67-1.97l4.06-5.4a3.25 3.25 0 00.67-1.97V9.12a6 6 0 00-3.8-5.64A12 12 0 0012 3z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Creative Strategy & Ads",
-    description: "Ad creatives, copywriting, messaging and campaign creatives.",
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Analytics & Tracking",
-    description: "Pixel setup, conversion tracking and reporting dashboards.",
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v5.25c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 013 18.375v-5.25zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125v-9.75zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v14.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Growth Consulting",
-    description:
-      "Strategic guidance for scaling marketing and revenue systems.",
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Marketing Automation & CRM",
-    description:
-      "Automated follow-ups, WhatsApp/email journeys, and CRM setup to convert more leads and retain customers.",
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.656 48.656 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3M3 12c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M3 12l-3 3m3-3l3 3"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Brand Storytelling",
-    description:
-      "We uncover your brand's core narrative and weave it into every touchpoint — turning facts into feelings that resonate.",
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Personal Branding",
-    description:
-      "Position yourself as a thought leader. We architect your digital identity to build trust, authority, and influence.",
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Strategy",
+    title: "Brand Strategy",
     description:
       "Data-backed growth blueprints. We map your audience, channels, and messaging into a cohesive system that scales.",
     icon: (props: React.SVGProps<SVGSVGElement>) => (
@@ -2314,6 +2148,132 @@ const servicesData = [
           strokeLinecap="round"
           strokeLinejoin="round"
           d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Brand Storytelling",
+    description:
+      "We uncover your brand's core narrative and weave it into every touchpoint — turning facts into feelings that resonate.",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Performance Marketing",
+    description:
+      "Paid ads across Meta, Google and YouTube focused on leads and revenue growth.",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Personal Branding",
+    description:
+      "Position yourself as a thought leader. We architect your digital identity to build trust, authority, and influence.",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Creative Advertising",
+    description:
+      "Ad creatives, copywriting, messaging and campaign creatives engineered for high conversion rates.",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Celebrity Endorsements & Influencer Marketing",
+    description:
+      "Connecting your brand with key creators, public figures, and digital personalities to build trust and scale cultural relevance.",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Branded Content",
+    description:
+      "Intellectual property, episodic series, podcast productions and customized brand-integrations designed to engage.",
+    icon: (props: React.SVGProps<SVGSVGElement>) => (
+      <svg
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 3c-1.2 0-2.4 0-3.6.48a6 6 0 00-3.8 5.64v2.76c0 .72.24 1.4.67 1.97l4.06 5.4c.43.57.67 1.25.67 1.97v1.03a1.5 1.5 0 002.4 1.2l1.2-.9a1.5 1.5 0 00.6-1.2v-1.13c0-.72.24-1.4.67-1.97l4.06-5.4a3.25 3.25 0 00.67-1.97V9.12a6 6 0 00-3.8-5.64A12 12 0 0012 3z"
         />
       </svg>
     ),
@@ -4083,25 +4043,21 @@ const MarketingAutomationOverlay = () => {
 const ActiveMockup = ({ index }: { index: number }) => {
   switch (index) {
     case 0:
-      return <PerformanceMarketingMockup />;
-    case 1:
-      return <FunnelCroMockup />;
-    case 2:
-      return <CreativeStrategyMockup />;
-    case 3:
-      return <AnalyticsTrackingMockup />;
-    case 4:
-      return <GrowthConsultingMockup />;
-    case 5:
-      return <MarketingAutomationMockup />;
-    case 6:
-      return <BrandStorytellingMockup />;
-    case 7:
-      return <PersonalBrandingMockup />;
-    case 8:
       return <StrategyMockup />;
-    case 9:
+    case 1:
       return <ContentCreationMockup />;
+    case 2:
+      return <BrandStorytellingMockup />;
+    case 3:
+      return <PerformanceMarketingMockup />;
+    case 4:
+      return <PersonalBrandingMockup />;
+    case 5:
+      return <CreativeStrategyMockup />;
+    case 6:
+      return <GrowthConsultingMockup />;
+    case 7:
+      return <MarketingAutomationMockup />;
     default:
       return null;
   }
@@ -4110,25 +4066,21 @@ const ActiveMockup = ({ index }: { index: number }) => {
 const ActiveOverlay = ({ index }: { index: number }) => {
   switch (index) {
     case 0:
-      return <PerformanceMarketingOverlay />;
-    case 1:
-      return <FunnelCroOverlay />;
-    case 2:
-      return <CreativeStrategyOverlay />;
-    case 3:
-      return <AnalyticsTrackingOverlay />;
-    case 4:
-      return <GrowthConsultingOverlay />;
-    case 5:
-      return <MarketingAutomationOverlay />;
-    case 6:
-      return <BrandStorytellingOverlay />;
-    case 7:
-      return <PersonalBrandingOverlay />;
-    case 8:
       return <StrategyOverlay />;
-    case 9:
+    case 1:
       return <ContentCreationOverlay />;
+    case 2:
+      return <BrandStorytellingOverlay />;
+    case 3:
+      return <PerformanceMarketingOverlay />;
+    case 4:
+      return <PersonalBrandingOverlay />;
+    case 5:
+      return <CreativeStrategyOverlay />;
+    case 6:
+      return <GrowthConsultingOverlay />;
+    case 7:
+      return <MarketingAutomationOverlay />;
     default:
       return null;
   }
