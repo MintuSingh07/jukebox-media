@@ -2109,14 +2109,18 @@ export default function Home() {
                     {/* Call Icon link */}
                     <a
                       href="tel:+919998526134"
-                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f] hover:bg-[#f6861f] transition-all duration-300"
-                      title="Call"
+                      className="group w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f]/50 hover:bg-[#f6861f]/10 hover:shadow-[0_0_20px_rgba(246,134,31,0.25)] hover:scale-110 transition-all duration-300"
                     >
                       <svg
-                        className="w-5 h-5 fill-current"
+                        className="w-5.5 h-5.5 text-white/70 group-hover:text-[#f6861f] transition-colors duration-300"
                         viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        <path d="M6.62 10.79a15.09 15.09 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27 11.36 11.36 0 004.28 1.01 1 1 0 011 1v3.5a1 1 0 01-1 1A16 16 0 013 3a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 001.01 4.28 1 1 0 01-.27 1.11z" />
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                       </svg>
                     </a>
                     {/* WhatsApp Icon link */}
@@ -2124,19 +2128,19 @@ export default function Home() {
                       href="https://wa.me/919998526134"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f] hover:bg-[#f6861f] transition-all duration-300"
-                      title="WhatsApp"
+                      className="group w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#25D366]/50 hover:bg-[#25D366]/10 hover:shadow-[0_0_20px_rgba(37,211,102,0.25)] hover:scale-110 transition-all duration-300"
                     >
                       <svg
-                        className="w-5 h-5 fill-current"
+                        className="w-5.5 h-5.5 text-white/70 group-hover:text-[#25D366] transition-colors duration-300"
                         viewBox="0 0 24 24"
+                        fill="currentColor"
                       >
-                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.59 1.978 14.12 .951 11.487.951c-5.438 0-9.863 4.373-9.867 9.801-.002 1.77.472 3.497 1.372 5.029L1.93 20.354l4.717-1.2zm12.352-5.392c-.33-.165-1.951-.963-2.253-1.074-.302-.11-.522-.165-.742.165-.22.33-.852 1.074-1.044 1.293-.193.22-.385.247-.715.082-.33-.165-1.393-.513-2.653-1.637-.98-.874-1.64-1.953-1.832-2.282-.193-.33-.02-.508.145-.671.148-.147.33-.385.495-.578.165-.192.22-.33.33-.55.11-.22.055-.412-.028-.577-.082-.165-.742-1.787-1.018-2.453-.269-.646-.543-.558-.742-.569-.192-.01-.412-.012-.632-.012s-.577.082-.88.412c-.302.33-1.155 1.127-1.155 2.75s1.183 3.19 1.348 3.41c.165.22 2.328 3.555 5.64 4.987.788.34 1.405.544 1.884.697.79.25 1.512.215 2.08.13.634-.096 1.951-.798 2.225-1.568.275-.77.275-1.43.193-1.568-.083-.138-.303-.22-.633-.385z" />
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.456h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                       </svg>
                     </a>
                     <a
                       href="tel:+919998526134"
-                      className="text-[15px] font-bold text-white hover:text-[#f6861f] transition-all select-none"
+                      className="text-[15px] font-bold text-white hover:text-[#f6861f] transition-all duration-300 select-none"
                     >
                       +91-9998526134
                     </a>
@@ -2156,37 +2160,69 @@ export default function Home() {
                     name: "Instagram",
                     icon: (
                       <svg
-                        className="w-5 h-5 fill-current"
+                        className="w-5.5 h-5.5 text-white/70 group-hover:text-[#E1306C] transition-colors duration-300"
                         viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                       </svg>
                     ),
                     url: "https://instagram.com/jukeboxmedia.in",
+                    hoverBorder: "hover:border-[#E1306C]/50",
+                    hoverBg: "hover:bg-[#E1306C]/10",
+                    hoverShadow: "hover:shadow-[0_0_20px_rgba(225,48,108,0.25)]",
+                    textColor: "group-hover:text-[#E1306C]",
                   },
                   {
                     name: "LinkedIn",
                     icon: (
                       <svg
-                        className="w-5 h-5 fill-current"
+                        className="w-5.5 h-5.5 text-white/70 group-hover:text-[#0077B5] transition-colors duration-300"
                         viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v14c0-2.761-2.238-5-5-5zm-11.75 20h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
                       </svg>
                     ),
                     url: "https://linkedin.com/company/jukebox-media",
+                    hoverBorder: "hover:border-[#0077B5]/50",
+                    hoverBg: "hover:bg-[#0077B5]/10",
+                    hoverShadow: "hover:shadow-[0_0_20px_rgba(0,119,181,0.25)]",
+                    textColor: "group-hover:text-[#0077B5]",
                   },
                   {
                     name: "YouTube",
                     icon: (
                       <svg
-                        className="w-5 h-5 fill-current"
+                        className="w-5.5 h-5.5 text-white/70 group-hover:text-[#FF0000] transition-colors duration-300"
                         viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        <path d="M23.498 6.163c-.274-.997-1.07-1.788-2.081-2.057C19.538 3.593 12 3.593 12 3.593s-7.538 0-9.417.513c-1.011.269-1.807 1.06-2.081 2.057C.003 8.007 0 12 0 12s.003 3.993.502 5.837c.274 1.002 1.07 1.793 2.081 2.06 1.879.51 9.417.51 9.417.51s7.538 0 9.417-.51c1.011-.267 1.807-1.058 2.081-2.06.499-1.844.502-5.837.502-5.837s-.003-3.993-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
                       </svg>
                     ),
                     url: "https://youtube.com",
+                    hoverBorder: "hover:border-[#FF0000]/50",
+                    hoverBg: "hover:bg-[#FF0000]/10",
+                    hoverShadow: "hover:shadow-[0_0_20px_rgba(255,0,0,0.25)]",
+                    textColor: "group-hover:text-[#FF0000]",
                   },
                 ].map((social, index) => (
                   <a
@@ -2194,12 +2230,12 @@ export default function Home() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300"
+                    className="group flex items-center gap-3 text-[14px] font-semibold text-white/70 hover:text-white transition-all duration-300"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f] hover:bg-[#f6861f] transition-all duration-300">
+                    <div className={`w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 transition-all duration-300 hover:scale-110 ${social.hoverBorder} ${social.hoverBg} ${social.hoverShadow}`}>
                       {social.icon}
                     </div>
-                    <span>{social.name}</span>
+                    <span className={`transition-colors duration-300 ${social.textColor}`}>{social.name}</span>
                   </a>
                 ))}
               </div>
