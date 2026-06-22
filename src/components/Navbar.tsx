@@ -234,11 +234,11 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
           />
           {[
             { name: "Home", id: "home" },
+            { name: "About", id: "about" },
             { name: "Problem", id: "problem" },
             { name: "Solution", id: "service" },
             { name: "Process", id: "blueprint" },
             { name: "Sectors", id: "industries" },
-            { name: "About", id: "about" },
             { name: "Results", id: "testimonial" },
             { name: "Pricing", id: "pricing" },
           ].map((item) => {
@@ -526,11 +526,11 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             <nav className="flex flex-col gap-4">
               {[
                 { name: "Home", id: "home" },
+                { name: "About", id: "about" },
                 { name: "Problem", id: "problem" },
                 { name: "Solution", id: "service" },
                 { name: "Process", id: "blueprint" },
                 { name: "Sectors", id: "industries" },
-                { name: "About", id: "about" },
                 { name: "Results", id: "testimonial" },
                 { name: "Pricing", id: "pricing" },
               ].map((item) => {

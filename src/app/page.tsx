@@ -6,6 +6,7 @@ import Grainient from "@/components/Grainient";
 import ScrollReveal from "@/components/ScrollReveal";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import Lenis from "lenis";
 import IrregularCampaignsVisual from "@/components/IrregularCampaignsVisual";
 import MultipleVendorChaosVisual from "@/components/MultipleVendorChaosVisual";
@@ -15,8 +16,10 @@ import UnclearROIVisual from "@/components/UnclearROIVisual";
 import LogoWall from "@/components/LogoWall";
 import TestimonialsEditorial from "@/components/ui/editorial-testimonial";
 
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
+// Register ScrollTrigger and DrawSVG plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+}
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -169,11 +172,11 @@ export default function Home() {
 
       const trackSections = [
         "home",
+        "about",
         "problem",
         "service",
         "blueprint",
         "industries",
-        "about",
         "testimonial",
         "pricing",
       ];
@@ -189,12 +192,12 @@ export default function Home() {
       });
 
       const scrollSections = [
+        "about",
         "blank",
         "problem",
         "service",
         "blueprint",
         "industries",
-        "about",
         "testimonial",
       ];
 
@@ -230,6 +233,14 @@ export default function Home() {
           start: "top 95%",
         },
         {
+          id: "about",
+          selectors: [
+            "#about .about-bio-content > *",
+            "#about .about-card",
+          ],
+          start: "top 78%",
+        },
+        {
           id: "problem",
           selectors: ["#problem .text-center > *", "#problem .grid > div"],
           start: "top 78%",
@@ -251,6 +262,7 @@ export default function Home() {
             "#blueprint .md\\:hidden .text-center > *",
             "#blueprint div.max-w-\\[310px\\]",
             "#blueprint .left-\\[45\\%\\] > span",
+            "#blueprint .arrow-container",
           ],
           start: "top 78%",
         },
@@ -260,17 +272,6 @@ export default function Home() {
             "#industries .text-center > *",
             "#industries .grid > div",
             "#industries > div > div:nth-child(3)",
-          ],
-          start: "top 78%",
-        },
-        {
-          id: "about",
-          selectors: [
-            "#about > div > div:nth-child(1) > div:first-child > *",
-            "#about > div > div:nth-child(1) > div:last-child",
-            "#about > div > div:nth-child(2)",
-            "#about > div > div:nth-child(3) > div:first-child > *",
-            "#about > div > div:nth-child(3) > div:last-child",
           ],
           start: "top 78%",
         },
@@ -328,6 +329,29 @@ export default function Home() {
                     ease: "power2.out",
                     overwrite: "auto",
                   });
+                  if (sec.id === "blueprint") {
+                    // Trigger arrow drawing animation via DrawSVGPlugin!
+                    gsap.fromTo(".arrow-path-new", 
+                      { drawSVG: "0%" },
+                      { 
+                        drawSVG: "100%", 
+                        duration: 1.6, 
+                        ease: "power2.inOut", 
+                        delay: 0.2,
+                        onComplete: () => {
+                          // Start floating loop animation after drawing is complete
+                          gsap.to(".arrow-svg", {
+                            y: -5,
+                            scale: 1.02,
+                            duration: 2,
+                            yoyo: true,
+                            repeat: -1,
+                            ease: "sine.inOut"
+                          });
+                        }
+                      }
+                    );
+                  }
                 },
                 once: true,
               });
@@ -665,6 +689,104 @@ export default function Home() {
         </div>
       </div>
 
+      {/* About Section */}
+      <div
+        id="about"
+        className="relative z-20 w-full bg-[#161443] text-white pt-20 pb-10 flex flex-col items-center overflow-hidden"
+      >
+        {/* Grid pattern & soft ambient spotlights */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div
+            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background:
+                "radial-gradient(circle at top right, rgba(246, 134, 31, 0.1) 0%, rgba(246, 134, 31, 0) 70%)",
+            }}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
+            style={{
+              background:
+                "radial-gradient(circle at bottom left, rgba(22, 20, 67, 0.05) 0%, rgba(22, 20, 67, 0) 70%)",
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+          {/* Leadership and Background block */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Column: Bio Card (col-span 7) */}
+            <div className="about-bio-content lg:col-span-7 flex flex-col justify-center select-none">
+              <span className="about-title text-[16px] sm:text-[18px] md:text-[20px] font-light text-[#f6861f] tracking-wide leading-tight mb-1">
+                The force behind Jukebox
+              </span>
+              <h3 className="text-[32px] sm:text-[40px] font-bold tracking-tight mt-1 text-white">
+                Ankit Jani
+              </h3>
+              <p className="text-[12px] sm:text-[14px] font-semibold text-white/50 tracking-[0.15em] uppercase mt-1.5">
+                Business Head
+              </p>
+              <p className="text-[15px] sm:text-[16px] text-white/90 mt-5 leading-relaxed max-w-2xl font-light">
+                Background across media, marketing exposure and client
+                partnerships, having worked closely with businesses and brands
+                on communication, campaigns and market visibility.
+              </p>
+
+              <div className="mt-6 border-l-2 border-[#f6861f] pl-4">
+                <span className="text-[12px] text-white font-bold uppercase tracking-wider block mb-4">
+                  Focus today:
+                </span>
+                <p className="text-[14px] text-white/80 leading-relaxed mt-1 font-light">
+                  Bringing structure and clarity to marketing, backed by
+                  extensive cross-platform experience across Print, Radio,
+                  Television, YouTube, Zee5, SonyLiv, Hotstar, Netflix, along
+                  with expertise in Brand Solutions.
+                </p>
+              </div>
+
+              <p className="text-[15px] sm:text-[16px] text-white/90 mt-6 leading-relaxed max-w-2xl font-light">
+                Ankit plays an instrumental role at Jukebox Media, helping
+                businesses transform scattered marketing efforts into focused,
+                consistent strategies aligned with their broader business
+                objectives and built to deliver measurable impact.
+              </p>
+            </div>
+
+            {/* Right Column: Profile Image + Media Houses Logos (col-span 5) */}
+            <div className="about-card lg:col-span-5 bg-white/10 border border-white/15 rounded-3xl p-6 flex flex-col justify-between items-center shadow-lg relative overflow-hidden backdrop-blur-sm select-none">
+              {/* Profile image container */}
+              <div className="relative h-28 w-28 rounded-full border-2 border-white overflow-hidden mb-6 flex items-center justify-center bg-brand-navy shadow-lg shrink-0">
+                <img
+                  src="/ankit.jpeg"
+                  alt="Ankit Jani"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+
+              {/* Media Network Icons/badges Row */}
+              <div className="grid grid-cols-5 gap-2.5 w-full items-center justify-items-center opacity-70">
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  SONY
+                </div>
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  ZEE5
+                </div>
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  VIACOM18
+                </div>
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  TIMES
+                </div>
+                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
+                  MIRCHI
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Blank Section replacing Trusted By Strip */}
       <section
         id="blank"
@@ -936,7 +1058,7 @@ export default function Home() {
       {/* Growth Architecture Section (Process) */}
       <div
         id="blueprint"
-        className="relative z-20 w-full bg-[#f8fafc] text-brand-navy py-28 flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-[#f8fafc] text-brand-navy pt-28 pb-44 flex flex-col items-center select-none overflow-hidden"
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.06] z-0"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -957,7 +1079,7 @@ export default function Home() {
         </div>
 
         {/* Desktop Absolute Layout (>= md) */}
-        <div className="relative w-full max-w-5xl h-[1350px] hidden md:block z-10">
+        <div className="relative w-full max-w-5xl h-[1500px] hidden md:block z-10">
           {/* Header block on left */}
           <div className="absolute left-[6%] top-[4%] max-w-md">
             <ScrollReveal
@@ -970,24 +1092,21 @@ export default function Home() {
               Our structured operational framework is engineered to align,
               optimize, and scale your brand's digital presence systematically.
             </p>
+          </div>
 
-            {/* Cute cursive loop arrow pointing towards the first card */}
+          {/* Elegant animated Arrow.svg pointing towards Card 2 */}
+          <div className="absolute left-[14%] top-[27%] w-[104px] h-[118px] pointer-events-none z-20 hidden md:block opacity-0 arrow-container">
             <svg
-              className="w-14 h-14 text-brand-orange mt-6 ml-12 opacity-80 animate-pulse-subtle"
-              viewBox="0 0 100 100"
+              className="w-full h-full text-brand-orange arrow-svg"
+              viewBox="0 0 104 118"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M20,20 C40,20 60,30 70,50 C75,60 70,70 60,75 C55,78 45,72 50,60 C52,55 60,55 65,58 L75,65"
+                className="arrow-path-new"
+                d="M2.00055 2.00049C13.5145 32.2345 44.808 86.4705 81.4705 68.5655C106.502 56.3415 87.3695 29.406 60.502 43.8415C33.6345 58.277 41.5235 109.891 100.994 104.901M88.658 115.218L100.994 104.901L93.0105 95.8525"
                 stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-              <path
-                d="M68,52 L78,65 L60,68"
-                stroke="currentColor"
-                strokeWidth="3"
+                strokeWidth="4"
                 strokeLinecap="round"
               />
             </svg>
@@ -1356,101 +1475,6 @@ export default function Home() {
                   {industry}
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* About Section */}
-      <div
-        id="about"
-        className="relative z-20 w-full bg-[#161443] text-white pt-20 pb-10 flex flex-col items-center overflow-hidden"
-      >
-        {/* Grid pattern & soft ambient spotlights */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0 pointer-events-none"></div>
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div
-            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
-            style={{
-              background:
-                "radial-gradient(circle at top right, rgba(246, 134, 31, 0.1) 0%, rgba(246, 134, 31, 0) 70%)",
-            }}
-          />
-          <div
-            className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
-            style={{
-              background:
-                "radial-gradient(circle at bottom left, rgba(22, 20, 67, 0.05) 0%, rgba(22, 20, 67, 0) 70%)",
-            }}
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          {/* Leadership and Background block */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Bio Card (col-span 7) */}
-            <div className="lg:col-span-7 flex flex-col justify-center select-none">
-              <h3 className="text-[32px] sm:text-[40px] font-bold tracking-tight mt-3 text-white">
-                Ankit Jani
-              </h3>
-              <p className="text-[14px] sm:text-[16px] font-bold text-[#f6861f] tracking-[0.1em] uppercase mt-1">
-                Business Head
-              </p>
-              <p className="text-[15px] sm:text-[16px] text-white/90 mt-5 leading-relaxed max-w-2xl font-light">
-                Background across media, marketing exposure and client
-                partnerships, having worked closely with businesses and brands
-                on communication, campaigns and market visibility.
-              </p>
-
-              <div className="mt-6 border-l-2 border-[#f6861f] pl-4">
-                <span className="text-[12px] text-white font-bold uppercase tracking-wider block mb-4">
-                  Focus today:
-                </span>
-                <p className="text-[14px] text-white/80 leading-relaxed mt-1 font-light">
-                  Bringing structure and clarity to marketing, backed by
-                  extensive cross-platform experience across Print, Radio,
-                  Television, YouTube, Zee5, SonyLiv, Hotstar, Netflix, along
-                  with expertise in Brand Solutions.
-                </p>
-              </div>
-
-              <p className="text-[15px] sm:text-[16px] text-white/90 mt-6 leading-relaxed max-w-2xl font-light">
-                Ankit plays an instrumental role at Jukebox Media, helping
-                businesses transform scattered marketing efforts into focused,
-                consistent strategies aligned with their broader business
-                objectives and built to deliver measurable impact.
-              </p>
-            </div>
-
-            {/* Right Column: Profile Image + Media Houses Logos (col-span 5) */}
-            <div className="lg:col-span-5 bg-white/10 border border-white/15 rounded-3xl p-6 flex flex-col justify-between items-center shadow-lg relative overflow-hidden backdrop-blur-sm select-none">
-              {/* Profile image container */}
-              <div className="relative h-28 w-28 rounded-full border-2 border-white overflow-hidden mb-6 flex items-center justify-center bg-brand-navy shadow-lg shrink-0">
-                <img
-                  src="/ankit.jpeg"
-                  alt="Ankit Jani"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              {/* Media Network Icons/badges Row */}
-              <div className="grid grid-cols-5 gap-2.5 w-full items-center justify-items-center opacity-70">
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  SONY
-                </div>
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  ZEE5
-                </div>
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  VIACOM18
-                </div>
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  TIMES
-                </div>
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  MIRCHI
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -1962,9 +1986,9 @@ export default function Home() {
               <ul className="flex flex-col gap-3">
                 {[
                   { name: "Home", id: "#home" },
+                  { name: "About", id: "#about" },
                   { name: "Works", id: "#testimonial" },
                   { name: "Services", id: "#service" },
-                  { name: "About", id: "#about" },
                   { name: "Pricing", id: "#pricing" },
                   { name: "Contact us", id: "contact" },
                 ].map((link, idx) => (
