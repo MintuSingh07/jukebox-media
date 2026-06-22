@@ -666,17 +666,13 @@ export default function Home() {
                       onClick={() => scrollToSection("service")}
                       className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer"
                     >
-                      Our Services
+                      Brand Film
                     </button>
                     <button
-                      onClick={() => {
-                        window.dispatchEvent(
-                          new CustomEvent("openContactForm"),
-                        );
-                      }}
+                      onClick={() => scrollToSection("pricing")}
                       className="lets-talk-btn group px-7 py-3.5 text-[15px] font-semibold text-brand-navy bg-white rounded-full shadow-premium flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 cursor-pointer"
                     >
-                      Let's Build Together{" "}
+                      Pricing{" "}
                       <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 text-brand-navy">
                         →
                       </span>
@@ -1619,9 +1615,14 @@ export default function Home() {
                   </div>
                 </div>
 
-                <button className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase">
+                <a
+                  href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Starter plan.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                >
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
 
@@ -1695,9 +1696,14 @@ export default function Home() {
                   </div>
                 </div>
 
-                <button className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase">
+                <a
+                  href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Growth plan.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                >
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
 
@@ -1799,9 +1805,14 @@ export default function Home() {
                   </div>
                 </div>
 
-                <button className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase">
+                <a
+                  href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Retainer plan.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                >
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
 
@@ -1880,9 +1891,14 @@ export default function Home() {
                   </div>
                 </div>
 
-                <button className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase">
+                <a
+                  href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Performance plan.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                >
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -1974,150 +1990,230 @@ export default function Home() {
       {/* Footer Section */}
       <footer className="w-full bg-[#161443] py-20 px-6 sm:px-12 md:px-16 flex justify-center border-t border-white/10 relative z-30">
         <div className="max-w-[1600px] w-full flex flex-col justify-between text-white relative">
-          {/* Top Row: Links, Contact, Address */}
+          {/* Top Row: Navigation/Legal, Contact, Follow Us */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start">
-            {/* Left Column: Navigation links */}
-            <div className="flex flex-col gap-4 text-left">
-              <ul className="flex flex-col gap-3">
-                {[
-                  { name: "Home", id: "#home" },
-                  { name: "About", id: "#about" },
-                  { name: "Works", id: "#testimonial" },
-                  { name: "Services", id: "#service" },
-                  { name: "Pricing", id: "#pricing" },
-                  { name: "Contact us", id: "contact" },
-                ].map((link, idx) => (
-                  <li key={idx}>
-                    {link.id === "contact" ? (
-                      <button
-                        onClick={() =>
-                          window.dispatchEvent(
-                            new CustomEvent("openContactForm"),
-                          )
-                        }
-                        className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300 cursor-pointer text-left"
-                      >
-                        {link.name}
-                      </button>
-                    ) : (
-                      <a
-                        href={link.id}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if ((window as any).lenis)
-                            (window as any).lenis.scrollTo(link.id);
-                        }}
-                        className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300 cursor-pointer"
-                      >
-                        {link.name}
-                      </a>
-                    )}
+            {/* Left Column: Navigation & Legal links */}
+            <div className="flex flex-col gap-8 text-left">
+              <div>
+                <span className="text-[15px] font-bold text-white uppercase tracking-wider block mb-4 select-none">
+                  Explore
+                </span>
+                <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
+                  {[
+                    { name: "Home", id: "#home" },
+                    { name: "About", id: "#about" },
+                    { name: "Works", id: "#testimonial" },
+                    { name: "Services", id: "#service" },
+                    { name: "Pricing", id: "#pricing" },
+                    { name: "Contact us", id: "contact" },
+                  ].map((link, idx) => (
+                    <li key={idx}>
+                      {link.id === "contact" ? (
+                        <button
+                          onClick={() =>
+                            window.dispatchEvent(
+                              new CustomEvent("openContactForm"),
+                            )
+                          }
+                          className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300 cursor-pointer text-left"
+                        >
+                          {link.name}
+                        </button>
+                      ) : (
+                        <a
+                          href={link.id}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if ((window as any).lenis)
+                              (window as any).lenis.scrollTo(link.id);
+                          }}
+                          className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300 cursor-pointer"
+                        >
+                          {link.name}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <span className="text-[15px] font-bold text-white uppercase tracking-wider block mb-4 select-none">
+                  Legal
+                </span>
+                <ul className="flex flex-col gap-2">
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => e.preventDefault()}
+                      className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300"
+                    >
+                      Privacy Policy
+                    </a>
                   </li>
-                ))}
-              </ul>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => e.preventDefault()}
+                      className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300"
+                    >
+                      Terms & Conditions
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      onClick={(e) => e.preventDefault()}
+                      className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300"
+                    >
+                      Cookie Policy
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* Middle Column: Contact Us */}
-            <div className="flex flex-col items-center gap-4 text-center">
-              <span className="text-[15px] font-bold text-white select-none">
+            <div className="flex flex-col gap-4 text-left">
+              <span className="text-[15px] font-bold text-white uppercase tracking-wider block mb-1 select-none">
                 Contact Us
               </span>
-              <div className="flex flex-col gap-1.5 mt-2">
-                <a
-                  href="mailto:connect@jukeboxmedia.in"
-                  className="text-[14px] font-semibold text-white/80 hover:text-[#f6861f] transition-all duration-300"
-                >
-                  connect@jukeboxmedia.in
-                </a>
-                <a
-                  href="tel:+919998526134"
-                  className="text-[14px] font-semibold text-white/60 hover:text-[#f6861f] transition-all duration-300 select-none"
-                >
-                  +91-9998526134
-                </a>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <h4 className="text-[18px] font-black text-white select-none">
+                    Jukebox Media
+                  </h4>
+                  <p className="text-[11px] text-white/40 font-medium select-none mt-0.5">
+                    CIN: U73100GJ2025PTC171031
+                  </p>
+                </div>
+                <div className="flex flex-col gap-1.5 select-none">
+                  <span className="text-[12px] text-white/40 uppercase tracking-wider block">eMail</span>
+                  <a
+                    href="mailto:connect@jukeboxmedia.in"
+                    className="text-[14px] font-semibold text-white/80 hover:text-[#f6861f] transition-all duration-300"
+                  >
+                    connect@jukeboxmedia.in
+                  </a>
+                </div>
+                <div className="flex flex-col gap-1 select-none">
+                  <span className="text-[12px] text-white/40 uppercase tracking-wider block">Location</span>
+                  <p className="text-[14px] font-semibold text-white/85">
+                    Operating Globally | Based in India
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2 mt-1">
+                  <span className="text-[12px] text-white/40 uppercase tracking-wider block select-none">Call/WhatsApp</span>
+                  <div className="flex items-center gap-3">
+                    {/* Call Icon link */}
+                    <a
+                      href="tel:+919998526134"
+                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f] hover:bg-[#f6861f] transition-all duration-300"
+                      title="Call"
+                    >
+                      <svg
+                        className="w-5 h-5 fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M6.62 10.79a15.09 15.09 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27 11.36 11.36 0 004.28 1.01 1 1 0 011 1v3.5a1 1 0 01-1 1A16 16 0 013 3a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 001.01 4.28 1 1 0 01-.27 1.11z" />
+                      </svg>
+                    </a>
+                    {/* WhatsApp Icon link */}
+                    <a
+                      href="https://wa.me/919998526134"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f] hover:bg-[#f6861f] transition-all duration-300"
+                      title="WhatsApp"
+                    >
+                      <svg
+                        className="w-5 h-5 fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.59 1.978 14.12 .951 11.487.951c-5.438 0-9.863 4.373-9.867 9.801-.002 1.77.472 3.497 1.372 5.029L1.93 20.354l4.717-1.2zm12.352-5.392c-.33-.165-1.951-.963-2.253-1.074-.302-.11-.522-.165-.742.165-.22.33-.852 1.074-1.044 1.293-.193.22-.385.247-.715.082-.33-.165-1.393-.513-2.653-1.637-.98-.874-1.64-1.953-1.832-2.282-.193-.33-.02-.508.145-.671.148-.147.33-.385.495-.578.165-.192.22-.33.33-.55.11-.22.055-.412-.028-.577-.082-.165-.742-1.787-1.018-2.453-.269-.646-.543-.558-.742-.569-.192-.01-.412-.012-.632-.012s-.577.082-.88.412c-.302.33-1.155 1.127-1.155 2.75s1.183 3.19 1.348 3.41c.165.22 2.328 3.555 5.64 4.987.788.34 1.405.544 1.884.697.79.25 1.512.215 2.08.13.634-.096 1.951-.798 2.225-1.568.275-.77.275-1.43.193-1.568-.083-.138-.303-.22-.633-.385z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="tel:+919998526134"
+                      className="text-[15px] font-bold text-white hover:text-[#f6861f] transition-all select-none"
+                    >
+                      +91-9998526134
+                    </a>
+                  </div>
+                </div>
               </div>
+            </div>
 
-              {/* Social Media Badges */}
-              <div className="flex gap-3 mt-4">
+            {/* Right Column: Follow Us */}
+            <div className="flex flex-col gap-4 text-left">
+              <span className="text-[15px] font-bold text-white uppercase tracking-wider block mb-1 select-none">
+                Follow Us
+              </span>
+              <div className="flex flex-col gap-4">
                 {[
                   {
+                    name: "Instagram",
                     icon: (
                       <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
+                        className="w-5 h-5 fill-current"
                         viewBox="0 0 24 24"
                       >
-                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                       </svg>
                     ),
-                    url: "https://linkedin.com",
+                    url: "https://instagram.com/jukeboxmedia.in",
                   },
                   {
+                    name: "LinkedIn",
                     icon: (
                       <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
+                        className="w-5 h-5 fill-current"
                         viewBox="0 0 24 24"
                       >
-                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6m12.4 2.75a.75.75 0 0 1-.75.75.75.75 0 0 1-.75-.75.75.75 0 0 1 .75-.75.75.75 0 0 1 .75.75M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v14c0-2.761-2.238-5-5-5zm-11.75 20h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
                     ),
-                    url: "https://instagram.com",
+                    url: "https://linkedin.com/company/jukebox-media",
                   },
-                ].map((badge, index) => (
+                  {
+                    name: "YouTube",
+                    icon: (
+                      <svg
+                        className="w-5 h-5 fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M23.498 6.163c-.274-.997-1.07-1.788-2.081-2.057C19.538 3.593 12 3.593 12 3.593s-7.538 0-9.417.513c-1.011.269-1.807 1.06-2.081 2.057C.003 8.007 0 12 0 12s.003 3.993.502 5.837c.274 1.002 1.07 1.793 2.081 2.06 1.879.51 9.417.51 9.417.51s7.538 0 9.417-.51c1.011-.267 1.807-1.058 2.081-2.06.499-1.844.502-5.837.502-5.837s-.003-3.993-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                      </svg>
+                    ),
+                    url: "https://youtube.com",
+                  },
+                ].map((social, index) => (
                   <a
                     key={index}
-                    href={badge.url}
+                    href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f] hover:bg-[#f6861f] transition-all duration-300 hover:-translate-y-0.5"
+                    className="flex items-center gap-3 text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300"
                   >
-                    {badge.icon}
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f] hover:bg-[#f6861f] transition-all duration-300">
+                      {social.icon}
+                    </div>
+                    <span>{social.name}</span>
                   </a>
                 ))}
               </div>
             </div>
-
-            {/* Right Column: Company Info */}
-            <div className="flex flex-col items-end gap-4 text-right">
-              <span className="text-[15px] font-bold text-white select-none">
-                Jukebox Media
-              </span>
-              <div className="text-[14px] font-semibold text-white/70 leading-relaxed mt-2 select-none">
-                <p>Operating Globally | Based in India</p>
-                <p className="text-white/40 mt-1 text-[12px] font-medium">
-                  CIN: U73100GJ2025PTC171031
-                </p>
-              </div>
-            </div>
           </div>
 
-          {/* Middle Row: Copyright & Legal */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center w-full text-[13px] text-white/50 font-medium select-none mt-20">
-            <div className="text-left">
+          {/* Copyright & Legal Row */}
+          <div className="border-t border-white/10 pt-8 mt-16 flex flex-col sm:flex-row justify-between items-center w-full text-[13px] text-white/50 font-medium select-none">
+            <div className="text-center sm:text-left">
               © {new Date().getFullYear()} Jukebox Media. All Rights Reserved.
             </div>
-            <div className="text-center">
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="hover:text-[#f6861f] transition-all duration-300"
-              >
-                Terms & Conditions
-              </a>
-            </div>
-            <div className="text-right">
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="hover:text-[#f6861f] transition-all duration-300"
-              >
-                Privacy Policy
-              </a>
+            <div className="flex gap-6 mt-4 sm:mt-0 text-center sm:text-right">
+              <p>Crafting High-Impact Digital Experiences</p>
             </div>
           </div>
-
-          {/* Bottom Row: Giant logo text removed */}
         </div>
       </footer>
     </>

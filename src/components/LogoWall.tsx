@@ -102,7 +102,6 @@ function LogoItem({
   return (
     <div
       className="flex items-center justify-center px-2 max-w-full"
-      title={name}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -144,7 +143,7 @@ export default function LogoWall() {
       {/* Section header */}
       <div className="text-center mb-8">
         <h2 className="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight">
-          Experience across brands
+        Leadership Experience Across Brands
         </h2>
       </div>
 
@@ -162,7 +161,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/unilever-logo.webp"
                   alt="Unilever"
-                  title="Unilever"
                   className="w-[102px] h-auto object-contain animate-logo-pop"
                 />
               </div>
@@ -173,7 +171,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/lakme.webp"
                   alt="Lakmé"
-                  title="Lakmé"
                   className="w-[80px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "60ms" }}
                 />
@@ -185,7 +182,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/vaseline.png"
                   alt="Vaseline"
-                  title="Vaseline"
                   className="w-[80px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "120ms" }}
                 />
@@ -197,7 +193,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/minimalist.png"
                   alt="Minimalist"
-                  title="Minimalist"
                   className="w-[85px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "180ms" }}
                 />
@@ -209,7 +204,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/surf-excel.webp"
                   alt="Surf Excel"
-                  title="Surf Excel"
                   className="w-[90px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "240ms" }}
                 />
@@ -221,7 +215,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/dove.png"
                   alt="Dove"
-                  title="Dove"
                   className="w-[68px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "300ms" }}
                 />
@@ -241,7 +234,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/reliance-industries.webp"
                     alt="Reliance Industries"
-                    title="Reliance Industries"
                     className="w-[108px] h-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "80ms" }}
                   />
@@ -253,7 +245,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/azorte.webp"
                     alt="Azorte"
-                    title="Azorte"
                     className="w-[85px] h-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "140ms" }}
                   />
@@ -265,7 +256,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/Ajio-Logo.webp"
                     alt="Ajio"
-                    title="Ajio"
                     className="w-[75px] h-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "200ms" }}
                   />
@@ -277,7 +267,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/reliance-digital.webp"
                     alt="Reliance Digital"
-                    title="Reliance Digital"
                     className="w-[85px] h-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "260ms" }}
                   />
@@ -289,7 +278,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/reliance-trends.webp"
                     alt="Reliance Trends"
-                    title="Reliance Trends"
                     className="w-[80px] h-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "320ms" }}
                   />
@@ -305,7 +293,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/mondelez-logo.png"
                     alt="Mondelēz International"
-                    title="Mondelēz International"
                     className="h-[30px] w-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "120ms" }}
                   />
@@ -317,7 +304,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/mondelez-dairy-milk.png"
                     alt="Cadbury Dairy Milk"
-                    title="Cadbury Dairy Milk"
                     className="h-[30px] w-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "180ms" }}
                   />
@@ -329,7 +315,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/mondelez-bournvita.png"
                     alt="Bournvita"
-                    title="Bournvita"
                     className="h-[42px] w-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "240ms" }}
                   />
@@ -341,7 +326,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/mondelez-bournville.png"
                     alt="Cadbury Bournville"
-                    title="Cadbury Bournville"
                     className="h-[37px] w-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "300ms" }}
                   />
@@ -393,7 +377,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/parle-logo.png"
                     alt="Parle"
-                    title="Parle"
                     className="h-[32px] w-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "140ms" }}
                   />
@@ -405,7 +388,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/parle-kismi.png"
                     alt="Kismi"
-                    title="Kismi"
                     className="h-[32px] w-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "200ms" }}
                   />
@@ -417,7 +399,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/parle-parleg.png"
                     alt="Parle-G"
-                    title="Parle-G"
                     className="h-[48px] w-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "260ms" }}
                   />
@@ -429,7 +410,6 @@ export default function LogoWall() {
                   <img
                     src="/brands/parle-hideseek.png"
                     alt="Hide & Seek"
-                    title="Hide & Seek"
                     className="h-[44px] w-auto object-contain animate-logo-pop"
                     style={{ animationDelay: "320ms" }}
                   />
@@ -447,7 +427,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/pg-logo.png"
                   alt="P&G"
-                  title="P&G"
                   className="w-[108px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "150ms" }}
                 />
@@ -459,7 +438,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/pg-tide.png"
                   alt="Tide"
-                  title="Tide"
                   className="w-[85px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "210ms" }}
                 />
@@ -471,7 +449,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/pg-whisper.png"
                   alt="Whisper"
-                  title="Whisper"
                   className="w-[140px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "270ms" }}
                 />
@@ -483,7 +460,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/pg-ariel.png"
                   alt="Ariel"
-                  title="Ariel"
                   className="w-[75px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "330ms" }}
                 />
@@ -495,7 +471,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/pg-gillette.png"
                   alt="Gillette"
-                  title="Gillette"
                   className="w-[98px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "390ms" }}
                 />
@@ -507,7 +482,6 @@ export default function LogoWall() {
                 <img
                   src="/brands/pg-olay.png"
                   alt="Olay"
-                  title="Olay"
                   className="w-[85px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "450ms" }}
                 />
