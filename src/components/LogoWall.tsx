@@ -52,17 +52,18 @@ interface LogoInfo {
   domain?: string;
   logoPath?: string;
   w: number;
+  h?: number;
 }
 
 const strip1Logos: LogoInfo[] = [
   { name: "Nexa", logoPath: "/brands/nexa.png", w: 140 },
-  { name: "Volkswagen", logoPath: "/brands/volkswagen.png", w: 60 },
+  { name: "Volkswagen", logoPath: "/brands/volkswagen.png", w: 80, h: 68 },
   { name: "Lodha", logoPath: "/brands/lodha.png", w: 210 },
   { name: "Kalpataru", logoPath: "/brands/kalpataru.png", w: 170 },
   { name: "Amul", logoPath: "/brands/amul.png", w: 125 },
   { name: "Netflix", logoPath: "/brands/netflix.png", w: 125 },
-  { name: "Sugar Cosmetics", logoPath: "/brands/sugar.png", w: 60 },
-  { name: "Hyundai", domain: "hyundai.com", w: 170 },
+  { name: "Sugar Cosmetics", logoPath: "/brands/sugar.png", w: 140 },
+  { name: "Hyundai", logoPath: "/brands/hyundai.png", w: 190 },
 ];
 
 const strip2Logos: LogoInfo[] = [
@@ -80,11 +81,13 @@ function LogoItem({
   name,
   domain,
   w,
+  h,
   logoPath,
 }: {
   name: string;
   domain?: string;
   w: number;
+  h?: number;
   logoPath?: string;
 }) {
   const src = logoPath || `https://logo.clearbit.com/${domain}?size=200`;
@@ -99,8 +102,9 @@ function LogoItem({
         src={src}
         alt={name}
         width={w}
-        height={48}
-        className="max-h-[40px] md:max-h-[48px] w-auto object-contain"
+        height={h || 48}
+        className={h ? "w-auto object-contain" : "max-h-[40px] md:max-h-[48px] w-auto object-contain"}
+        style={h ? { maxHeight: `${h}px` } : undefined}
         loading="lazy"
         onError={(e) => {
           // If logo fails, show text fallback
