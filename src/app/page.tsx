@@ -173,6 +173,7 @@ export default function Home() {
       const trackSections = [
         "home",
         "about",
+        "brands",
         "problem",
         "service",
         "blueprint",
@@ -193,7 +194,7 @@ export default function Home() {
 
       const scrollSections = [
         "about",
-        "blank",
+        "brands",
         "problem",
         "service",
         "blueprint",
@@ -560,7 +561,7 @@ export default function Home() {
           borderBottomLeftRadius: "32px",
           borderBottomRightRadius: "32px",
         }}
-        className="left-4 right-4 md:left-[8vw] md:right-[8vw] lg:left-[12vw] lg:right-[12vw] px-6 py-1.5 md:px-8 md:py-2 bg-white/[0.12] backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(22,20,67,0.08)]"
+        className="left-4 right-4 md:left-[4vw] md:right-[4vw] lg:left-[4vw] lg:right-[4vw] xl:left-[4vw] xl:right-[4vw] px-6 py-1.5 md:px-8 md:py-2 bg-white/[0.12] backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(22,20,67,0.08)]"
       />
       <div
         ref={containerRef}
@@ -785,7 +786,7 @@ export default function Home() {
 
       {/* Blank Section replacing Trusted By Strip */}
       <section
-        id="blank"
+        id="brands"
         className="relative z-20 w-full bg-white h-auto md:h-screen min-h-[600px] md:min-h-screen border-b border-brand-navy/[0.04] flex items-center justify-center py-16 md:py-0"
       >
         <LogoWall />

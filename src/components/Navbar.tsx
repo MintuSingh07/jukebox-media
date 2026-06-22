@@ -204,7 +204,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
 
   return (
     <header ref={ref} {...rest} className={`fixed z-50 ${className || ""}`}>
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
+      <div className="mx-auto flex max-w-[1550px] w-full items-center justify-between">
         {/* Logo */}
         <a
           href="/"
@@ -224,7 +224,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
         {/* Center Pill Navigation Dock */}
         <nav
           ref={navContainerRef}
-          className="relative hidden lg:flex items-center gap-0.5 rounded-full p-1 bg-brand-navy/[0.02]"
+          className="relative hidden xl:flex items-center gap-0.5 rounded-full p-1 bg-brand-navy/[0.02]"
         >
           {/* Sliding Active Bubble */}
           <div
@@ -234,13 +234,15 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
           />
           {[
             { name: "Home", id: "home" },
-            { name: "About", id: "about" },
-            { name: "Problem", id: "problem" },
-            { name: "Solution", id: "service" },
-            { name: "Process", id: "blueprint" },
-            { name: "Sectors", id: "industries" },
-            { name: "Results", id: "testimonial" },
+            { name: "Leadership", id: "about" },
+            { name: "Brands", id: "brands" },
+            { name: "Common Problem", id: "problem" },
+            { name: "Jukebox Method", id: "blueprint" },
+            { name: "Jukebox Solution", id: "service" },
+            { name: "Who we work with", id: "industries" },
+            { name: "Our Reviews", id: "testimonial" },
             { name: "Pricing", id: "pricing" },
+            { name: "Jukebox Brand Film", id: "brand-film" },
           ].map((item) => {
             const isActive = activeTab.toLowerCase() === item.id.toLowerCase();
             return (
@@ -460,7 +462,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
           {/* Hamburger toggle button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden relative flex flex-col justify-center items-center w-10 h-10 rounded-full border border-brand-navy/10 bg-white/80 shadow-premium cursor-pointer z-50 focus:outline-none"
+            className="xl:hidden relative flex flex-col justify-center items-center w-10 h-10 rounded-full border border-brand-navy/10 bg-white/80 shadow-premium cursor-pointer z-50 focus:outline-none"
             aria-label="Toggle mobile menu"
           >
             <div className="relative w-5 h-4">
@@ -479,7 +481,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
 
         {/* Mobile Navigation Drawer */}
         <div
-          className={`fixed inset-0 z-40 transition-all duration-500 lg:hidden ${
+          className={`fixed inset-0 z-40 transition-all duration-500 xl:hidden ${
             isMobileMenuOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
@@ -523,16 +525,18 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
               </div>
             </div>
 
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-3 overflow-y-auto max-h-[60vh] scrollbar-none">
               {[
                 { name: "Home", id: "home" },
-                { name: "About", id: "about" },
-                { name: "Problem", id: "problem" },
-                { name: "Solution", id: "service" },
-                { name: "Process", id: "blueprint" },
-                { name: "Sectors", id: "industries" },
-                { name: "Results", id: "testimonial" },
+                { name: "Leadership", id: "about" },
+                { name: "Brands", id: "brands" },
+                { name: "Common Problem", id: "problem" },
+                { name: "Jukebox Method", id: "blueprint" },
+                { name: "Jukebox Solution", id: "service" },
+                { name: "Who we work with", id: "industries" },
+                { name: "Our Reviews", id: "testimonial" },
                 { name: "Pricing", id: "pricing" },
+                { name: "Jukebox Brand Film", id: "brand-film" },
               ].map((item) => {
                 const isActive =
                   activeTab.toLowerCase() === item.id.toLowerCase();
