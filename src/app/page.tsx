@@ -464,69 +464,71 @@ export default function Home() {
     };
   }, [activeService]);
 
+  const scrollToSection = (id: string) => {
+    setActiveTab(id);
+    isProgrammaticScroll.current = true;
+    const targetElement = document.getElementById(id);
+
+    const path = id === "home" ? "/" : `/${id}`;
+    if (window.location.pathname !== path) {
+      window.history.pushState(null, "", path);
+    }
+
+    if (targetElement && (window as any).lenis) {
+      const navbarHeight = navbarRef.current?.offsetHeight ?? 80;
+      let scrollTarget: number;
+
+      if (id === "home") {
+        scrollTarget = 0;
+      } else {
+        // Use the GSAP pin trigger to find where this section STARTS.
+        //
+        // Pin types:
+        //   "top top"    → trigger fires when section TOP = viewport TOP
+        //                  trigger.start = section's scroll-start position ✓
+        //
+        //   "bottom bottom" (tall sections like blueprint) → trigger fires when
+        //                  section BOTTOM = viewport BOTTOM (i.e. section END).
+        //                  trigger.start = sectionScrollStart + sectionHeight - viewportH
+        //                  So: sectionScrollStart = trigger.start - sectionHeight + viewportH
+        //
+        const pinTrigger = ScrollTrigger.getById(`pin-${id}`);
+
+        if (pinTrigger) {
+          const sectionHeight = targetElement.offsetHeight;
+          const viewportHeight = window.innerHeight;
+
+          // For tall sections, trigger.start is at the section END — back up to the START.
+          // For normal sections, trigger.start is already the section START.
+          const overflow = Math.max(0, sectionHeight - viewportHeight);
+          const sectionScrollStart = pinTrigger.start - overflow;
+
+          scrollTarget = Math.max(0, sectionScrollStart);
+        } else {
+          // No pin trigger: scroll to the element directly
+          scrollTarget = Math.max(0, targetElement.offsetTop);
+        }
+      }
+
+      (window as any).lenis.scrollTo(scrollTarget, {
+        offset: 0,
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        onComplete: () => {
+          isProgrammaticScroll.current = false;
+        },
+      });
+    } else {
+      isProgrammaticScroll.current = false;
+    }
+  };
+
   return (
     <>
       <Navbar
         ref={navbarRef}
         activeTab={activeTab}
-        onTabClick={(id) => {
-          setActiveTab(id);
-          isProgrammaticScroll.current = true;
-          const targetElement = document.getElementById(id);
-
-          const path = id === "home" ? "/" : `/${id}`;
-          if (window.location.pathname !== path) {
-            window.history.pushState(null, "", path);
-          }
-
-          if (targetElement && (window as any).lenis) {
-            const navbarHeight = navbarRef.current?.offsetHeight ?? 80;
-            let scrollTarget: number;
-
-            if (id === "home") {
-              scrollTarget = 0;
-            } else {
-              // Use the GSAP pin trigger to find where this section STARTS.
-              //
-              // Pin types:
-              //   "top top"    → trigger fires when section TOP = viewport TOP
-              //                  trigger.start = section's scroll-start position ✓
-              //
-              //   "bottom bottom" (tall sections like blueprint) → trigger fires when
-              //                  section BOTTOM = viewport BOTTOM (i.e. section END).
-              //                  trigger.start = sectionScrollStart + sectionHeight - viewportH
-              //                  So: sectionScrollStart = trigger.start - sectionHeight + viewportH
-              //
-              const pinTrigger = ScrollTrigger.getById(`pin-${id}`);
-
-              if (pinTrigger) {
-                const sectionHeight = targetElement.offsetHeight;
-                const viewportHeight = window.innerHeight;
-
-                // For tall sections, trigger.start is at the section END — back up to the START.
-                // For normal sections, trigger.start is already the section START.
-                const overflow = Math.max(0, sectionHeight - viewportHeight);
-                const sectionScrollStart = pinTrigger.start - overflow;
-
-                scrollTarget = Math.max(0, sectionScrollStart);
-              } else {
-                // No pin trigger: scroll to the element directly
-                scrollTarget = Math.max(0, targetElement.offsetTop);
-              }
-            }
-
-            (window as any).lenis.scrollTo(scrollTarget, {
-              offset: 0,
-              duration: 1.2,
-              easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-              onComplete: () => {
-                isProgrammaticScroll.current = false;
-              },
-            });
-          } else {
-            isProgrammaticScroll.current = false;
-          }
-        }}
+        onTabClick={scrollToSection}
         style={{
           top: "6vh",
           borderTopLeftRadius: "32px",
@@ -636,7 +638,10 @@ export default function Home() {
                     </span>
                   </p>
                   <div className="mt-10 flex flex-row items-center justify-center gap-4 pointer-events-auto">
-                    <button className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer">
+                    <button
+                      onClick={() => scrollToSection("service")}
+                      className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer"
+                    >
                       Our Services
                     </button>
                     <button
