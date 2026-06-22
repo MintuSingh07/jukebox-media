@@ -263,7 +263,6 @@ export default function Home() {
             "#blueprint .md\\:hidden .text-center > *",
             "#blueprint div.max-w-\\[310px\\]",
             "#blueprint .left-\\[45\\%\\] > span",
-            "#blueprint .arrow-container",
           ],
           start: "top 78%",
         },
@@ -330,29 +329,7 @@ export default function Home() {
                     ease: "power2.out",
                     overwrite: "auto",
                   });
-                  if (sec.id === "blueprint") {
-                    // Trigger arrow drawing animation via DrawSVGPlugin!
-                    gsap.fromTo(".arrow-path-new", 
-                      { drawSVG: "0%" },
-                      { 
-                        drawSVG: "100%", 
-                        duration: 1.6, 
-                        ease: "power2.inOut", 
-                        delay: 0.2,
-                        onComplete: () => {
-                          // Start floating loop animation after drawing is complete
-                          gsap.to(".arrow-svg", {
-                            y: -5,
-                            scale: 1.02,
-                            duration: 2,
-                            yoyo: true,
-                            repeat: -1,
-                            ease: "sine.inOut"
-                          });
-                        }
-                      }
-                    );
-                  }
+
                 },
                 once: true,
               });
@@ -1091,23 +1068,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Elegant animated Arrow.svg pointing towards Card 2 */}
-          <div className="absolute left-[14%] top-[27%] w-[104px] h-[118px] pointer-events-none z-20 hidden md:block opacity-0 arrow-container">
-            <svg
-              className="w-full h-full text-brand-orange arrow-svg"
-              viewBox="0 0 104 118"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                className="arrow-path-new"
-                d="M2.00055 2.00049C13.5145 32.2345 44.808 86.4705 81.4705 68.5655C106.502 56.3415 87.3695 29.406 60.502 43.8415C33.6345 58.277 41.5235 109.891 100.994 104.901M88.658 115.218L100.994 104.901L93.0105 95.8525"
-                stroke="currentColor"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
+
 
           {/* SVG dashed curving line path */}
           <div className="absolute inset-0 pointer-events-none">
@@ -2045,8 +2006,7 @@ export default function Home() {
                 <ul className="flex flex-col gap-2">
                   <li>
                     <a
-                      href="#"
-                      onClick={(e) => e.preventDefault()}
+                      href="/privacy-policy"
                       className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300"
                     >
                       Privacy Policy
@@ -2054,8 +2014,7 @@ export default function Home() {
                   </li>
                   <li>
                     <a
-                      href="#"
-                      onClick={(e) => e.preventDefault()}
+                      href="/terms-and-conditions"
                       className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300"
                     >
                       Terms & Conditions

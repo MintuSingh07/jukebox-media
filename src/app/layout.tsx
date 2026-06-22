@@ -15,7 +15,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Jukebox Media - Growth Architecture",
+  title: "Jukebox Media - The only one you need",
   description: "Scale your brand to new heights with structured marketing systems.",
 };
 
