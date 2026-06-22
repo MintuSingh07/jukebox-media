@@ -18,16 +18,17 @@ const testimonials = [
   },
   {
     id: 2,
-    title: "Immediate 35% CPA Decrease",
-    quote: "Their creative strategy completely overhauled our ad campaigns. We saw an immediate 35% CPA decrease and scalable margins.",
-    author: "Kunal Sharma",
-    role: "Founder",
-    company: "FitLife Nutrition",
+    title: "Consistent & Professional Social Media Management",
+    quote: "Jukebox Media has done an excellent job managing my real estate brand on social media. From content planning and reel creation to editing and posting, their team has handled everything professionally and consistently.\n\nThey understood my vision, improved my online presence, and made the entire process smooth and hassle-free. I highly recommend Jukebox Media to businesses looking for a reliable and results-driven marketing partner.",
+    author: "Nitin Upadhyay",
+    role: "Real Estate Developer",
+    company: "Real Estate Development",
     rating: 5,
     verified: true,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
   },
 ]
+
 
 export default function TestimonialsEditorial() {
   const [active, setActive] = useState(0)
