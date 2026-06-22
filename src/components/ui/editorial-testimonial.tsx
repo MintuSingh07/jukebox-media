@@ -8,7 +8,7 @@ const testimonials = [
   {
     id: 1,
     title: "Consistent & Professional Social Media Management",
-    quote: "Jukebox Media has done an excellent job managing my real estate brand on social media. From content planning and reel creation to editing and posting, their team has handled everything professionally and consistently.\n\nThey understood my vision, improved my online presence, and made the entire process smooth and hassle-free. I highly recommend Jukebox Media to businesses looking for a reliable and results-driven marketing partner.",
+    quote: "Jukebox Media has done an excellent job managing my real estate brand on social media. From content planning and reel creation to editing and posting, their team has handled everything professionally and consistently. They understood my vision, improved my online presence, and made the entire process smooth and hassle-free. I highly recommend Jukebox Media to businesses looking for a reliable and results-driven marketing partner.",
     author: "Nitin Upadhyay",
     role: "Real Estate Developer",
     company: "",

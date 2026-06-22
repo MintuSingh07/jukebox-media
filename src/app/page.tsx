@@ -1536,7 +1536,7 @@ export default function Home() {
 
         <div className="max-w-[1600px] mx-auto px-6 w-full relative z-10">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16 animate-field">
+          <div className="text-center max-w-3xl mx-auto mb-8 animate-field">
             <ScrollReveal
               as="h2"
               containerClassName="text-[36px] sm:text-[48px] font-bold text-white tracking-tight mt-3"
@@ -1626,42 +1626,37 @@ export default function Home() {
             </div>
 
             {/* Card 2: Jukebox Growth Package */}
-            <div className="bg-[#161443] border border-white/10 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-500 ease-out hover:shadow-[0_30px_70px_rgba(246,134,31,0.25)] hover:-translate-y-2 hover:border-[#f6861f]/40 h-full relative overflow-hidden group">
-              {/* Highlight flare line */}
-              <div className="absolute top-0 inset-x-0 h-[4px] bg-gradient-to-r from-transparent via-[#f6861f] to-transparent animate-pulse" />
+            <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+              {/* Corner decor tag */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
 
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
-                  <div className="flex items-center justify-end">
-                    <span className="text-[9px] px-2.5 py-0.5 rounded-full font-black uppercase bg-[#f6861f] text-white shadow-[0_2px_8px_rgba(246,134,31,0.4)]">
-                      Most Popular
-                    </span>
-                  </div>
-                  <h3 className="text-[22px] font-black text-white tracking-tight mt-1">
+                  <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
                     Jukebox Growth
                   </h3>
 
                   <div className="flex flex-col mt-4">
-                    <span className="text-[40px] font-black tracking-tight text-white leading-none">
+                    <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
                       ₹53,000
                     </span>
-                    <span className="text-[13px] font-bold text-white/60 mt-1.5">
+                    <span className="text-[13px] font-bold text-slate-500 mt-1.5">
                       / 3 Months per Brand
                     </span>
-                    <span className="text-[10px] font-bold text-white/40 block mt-1">
+                    <span className="text-[10px] font-bold text-slate-400 block mt-1">
                       (Exclusive of GST)
                     </span>
                   </div>
 
-                  <div className="w-full h-[1px] bg-white/10 my-5" />
+                  <div className="w-full h-[1px] bg-slate-100 my-5" />
 
-                  <p className="text-[13px] text-white/70 font-semibold leading-relaxed">
+                  <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
                     Ideal for brands looking to combine consistent content with
                     short-form video.
                   </p>
 
                   <div className="mt-6">
-                    <span className="text-[11px] font-extrabold text-white uppercase tracking-wider block mb-4">
+                    <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
                       Includes:
                     </span>
                     <ul className="flex flex-col gap-3">
@@ -1676,9 +1671,9 @@ export default function Home() {
                       ].map((feature, idx) => (
                         <li
                           key={idx}
-                          className="flex gap-3 items-start text-[13px] text-white/90 font-semibold"
+                          className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
                         >
-                          <div className="w-5 h-5 rounded-full bg-[#f6861f]/10 text-[#f6861f] flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                          <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                             <svg
                               className="w-3.5 h-3.5"
                               fill="none"
@@ -1700,7 +1695,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <button className="w-full py-4 mt-8 bg-[#f6861f] hover:bg-[#ff9633] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_15px_rgba(246,134,31,0.3)] hover:shadow-[0_8px_25px_rgba(246,134,31,0.5)] cursor-pointer text-center uppercase">
+                <button className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase">
                   Get Started
                 </button>
               </div>
