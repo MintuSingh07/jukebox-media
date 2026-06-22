@@ -7,17 +7,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const testimonials = [
   {
     id: 1,
-    title: "Passion, Responsiveness & Deep Business Understanding",
-    quote: "Having worked with all kinds and sizes of agencies over my career, what stands out with Jukebox is their passion, responsiveness and willingness to spend the time & effort to understand the business context. These are all especially useful when the brand is in its early stages and there are many experimental elements to the marketing effort. Wishing all the best to Ankit and his team, and hopefully One20mins will be one of their marquee success stories in the time to come.",
-    author: "The Founders",
-    role: "Boards Games & Café — An edutainment brand",
-    company: "One20mins (IG: @one20mins)",
-    rating: 5,
-    verified: true,
-    image: "/one20mins-logo.jpg",
-  },
-  {
-    id: 2,
     title: "Consistent & Professional Social Media Management",
     quote: "Jukebox Media has done an excellent job managing my real estate brand on social media. From content planning and reel creation to editing and posting, their team has handled everything professionally and consistently.\n\nThey understood my vision, improved my online presence, and made the entire process smooth and hassle-free. I highly recommend Jukebox Media to businesses looking for a reliable and results-driven marketing partner.",
     author: "Nitin Upadhyay",
@@ -26,6 +15,17 @@ const testimonials = [
     rating: 5,
     verified: true,
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 2,
+    title: "Passion, Responsiveness & Deep Business Understanding",
+    quote: "Having worked with all kinds and sizes of agencies over my career, what stands out with Jukebox is their passion, responsiveness and willingness to spend the time & effort to understand the business context. These are all especially useful when the brand is in its early stages and there are many experimental elements to the marketing effort. Wishing all the best to Ankit and his team, and hopefully One20mins will be one of their marquee success stories in the time to come.",
+    author: "The Founders",
+    role: "Boards Games & Café — An edutainment brand",
+    company: "One20mins (IG: @one20mins)",
+    rating: 5,
+    verified: true,
+    image: "/one20mins-logo.jpg",
   },
 ]
 
@@ -57,16 +57,8 @@ export default function TestimonialsEditorial() {
 
   return (
     <div className="w-full max-w-3xl mx-auto px-6 py-4">
-      {/* Large index number and quote container */}
-      <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
-        <span
-          className="text-[64px] sm:text-[120px] font-light leading-none text-[#161443]/10 select-none transition-all duration-500 sm:-mt-2"
-          style={{ fontFeatureSettings: '"tnum"' }}
-        >
-          {String(active + 1).padStart(2, "0")}
-        </span>
-
-        <div className="flex-1 pt-1 sm:pt-3">
+      {/* Quote container */}
+      <div className="flex flex-col items-start gap-4 sm:gap-8">
           {/* Star Rating & Verified Badge */}
           <div className="flex flex-wrap items-center gap-3 mb-4 select-none">
             <div className="flex gap-1 text-[#f6861f]">
@@ -136,7 +128,6 @@ export default function TestimonialsEditorial() {
             </div>
           </div>
         </div>
-      </div>
 
       {/* Navigation - vertical line selector */}
       <div className="mt-6 flex items-center justify-between">
