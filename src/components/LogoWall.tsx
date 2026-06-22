@@ -262,7 +262,7 @@ export default function LogoWall() {
                 </div>
 
                 {/* Top Left: AZORTE */}
-                <div className="absolute top-[-15px] left-[-25px]">
+                <div className="absolute top-[-15px] left-[65px]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/brands/azorte.webp"
@@ -283,6 +283,17 @@ export default function LogoWall() {
                   />
                 </div>
 
+                {/* Middle Left: Avantra */}
+                <div className="absolute left-[-35px] top-[40%] -translate-y-1/2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/brands/avantra.png"
+                    alt="Avantra by Trends"
+                    className="w-[90px] h-auto object-contain animate-logo-pop"
+                    style={{ animationDelay: "380ms" }}
+                  />
+                </div>
+
                 {/* Middle Right: Reliance digital */}
                 <div className="absolute right-[-35px] top-[40%] -translate-y-1/2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -294,8 +305,19 @@ export default function LogoWall() {
                   />
                 </div>
 
+                {/* Bottom Left: Yousta */}
+                <div className="absolute bottom-[-2px] left-[42px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/brands/yousta.png"
+                    alt="Yousta"
+                    className="w-[80px] h-auto object-contain animate-logo-pop"
+                    style={{ animationDelay: "440ms" }}
+                  />
+                </div>
+
                 {/* Bottom Right: TRENDS */}
-                <div className="absolute bottom-[-22px] right-[-22px]">
+                <div className="absolute bottom-[-12px] right-[-2px]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/brands/reliance-trends.webp"
