@@ -270,8 +270,7 @@ export default function Home() {
           id: "industries",
           selectors: [
             "#industries .text-center > *",
-            "#industries .grid > div",
-            "#industries > div > div:nth-child(3)",
+            "#industries .capsule-item",
           ],
           start: "top 78%",
         },
@@ -1370,70 +1369,29 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 4 Core Profiles */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {/* Centered Premium Capsules */}
+          <div className="flex flex-wrap justify-center gap-3.5 max-w-4xl mx-auto mt-4">
             {[
-              {
-                title: "Growing Businesses",
-                desc: "Scaling companies looking to transition from basic ad buying to highly structured, predictable growth channels.",
-                icon: "📈",
-              },
-              {
-                title: "Brands Building Visibility",
-                desc: "Companies needing cross-platform presence (Meta, YouTube, Search) to dominate market share and brand recognition.",
-                icon: "📣",
-              },
-              {
-                title: "Teams Needing Support",
-                desc: "Internal marketing teams requiring external strategic audits, setup optimization, and advanced analytics integrations.",
-                icon: "🤝",
-              },
-              {
-                title: "Independent Founders",
-                desc: "Founders managing marketing themselves who are ready to hand off operations to clear, structured automation engines.",
-                icon: "💡",
-              },
-            ].map((profile, idx) => (
+              "D2C Brands",
+              "Real Estate",
+              "B2B Brands",
+              "FMCG",
+              "Hospitals",
+              "Hospitality",
+              "Education",
+              "Fashion",
+              "E-Commerce",
+              "Retail",
+              "Travel",
+              "Automobile",
+            ].map((industry, idx) => (
               <div
                 key={idx}
-                className="bg-[#f8fafc] border border-brand-navy/5 rounded-2xl p-6 hover:shadow-md transition-all duration-300"
+                className="capsule-item px-6 py-3.5 bg-[#fafaf9] border border-brand-navy/5 rounded-full text-[13px] md:text-[14px] font-extrabold text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange hover:bg-white hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default"
               >
-                <span className="text-[28px] block mb-4">{profile.icon}</span>
-                <h4 className="text-[16px] font-bold text-brand-navy tracking-tight">
-                  {profile.title}
-                </h4>
-                <p className="text-[13px] text-brand-navy/60 leading-relaxed mt-2">
-                  {profile.desc}
-                </p>
+                {industry}
               </div>
             ))}
-          </div>
-
-          {/* Industry Sectors Marquee/Pills Grid */}
-          <div className="border border-brand-navy/5 bg-[#fafaf9] rounded-2xl p-6 lg:p-8 text-center shadow-sm">
-            <div className="flex flex-wrap justify-center gap-2.5 max-w-5xl mx-auto">
-              {[
-                "D2C Brands",
-                "Real Estate",
-                "B2B Brands",
-                "FMCG",
-                "Hospitals",
-                "Hospitality",
-                "Education",
-                "Fashion",
-                "E-Commerce",
-                "Retail",
-                "Travel",
-                "Automobile",
-              ].map((industry, idx) => (
-                <div
-                  key={idx}
-                  className="px-4 py-2 bg-white border border-brand-navy/5 rounded-full text-[11px] font-extrabold text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange transition-all duration-300"
-                >
-                  {industry}
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
