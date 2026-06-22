@@ -191,13 +191,13 @@ export default function LogoWall() {
               </div>
 
               {/* Bottom Right: Surf Excel */}
-              <div className="absolute bottom-[-22px] right-[-22px]">
+              <div className="absolute bottom-[-25px] right-[-25px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brands/surf-excel.webp"
                   alt="Surf Excel"
                   title="Surf Excel"
-                  className="w-[75px] h-auto object-contain"
+                  className="w-[90px] h-auto object-contain"
                 />
               </div>
 
@@ -414,7 +414,7 @@ export default function LogoWall() {
           {/* Column 4: Merged Box 6, 7, 8 (col-span 4) - no background/border */}
           <div id="brand-box-6-7-8" className="md:col-span-4 p-6 flex flex-col justify-center items-center h-[350px] md:h-full select-none relative">
             <span className="absolute top-2 left-2 text-[10px] font-mono font-bold text-black bg-white/70 px-1.5 py-0.5 rounded border border-black/10 z-30">brand-box-6, 7, 8</span>
-            <div className="relative w-full h-[270px] flex items-center justify-center">
+            <div className="relative w-[290px] h-[290px] mx-auto flex items-center justify-center">
               {/* Center: P&G */}
               <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -427,7 +427,7 @@ export default function LogoWall() {
               </div>
 
               {/* Top Left: Tide */}
-              <div className="absolute top-[-15px] left-[12%] -translate-x-1/2">
+              <div className="absolute top-[-10px] left-[-15px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brands/pg-tide.png"
@@ -438,7 +438,7 @@ export default function LogoWall() {
               </div>
 
               {/* Top Right: Whisper */}
-              <div className="absolute top-[-12px] right-[-5px]">
+              <div className="absolute top-[-10px] right-[-25px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brands/pg-whisper.png"
@@ -449,7 +449,7 @@ export default function LogoWall() {
               </div>
 
               {/* Middle Left: Ariel */}
-              <div className="absolute top-[48%] left-[-30px] -translate-y-1/2">
+              <div className="absolute top-[48%] left-[-20px] -translate-y-1/2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brands/pg-ariel.png"
@@ -460,7 +460,7 @@ export default function LogoWall() {
               </div>
 
               {/* Middle Right: Gillette */}
-              <div className="absolute top-[50%] right-[-30px] -translate-y-1/2">
+              <div className="absolute top-[50%] right-[-35px] -translate-y-1/2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brands/pg-gillette.png"
@@ -471,7 +471,7 @@ export default function LogoWall() {
               </div>
 
               {/* Bottom Center: Olay */}
-              <div className="absolute bottom-[-22px] left-1/2 -translate-x-1/2">
+              <div className="absolute bottom-[-15px] left-1/2 -translate-x-1/2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brands/pg-olay.png"
