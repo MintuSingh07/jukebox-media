@@ -165,6 +165,17 @@ export default function LogoWall() {
                 />
               </div>
 
+              {/* Top Left: Closeup */}
+              <div className="absolute top-[-15px] left-[35px]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/brands/closeup.png"
+                  alt="Closeup"
+                  className="w-[85px] h-auto object-contain animate-logo-pop"
+                  style={{ animationDelay: "360ms" }}
+                />
+              </div>
+
               {/* Top Right: Lakme */}
               <div className="absolute top-[-15px] right-[-15px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -195,6 +206,17 @@ export default function LogoWall() {
                   alt="Minimalist"
                   className="w-[85px] h-auto object-contain animate-logo-pop"
                   style={{ animationDelay: "180ms" }}
+                />
+              </div>
+
+              {/* Bottom Left: Vim */}
+              <div className="absolute bottom-[-25px] left-[-25px]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/brands/vim.png"
+                  alt="Vim"
+                  className="w-[80px] h-auto object-contain animate-logo-pop"
+                  style={{ animationDelay: "420ms" }}
                 />
               </div>
 
