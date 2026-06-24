@@ -235,10 +235,7 @@ export default function Home() {
         },
         {
           id: "about",
-          selectors: [
-            "#about .about-bio-content > *",
-            "#about .about-card",
-          ],
+          selectors: ["#about .about-bio-content > *", "#about .about-card"],
           start: "top 78%",
         },
         {
@@ -328,7 +325,6 @@ export default function Home() {
                     ease: "power2.out",
                     overwrite: "auto",
                   });
-
                 },
                 once: true,
               });
@@ -691,7 +687,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Bio Card (col-span 7) */}
             <div className="about-bio-content lg:col-span-7 flex flex-col justify-center select-none">
-              <span className="about-title text-[16px] sm:text-[18px] md:text-[20px] font-light text-[#f6861f] tracking-wide leading-tight mb-1">
+              <span className="about-title block text-[16px] sm:text-[18px] md:text-[20px] font-light text-[#f6861f] tracking-wide leading-tight mb-1 mt-12 md:mt-16">
                 The force behind Jukebox
               </span>
               <h3 className="text-[32px] sm:text-[40px] font-bold tracking-tight mt-1 text-white">
@@ -727,7 +723,7 @@ export default function Home() {
             </div>
 
             {/* Right Column: Profile Image + Media Houses Logos (col-span 5) */}
-            <div className="about-card lg:col-span-5 bg-white/10 border border-white/15 rounded-3xl p-6 flex flex-col justify-between items-center shadow-lg relative overflow-hidden backdrop-blur-sm select-none">
+            <div className="about-card lg:col-span-5 bg-white/10 border border-white/15 rounded-3xl pt-6 px-6 flex flex-col justify-between items-center shadow-lg relative overflow-hidden backdrop-blur-sm select-none">
               {/* Profile image container */}
               <div className="relative h-28 w-28 rounded-full border-2 border-white overflow-hidden mb-6 flex items-center justify-center bg-brand-navy shadow-lg shrink-0">
                 <img
@@ -738,22 +734,32 @@ export default function Home() {
               </div>
 
               {/* Media Network Icons/badges Row */}
-              <div className="grid grid-cols-5 gap-2.5 w-full items-center justify-items-center opacity-70">
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  SONY
-                </div>
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  ZEE5
-                </div>
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  VIACOM18
-                </div>
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  TIMES
-                </div>
-                <div className="text-[8.5px] font-extrabold bg-white/10 text-white px-1.5 py-0.5 rounded tracking-tighter w-full text-center truncate">
-                  MIRCHI
-                </div>
+              <div className="grid grid-cols-5 gap-3 w-full items-center justify-items-center opacity-85 mt-4">
+                <img
+                  src="/logos/sony-pictures-networks-logo.webp"
+                  alt="Sony Pictures Networks"
+                  className="h-9 sm:h-11 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                />
+                <img
+                  src="/logos/z5-logo.webp"
+                  alt="Zee5"
+                  className="h-7 sm:h-8 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                />
+                <img
+                  src="/logos/viacom-logo.webp"
+                  alt="Viacom18"
+                  className="h-9 sm:h-10 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                />
+                <img
+                  src="/logos/times-of-india-logo.webp"
+                  alt="The Times of India"
+                  className="h-20 sm:h-25 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                />
+                <img
+                  src="/logos/radio-mirchi-logo.webp"
+                  alt="Mirchi"
+                  className="h-20 sm:h-25 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                />
               </div>
             </div>
           </div>
@@ -793,7 +799,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-16 mt-12 md:mt-16">
             <ScrollReveal
               as="h2"
               containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3 leading-[1.1]"
@@ -940,7 +946,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10 mt-12 md:mt-16">
             <ScrollReveal
               as="h2"
               containerClassName="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight mt-2"
@@ -1066,8 +1072,6 @@ export default function Home() {
               optimize, and scale your brand's digital presence systematically.
             </p>
           </div>
-
-
 
           {/* SVG dashed curving line path */}
           <div className="absolute inset-0 pointer-events-none">
@@ -1363,10 +1367,6 @@ export default function Home() {
             >
               Businesses We Support
             </ScrollReveal>
-            <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
-              We build specialized client pipelines across diverse industry
-              sectors and organizational scales.
-            </p>
           </div>
 
           {/* Centered Premium Capsules */}
@@ -1384,6 +1384,10 @@ export default function Home() {
               "Retail",
               "Travel",
               "Automobile",
+              "Real estate",
+              "Direct to Consumer brands (D2C)",
+              "Local brands",
+              "Service businesses",
             ].map((industry, idx) => (
               <div
                 key={idx}
@@ -1422,7 +1426,7 @@ export default function Home() {
 
         {/* Heading container */}
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10 mb-6">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mt-12 md:mt-16">
             <ScrollReveal
               as="h2"
               containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
@@ -2006,7 +2010,9 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-1.5 select-none">
-                  <span className="text-[12px] text-white/40 uppercase tracking-wider block">eMail</span>
+                  <span className="text-[12px] text-white/40 uppercase tracking-wider block">
+                    eMail
+                  </span>
                   <a
                     href="mailto:connect@jukeboxmedia.in"
                     className="text-[14px] font-semibold text-white/80 hover:text-[#f6861f] transition-all duration-300"
@@ -2015,13 +2021,17 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="flex flex-col gap-1 select-none">
-                  <span className="text-[12px] text-white/40 uppercase tracking-wider block">Location</span>
+                  <span className="text-[12px] text-white/40 uppercase tracking-wider block">
+                    Location
+                  </span>
                   <p className="text-[14px] font-semibold text-white/85">
                     Operating Globally | Based in India
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 mt-1">
-                  <span className="text-[12px] text-white/40 uppercase tracking-wider block select-none">Call/WhatsApp</span>
+                  <span className="text-[12px] text-white/40 uppercase tracking-wider block select-none">
+                    Call/WhatsApp
+                  </span>
                   <div className="flex items-center gap-3">
                     {/* Call Icon link */}
                     <a
@@ -2085,7 +2095,14 @@ export default function Home() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       >
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <rect
+                          x="2"
+                          y="2"
+                          width="20"
+                          height="20"
+                          rx="5"
+                          ry="5"
+                        />
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                       </svg>
@@ -2093,7 +2110,8 @@ export default function Home() {
                     url: "https://instagram.com/jukeboxmedia.in",
                     hoverBorder: "hover:border-[#E1306C]/50",
                     hoverBg: "hover:bg-[#E1306C]/10",
-                    hoverShadow: "hover:shadow-[0_0_20px_rgba(225,48,108,0.25)]",
+                    hoverShadow:
+                      "hover:shadow-[0_0_20px_rgba(225,48,108,0.25)]",
                     textColor: "group-hover:text-[#E1306C]",
                   },
                   {
@@ -2149,10 +2167,16 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="group flex items-center gap-3 text-[14px] font-semibold text-white/70 hover:text-white transition-all duration-300"
                   >
-                    <div className={`w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 transition-all duration-300 hover:scale-110 ${social.hoverBorder} ${social.hoverBg} ${social.hoverShadow}`}>
+                    <div
+                      className={`w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 transition-all duration-300 hover:scale-110 ${social.hoverBorder} ${social.hoverBg} ${social.hoverShadow}`}
+                    >
                       {social.icon}
                     </div>
-                    <span className={`transition-colors duration-300 ${social.textColor}`}>{social.name}</span>
+                    <span
+                      className={`transition-colors duration-300 ${social.textColor}`}
+                    >
+                      {social.name}
+                    </span>
                   </a>
                 ))}
               </div>
@@ -5368,13 +5392,17 @@ const ContentCreationMockup = () => {
       {/* Engagement Counters */}
       <div ref={countersRef} className="grid grid-cols-3 gap-3 mt-4">
         <div className="bg-pink-500/5 border border-pink-500/10 rounded-xl p-2.5 text-center">
-          <span className="text-[11px] text-pink-500 font-bold block mb-0.5">❤️</span>
+          <span className="text-[11px] text-pink-500 font-bold block mb-0.5">
+            ❤️
+          </span>
           <span className="text-[15px] font-extrabold text-brand-navy">
             {likes}
           </span>
         </div>
         <div className="bg-blue-500/5 border border-blue-500/10 rounded-xl p-2.5 text-center">
-          <span className="text-[11px] text-blue-500 font-bold block mb-0.5">💬</span>
+          <span className="text-[11px] text-blue-500 font-bold block mb-0.5">
+            💬
+          </span>
           <span className="text-[15px] font-extrabold text-brand-navy">
             {comments}
           </span>

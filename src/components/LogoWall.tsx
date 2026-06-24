@@ -141,7 +141,7 @@ export default function LogoWall() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-start pt-24 pb-16 px-8 gap-2">
       {/* Section header */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 mt-10 md:mt-14">
         <h2 className="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight">
         Leadership Experience Across Brands
         </h2>
