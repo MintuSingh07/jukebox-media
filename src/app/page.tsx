@@ -813,25 +813,6 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3.5 max-w-4xl mx-auto mt-12 md:mt-16">
-            {[
-              { title: "Irregular Campaigns", icon: CalendarOff },
-              { title: "Multiple Vendor Chaos", icon: Users },
-              { title: "Activity Over Direction", icon: Compass },
-              { title: "Consistency Struggles", icon: RefreshCw },
-              { title: "Unclear ROI", icon: EyeOff },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="px-6 py-3.5 bg-[#f6861f] border border-transparent rounded-full text-[14px] md:text-[15px] font-extrabold text-white tracking-tight shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default flex items-center gap-2"
-              >
-                <item.icon className="w-4.5 h-4.5 shrink-0" />
-                <span>{item.title}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Commented out cards grid with animations for potential reuse later
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-6xl mx-auto px-4">
             <div
               onMouseEnter={() => setCard1Hovered(true)}
@@ -931,7 +912,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-          */}
         </div>
       </div>
 
@@ -973,10 +953,22 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Column: Interactive vertical list (col-span 5) */}
+          {/* Service Capsules (replacing animations) */}
+          <div className="flex flex-wrap justify-center gap-3.5 max-w-5xl mx-auto mt-12 md:mt-16">
+            {servicesData.map((service, idx) => (
+              <div
+                key={idx}
+                className="px-7 py-4 bg-[#f6861f] border border-transparent rounded-full text-[15px] md:text-[17px] font-extrabold text-brand-navy hover:text-white tracking-tight shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default flex items-center gap-3"
+              >
+                <service.icon className="w-5 h-5 shrink-0" />
+                <span>{service.title}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Commented out animations grid for Jukebox Services
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-12 md:mt-16">
             <div className="lg:col-span-5 flex flex-col gap-1.5 relative">
-              {/* Sliding Background Indicator */}
               <div
                 ref={selectorRef}
                 className="absolute left-0 right-0 bg-white border border-brand-navy/[0.06] shadow-premium rounded-xl pointer-events-none z-0 opacity-0"
@@ -996,7 +988,6 @@ export default function Home() {
                         : "border-transparent opacity-60 hover:opacity-85"
                     }`}
                   >
-                    {/* Icon */}
                     <div
                       className={`h-9 w-9 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300 ${
                         isActive
@@ -1006,7 +997,6 @@ export default function Home() {
                     >
                       <service.icon className="w-4.5 h-4.5" />
                     </div>
-                    {/* Content */}
                     <div className="flex flex-col flex-grow">
                       <h3 className="text-[15.5px] font-semibold text-brand-navy tracking-tight">
                         {service.title}
@@ -1026,25 +1016,21 @@ export default function Home() {
               })}
             </div>
 
-            {/* Right Column: iPad Horizontal Mockup + Floating Overlay Card (col-span 7) */}
             <div className="lg:col-span-7 flex justify-center items-center relative py-4 lg:py-6">
-              {/* Horizontal iPad Frame */}
               <div className="relative w-full max-w-[680px] aspect-[4/3] bg-brand-navy rounded-[30px] p-3.5 shadow-2xl border-4 border-brand-navy-light/80 flex items-center justify-center z-10">
-                {/* Screen area */}
                 <div className="w-full h-full bg-[#f8fafc] rounded-[18px] overflow-hidden relative border border-brand-navy/10 flex flex-col p-3.5">
                   <ActiveMockup index={activeService} />
                 </div>
 
-                {/* Home/Camera Pill Button */}
                 <div className="absolute top-1/2 left-2.5 -translate-y-1/2 w-1.5 h-6 bg-brand-navy-light/60 rounded-full" />
               </div>
 
-              {/* Floating Card Overlay */}
               <div className="absolute right-[-10px] md:right-[15px] lg:right-[-10px] top-[6%] w-[180px] bg-white rounded-xl p-3 shadow-premium border border-brand-navy/[0.04] transition-all duration-300 z-20 hover:scale-[1.02] hover:shadow-card-hover">
                 <ActiveOverlay index={activeService} />
               </div>
             </div>
           </div>
+          */}
         </div>
       </div>
 

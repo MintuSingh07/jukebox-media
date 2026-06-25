@@ -13,7 +13,7 @@ interface LogoItem {
 // ─── SVG logo components ───────────────────────────────────────────────────────
 
 const NexaSvg = () => (
-  <svg width="90" height="44" viewBox="0 0 100 48">
+  <svg width="130" height="64" viewBox="0 0 100 48">
     <rect width="100" height="48" rx="4" fill="#1a1a1a"/>
     <text x="50" y="22" textAnchor="middle" fontFamily="Arial" fontWeight="700" fontSize="13" fill="#c8a04a" letterSpacing="2">NEXA</text>
     <text x="50" y="36" textAnchor="middle" fontFamily="Arial" fontWeight="300" fontSize="6" fill="#aaa" letterSpacing="1">MARUTI SUZUKI</text>
@@ -21,7 +21,7 @@ const NexaSvg = () => (
 );
 
 const VwSvg = () => (
-  <svg width="120" height="44" viewBox="0 0 130 48">
+  <svg width="150" height="54" viewBox="0 0 130 48">
     <circle cx="24" cy="24" r="20" fill="#001c3d"/>
     <path d="M15 13 L22 29 M33 13 L26 29 M13 23 L20 37 M35 23 L28 37 M20 37 L24 31 M28 37 L24 31" stroke="white" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
     <text x="52" y="30" fontFamily="Arial" fontWeight="600" fontSize="15" fill="#001c3d">Volkswagen</text>
@@ -57,7 +57,7 @@ const NetflixSvg = () => (
 );
 
 const HyundaiSvg = () => (
-  <svg width="120" height="40" viewBox="0 0 140 44">
+  <svg width="100" height="32" viewBox="0 0 140 44">
     <ellipse cx="22" cy="22" rx="19" ry="15" fill="none" stroke="#002c5f" strokeWidth="2.5"/>
     <path d="M14 30 L18 14 M30 30 L26 14 M16 22 L28 22" stroke="#002c5f" strokeWidth="2.8" strokeLinecap="round" fill="none"/>
     <text x="48" y="27" fontFamily="Arial" fontWeight="800" fontSize="14" fill="#002c5f" letterSpacing="0.5">HYUNDAI</text>
@@ -132,14 +132,14 @@ const FernSvg = () => (
 // ─── Logo data ────────────────────────────────────────────────────────────────
 
 const row1: LogoItem[] = [
-  { alt: "NEXA",       type: "svg", render: () => <NexaSvg />,     h: 44 },
-  { alt: "Volkswagen", type: "svg", render: () => <VwSvg />,       h: 40 },
+  { alt: "NEXA",       type: "svg", render: () => <NexaSvg />,     h: 64 },
+  { alt: "Volkswagen", type: "svg", render: () => <VwSvg />,       h: 50 },
   { alt: "Lodha",      type: "svg", render: () => <LodhaSvg />,    h: 36 },
   { alt: "Kalpa-Taru", type: "svg", render: () => <KalpaSvg />,    h: 36 },
   { alt: "Amul",       type: "img", src: "/brands/amul.png",       h: 38 },
   { alt: "Netflix",    type: "svg", render: () => <NetflixSvg />,  h: 36 },
   { alt: "Sugar",      type: "img", src: "/brands/sugar.png",      h: 30 },
-  { alt: "Hyundai",    type: "svg", render: () => <HyundaiSvg />,  h: 38 },
+  { alt: "Hyundai",    type: "svg", render: () => <HyundaiSvg />,  h: 32 },
 ];
 
 const row2: LogoItem[] = [
@@ -223,7 +223,7 @@ function MarqueeRow({
         position: "relative",
         width: "100%",
         overflow: "hidden",
-        height: "64px",
+        height: "80px",
         display: "flex",
         alignItems: "center",
       }}
