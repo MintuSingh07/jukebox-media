@@ -47,7 +47,7 @@ export default function TermsAndConditionsPage() {
             Terms & Conditions
           </h1>
           <p className="text-[14px] text-white/50 mb-10 font-medium">
-            Last Updated: January 2025
+            Last Updated: January 2026
           </p>
 
           <div className="space-y-8 text-[15px] sm:text-[16px] text-white/80 leading-relaxed font-normal">

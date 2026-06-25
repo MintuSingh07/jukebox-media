@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import Lenis from "lenis";
+import { CalendarOff, Users, Compass, RefreshCw, EyeOff } from "lucide-react";
 import IrregularCampaignsVisual from "@/components/IrregularCampaignsVisual";
 import MultipleVendorChaosVisual from "@/components/MultipleVendorChaosVisual";
 import ActivityOverDirectionVisual from "@/components/ActivityOverDirectionVisual";
@@ -639,7 +640,7 @@ export default function Home() {
                       onClick={() => scrollToSection("service")}
                       className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer"
                     >
-                      Brand Film
+                      Watch the Jukebox Brand Film
                     </button>
                     <button
                       onClick={() => scrollToSection("pricing")}
@@ -812,8 +813,26 @@ export default function Home() {
             </p>
           </div>
 
+          <div className="flex flex-wrap justify-center gap-3.5 max-w-4xl mx-auto mt-12 md:mt-16">
+            {[
+              { title: "Irregular Campaigns", icon: CalendarOff },
+              { title: "Multiple Vendor Chaos", icon: Users },
+              { title: "Activity Over Direction", icon: Compass },
+              { title: "Consistency Struggles", icon: RefreshCw },
+              { title: "Unclear ROI", icon: EyeOff },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="px-6 py-3.5 bg-[#f6861f] border border-transparent rounded-full text-[14px] md:text-[15px] font-extrabold text-white tracking-tight shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default flex items-center gap-2"
+              >
+                <item.icon className="w-4.5 h-4.5 shrink-0" />
+                <span>{item.title}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Commented out cards grid with animations for potential reuse later
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-6xl mx-auto px-4">
-            {/* Card 1 - Large */}
             <div
               onMouseEnter={() => setCard1Hovered(true)}
               onMouseLeave={() => setCard1Hovered(false)}
@@ -829,19 +848,16 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Visual Placeholder */}
               <div className="absolute left-10 right-10 bottom-[-5%] h-[65%] bg-white rounded-t-[2.5rem] shadow-2xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
                 <IrregularCampaignsVisual isHovered={card1Hovered} />
               </div>
             </div>
 
-            {/* Card 2 */}
             <div
               onMouseEnter={() => setCard2Hovered(true)}
               onMouseLeave={() => setCard2Hovered(false)}
               className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
             >
-              {/* Visual Placeholder */}
               <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
                 <MultipleVendorChaosVisual isHovered={card2Hovered} />
               </div>
@@ -856,7 +872,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Card 3 */}
             <div
               onMouseEnter={() => setCard3Hovered(true)}
               onMouseLeave={() => setCard3Hovered(false)}
@@ -876,7 +891,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Card 4 */}
             <div
               onMouseEnter={() => setCard4Hovered(true)}
               onMouseLeave={() => setCard4Hovered(false)}
@@ -897,7 +911,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Card 5 */}
             <div
               onMouseEnter={() => setCard5Hovered(true)}
               onMouseLeave={() => setCard5Hovered(false)}
@@ -918,6 +931,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          */}
         </div>
       </div>
 
@@ -1830,7 +1844,7 @@ export default function Home() {
           {/* Bottom Info: Common Features + Additional Charges */}
           <div
             id="pricing-additional"
-            className="mt-20 max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-white relative z-10"
+            className="mt-10 md:mt-6 max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-white relative z-10"
           >
             {/* Common Features Card */}
             <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
@@ -1862,7 +1876,7 @@ export default function Home() {
             <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
               <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2 mb-6">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#161443] border border-[#f6861f] block"></span>
-                Additional Charges (If required)
+                Services Available at an Additional Cost
               </h3>
               <ul className="flex flex-col gap-3">
                 {[
@@ -1919,9 +1933,23 @@ export default function Home() {
             {/* Left Column: Navigation & Legal links */}
             <div className="flex flex-col gap-8 text-left">
               <div>
-                <span className="text-[15px] font-bold text-white uppercase tracking-wider block mb-4 select-none">
-                  Explore
-                </span>
+                <a
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if ((window as any).lenis)
+                      (window as any).lenis.scrollTo("#home");
+                    else
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="inline-block group cursor-pointer mb-6"
+                >
+                  <img
+                    src="/final logo-TM.png"
+                    alt="Jukebox Media"
+                    className="h-12 md:h-[56px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </a>
                 <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
                   {[
                     { name: "Home", id: "#home" },
@@ -1984,8 +2012,7 @@ export default function Home() {
                   </li>
                   <li>
                     <a
-                      href="#"
-                      onClick={(e) => e.preventDefault()}
+                      href="/cookie-policy"
                       className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300"
                     >
                       Cookie Policy

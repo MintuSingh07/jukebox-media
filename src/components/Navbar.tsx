@@ -148,7 +148,6 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             { name: "Who we work with", id: "industries" },
             { name: "Our Reviews", id: "testimonial" },
             { name: "Pricing", id: "pricing" },
-            { name: "Jukebox Brand Film", id: "brand-film" },
           ].map((item) => {
             const isActive = activeTab.toLowerCase() === item.id.toLowerCase();
             return (
@@ -176,12 +175,12 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to connect.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="lets-talk-btn group hidden sm:inline-flex items-center gap-2 rounded-full bg-brand-navy px-5 py-2.5 text-[14px] font-medium text-white transition-all duration-300 hover:bg-brand-navy-light hover:shadow-premium cursor-pointer"
+            className="lets-talk-btn group hidden sm:flex items-center justify-center w-11 h-11 rounded-full bg-brand-navy text-white transition-all duration-300 hover:bg-brand-navy-light hover:scale-105 shadow-md cursor-pointer border border-white/15"
           >
-            WhatsApp Us
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-brand-orange">
-              ↗
-            </span>
+            <svg className="w-5.5 h-5.5 shrink-0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="8" cy="8" r="8" fill="#25D366" />
+              <path fill="#ffffff" d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+            </svg>
           </a>
 
           {/* Hamburger toggle button */}
@@ -261,7 +260,6 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                 { name: "Who we work with", id: "industries" },
                 { name: "Our Reviews", id: "testimonial" },
                 { name: "Pricing", id: "pricing" },
-                { name: "Jukebox Brand Film", id: "brand-film" },
               ].map((item) => {
                 const isActive =
                   activeTab.toLowerCase() === item.id.toLowerCase();
@@ -291,10 +289,13 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="lets-talk-btn flex items-center justify-center gap-2 rounded-full bg-[#f6861f] py-3 text-[14px] font-semibold text-white transition-all duration-300 hover:bg-[#f6861f]/90 w-full cursor-pointer text-center"
+                className="flex items-center justify-center gap-2 rounded-full bg-brand-navy py-3 text-[15px] font-bold text-white transition-all duration-300 hover:bg-brand-navy-light w-full cursor-pointer text-center shadow-md border border-white/10"
               >
-                WhatsApp Us
-                <span>↗</span>
+                <svg className="w-5.5 h-5.5 shrink-0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="8" fill="#25D366" />
+                  <path fill="#ffffff" d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                </svg>
+                <span>Connect</span>
               </a>
             </div>
           </div>
