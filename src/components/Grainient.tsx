@@ -158,13 +158,16 @@ const Grainient = ({
   className = ''
 }: GrainientProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Effect 1: build WebGL context once, pause when offscreen / tab hidden
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    const canvas = canvasRef.current;
+    if (!container || !canvas) return;
 
     const renderer = new Renderer({
+      canvas: canvas,
       webgl: 2,
       alpha: true,
       antialias: false,
@@ -172,11 +175,6 @@ const Grainient = ({
     });
 
     const gl = renderer.gl;
-    const canvas = gl.canvas;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.display = 'block';
-    container.appendChild(canvas);
 
     const geometry = new Triangle(gl);
     const program = new Program(gl, {
@@ -265,7 +263,6 @@ const Grainient = ({
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
       ctxMap.delete(container);
-      try { container.removeChild(canvas); } catch { /* ignore */ }
     };
   }, []); // renderer created once
 
@@ -307,7 +304,12 @@ const Grainient = ({
   ]);
 
 
-  return <div ref={containerRef} className={`grainient-container ${className}`.trim()} />;
+  return (
+    <div ref={containerRef} className={`grainient-container ${className}`.trim()}>
+      <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
+    </div>
+  );
 };
 
 export default Grainient;
+

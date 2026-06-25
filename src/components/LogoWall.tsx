@@ -96,39 +96,31 @@ function LogoItem({
   logoPath?: string;
   delay?: number;
 }) {
+  const [hasError, setHasError] = React.useState(false);
   const src = logoPath || `https://logo.clearbit.com/${domain}?size=200`;
 
   return (
     <div className="flex items-center justify-center px-2 max-w-full">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src}
-        alt={name}
-        width={w}
-        height={h || 48}
-        className={`${h ? "w-auto object-contain" : "max-h-[40px] md:max-h-[48px] w-auto object-contain"} animate-logo-pop`}
-        style={{
-          ...(h ? { maxHeight: `${h}px` } : {}),
-          animationDelay: delay ? `${delay}ms` : undefined,
-        }}
-        loading="lazy"
-        onError={(e) => {
-          // If logo fails, show text fallback
-          const target = e.currentTarget;
-          target.style.display = "none";
-          const parent = target.parentElement;
-          if (parent) {
-            // Check if fallback span already exists to prevent duplicates
-            if (!parent.querySelector(".logo-fallback")) {
-              const fallback = document.createElement("span");
-              fallback.textContent = name;
-              fallback.className =
-                "logo-fallback text-[10px] md:text-[12px] font-bold text-brand-navy/60 tracking-tight whitespace-nowrap";
-              parent.appendChild(fallback);
-            }
-          }
-        }}
-      />
+      {hasError ? (
+        <span className="logo-fallback text-[10px] md:text-[12px] font-bold text-brand-navy/60 tracking-tight whitespace-nowrap">
+          {name}
+        </span>
+      ) : (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={src}
+          alt={name}
+          width={w}
+          height={h || 48}
+          className={`${h ? "w-auto object-contain" : "max-h-[40px] md:max-h-[48px] w-auto object-contain"} animate-logo-pop`}
+          style={{
+            ...(h ? { maxHeight: `${h}px` } : {}),
+            animationDelay: delay ? `${delay}ms` : undefined,
+          }}
+          loading="lazy"
+          onError={() => setHasError(true)}
+        />
+      )}
     </div>
   );
 }

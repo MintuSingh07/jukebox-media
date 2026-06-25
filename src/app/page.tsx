@@ -40,6 +40,8 @@ export default function Home() {
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const prevActiveService = useRef<number | null>(null);
   const descRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [isFilmPlaying, setIsFilmPlaying] = useState(false);
+  const filmVideoRef = useRef<HTMLVideoElement>(null);
 
   const [card1Hovered, setCard1Hovered] = useState(false);
   const [card2Hovered, setCard2Hovered] = useState(false);
@@ -181,6 +183,7 @@ export default function Home() {
         "industries",
         "testimonial",
         "pricing",
+        "brand-film",
       ];
       trackSections.forEach((id) => {
         ScrollTrigger.create({
@@ -522,7 +525,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="w-full relative">
       <Navbar
         ref={navbarRef}
         activeTab={activeTab}
@@ -637,7 +640,7 @@ export default function Home() {
                   </p>
                   <div className="mt-10 flex flex-row items-center justify-center gap-4 pointer-events-auto">
                     <button
-                      onClick={() => scrollToSection("service")}
+                      onClick={() => scrollToSection("brand-film")}
                       className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer"
                     >
                       Watch the Jukebox Brand Film
@@ -1911,6 +1914,78 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Jukebox Brand Film Section */}
+      <div
+        id="brand-film"
+        className="relative z-30 w-full bg-brand-orange py-24 border-t border-white/[0.08] flex flex-col items-center justify-start select-none overflow-hidden"
+      >
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] z-0 pointer-events-none"></div>
+
+        <div className="max-w-[1200px] mx-auto px-6 w-full relative z-10 flex flex-col items-center gap-12 text-center">
+          {/* Header */}
+          <div className="max-w-3xl mx-auto flex flex-col items-center">
+            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight leading-none mb-4 mt-7">
+              Jukebox Brand Film
+            </h2>
+            <p className="text-base sm:text-lg text-brand-navy/80 font-medium leading-relaxed max-w-2xl">
+              See how we craft structured marketing systems and deploy high-fidelity creatives that drive enterprise-grade results for growing brands.
+            </p>
+          </div>
+
+          {/* Interactive Custom Video Player */}
+          <div className="aspect-video max-w-[950px] w-full mx-auto rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(22,20,67,0.2)] border border-brand-navy/10 relative group bg-brand-navy">
+            {/* Real HTML5 Video element */}
+            <video
+              ref={filmVideoRef}
+              src="https://assets.mixkit.co/videos/preview/mixkit-business-team-discussing-work-in-a-modern-office-32869-large.mp4"
+              className="w-full h-full object-cover"
+              controls={isFilmPlaying}
+              onEnded={() => setIsFilmPlaying(false)}
+              onPause={() => setIsFilmPlaying(false)}
+              onPlay={() => setIsFilmPlaying(true)}
+            />
+
+            {/* Custom Overlay (Shown when not playing) */}
+            {!isFilmPlaying && (
+              <div 
+                onClick={() => {
+                  if (filmVideoRef.current) {
+                    filmVideoRef.current.play();
+                    setIsFilmPlaying(true);
+                  }
+                }}
+                className="absolute inset-0 bg-brand-navy/70 backdrop-blur-xs flex flex-col items-center justify-center transition-all duration-500 group-hover:bg-brand-navy/60 z-10 cursor-pointer"
+              >
+                {/* Visual grid / details on poster */}
+                <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
+
+                {/* Animated Pulsing Play Button */}
+                <div className="relative w-24 h-24 flex items-center justify-center">
+                  {/* Ripple rings */}
+                  <div className="absolute inset-0 rounded-full bg-brand-orange/20 animate-ping" />
+                  <div className="absolute inset-2 rounded-full bg-brand-orange/30 animate-pulse" />
+                  
+                  {/* Core button */}
+                  <div className="relative w-16 h-16 rounded-full bg-brand-orange flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110 active:scale-95 border border-white/20">
+                    <svg className="w-6 h-6 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+
+                <span className="text-white/80 text-xs sm:text-sm font-bold uppercase tracking-widest mt-6 group-hover:text-white transition-colors">
+                  Click to play brand film
+                </span>
+                <span className="text-white/40 text-[10px] sm:text-xs mt-2 font-medium">
+                  2 mins 15 secs • Jukebox Media Studio
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
       {/* Footer Section */}
       <footer className="w-full bg-[#161443] py-20 px-6 sm:px-12 md:px-16 flex justify-center border-t border-white/10 relative z-30">
         <div className="max-w-[1600px] w-full flex flex-col justify-between text-white relative">
@@ -2207,7 +2282,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 
