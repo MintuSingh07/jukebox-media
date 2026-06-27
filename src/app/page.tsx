@@ -639,15 +639,6 @@ export default function Home() {
                     >
                       Watch the Jukebox Brand Film
                     </button>
-                    <button
-                      onClick={() => window.dispatchEvent(new CustomEvent("openContactForm"))}
-                      className="lets-talk-btn group px-7 py-3.5 text-[15px] font-semibold text-brand-navy bg-white rounded-full shadow-premium flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 cursor-pointer"
-                    >
-                      Get in Touch{" "}
-                      <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 text-brand-navy">
-                        →
-                      </span>
-                    </button>
                   </div>
                 </div>
               </div>
