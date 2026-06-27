@@ -182,7 +182,6 @@ export default function Home() {
         "blueprint",
         "industries",
         "testimonial",
-        "pricing",
         "brand-film",
       ];
       trackSections.forEach((id) => {
@@ -281,11 +280,6 @@ export default function Home() {
             "#testimonial .text-center > *",
             "#testimonial > div:nth-child(2)",
           ],
-          start: "top 78%",
-        },
-        {
-          id: "pricing",
-          selectors: ["#pricing .text-center > *", "#pricing .grid > div"],
           start: "top 78%",
         },
       ];
@@ -646,10 +640,10 @@ export default function Home() {
                       Watch the Jukebox Brand Film
                     </button>
                     <button
-                      onClick={() => scrollToSection("pricing")}
+                      onClick={() => window.dispatchEvent(new CustomEvent("openContactForm"))}
                       className="lets-talk-btn group px-7 py-3.5 text-[15px] font-semibold text-brand-navy bg-white rounded-full shadow-premium flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.02] hover:bg-white/90 cursor-pointer"
                     >
-                      Pricing{" "}
+                      Get in Touch{" "}
                       <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 text-brand-navy">
                         →
                       </span>
@@ -943,7 +937,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10 mt-12 md:mt-16">
+          <div className="text-center max-w-3xl mx-auto mb-4 md:mb-6 mt-12 md:mt-16">
             <ScrollReveal
               as="h2"
               containerClassName="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight mt-2"
@@ -957,7 +951,7 @@ export default function Home() {
           </div>
 
           {/* Service Capsules (replacing animations) */}
-          <div className="flex flex-wrap justify-center gap-3.5 max-w-5xl mx-auto mt-12 md:mt-16">
+          <div className="flex flex-wrap justify-center gap-3.5 max-w-5xl mx-auto mt-6 md:mt-8">
             {servicesData.map((service, idx) => (
               <div
                 key={idx}
@@ -1363,7 +1357,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-6">
             <ScrollReveal
               as="h2"
               containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
@@ -1373,7 +1367,7 @@ export default function Home() {
           </div>
 
           {/* Centered Premium Capsules */}
-          <div className="flex flex-wrap justify-center gap-3.5 max-w-4xl mx-auto mt-4">
+          <div className="flex flex-wrap justify-center gap-3.5 max-w-4xl mx-auto mt-2">
             {[
               "D2C Brands",
               "Real Estate",
@@ -1449,11 +1443,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Pricing Section */}
-      <div
-        id="pricing"
-        className="relative z-30 w-full min-h-screen bg-[#f6861f] py-24 sm:py-32 border-t border-white/[0.08] flex flex-col items-center justify-start select-none overflow-hidden"
-      >
+      {/* Pricing Section - Hidden per user request */}
+      {false && (
+        <div
+          id="pricing"
+          className="relative z-30 w-full min-h-screen bg-[#f6861f] py-24 sm:py-32 border-t border-white/[0.08] flex flex-col items-center justify-start select-none overflow-hidden"
+        >
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] z-0 pointer-events-none"></div>
 
@@ -1913,6 +1908,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      )}
 
       {/* Jukebox Brand Film Section */}
       <div
@@ -2003,51 +1999,14 @@ export default function Home() {
                     else
                       window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className="inline-block group cursor-pointer mb-6"
+                  className="inline-block group cursor-pointer"
                 >
                   <img
-                    src="/final logo-TM.png"
+                    src="/TM Vinyl for Website.png"
                     alt="Jukebox Media"
-                    className="h-12 md:h-[56px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="h-24 md:h-[110px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </a>
-                <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
-                  {[
-                    { name: "Home", id: "#home" },
-                    { name: "About", id: "#about" },
-                    { name: "Works", id: "#testimonial" },
-                    { name: "Services", id: "#service" },
-                    { name: "Pricing", id: "#pricing" },
-                    { name: "Contact us", id: "contact" },
-                  ].map((link, idx) => (
-                    <li key={idx}>
-                      {link.id === "contact" ? (
-                        <button
-                          onClick={() =>
-                            window.dispatchEvent(
-                              new CustomEvent("openContactForm"),
-                            )
-                          }
-                          className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300 cursor-pointer text-left"
-                        >
-                          {link.name}
-                        </button>
-                      ) : (
-                        <a
-                          href={link.id}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            if ((window as any).lenis)
-                              (window as any).lenis.scrollTo(link.id);
-                          }}
-                          className="text-[14px] font-semibold text-white/70 hover:text-[#f6861f] transition-all duration-300 cursor-pointer"
-                        >
-                          {link.name}
-                        </a>
-                      )}
-                    </li>
-                  ))}
-                </ul>
               </div>
 
               <div>

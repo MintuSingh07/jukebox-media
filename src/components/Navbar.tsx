@@ -147,7 +147,6 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             { name: "Jukebox Method", id: "blueprint" },
             { name: "Who we work with", id: "industries" },
             { name: "Our Reviews", id: "testimonial" },
-            { name: "Pricing", id: "pricing" },
           ].map((item) => {
             const isActive = activeTab.toLowerCase() === item.id.toLowerCase();
             return (
@@ -259,7 +258,6 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                 { name: "Jukebox Method", id: "blueprint" },
                 { name: "Who we work with", id: "industries" },
                 { name: "Our Reviews", id: "testimonial" },
-                { name: "Pricing", id: "pricing" },
               ].map((item) => {
                 const isActive =
                   activeTab.toLowerCase() === item.id.toLowerCase();
