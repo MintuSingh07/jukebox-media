@@ -213,7 +213,7 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
       </div>
 
       {/* Floating Elements Container (Outside of overflow wrapper so items can pop out of the box boundaries) */}
-      <div className="hidden md:block absolute top-6 left-1/2 -translate-x-1/2 w-[150px] h-[320px] pointer-events-none z-20">
+      <div className="absolute top-0 md:top-6 left-1/2 -translate-x-1/2 w-[160px] md:w-[150px] h-[320px] pointer-events-none z-20">
         
         {/* Floating Custom Jukebox Vinyl Logo (Top-left of the phone) */}
         <div

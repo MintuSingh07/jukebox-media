@@ -58,7 +58,10 @@ export default function Home() {
 
   // Auto-play card animations on mobile (touch devices) via IntersectionObserver
   useEffect(() => {
-    const isTouchDevice = window.matchMedia("(hover: none)").matches;
+    const isTouchDevice = 
+      window.matchMedia("(hover: none)").matches || 
+      ('ontouchstart' in window) || 
+      (navigator.maxTouchPoints > 0);
     if (!isTouchDevice) return; // Desktop: rely on hover, skip observer
 
     const cards = [
@@ -877,7 +880,7 @@ export default function Home() {
 
             >
               {/* Mobile: visual on top, text below */}
-              <div className="mx-4 mt-4 h-[150px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center">
+              <div className="mx-4 mt-4 h-[150px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] flex items-center justify-center">
                 <MultipleVendorChaosVisual isHovered={card2Hovered} />
               </div>
               <div className="relative z-10 text-center px-6 py-5 md:hidden">
