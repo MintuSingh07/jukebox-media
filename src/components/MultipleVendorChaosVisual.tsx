@@ -14,6 +14,7 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
   const message1Ref = useRef<HTMLDivElement>(null);
   const message2Ref = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const loopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // 1. Set initial GSAP positions on mount
@@ -84,15 +85,46 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
     return () => ctx.revert();
   }, []);
 
-  // 3. Control play/reverse smoothly when isHovered changes
+  // 3. Control play/reverse smoothly when isHovered changes — auto-loop on touch/mobile
   useEffect(() => {
-    if (tlRef.current) {
-      if (isHovered) {
-        tlRef.current.play();
-      } else {
-        tlRef.current.reverse();
-      }
+    if (!tlRef.current) return;
+
+    const isTouchDevice = 
+      window.matchMedia("(hover: none)").matches || 
+      (typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0));
+
+    // Clear any existing loop timer
+    if (loopTimerRef.current) {
+      clearTimeout(loopTimerRef.current);
+      loopTimerRef.current = null;
     }
+
+    if (isHovered) {
+      if (isTouchDevice) {
+        // On mobile: play forward, then after a pause reverse, then repeat
+        const runLoop = () => {
+          if (!tlRef.current) return;
+          tlRef.current.timeScale(1).play();
+          loopTimerRef.current = setTimeout(() => {
+            if (!tlRef.current) return;
+            tlRef.current.timeScale(0.7).reverse();
+            loopTimerRef.current = setTimeout(runLoop, tlRef.current.duration() * 1000 / 0.7 + 500);
+          }, tlRef.current.duration() * 1000 + 1500);
+        };
+        runLoop();
+      } else {
+        tlRef.current.timeScale(1).play();
+      }
+    } else {
+      tlRef.current.timeScale(0.85).reverse();
+    }
+
+    return () => {
+      if (loopTimerRef.current) {
+        clearTimeout(loopTimerRef.current);
+        loopTimerRef.current = null;
+      }
+    };
   }, [isHovered]);
 
   return (
@@ -251,7 +283,8 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
         {/* Message 2 (blue accent) - Floats to the right, out of the card boundaries */}
         <div
           ref={message2Ref}
-          className="absolute top-[42%] -right-[75px] md:-right-[95px] w-[130px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#161443]/20 shadow-[0_8px_30px_rgba(22,20,67,0.12)] rounded-2xl p-2 flex items-start gap-1.5 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
+          className="absolute top-[32%] md:top-[42%] -right-[75px] md:-right-[95px] w-[130px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#161443]/20 shadow-[0_8px_30px_rgba(22,20,67,0.12)] rounded-2xl p-2 flex items-start gap-1.5 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
+
         >
           <div className="w-6 h-6 rounded-full bg-[#161443]/10 border border-[#161443]/20 flex items-center justify-center text-[9px] font-bold text-[#161443] flex-shrink-0">
             B
