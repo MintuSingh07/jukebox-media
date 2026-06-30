@@ -98,14 +98,14 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 select-none pointer-events-none"
+      className="w-full h-full relative select-none pointer-events-none"
     >
       {/* Clipped Phone Container (bounds phone mockup to card area) */}
       <div className="absolute inset-0 rounded-[2rem] overflow-hidden flex justify-center">
         {/* iPhone Chassis Mockup with overflow-hidden to clip the screen content */}
         <div
           ref={phoneRef}
-          className="absolute top-6 w-[180px] md:w-[150px] h-[320px] bg-slate-900 rounded-[2.2rem] border-[4.5px] border-slate-950 shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex flex-col z-10 pointer-events-auto overflow-hidden"
+          className="absolute top-0 w-[160px] h-[320px] md:top-6 md:w-[150px] md:h-[320px] bg-slate-900 rounded-[2.2rem] border-[4.5px] border-slate-950 shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex flex-col z-10 pointer-events-auto overflow-hidden"
         >
           {/* Dynamic Island Notch */}
           <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[52px] h-[13px] bg-black rounded-full z-30" />
@@ -213,12 +213,12 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
       </div>
 
       {/* Floating Elements Container (Outside of overflow wrapper so items can pop out of the box boundaries) */}
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 w-[180px] md:w-[150px] h-[320px] pointer-events-none z-20">
+      <div className="hidden md:block absolute top-6 left-1/2 -translate-x-1/2 w-[150px] h-[320px] pointer-events-none z-20">
         
         {/* Floating Custom Jukebox Vinyl Logo (Top-left of the phone) */}
         <div
           ref={logoRef}
-          className="absolute -top-4 -left-6 w-[52px] md:w-[44px] h-[52px] md:h-[44px] z-30 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-12 cursor-pointer group"
+          className="absolute -top-3 -left-4 w-[40px] md:w-[52px] h-[40px] md:h-[52px] z-30 pointer-events-auto transition-transform duration-300 hover:scale-110 hover:-rotate-12 cursor-pointer group"
         >
           {/* Floating logo image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -232,7 +232,7 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
         {/* Message 1 (orange accent) - Floats to the left, out of the card boundaries */}
         <div
           ref={message1Ref}
-          className="absolute top-[22%] -left-[105px] md:-left-[95px] w-[170px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#f6861f]/20 shadow-[0_8px_30px_rgba(246,134,31,0.12)] rounded-2xl p-2.5 flex items-start gap-2 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
+          className="absolute top-[20%] -left-[75px] md:-left-[95px] w-[130px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#f6861f]/20 shadow-[0_8px_30px_rgba(246,134,31,0.12)] rounded-2xl p-2 flex items-start gap-1.5 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
         >
           <div className="w-6 h-6 rounded-full bg-[#f6861f]/10 border border-[#f6861f]/20 flex items-center justify-center text-[9px] font-bold text-[#f6861f] flex-shrink-0">
             A
@@ -251,7 +251,7 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
         {/* Message 2 (blue accent) - Floats to the right, out of the card boundaries */}
         <div
           ref={message2Ref}
-          className="absolute top-[42%] -right-[105px] md:-right-[95px] w-[170px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#161443]/20 shadow-[0_8px_30px_rgba(22,20,67,0.12)] rounded-2xl p-2.5 flex items-start gap-2 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
+          className="absolute top-[42%] -right-[75px] md:-right-[95px] w-[130px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#161443]/20 shadow-[0_8px_30px_rgba(22,20,67,0.12)] rounded-2xl p-2 flex items-start gap-1.5 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
         >
           <div className="w-6 h-6 rounded-full bg-[#161443]/10 border border-[#161443]/20 flex items-center justify-center text-[9px] font-bold text-[#161443] flex-shrink-0">
             B

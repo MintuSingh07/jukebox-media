@@ -198,14 +198,46 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
     };
   }, []);
 
-  // Play / reverse on hover change
+  // Play / reverse on hover change — auto-loop on touch/mobile
+  const loopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
     if (!tlRef.current) return;
+
+    const isTouchDevice = window.matchMedia("(hover: none)").matches;
+
+    // Clear any existing loop timer
+    if (loopTimerRef.current) {
+      clearTimeout(loopTimerRef.current);
+      loopTimerRef.current = null;
+    }
+
     if (isHovered) {
-      tlRef.current.timeScale(1).play();
+      if (isTouchDevice) {
+        // On mobile: play forward, then after a pause reverse, then repeat
+        const runLoop = () => {
+          if (!tlRef.current) return;
+          tlRef.current.timeScale(1).play();
+          loopTimerRef.current = setTimeout(() => {
+            if (!tlRef.current) return;
+            tlRef.current.timeScale(0.7).reverse();
+            loopTimerRef.current = setTimeout(runLoop, tlRef.current.duration() * 1000 / 0.7 + 500);
+          }, tlRef.current.duration() * 1000 + 1500);
+        };
+        runLoop();
+      } else {
+        tlRef.current.timeScale(1).play();
+      }
     } else {
       tlRef.current.timeScale(0.85).reverse();
     }
+
+    return () => {
+      if (loopTimerRef.current) {
+        clearTimeout(loopTimerRef.current);
+        loopTimerRef.current = null;
+      }
+    };
   }, [isHovered]);
 
   return (

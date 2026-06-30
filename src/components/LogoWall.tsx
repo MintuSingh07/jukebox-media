@@ -127,25 +127,25 @@ function LogoItem({
 
 export default function LogoWall() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-start pt-24 pb-16 px-8 gap-2">
+    <div className="w-full h-full flex flex-col items-center justify-start pt-8 md:pt-16 lg:pt-24 pb-8 md:pb-12 lg:pb-16 px-4 sm:px-8 gap-2">
       {/* Section header */}
-      <div className="text-center mb-8 mt-10 md:mt-14">
+      <div className="text-center mb-6 md:mb-8 mt-8 md:mt-10 lg:mt-14">
         <h2 className="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight">
           Leadership Experience Across Brands
         </h2>
       </div>
 
       {/* Grid container matching the layout and sizing shown in the user's reference image */}
-      <div className="w-full max-w-[1550px] flex flex-col gap-8 md:gap-12 px-4">
+      <div className="w-full max-w-[1550px] flex flex-col gap-6 md:gap-8 lg:gap-12 px-4">
         {/* Top Section containing Columns 1, 2, 3, 4 */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 w-full md:h-[350px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4 md:gap-6 lg:gap-12 w-full lg:h-[350px]">
           {/* Column 1: Box 1 (Leftmost large square-ish box - no background/label as requested) */}
           <div
             id="brand-box-1"
-            className="md:col-span-3 p-6 flex flex-col justify-center items-center h-[350px] md:h-full select-none relative"
+            className="lg:col-span-3 p-4 md:p-6 flex flex-col justify-center items-center h-[195px] sm:h-[240px] md:h-[300px] lg:h-full select-none relative"
           >
             {/* Pattern layout matching the Unilever-centered image */}
-            <div className="relative w-full h-[240px] flex items-center justify-center">
+            <div className="relative w-full h-[240px] flex items-center justify-center scale-[0.8] sm:scale-[0.88] md:scale-[0.88] lg:scale-100 origin-center transition-transform select-none">
               {/* Center: Unilever (larger, central focal point) */}
               <div className="z-10">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -236,14 +236,14 @@ export default function LogoWall() {
           </div>
 
           {/* Column 2: Box 2 and Box 3 (col-span 3) */}
-          <div className="md:col-span-3 flex flex-col justify-between h-[420px] md:h-full gap-6 md:gap-8">
+          <div className="lg:col-span-3 flex flex-col justify-between h-[260px] sm:h-[310px] md:h-[320px] lg:h-full gap-4 sm:gap-6 md:gap-5 lg:gap-8">
             {/* Box 2 (top: wider horizontal rectangle containing the Reliance group brand pattern - no background as requested) */}
             <div
               id="brand-box-2"
               className="h-[60%] p-4 flex flex-col justify-center items-center select-none relative"
             >
               {/* Pattern layout matching the Reliance-centered image */}
-              <div className="relative w-full h-[180px] flex items-center justify-center">
+              <div className="relative w-full h-[180px] flex items-center justify-center scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-100 origin-center transition-transform select-none">
                 {/* Center: Reliance Industries */}
                 <div className="z-10">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -327,7 +327,7 @@ export default function LogoWall() {
               id="brand-box-3"
               className="h-[37%] p-4 flex flex-col justify-center items-center relative select-none"
             >
-              <div className="relative w-[260px] h-[140px] mx-auto select-none">
+              <div className="relative w-[260px] h-[140px] mx-auto select-none scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-100 origin-center transition-transform">
                 {/* Center: Mondelēz International */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -376,13 +376,13 @@ export default function LogoWall() {
           </div>
 
           {/* Column 3: Box 4 and Box 5 (col-span 2, narrow width with vertical gap in the middle) */}
-          <div className="md:col-span-2 flex flex-col justify-between h-[280px] md:h-full gap-6 md:gap-8">
+          <div className="lg:col-span-2 flex flex-col justify-between h-[165px] sm:h-[210px] md:h-[270px] lg:h-full gap-4 sm:gap-6 md:gap-5 lg:gap-8">
             {/* Box 4 (top: small rectangle) */}
             <div
               id="brand-box-4"
               className="h-[37%] p-3 flex flex-col justify-center items-center select-none relative"
             >
-              <div className="flex flex-col justify-center items-center gap-5">
+              <div className="flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-3 lg:gap-5 scale-[0.8] sm:scale-[0.9] md:scale-[0.88] lg:scale-100 origin-center transition-transform">
                 {/* Top Row: Frooti (Left) and Fizz (Right) */}
                 <div className="flex items-center justify-center gap-8">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -415,11 +415,11 @@ export default function LogoWall() {
             {/* Box 5 (bottom: small rectangle) - no background/border */}
             <div
               id="brand-box-5"
-              className="h-[37%] p-4 flex flex-col justify-center items-center relative select-none -translate-y-6 md:-translate-y-8"
+              className="h-[37%] p-4 flex flex-col justify-center items-center relative select-none -translate-y-4 md:-translate-y-4 lg:-translate-y-8"
             >
-              <div className="relative w-full h-[90px] select-none">
+              <div className="relative w-[260px] h-[90px] mx-auto select-none scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-100 origin-center transition-transform">
                 {/* Center: Parle Logo */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                <div className="absolute top-[64px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/brands/parle-logo.png"
@@ -430,7 +430,7 @@ export default function LogoWall() {
                 </div>
 
                 {/* Top Center: Kismi */}
-                <div className="absolute top-[-18px] left-1/2 -translate-x-1/2">
+                <div className="absolute top-[0px] left-1/2 -translate-x-1/2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/brands/parle-kismi.png"
@@ -441,7 +441,7 @@ export default function LogoWall() {
                 </div>
 
                 {/* Mid Left: Parle-G */}
-                <div className="absolute top-1/2 left-[-32px] -translate-y-1/2">
+                <div className="absolute top-[64px] left-[15px] -translate-y-1/2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/brands/parle-parleg.png"
@@ -452,7 +452,7 @@ export default function LogoWall() {
                 </div>
 
                 {/* Mid Right: Hide & Seek */}
-                <div className="absolute top-1/2 right-[-32px] -translate-y-1/2">
+                <div className="absolute top-[64px] right-[15px] -translate-y-1/2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/brands/parle-hideseek.png"
@@ -468,9 +468,9 @@ export default function LogoWall() {
           {/* Column 4: Merged Box 6, 7, 8 (col-span 4) - no background/border */}
           <div
             id="brand-box-6-7-8"
-            className="md:col-span-4 p-6 flex flex-col justify-center items-center h-[350px] md:h-full select-none relative"
+            className="lg:col-span-4 p-4 md:p-6 flex flex-col justify-center items-center h-[225px] sm:h-[270px] md:h-[320px] lg:h-full select-none relative"
           >
-            <div className="relative w-[290px] h-[290px] mx-auto flex items-center justify-center">
+            <div className="relative w-[290px] h-[290px] mx-auto flex items-center justify-center scale-[0.72] sm:scale-[0.82] md:scale-[0.88] lg:scale-100 origin-center transition-transform">
               {/* Center: P&G */}
               <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -505,7 +505,7 @@ export default function LogoWall() {
               </div>
 
               {/* Middle Left: Ariel */}
-              <div className="absolute top-[48%] left-[-20px] -translate-y-1/2">
+              <div className="absolute top-[68%] left-[-20px] -translate-y-1/2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/brands/pg-ariel.png"
@@ -540,8 +540,29 @@ export default function LogoWall() {
           </div>
         </div>
 
-        {/* Bottom Section containing two long full-width horizontal strips (Strip 9 and Strip 10) */}
-        <div className="w-full flex flex-col gap-3.5 mt-1.5">
+        {/* On Mobile: Static wrapping grid of all strip logos. On Desktop: two horizontal marquee strips */}
+        <div className="lg:hidden flex flex-wrap items-center justify-center gap-x-5 gap-y-4 px-4 w-full select-none mt-4">
+          <img src="/brands/nexa.png" alt="Nexa" className="h-[18px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/volkswagen.png" alt="Volkswagen" className="h-[32px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/lodha.png" alt="Lodha" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/kalpataru.png" alt="Kalpataru" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/amul.png" alt="Amul" className="h-[22px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/netflix.png" alt="Netflix" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/sugar.png" alt="Sugar" className="h-[18px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/hyundai.png" alt="Hyundai" className="h-[14px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/nykaa.svg" alt="Nykaa" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/vip.svg" alt="VIP" className="h-[16px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/cipla.svg" alt="Cipla" className="h-[14px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/ultratech.png" alt="UltraTech" className="h-[18px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/hyatt.svg" alt="Hyatt" className="h-[15px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/marriott.svg" alt="Marriott" className="h-[16px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/novotel.svg" alt="Novotel" className="h-[18px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/itchotels.svg" alt="ITC Hotels" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/thefern.svg" alt="The Fern" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+        </div>
+
+        {/* Bottom Section containing two long full-width horizontal strips on desktop */}
+        <div className="hidden lg:flex flex-col gap-3.5 mt-1.5">
           {/* Strip 9 (top horizontal strip) */}
           <div
             id="brand-strip-1"
@@ -576,7 +597,7 @@ export default function LogoWall() {
       </div>
 
       {/* Subtle bottom divider line */}
-      <div className="mt-10 w-16 h-[2px] rounded-full bg-brand-navy/10" />
+      <div className="mt-6 md:mt-10 w-16 h-[2px] rounded-full bg-brand-navy/10" />
     </div>
   );
 }

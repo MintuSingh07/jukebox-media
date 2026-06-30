@@ -49,6 +49,46 @@ export default function Home() {
   const [card4Hovered, setCard4Hovered] = useState(false);
   const [card5Hovered, setCard5Hovered] = useState(false);
 
+  // Refs for IntersectionObserver on touch/mobile devices
+  const problemCard1Ref = useRef<HTMLDivElement>(null);
+  const problemCard2Ref = useRef<HTMLDivElement>(null);
+  const problemCard3Ref = useRef<HTMLDivElement>(null);
+  const problemCard4Ref = useRef<HTMLDivElement>(null);
+  const problemCard5Ref = useRef<HTMLDivElement>(null);
+
+  // Auto-play card animations on mobile (touch devices) via IntersectionObserver
+  useEffect(() => {
+    const isTouchDevice = window.matchMedia("(hover: none)").matches;
+    if (!isTouchDevice) return; // Desktop: rely on hover, skip observer
+
+    const cards = [
+      { ref: problemCard1Ref, setter: setCard1Hovered },
+      { ref: problemCard2Ref, setter: setCard2Hovered },
+      { ref: problemCard3Ref, setter: setCard3Hovered },
+      { ref: problemCard4Ref, setter: setCard4Hovered },
+      { ref: problemCard5Ref, setter: setCard5Hovered },
+    ];
+
+    const observers: IntersectionObserver[] = [];
+
+    cards.forEach(({ ref, setter }) => {
+      const el = ref.current;
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          setter(entry.isIntersecting);
+        },
+        { threshold: 0.45 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => {
+      observers.forEach((obs) => obs.disconnect());
+    };
+  }, []);
+
   const handleCardMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
@@ -525,7 +565,7 @@ export default function Home() {
         activeTab={activeTab}
         onTabClick={scrollToSection}
         style={{
-          top: "6vh",
+          top: "3.5vh",
           borderTopLeftRadius: "32px",
           borderTopRightRadius: "32px",
           borderBottomLeftRadius: "32px",
@@ -551,7 +591,7 @@ export default function Home() {
             style={{
               left: "3vw",
               right: "3vw",
-              height: "94vh",
+              height: "96.5vh",
               borderTopLeftRadius: "32px",
               borderTopRightRadius: "32px",
               borderBottomLeftRadius: "0px",
@@ -606,11 +646,11 @@ export default function Home() {
             </div>
 
             {/* Hero Content Section */}
-            <main className="relative flex flex-col flex-1 items-center justify-center w-full max-w-7xl px-6 py-28 md:py-36 z-10">
+            <main className="relative flex flex-col flex-1 items-center justify-center w-full max-w-7xl px-6 py-16 sm:py-24 md:py-28 lg:py-32 xl:py-36 z-10">
               {/* Core Layout Relative Wrapper for Absolute Cards */}
               <div className="relative w-full flex flex-col items-center">
                 <div className="flex flex-col items-center max-w-4xl text-center select-none z-10 pointer-events-none">
-                  <h1 className="text-[42px] leading-[1.15] sm:text-[68px] sm:leading-[1.1] md:text-[86px] md:leading-[1.08] font-semibold tracking-tight text-white">
+                  <h1 className="text-[32px] sm:text-[50px] md:text-[64px] lg:text-[76px] xl:text-[86px] leading-[1.2] sm:leading-[1.15] md:leading-[1.1] lg:leading-[1.08] font-semibold tracking-tight text-white">
                     <span className="block">Clarity & Growth.</span>
                     <span className="block mt-1">Structured Marketing</span>
                     <span className="block text-brand-navy mt-1">
@@ -618,7 +658,7 @@ export default function Home() {
                     </span>
                     <span className="block mt-1">To Deliver Impact</span>
                   </h1>
-                  <p className="mt-8 text-[16px] leading-relaxed sm:text-[18px] md:text-[22px] font-normal text-white/80 max-w-2xl tracking-tight">
+                  <p className="mt-6 sm:mt-8 text-[15px] sm:text-[18px] md:text-[22px] leading-relaxed font-normal text-white/80 max-w-2xl tracking-tight">
                     Bringing{" "}
                     <span className="font-serif italic font-medium text-brand-navy">
                       clarity
@@ -632,7 +672,7 @@ export default function Home() {
                       marketing efforts
                     </span>
                   </p>
-                  <div className="mt-10 flex flex-row items-center justify-center gap-4 pointer-events-auto">
+                  <div className="mt-6 sm:mt-8 md:mt-10 flex flex-row items-center justify-center gap-4 pointer-events-auto">
                     <button
                       onClick={() => scrollToSection("brand-film")}
                       className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer"
@@ -722,32 +762,32 @@ export default function Home() {
                 />
               </div>
 
-              {/* Media Network Icons/badges Row */}
-              <div className="grid grid-cols-5 gap-3 w-full items-center justify-items-center opacity-85 mt-4">
+              {/* Media Network Icons Capsule */}
+              <div className="w-full bg-white rounded-full py-2 px-4 mb-6 flex flex-row flex-nowrap items-center justify-between gap-1.5 sm:gap-2 shadow-md border border-white/20 mt-4 select-none">
                 <img
                   src="/logos/sony-pictures-networks-logo.webp"
                   alt="Sony Pictures Networks"
-                  className="h-9 sm:h-11 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-5 sm:h-6 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
                 <img
                   src="/logos/z5-logo.webp"
                   alt="Zee5"
-                  className="h-7 sm:h-8 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-3.5 sm:h-4.5 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
                 <img
                   src="/logos/viacom-logo.webp"
                   alt="Viacom18"
-                  className="h-9 sm:h-10 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-3.5 sm:h-4.5 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
                 <img
                   src="/logos/times-of-india-logo.webp"
                   alt="The Times of India"
-                  className="h-20 sm:h-25 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-7 sm:h-9 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
                 <img
                   src="/logos/radio-mirchi-logo.webp"
                   alt="Mirchi"
-                  className="h-20 sm:h-25 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-10 sm:h-13 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
@@ -801,104 +841,136 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-10 md:mt-16 max-w-6xl mx-auto px-4">
+
+            {/* CARD 1: Irregular Campaigns (wide) */}
             <div
+              ref={problemCard1Ref}
               onMouseEnter={() => setCard1Hovered(true)}
               onMouseLeave={() => setCard1Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] p-8 md:col-span-2 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+              className="relative bg-[#eff3fe] rounded-[2rem] md:col-span-2 flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors md:h-[420px]"
             >
-              <div className="relative z-10 text-center mt-4">
-                <h4 className="text-[26px] font-bold text-brand-navy tracking-tight">
+              {/* Text */}
+              <div className="relative z-10 text-center px-6 pt-7 pb-3 md:pt-5 md:pb-0">
+                <h4 className="text-[22px] md:text-[26px] font-bold text-brand-navy tracking-tight">
                   Irregular Campaigns
                 </h4>
-                <p className="text-[15px] text-brand-navy/60 mt-2 max-w-md mx-auto leading-relaxed">
-                  Running marketing activities in fits and starts, resulting in
-                  erratic cash flows.
+                <p className="text-[14px] md:text-[15px] text-brand-navy/60 mt-1.5 max-w-md mx-auto leading-relaxed">
+                  Running marketing activities in fits and starts, resulting in erratic cash flows.
                 </p>
               </div>
-
-              <div className="absolute left-10 right-10 bottom-[-5%] h-[65%] bg-white rounded-t-[2.5rem] shadow-2xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
+              {/* Visual panel — mobile: fixed height in flow; desktop: absolute overshoot at bottom */}
+              <div className="mx-4 mb-0 mt-4 h-[200px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center">
+                <IrregularCampaignsVisual isHovered={card1Hovered} />
+              </div>
+              <div className="hidden md:block absolute left-10 right-10 bottom-[-5%] top-[152px] bg-white rounded-t-[2.5rem] shadow-2xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
                 <IrregularCampaignsVisual isHovered={card1Hovered} />
               </div>
             </div>
 
+            {/* CARD 2: Multiple Vendor Chaos */}
             <div
+              ref={problemCard2Ref}
               onMouseEnter={() => setCard2Hovered(true)}
               onMouseLeave={() => setCard2Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+              className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors md:h-[420px]"
+
             >
-              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2">
+              {/* Mobile: visual on top, text below */}
+              <div className="mx-4 mt-4 h-[150px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center">
                 <MultipleVendorChaosVisual isHovered={card2Hovered} />
               </div>
-
-              <div className="relative z-10 text-center mt-auto">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
-                  Multiple Vendor Chaos
-                </h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
-                  Working with disconnected agencies leads to lack of alignment.
-                </p>
+              <div className="relative z-10 text-center px-6 py-5 md:hidden">
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Multiple Vendor Chaos</h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">Working with disconnected agencies leads to lack of alignment.</p>
+              </div>
+              {/* Desktop: original absolute layout */}
+              <div className="hidden md:flex md:flex-1 md:flex-col md:justify-end md:p-8">
+                <div className="absolute left-8 right-8 top-8 h-[225px] bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-start justify-center transition-transform duration-500 group-hover:-translate-y-2">
+                  <MultipleVendorChaosVisual isHovered={card2Hovered} />
+                </div>
+                <div className="relative z-10 text-center mt-auto">
+                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Multiple Vendor Chaos</h4>
+                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">Working with disconnected agencies leads to lack of alignment.</p>
+                </div>
               </div>
             </div>
 
+            {/* CARD 3: Activity Over Direction */}
             <div
+              ref={problemCard3Ref}
               onMouseEnter={() => setCard3Hovered(true)}
               onMouseLeave={() => setCard3Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+              className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
             >
-              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
+              <div className="mx-4 mt-4 h-[200px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center px-3 py-2">
                 <ActivityOverDirectionVisual isHovered={card3Hovered} />
               </div>
-
-              <div className="relative z-10 text-center mt-auto">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
-                  Activity Over Direction
-                </h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
-                  Focusing heavily on execution instead of strategic alignment.
-                </p>
+              <div className="relative z-10 text-center px-6 py-5 md:hidden">
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Activity Over Direction</h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">Focusing heavily on execution instead of strategic alignment.</p>
+              </div>
+              <div className="hidden md:flex md:flex-col md:justify-end md:min-h-[420px] md:p-8">
+                <div className="absolute left-8 right-8 top-8 bottom-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
+                  <ActivityOverDirectionVisual isHovered={card3Hovered} />
+                </div>
+                <div className="relative z-10 text-center mt-auto">
+                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Activity Over Direction</h4>
+                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">Focusing heavily on execution instead of strategic alignment.</p>
+                </div>
               </div>
             </div>
 
+            {/* CARD 4: Consistency Struggles */}
             <div
+              ref={problemCard4Ref}
               onMouseEnter={() => setCard4Hovered(true)}
               onMouseLeave={() => setCard4Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col items-center justify-start min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+              className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
             >
-              <div className="relative z-10 text-center mt-2">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
-                  Consistency Struggles
-                </h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
-                  Struggling to maintain a unified brand message and consistent
-                  presence.
-                </p>
+              <div className="relative z-10 text-center px-6 pt-7 pb-3 md:hidden">
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Consistency Struggles</h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">Struggling to maintain a unified brand message and consistent presence.</p>
               </div>
-
-              <div className="absolute left-8 right-8 bottom-8 top-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
+              <div className="mx-4 mb-4 h-[210px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center">
                 <ConsistencyStrugglesVisual isHovered={card4Hovered} />
               </div>
+              <div className="hidden md:flex md:flex-col md:items-center md:justify-start md:min-h-[420px] md:pt-5 md:px-8 md:pb-8">
+                <div className="relative z-10 text-center mt-0">
+                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Consistency Struggles</h4>
+                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">Struggling to maintain a unified brand message and consistent presence.</p>
+                </div>
+                <div className="absolute left-8 right-8 bottom-8 top-[112px] bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
+                  <ConsistencyStrugglesVisual isHovered={card4Hovered} />
+                </div>
+              </div>
             </div>
 
+            {/* CARD 5: Unclear ROI */}
             <div
+              ref={problemCard5Ref}
               onMouseEnter={() => setCard5Hovered(true)}
               onMouseLeave={() => setCard5Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] p-8 flex flex-col justify-end min-h-[420px] overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+              className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
             >
-              <div className="absolute left-8 right-8 top-8 bottom-44 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
+              <div className="mx-4 mt-4 h-[200px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center px-3 py-2">
                 <UnclearROIVisual isHovered={card5Hovered} />
               </div>
-
-              <div className="relative z-10 text-center mt-auto">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
-                  Unclear ROI
-                </h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
-                  Inability to track return on investment from multiple
-                  channels.
-                </p>
+              <div className="relative z-10 text-center px-6 py-5 md:hidden">
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Unclear ROI</h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">Inability to track return on investment from multiple channels.</p>
+              </div>
+              <div className="hidden md:flex md:flex-col md:justify-end md:min-h-[420px] md:p-8">
+                <div className="absolute left-8 right-8 top-8 bottom-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
+                  <UnclearROIVisual isHovered={card5Hovered} />
+                </div>
+                <div className="relative z-10 text-center mt-auto">
+                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Unclear ROI</h4>
+                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">Inability to track return on investment from multiple channels.</p>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -906,7 +978,7 @@ export default function Home() {
       {/* Service Section */}
       <div
         id="service"
-        className="relative z-20 w-full bg-white py-12 md:py-16 border-t border-brand-navy/[0.04] flex flex-col items-center overflow-hidden"
+        className="relative z-20 w-full bg-white pt-10 pb-6 md:py-16 border-t border-brand-navy/[0.04] flex flex-col items-center overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
@@ -928,7 +1000,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-4 md:mb-6 mt-12 md:mt-16">
+          <div className="text-center max-w-3xl mx-auto mb-4 md:mb-6 mt-8 md:mt-16">
             <ScrollReveal
               as="h2"
               containerClassName="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight mt-2"
@@ -941,14 +1013,14 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Service Capsules (replacing animations) */}
-          <div className="flex flex-wrap justify-center gap-3.5 max-w-5xl mx-auto mt-6 md:mt-8">
+          {/* Service Capsules — natural wrap on all screen sizes */}
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3.5 max-w-4xl mx-auto mt-6 md:mt-8">
             {servicesData.map((service, idx) => (
               <div
                 key={idx}
-                className="px-7 py-4 bg-[#f6861f] border border-transparent rounded-full text-[15px] md:text-[17px] font-extrabold text-brand-navy hover:text-white tracking-tight shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default flex items-center gap-3"
+                className="px-3.5 py-2 md:px-6 md:py-3.5 bg-[#f6861f] border border-transparent rounded-full text-[11.5px] md:text-[14px] font-extrabold text-brand-navy hover:text-white tracking-tight shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default flex items-center gap-1.5 md:gap-2"
               >
-                <service.icon className="w-5 h-5 shrink-0" />
+                <service.icon className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" />
                 <span>{service.title}</span>
               </div>
             ))}
@@ -1326,7 +1398,7 @@ export default function Home() {
       {/* Who We Support Section */}
       <div
         id="industries"
-        className="relative z-20 w-full bg-white py-24 flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-white pt-10 pb-8 md:py-24 flex flex-col items-center select-none overflow-hidden"
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
@@ -1351,14 +1423,14 @@ export default function Home() {
           <div className="text-center max-w-3xl mx-auto mb-6">
             <ScrollReveal
               as="h2"
-              containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
+              containerClassName="text-[28px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
             >
               Businesses We Support
             </ScrollReveal>
           </div>
 
           {/* Centered Premium Capsules */}
-          <div className="flex flex-wrap justify-center gap-3.5 max-w-4xl mx-auto mt-2">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3.5 max-w-4xl mx-auto mt-2">
             {[
               "D2C Brands",
               "Real Estate",
@@ -1379,7 +1451,7 @@ export default function Home() {
             ].map((industry, idx) => (
               <div
                 key={idx}
-                className="capsule-item px-6 py-3.5 bg-[#fafaf9] border border-brand-navy/5 rounded-full text-[13px] md:text-[14px] font-extrabold text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange hover:bg-white hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default"
+                className="capsule-item px-3.5 py-2 md:px-6 md:py-3.5 bg-[#fafaf9] border border-brand-navy/5 rounded-full text-[11.5px] md:text-[14px] font-extrabold text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange hover:bg-white hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default"
               >
                 {industry}
               </div>
