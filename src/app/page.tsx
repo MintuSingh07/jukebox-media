@@ -798,13 +798,13 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Blank Section replacing Trusted By Strip */}
       <section
         id="brands"
-        className="relative z-20 w-full bg-white h-auto md:h-screen min-h-[600px] md:min-h-screen border-b border-brand-navy/[0.04] flex items-center justify-center py-16 md:py-0"
+        className="relative z-20 w-full bg-white h-auto xl:h-screen min-h-[600px] xl:min-h-screen border-b border-brand-navy/[0.04] flex items-center justify-center py-16 xl:py-0 md:mb-24 xl:mb-0"
       >
         <LogoWall />
       </section>
+
 
       {/* The Common Problem Section (Problem Statement) */}
       <div
@@ -1997,33 +1997,40 @@ export default function Home() {
 
           {/* Interactive Custom Video Player */}
           <div className="aspect-video max-w-[950px] w-full mx-auto rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(22,20,67,0.2)] border border-brand-navy/10 relative group bg-brand-navy">
-            {/* Real HTML5 Video element */}
-            <video
-              ref={filmVideoRef}
-              src="https://assets.mixkit.co/videos/preview/mixkit-business-team-discussing-work-in-a-modern-office-32869-large.mp4"
-              className="w-full h-full object-cover"
-              controls={isFilmPlaying}
-              onEnded={() => setIsFilmPlaying(false)}
-              onPause={() => setIsFilmPlaying(false)}
-              onPlay={() => setIsFilmPlaying(true)}
-            />
-
-            {/* Custom Overlay (Shown when not playing) */}
-            {!isFilmPlaying && (
+            {isFilmPlaying ? (
+              <iframe
+                src="https://www.youtube.com/embed/nf_EqvzpgFo?si=ZdoMHe6ht8vzJKOY&controls=1&autoplay=1"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="w-full h-full absolute inset-0"
+              ></iframe>
+            ) : (
               <div 
-                onClick={() => {
-                  if (filmVideoRef.current) {
-                    filmVideoRef.current.play();
-                    setIsFilmPlaying(true);
-                  }
-                }}
-                className="absolute inset-0 bg-brand-navy/70 backdrop-blur-xs flex flex-col items-center justify-center transition-all duration-500 group-hover:bg-brand-navy/60 z-10 cursor-pointer"
+                onClick={() => setIsFilmPlaying(true)}
+                className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer z-10"
               >
-                {/* Visual grid / details on poster */}
-                <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
+                {/* Poster image from YouTube */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src="https://img.youtube.com/vi/nf_EqvzpgFo/maxresdefault.jpg"
+                  alt="Jukebox Brand Film Poster"
+                  className="w-full h-full object-cover absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "https://img.youtube.com/vi/nf_EqvzpgFo/hqdefault.jpg";
+                  }}
+                />
+                
+                {/* Overlay darkening filter */}
+                <div className="absolute inset-0 bg-brand-navy/60 transition-colors duration-500 group-hover:bg-brand-navy/55 z-0" />
+
+                {/* Grid pattern on poster */}
+                <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none z-0"></div>
 
                 {/* Animated Pulsing Play Button */}
-                <div className="relative w-24 h-24 flex items-center justify-center">
+                <div className="relative w-24 h-24 flex items-center justify-center z-10">
                   {/* Ripple rings */}
                   <div className="absolute inset-0 rounded-full bg-brand-orange/20 animate-ping" />
                   <div className="absolute inset-2 rounded-full bg-brand-orange/30 animate-pulse" />
@@ -2036,10 +2043,10 @@ export default function Home() {
                   </div>
                 </div>
 
-                <span className="text-white/80 text-xs sm:text-sm font-bold uppercase tracking-widest mt-6 group-hover:text-white transition-colors">
+                <span className="text-white/80 text-xs sm:text-sm font-bold uppercase tracking-widest mt-6 group-hover:text-white transition-colors z-10">
                   Click to play brand film
                 </span>
-                <span className="text-white/40 text-[10px] sm:text-xs mt-2 font-medium">
+                <span className="text-white/40 text-[10px] sm:text-xs mt-2 font-medium z-10">
                   2 mins 15 secs • Jukebox Media Studio
                 </span>
               </div>
@@ -2220,7 +2227,7 @@ export default function Home() {
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                       </svg>
                     ),
-                    url: "https://instagram.com/jukeboxmedia.in",
+                    url: "https://www.instagram.com/jukeboxuniverse",
                     hoverBorder: "hover:border-[#E1306C]/50",
                     hoverBg: "hover:bg-[#E1306C]/10",
                     hoverShadow:
@@ -2244,7 +2251,8 @@ export default function Home() {
                         <circle cx="4" cy="4" r="2" />
                       </svg>
                     ),
-                    url: "https://linkedin.com/company/jukebox-media",
+                    url: "https://www.linkedin.com/company/jukeboxuniverse/",
+
                     hoverBorder: "hover:border-[#0077B5]/50",
                     hoverBg: "hover:bg-[#0077B5]/10",
                     hoverShadow: "hover:shadow-[0_0_20px_rgba(0,119,181,0.25)]",

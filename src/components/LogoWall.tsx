@@ -100,7 +100,7 @@ function LogoItem({
   const src = logoPath || `https://logo.clearbit.com/${domain}?size=200`;
 
   return (
-    <div className="flex items-center justify-center px-2 max-w-full">
+    <div className="flex items-center justify-center px-1.5 max-w-full">
       {hasError ? (
         <span className="logo-fallback text-[10px] md:text-[12px] font-bold text-brand-navy/60 tracking-tight whitespace-nowrap">
           {name}
@@ -110,11 +110,8 @@ function LogoItem({
         <img
           src={src}
           alt={name}
-          width={w}
-          height={h || 48}
-          className={`${h ? "w-auto object-contain" : "max-h-[40px] md:max-h-[48px] w-auto object-contain"} animate-logo-pop`}
+          className="h-8 lg:h-10 xl:h-12 w-auto max-w-[9vw] xl:max-w-none object-contain animate-logo-pop"
           style={{
-            ...(h ? { maxHeight: `${h}px` } : {}),
             animationDelay: delay ? `${delay}ms` : undefined,
           }}
           loading="lazy"
@@ -124,6 +121,7 @@ function LogoItem({
     </div>
   );
 }
+
 
 export default function LogoWall() {
   return (
@@ -138,14 +136,14 @@ export default function LogoWall() {
       {/* Grid container matching the layout and sizing shown in the user's reference image */}
       <div className="w-full max-w-[1550px] flex flex-col gap-6 md:gap-8 lg:gap-12 px-4">
         {/* Top Section containing Columns 1, 2, 3, 4 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4 md:gap-6 lg:gap-12 w-full lg:h-[350px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4 md:gap-6 lg:gap-4 xl:gap-12 w-full lg:h-[350px]">
           {/* Column 1: Box 1 (Leftmost large square-ish box - no background/label as requested) */}
           <div
             id="brand-box-1"
             className="lg:col-span-3 p-4 md:p-6 flex flex-col justify-center items-center h-[195px] sm:h-[240px] md:h-[300px] lg:h-full select-none relative"
           >
             {/* Pattern layout matching the Unilever-centered image */}
-            <div className="relative w-full h-[240px] flex items-center justify-center scale-[0.8] sm:scale-[0.88] md:scale-[0.88] lg:scale-100 origin-center transition-transform select-none">
+            <div className="relative w-full h-[240px] flex items-center justify-center scale-[0.8] sm:scale-[0.88] md:scale-[0.88] lg:scale-[0.8] xl:scale-100 origin-center transition-transform select-none">
               {/* Center: Unilever (larger, central focal point) */}
               <div className="z-10">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -243,7 +241,7 @@ export default function LogoWall() {
               className="h-[60%] p-4 flex flex-col justify-center items-center select-none relative"
             >
               {/* Pattern layout matching the Reliance-centered image */}
-              <div className="relative w-full h-[180px] flex items-center justify-center scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-100 origin-center transition-transform select-none">
+              <div className="relative w-full h-[180px] flex items-center justify-center scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-[0.8] xl:scale-100 origin-center transition-transform select-none">
                 {/* Center: Reliance Industries */}
                 <div className="z-10">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -327,7 +325,7 @@ export default function LogoWall() {
               id="brand-box-3"
               className="h-[37%] p-4 flex flex-col justify-center items-center relative select-none"
             >
-              <div className="relative w-[260px] h-[140px] mx-auto select-none scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-100 origin-center transition-transform">
+              <div className="relative w-[260px] h-[140px] mx-auto select-none scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-[0.8] xl:scale-100 origin-center transition-transform">
                 {/* Center: Mondelēz International */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -382,7 +380,7 @@ export default function LogoWall() {
               id="brand-box-4"
               className="h-[37%] p-3 flex flex-col justify-center items-center select-none relative"
             >
-              <div className="flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-3 lg:gap-5 scale-[0.8] sm:scale-[0.9] md:scale-[0.88] lg:scale-100 origin-center transition-transform">
+              <div className="flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-3 lg:gap-5 scale-[0.8] sm:scale-[0.9] md:scale-[0.88] lg:scale-[0.8] xl:scale-100 origin-center transition-transform">
                 {/* Top Row: Frooti (Left) and Fizz (Right) */}
                 <div className="flex items-center justify-center gap-8">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -417,7 +415,7 @@ export default function LogoWall() {
               id="brand-box-5"
               className="h-[37%] p-4 flex flex-col justify-center items-center relative select-none -translate-y-4 md:-translate-y-4 lg:-translate-y-8"
             >
-              <div className="relative w-[260px] h-[90px] mx-auto select-none scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-100 origin-center transition-transform">
+              <div className="relative w-[260px] h-[90px] mx-auto select-none scale-[0.72] sm:scale-[0.82] md:scale-[0.82] lg:scale-[0.8] xl:scale-100 origin-center transition-transform">
                 {/* Center: Parle Logo */}
                 <div className="absolute top-[64px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -470,7 +468,7 @@ export default function LogoWall() {
             id="brand-box-6-7-8"
             className="lg:col-span-4 p-4 md:p-6 flex flex-col justify-center items-center h-[225px] sm:h-[270px] md:h-[320px] lg:h-full select-none relative"
           >
-            <div className="relative w-[290px] h-[290px] mx-auto flex items-center justify-center scale-[0.72] sm:scale-[0.82] md:scale-[0.88] lg:scale-100 origin-center transition-transform">
+            <div className="relative w-[290px] h-[290px] mx-auto flex items-center justify-center scale-[0.72] sm:scale-[0.82] md:scale-[0.88] lg:scale-[0.8] xl:scale-100 origin-center transition-transform">
               {/* Center: P&G */}
               <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -561,14 +559,13 @@ export default function LogoWall() {
           <img src="/brands/thefern.svg" alt="The Fern" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
         </div>
 
-        {/* Bottom Section containing two long full-width horizontal strips on desktop */}
-        <div className="hidden lg:flex flex-col gap-3.5 mt-1.5">
+        <div className="hidden lg:flex flex-col gap-2 mt-1.5 w-full">
           {/* Strip 9 (top horizontal strip) */}
           <div
             id="brand-strip-1"
-            className="w-full h-[120px] px-8 flex items-center justify-between overflow-x-auto scrollbar-none"
+            className="w-full h-[80px] lg:h-[100px] xl:h-[120px] px-4 lg:px-8 flex items-center justify-between overflow-x-auto xl:overflow-x-visible scrollbar-none"
           >
-            <div className="flex items-center justify-between w-full min-w-[1200px] gap-6">
+            <div className="flex items-center justify-between w-full min-w-0 xl:min-w-[1200px] gap-2 lg:gap-4 xl:gap-6">
               {strip1Logos.map((logo, index) => (
                 <LogoItem
                   key={logo.logoPath || logo.domain}
@@ -581,9 +578,9 @@ export default function LogoWall() {
           {/* Strip 10 (bottom horizontal strip) */}
           <div
             id="brand-strip-2"
-            className="w-full h-[120px] px-8 flex items-center justify-between overflow-x-auto scrollbar-none"
+            className="w-full h-[80px] lg:h-[100px] xl:h-[120px] px-4 lg:px-8 flex items-center justify-between overflow-x-auto xl:overflow-x-visible scrollbar-none"
           >
-            <div className="flex items-center justify-between w-full min-w-[1200px] gap-6">
+            <div className="flex items-center justify-between w-full min-w-0 xl:min-w-[1200px] gap-2 lg:gap-4 xl:gap-6">
               {strip2Logos.map((logo, index) => (
                 <LogoItem
                   key={logo.logoPath || logo.domain}
@@ -594,6 +591,7 @@ export default function LogoWall() {
             </div>
           </div>
         </div>
+
       </div>
 
       {/* Subtle bottom divider line */}
