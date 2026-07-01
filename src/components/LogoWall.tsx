@@ -51,11 +51,13 @@ interface LogoInfo {
   logoPath?: string;
   w: number;
   h?: number;
+  isLarge?: boolean;
+  customClass?: string;
 }
 
 const strip1Logos: LogoInfo[] = [
-  { name: "Nexa", logoPath: "/brands/nexa.png", w: 230, h: 56 },
-  { name: "Volkswagen", logoPath: "/brands/volkswagen.png", w: 125, h: 105 },
+  { name: "Nexa", logoPath: "/brands/nexa.png", w: 230, h: 56, isLarge: true },
+  { name: "Volkswagen", logoPath: "/brands/volkswagen.png", w: 125, h: 105, isLarge: true, customClass: "h-[44px] lg:h-[56px] xl:h-[64px]" },
   { name: "Lodha", logoPath: "/brands/lodha.png", w: 210 },
   { name: "Kalpataru", logoPath: "/brands/kalpataru.png", w: 170 },
   { name: "Amul", logoPath: "/brands/amul.png", w: 125 },
@@ -76,9 +78,9 @@ const strip2Logos: LogoInfo[] = [
   },
   { name: "Hyatt", logoPath: "/brands/hyatt.svg", w: 135, h: 38 },
   { name: "Marriott", logoPath: "/brands/marriott.svg", w: 130, h: 46 },
-  { name: "Novotel", logoPath: "/brands/novotel.svg", w: 135, h: 50 },
-  { name: "ITC Hotels", logoPath: "/brands/itchotels.svg", w: 130, h: 56 },
-  { name: "The Fern", logoPath: "/brands/thefern.svg", w: 130, h: 54 },
+  { name: "Novotel", logoPath: "/brands/novotel.svg", w: 135, h: 50, isLarge: true },
+  { name: "ITC Hotels", logoPath: "/brands/itchotels.svg", w: 130, h: 56, isLarge: true },
+  { name: "The Fern", logoPath: "/brands/thefern.svg", w: 130, h: 54, isLarge: true },
 ];
 
 function LogoItem({
@@ -88,6 +90,8 @@ function LogoItem({
   h,
   logoPath,
   delay,
+  isLarge,
+  customClass,
 }: {
   name: string;
   domain?: string;
@@ -95,6 +99,8 @@ function LogoItem({
   h?: number;
   logoPath?: string;
   delay?: number;
+  isLarge?: boolean;
+  customClass?: string;
 }) {
   const [hasError, setHasError] = React.useState(false);
   const src = logoPath || `https://logo.clearbit.com/${domain}?size=200`;
@@ -110,7 +116,9 @@ function LogoItem({
         <img
           src={src}
           alt={name}
-          className="h-8 lg:h-10 xl:h-12 w-auto max-w-[9vw] xl:max-w-none object-contain animate-logo-pop"
+          className={`${
+            customClass ? customClass : isLarge ? "h-8 lg:h-10 xl:h-12" : "h-5 lg:h-6 xl:h-7"
+          } w-auto max-w-[9vw] xl:max-w-none object-contain animate-logo-pop`}
           style={{
             animationDelay: delay ? `${delay}ms` : undefined,
           }}
@@ -540,8 +548,8 @@ export default function LogoWall() {
 
         {/* On Mobile: Static wrapping grid of all strip logos. On Desktop: two horizontal marquee strips */}
         <div className="lg:hidden flex flex-wrap items-center justify-center gap-x-5 gap-y-4 px-4 w-full select-none mt-4">
-          <img src="/brands/nexa.png" alt="Nexa" className="h-[18px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
-          <img src="/brands/volkswagen.png" alt="Volkswagen" className="h-[32px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/nexa.png" alt="Nexa" className="h-[22px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/volkswagen.png" alt="Volkswagen" className="h-[40px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
           <img src="/brands/lodha.png" alt="Lodha" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
           <img src="/brands/kalpataru.png" alt="Kalpataru" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
           <img src="/brands/amul.png" alt="Amul" className="h-[22px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
@@ -554,16 +562,16 @@ export default function LogoWall() {
           <img src="/brands/ultratech.png" alt="UltraTech" className="h-[18px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
           <img src="/brands/hyatt.svg" alt="Hyatt" className="h-[15px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
           <img src="/brands/marriott.svg" alt="Marriott" className="h-[16px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
-          <img src="/brands/novotel.svg" alt="Novotel" className="h-[18px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
-          <img src="/brands/itchotels.svg" alt="ITC Hotels" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
-          <img src="/brands/thefern.svg" alt="The Fern" className="h-[20px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/novotel.svg" alt="Novotel" className="h-[22px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/itchotels.svg" alt="ITC Hotels" className="h-[24px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
+          <img src="/brands/thefern.svg" alt="The Fern" className="h-[24px] w-auto object-contain hover:scale-105 transition-transform duration-300" />
         </div>
 
         <div className="hidden lg:flex flex-col gap-2 mt-1.5 w-full">
           {/* Strip 9 (top horizontal strip) */}
           <div
             id="brand-strip-1"
-            className="w-full h-[80px] lg:h-[100px] xl:h-[120px] px-4 lg:px-8 flex items-center justify-between overflow-x-auto xl:overflow-x-visible scrollbar-none"
+            className="w-full h-[50px] lg:h-[60px] xl:h-[70px] px-4 lg:px-8 flex items-center justify-between overflow-x-auto xl:overflow-x-visible scrollbar-none"
           >
             <div className="flex items-center justify-between w-full min-w-0 xl:min-w-[1200px] gap-2 lg:gap-4 xl:gap-6">
               {strip1Logos.map((logo, index) => (
@@ -578,7 +586,7 @@ export default function LogoWall() {
           {/* Strip 10 (bottom horizontal strip) */}
           <div
             id="brand-strip-2"
-            className="w-full h-[80px] lg:h-[100px] xl:h-[120px] px-4 lg:px-8 flex items-center justify-between overflow-x-auto xl:overflow-x-visible scrollbar-none"
+            className="w-full h-[50px] lg:h-[60px] xl:h-[70px] px-4 lg:px-8 flex items-center justify-between overflow-x-auto xl:overflow-x-visible scrollbar-none"
           >
             <div className="flex items-center justify-between w-full min-w-0 xl:min-w-[1200px] gap-2 lg:gap-4 xl:gap-6">
               {strip2Logos.map((logo, index) => (
