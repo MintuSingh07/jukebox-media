@@ -2274,7 +2274,7 @@ export default function Home() {
                         <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
                       </svg>
                     ),
-                    url: "https://youtube.com",
+                    url: "https://youtube.com/@jukeboxuniverse",
                     hoverBorder: "hover:border-[#FF0000]/50",
                     hoverBg: "hover:bg-[#FF0000]/10",
                     hoverShadow: "hover:shadow-[0_0_20px_rgba(255,0,0,0.25)]",
