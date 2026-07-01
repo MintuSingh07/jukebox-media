@@ -14,7 +14,7 @@ const testimonials = [
     company: "",
     rating: 5,
     verified: true,
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
+    image: "/public/nu.jpg",
   },
   {
     id: 2,
