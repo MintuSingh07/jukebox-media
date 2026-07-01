@@ -58,10 +58,10 @@ export default function Home() {
 
   // Auto-play card animations on mobile (touch devices) via IntersectionObserver
   useEffect(() => {
-    const isTouchDevice = 
-      window.matchMedia("(hover: none)").matches || 
-      ('ontouchstart' in window) || 
-      (navigator.maxTouchPoints > 0);
+    const isTouchDevice =
+      window.matchMedia("(hover: none)").matches ||
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0;
     if (!isTouchDevice) return; // Desktop: rely on hover, skip observer
 
     const cards = [
@@ -81,7 +81,7 @@ export default function Home() {
         ([entry]) => {
           setter(entry.isIntersecting);
         },
-        { threshold: 0.45 }
+        { threshold: 0.45 },
       );
       obs.observe(el);
       observers.push(obs);
@@ -410,6 +410,34 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    // We add a 1000ms delay to let the page layout fully settle and scroll restorations to finish.
+    const timer = setTimeout(() => {
+      const el = document.getElementById("brand-film");
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsFilmPlaying(entry.isIntersecting);
+        },
+        {
+          threshold: 0.01, // trigger as soon as 1% of the section is visible
+        }
+      );
+
+      observer.observe(el);
+      (window as any).brandFilmObserver = observer;
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+      if ((window as any).brandFilmObserver) {
+        (window as any).brandFilmObserver.disconnect();
+        delete (window as any).brandFilmObserver;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const activeEl = itemsRef.current[activeService];
     const selector = selectorRef.current;
     if (!activeEl || !selector) return;
@@ -693,7 +721,8 @@ export default function Home() {
       {/* About Section */}
       <div
         id="about"
-        className="relative z-20 w-full bg-[#161443] text-white pt-20 pb-10 flex flex-col items-center overflow-hidden"
+        className="relative z-20 w-full bg-[#161443] text-white pt-20 flex flex-col items-center overflow-hidden"
+        style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0 pointer-events-none"></div>
@@ -766,31 +795,31 @@ export default function Home() {
               </div>
 
               {/* Media Network Icons Capsule */}
-              <div className="w-full bg-white rounded-full py-2 px-4 mb-6 flex flex-row flex-nowrap items-center justify-between gap-1.5 sm:gap-2 shadow-md border border-white/20 mt-4 select-none">
+              <div className="w-full bg-white rounded-full py-2.5 px-4 lg:px-5 mb-6 flex flex-row flex-nowrap items-center justify-between gap-1.5 sm:gap-2 shadow-md border border-white/20 mt-4 select-none">
                 <img
-                  src="/logos/sony-pictures-networks-logo.webp"
+                  src="/logos/sony-pictures-networks-logo.webp?v=2"
                   alt="Sony Pictures Networks"
-                  className="h-5 sm:h-6 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-[22px] sm:h-[28px] w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
                 <img
-                  src="/logos/z5-logo.webp"
+                  src="/logos/z5-logo.webp?v=2"
                   alt="Zee5"
-                  className="h-3.5 sm:h-4.5 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-[22px] sm:h-[28px] w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
                 <img
                   src="/logos/viacom-logo.webp"
                   alt="Viacom18"
-                  className="h-3.5 sm:h-4.5 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-[16px] sm:h-[20px] w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
                 <img
-                  src="/logos/times-of-india-logo.webp"
+                  src="/logos/times-of-india-logo.webp?v=2"
                   alt="The Times of India"
-                  className="h-7 sm:h-9 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-[26px] sm:h-[32px] w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
                 <img
-                  src="/logos/radio-mirchi-logo.webp"
+                  src="/logos/radio-mirchi-logo.webp?v=2"
                   alt="Mirchi"
-                  className="h-10 sm:h-13 w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
+                  className="h-[20px] sm:h-[26px] w-auto max-w-full object-contain hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
@@ -800,16 +829,17 @@ export default function Home() {
 
       <section
         id="brands"
-        className="relative z-20 w-full bg-white h-auto xl:h-screen min-h-[600px] xl:min-h-screen border-b border-brand-navy/[0.04] flex items-center justify-center py-16 xl:py-0 md:mb-24 xl:mb-0"
+        className="relative z-20 w-full bg-white h-auto border-b border-brand-navy/[0.04] flex items-center justify-center pt-20"
+        style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         <LogoWall />
       </section>
 
-
       {/* The Common Problem Section (Problem Statement) */}
       <div
         id="problem"
-        className="relative z-20 w-full bg-[#f8fafc] py-20 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-[#f8fafc] pt-20 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] z-0 pointer-events-none"></div>
@@ -845,7 +875,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-10 md:mt-16 max-w-6xl mx-auto px-4">
-
             {/* CARD 1: Irregular Campaigns (wide) */}
             <div
               ref={problemCard1Ref}
@@ -859,7 +888,8 @@ export default function Home() {
                   Irregular Campaigns
                 </h4>
                 <p className="text-[14px] md:text-[15px] text-brand-navy/60 mt-1.5 max-w-md mx-auto leading-relaxed">
-                  Running marketing activities in fits and starts, resulting in erratic cash flows.
+                  Running marketing activities in fits and starts, resulting in
+                  erratic cash flows.
                 </p>
               </div>
               {/* Visual panel — mobile: fixed height in flow; desktop: absolute overshoot at bottom */}
@@ -877,15 +907,18 @@ export default function Home() {
               onMouseEnter={() => setCard2Hovered(true)}
               onMouseLeave={() => setCard2Hovered(false)}
               className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors md:h-[420px]"
-
             >
               {/* Mobile: visual on top, text below */}
               <div className="mx-4 mt-4 h-[150px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] flex items-center justify-center">
                 <MultipleVendorChaosVisual isHovered={card2Hovered} />
               </div>
               <div className="relative z-10 text-center px-6 py-5 md:hidden">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Multiple Vendor Chaos</h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">Working with disconnected agencies leads to lack of alignment.</p>
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  Multiple Vendor Chaos
+                </h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">
+                  Working with disconnected agencies leads to lack of alignment.
+                </p>
               </div>
               {/* Desktop: original absolute layout */}
               <div className="hidden md:flex md:flex-1 md:flex-col md:justify-end md:p-8">
@@ -893,8 +926,13 @@ export default function Home() {
                   <MultipleVendorChaosVisual isHovered={card2Hovered} />
                 </div>
                 <div className="relative z-10 text-center mt-auto">
-                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Multiple Vendor Chaos</h4>
-                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">Working with disconnected agencies leads to lack of alignment.</p>
+                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                    Multiple Vendor Chaos
+                  </h4>
+                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                    Working with disconnected agencies leads to lack of
+                    alignment.
+                  </p>
                 </div>
               </div>
             </div>
@@ -910,16 +948,25 @@ export default function Home() {
                 <ActivityOverDirectionVisual isHovered={card3Hovered} />
               </div>
               <div className="relative z-10 text-center px-6 py-5 md:hidden">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Activity Over Direction</h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">Focusing heavily on execution instead of strategic alignment.</p>
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  Activity Over Direction
+                </h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">
+                  Focusing heavily on execution instead of strategic alignment.
+                </p>
               </div>
               <div className="hidden md:flex md:flex-col md:justify-end md:min-h-[420px] md:p-8">
                 <div className="absolute left-8 right-8 top-8 bottom-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
                   <ActivityOverDirectionVisual isHovered={card3Hovered} />
                 </div>
                 <div className="relative z-10 text-center mt-auto">
-                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Activity Over Direction</h4>
-                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">Focusing heavily on execution instead of strategic alignment.</p>
+                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                    Activity Over Direction
+                  </h4>
+                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                    Focusing heavily on execution instead of strategic
+                    alignment.
+                  </p>
                 </div>
               </div>
             </div>
@@ -932,16 +979,26 @@ export default function Home() {
               className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
             >
               <div className="relative z-10 text-center px-6 pt-7 pb-3 md:hidden">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Consistency Struggles</h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">Struggling to maintain a unified brand message and consistent presence.</p>
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  Consistency Struggles
+                </h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">
+                  Struggling to maintain a unified brand message and consistent
+                  presence.
+                </p>
               </div>
               <div className="mx-4 mb-4 h-[210px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center">
                 <ConsistencyStrugglesVisual isHovered={card4Hovered} />
               </div>
               <div className="hidden md:flex md:flex-col md:items-center md:justify-start md:min-h-[420px] md:pt-5 md:px-8 md:pb-8">
                 <div className="relative z-10 text-center mt-0">
-                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Consistency Struggles</h4>
-                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">Struggling to maintain a unified brand message and consistent presence.</p>
+                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                    Consistency Struggles
+                  </h4>
+                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                    Struggling to maintain a unified brand message and
+                    consistent presence.
+                  </p>
                 </div>
                 <div className="absolute left-8 right-8 bottom-8 top-[112px] bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden">
                   <ConsistencyStrugglesVisual isHovered={card4Hovered} />
@@ -960,20 +1017,29 @@ export default function Home() {
                 <UnclearROIVisual isHovered={card5Hovered} />
               </div>
               <div className="relative z-10 text-center px-6 py-5 md:hidden">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Unclear ROI</h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">Inability to track return on investment from multiple channels.</p>
+                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  Unclear ROI
+                </h4>
+                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">
+                  Inability to track return on investment from multiple
+                  channels.
+                </p>
               </div>
               <div className="hidden md:flex md:flex-col md:justify-end md:min-h-[420px] md:p-8">
                 <div className="absolute left-8 right-8 top-8 bottom-36 bg-white rounded-[2rem] shadow-xl border border-black/[0.03] flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2 overflow-hidden px-4 py-2">
                   <UnclearROIVisual isHovered={card5Hovered} />
                 </div>
                 <div className="relative z-10 text-center mt-auto">
-                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">Unclear ROI</h4>
-                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">Inability to track return on investment from multiple channels.</p>
+                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                    Unclear ROI
+                  </h4>
+                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                    Inability to track return on investment from multiple
+                    channels.
+                  </p>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -981,7 +1047,8 @@ export default function Home() {
       {/* Service Section */}
       <div
         id="service"
-        className="relative z-20 w-full bg-white pt-10 pb-6 md:py-16 border-t border-brand-navy/[0.04] flex flex-col items-center overflow-hidden"
+        className="relative z-20 w-full bg-white pt-10 md:pt-16 border-t border-brand-navy/[0.04] flex flex-col items-center overflow-hidden"
+        style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
@@ -1100,7 +1167,8 @@ export default function Home() {
       {/* Growth Architecture Section (Process) */}
       <div
         id="blueprint"
-        className="relative z-20 w-full bg-[#f8fafc] text-brand-navy pt-28 pb-44 flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-[#f8fafc] text-brand-navy pt-28 flex flex-col items-center select-none overflow-hidden"
+        style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.06] z-0"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -1401,7 +1469,8 @@ export default function Home() {
       {/* Who We Support Section */}
       <div
         id="industries"
-        className="relative z-20 w-full bg-white pt-10 pb-8 md:py-24 flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-white pt-10 md:pt-24 flex flex-col items-center select-none overflow-hidden"
+        style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
@@ -1466,7 +1535,8 @@ export default function Home() {
       {/* Testimonial Section */}
       <div
         id="testimonial"
-        className="relative z-20 w-full bg-white py-12 border-t border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-white pt-12 border-t border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         {/* Grid pattern & soft ambient spotlights */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
@@ -1515,465 +1585,482 @@ export default function Home() {
           id="pricing"
           className="relative z-30 w-full min-h-screen bg-[#f6861f] py-24 sm:py-32 border-t border-white/[0.08] flex flex-col items-center justify-start select-none overflow-hidden"
         >
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] z-0 pointer-events-none"></div>
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] z-0 pointer-events-none"></div>
 
-        <div className="max-w-[1600px] mx-auto px-6 w-full relative z-10">
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-8 animate-field">
-            <ScrollReveal
-              as="h2"
-              containerClassName="text-[36px] sm:text-[48px] font-bold text-white tracking-tight mt-3"
+          <div className="max-w-[1600px] mx-auto px-6 w-full relative z-10">
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-8 animate-field">
+              <ScrollReveal
+                as="h2"
+                containerClassName="text-[36px] sm:text-[48px] font-bold text-white tracking-tight mt-3"
+              >
+                Transparent Pricing Packages
+              </ScrollReveal>
+              <p className="text-[16px] sm:text-[18px] text-white/85 mt-4 leading-relaxed">
+                No hidden fees. Choose the plan that fits your team size and
+                campaign targets.
+              </p>
+            </div>
+
+            {/* Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full mx-auto px-4 items-stretch">
+              {/* Card 1: Jukebox Starter */}
+              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+                {/* Corner decor tag */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                    <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
+                      Jukebox Starter
+                    </h3>
+
+                    <div className="flex flex-col mt-4">
+                      <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
+                        ₹24,000
+                      </span>
+                      <span className="text-[13px] font-bold text-slate-500 mt-1.5">
+                        / 3 Months per Brand
+                      </span>
+                      <span className="text-[10px] font-bold text-slate-400 block mt-1">
+                        (Exclusive of GST)
+                      </span>
+                    </div>
+
+                    <div className="w-full h-[1px] bg-slate-100 my-5" />
+
+                    <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
+                      Ideal for businesses looking to establish a consistent
+                      social media presence.
+                    </p>
+
+                    <div className="mt-6">
+                      <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
+                        Includes:
+                      </span>
+                      <ul className="flex flex-col gap-3">
+                        {[
+                          "24 Static Posts",
+                          "Content Calendar",
+                          "Copywriting & Captions",
+                          "Graphic Design",
+                          "Basic Editing",
+                          "Posting Schedule",
+                        ].map((feature, idx) => (
+                          <li
+                            key={idx}
+                            className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
+                          >
+                            <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                              <svg
+                                className="w-3.5 h-3.5"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M4.5 12.75l6 6 9-13.5"
+                                />
+                              </svg>
+                            </div>
+                            <span className="mt-0.5">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Starter plan.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+
+              {/* Card 2: Jukebox Growth Package */}
+              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+                {/* Corner decor tag */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
+
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                    <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
+                      Jukebox Growth
+                    </h3>
+
+                    <div className="flex flex-col mt-4">
+                      <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
+                        ₹53,000
+                      </span>
+                      <span className="text-[13px] font-bold text-slate-500 mt-1.5">
+                        / 3 Months per Brand
+                      </span>
+                      <span className="text-[10px] font-bold text-slate-400 block mt-1">
+                        (Exclusive of GST)
+                      </span>
+                    </div>
+
+                    <div className="w-full h-[1px] bg-slate-100 my-5" />
+
+                    <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
+                      Ideal for brands looking to combine consistent content
+                      with short-form video.
+                    </p>
+
+                    <div className="mt-6">
+                      <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
+                        Includes:
+                      </span>
+                      <ul className="flex flex-col gap-3">
+                        {[
+                          "24 Static Posts",
+                          "12 Reels",
+                          "Content Calendar",
+                          "Copywriting & Captions",
+                          "Graphic Design",
+                          "Video Editing",
+                          "Posting Schedule",
+                        ].map((feature, idx) => (
+                          <li
+                            key={idx}
+                            className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
+                          >
+                            <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                              <svg
+                                className="w-3.5 h-3.5"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M4.5 12.75l6 6 9-13.5"
+                                />
+                              </svg>
+                            </div>
+                            <span className="mt-0.5">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Growth plan.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+
+              {/* Card 3: Jukebox Brand Retainer */}
+              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+                {/* Corner decor tag */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
+
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                    <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
+                      Jukebox Retainer
+                    </h3>
+
+                    <div className="flex flex-col mt-4">
+                      <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
+                        ₹64,000
+                      </span>
+                      <span className="text-[13px] font-bold text-slate-500 mt-1.5">
+                        / Month per Brand
+                      </span>
+                      <span className="text-[10px] font-bold text-slate-400 block mt-1">
+                        (Exclusive of GST)
+                      </span>
+                    </div>
+
+                    <div className="w-full h-[1px] bg-slate-100 my-5" />
+
+                    <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
+                      A complete branding, content and growth solution.
+                    </p>
+
+                    <div className="mt-6 space-y-4">
+                      <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block">
+                        Scope:
+                      </span>
+
+                      {/* Strategy Block */}
+                      <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
+                        <span className="text-[10px] font-black text-brand-navy uppercase tracking-wider block mb-1.5">
+                          Strategy & Branding
+                        </span>
+                        <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
+                          <li className="flex gap-2 items-start">
+                            <span className="text-emerald-500 font-bold">
+                              ✓
+                            </span>
+                            <span>
+                              Brand Strategy Deck (Created once per brand)
+                            </span>
+                          </li>
+                          <li className="flex gap-2 items-start">
+                            <span className="text-emerald-500 font-bold">
+                              ✓
+                            </span>
+                            <span>Content & Performance Strategy</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Content Block */}
+                      <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
+                        <span className="text-[10px] font-black text-brand-navy uppercase tracking-wider block mb-1.5">
+                          High-Impact Content
+                        </span>
+                        <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
+                          <li className="flex gap-2 items-start">
+                            <span className="text-emerald-500 font-bold">
+                              ✓
+                            </span>
+                            <span>24 Static Posts & 12 Reels</span>
+                          </li>
+                          <li className="flex gap-2 items-start">
+                            <span className="text-emerald-500 font-bold">
+                              ✓
+                            </span>
+                            <span>Copywriting, Captions & Scheduling</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Performance Block */}
+                      <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
+                        <span className="text-[10px] font-black text-[#f6861f] uppercase tracking-wider block mb-1.5">
+                          Paid Ads & Search
+                        </span>
+                        <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
+                          <li className="flex gap-2 items-start">
+                            <span className="text-emerald-500 font-bold">
+                              ✓
+                            </span>
+                            <span>Meta & Google Ads Management</span>
+                          </li>
+                          <li className="flex gap-2 items-start">
+                            <span className="text-emerald-500 font-bold">
+                              ✓
+                            </span>
+                            <span>Ad Creative Direction & Setup</span>
+                          </li>
+                          <li className="flex gap-2 items-start">
+                            <span className="text-emerald-500 font-bold">
+                              ✓
+                            </span>
+                            <span>
+                              Google SEM Management (Up to 8 Keywords)
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <p className="text-[11px] text-slate-400 font-semibold italic mt-2">
+                        * Advertising spend is billed directly by Meta, Google
+                        and other platforms.
+                      </p>
+                    </div>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Retainer plan.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+
+              {/* Card 4: Jukebox Performance Accelerator */}
+              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+                {/* Corner decor tag */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
+
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                    <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
+                      Jukebox Performance
+                    </h3>
+
+                    <div className="flex flex-col mt-4">
+                      <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
+                        ₹26,000
+                      </span>
+                      <span className="text-[13px] font-bold text-slate-500 mt-1.5">
+                        / Month per Brand
+                      </span>
+                      <span className="text-[10px] font-bold text-slate-400 block mt-1">
+                        (Exclusive of GST)
+                      </span>
+                    </div>
+
+                    <div className="w-full h-[1px] bg-slate-100 my-5" />
+
+                    <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
+                      For businesses focused on lead generation, conversions and
+                      measurable growth.
+                    </p>
+
+                    <div className="mt-6">
+                      <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
+                        Includes:
+                      </span>
+                      <ul className="flex flex-col gap-3">
+                        {[
+                          "Meta Ads Management",
+                          "Google Ads Management",
+                          "LinkedIn Ads Management",
+                          "Funnel Strategy",
+                          "Campaign Setup & Optimization",
+                          "Audience Research",
+                          "Monthly Reporting & Performance Review",
+                        ].map((feature, idx) => (
+                          <li
+                            key={idx}
+                            className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
+                          >
+                            <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                              <svg
+                                className="w-3.5 h-3.5"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M4.5 12.75l6 6 9-13.5"
+                                />
+                              </svg>
+                            </div>
+                            <span className="mt-0.5">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-[11px] text-slate-400 font-semibold leading-relaxed italic mt-4">
+                        * Advertising spend is billed directly by Meta, Google
+                        and other platforms. This package doesn&apos;t include
+                        Ad Creatives.
+                      </p>
+                    </div>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Performance plan.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Info: Common Features + Additional Charges */}
+            <div
+              id="pricing-additional"
+              className="mt-10 md:mt-6 max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-white relative z-10"
             >
-              Transparent Pricing Packages
-            </ScrollReveal>
-            <p className="text-[16px] sm:text-[18px] text-white/85 mt-4 leading-relaxed">
-              No hidden fees. Choose the plan that fits your team size and
-              campaign targets.
-            </p>
-          </div>
-
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full mx-auto px-4 items-stretch">
-            {/* Card 1: Jukebox Starter */}
-            <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
-              {/* Corner decor tag */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
-                    Jukebox Starter
-                  </h3>
-
-                  <div className="flex flex-col mt-4">
-                    <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
-                      ₹24,000
-                    </span>
-                    <span className="text-[13px] font-bold text-slate-500 mt-1.5">
-                      / 3 Months per Brand
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-400 block mt-1">
-                      (Exclusive of GST)
-                    </span>
-                  </div>
-
-                  <div className="w-full h-[1px] bg-slate-100 my-5" />
-
-                  <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
-                    Ideal for businesses looking to establish a consistent
-                    social media presence.
-                  </p>
-
-                  <div className="mt-6">
-                    <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
-                      Includes:
-                    </span>
-                    <ul className="flex flex-col gap-3">
-                      {[
-                        "24 Static Posts",
-                        "Content Calendar",
-                        "Copywriting & Captions",
-                        "Graphic Design",
-                        "Basic Editing",
-                        "Posting Schedule",
-                      ].map((feature, idx) => (
-                        <li
-                          key={idx}
-                          className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
-                        >
-                          <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                            <svg
-                              className="w-3.5 h-3.5"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="3"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.5 12.75l6 6 9-13.5"
-                              />
-                            </svg>
-                          </div>
-                          <span className="mt-0.5">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <a
-                  href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Starter plan.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
-                >
-                  Get Started
-                </a>
+              {/* Common Features Card */}
+              <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
+                <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2 mb-6">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#161443] border border-[#f6861f] block animate-pulse"></span>
+                  Common Features Across All Packages
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    "Copywriting & Captions",
+                    "Content Planning",
+                    "Editing & Optimization",
+                    "Content Calendar",
+                    "Posting Schedule",
+                    "Content Shoot using iPhone 16 or above",
+                  ].map((feature, idx) => (
+                    <li
+                      key={idx}
+                      className="flex gap-2.5 items-start text-[13px] text-white/85 font-semibold leading-snug"
+                    >
+                      <div className="text-white shrink-0 mt-0.5">•</div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
 
-            {/* Card 2: Jukebox Growth Package */}
-            <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
-              {/* Corner decor tag */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
+              {/* Additional Charges Card */}
+              <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
+                <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2 mb-6">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#161443] border border-[#f6861f] block"></span>
+                  Services Available at an Additional Cost
+                </h3>
+                <ul className="flex flex-col gap-3">
+                  {[
+                    "Professional Camera Shoot",
+                    "Studio Rental",
+                    "Models & Talent",
+                    "Production Crew",
+                    "Advanced Video Production",
+                    "Travel & Location Costs",
+                  ].map((charge, idx) => (
+                    <li
+                      key={idx}
+                      className="flex gap-2.5 items-start text-[13px] text-white/85 font-semibold leading-snug"
+                    >
+                      <div className="text-white shrink-0 mt-0.5">•</div>
+                      <span>{charge}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
-                    Jukebox Growth
-                  </h3>
-
-                  <div className="flex flex-col mt-4">
-                    <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
-                      ₹53,000
-                    </span>
-                    <span className="text-[13px] font-bold text-slate-500 mt-1.5">
-                      / 3 Months per Brand
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-400 block mt-1">
-                      (Exclusive of GST)
-                    </span>
-                  </div>
-
-                  <div className="w-full h-[1px] bg-slate-100 my-5" />
-
-                  <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
-                    Ideal for brands looking to combine consistent content with
-                    short-form video.
-                  </p>
-
-                  <div className="mt-6">
-                    <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
-                      Includes:
-                    </span>
-                    <ul className="flex flex-col gap-3">
-                      {[
-                        "24 Static Posts",
-                        "12 Reels",
-                        "Content Calendar",
-                        "Copywriting & Captions",
-                        "Graphic Design",
-                        "Video Editing",
-                        "Posting Schedule",
-                      ].map((feature, idx) => (
-                        <li
-                          key={idx}
-                          className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
-                        >
-                          <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                            <svg
-                              className="w-3.5 h-3.5"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="3"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.5 12.75l6 6 9-13.5"
-                              />
-                            </svg>
-                          </div>
-                          <span className="mt-0.5">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <a
-                  href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Growth plan.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
-                >
-                  Get Started
-                </a>
-              </div>
-            </div>
-
-            {/* Card 3: Jukebox Brand Retainer */}
-            <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
-              {/* Corner decor tag */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
-
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
-                    Jukebox Retainer
-                  </h3>
-
-                  <div className="flex flex-col mt-4">
-                    <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
-                      ₹64,000
-                    </span>
-                    <span className="text-[13px] font-bold text-slate-500 mt-1.5">
-                      / Month per Brand
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-400 block mt-1">
-                      (Exclusive of GST)
-                    </span>
-                  </div>
-
-                  <div className="w-full h-[1px] bg-slate-100 my-5" />
-
-                  <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
-                    A complete branding, content and growth solution.
-                  </p>
-
-                  <div className="mt-6 space-y-4">
-                    <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block">
-                      Scope:
-                    </span>
-
-                    {/* Strategy Block */}
-                    <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
-                      <span className="text-[10px] font-black text-brand-navy uppercase tracking-wider block mb-1.5">
-                        Strategy & Branding
-                      </span>
-                      <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
-                        <li className="flex gap-2 items-start">
-                          <span className="text-emerald-500 font-bold">✓</span>
-                          <span>
-                            Brand Strategy Deck (Created once per brand)
-                          </span>
-                        </li>
-                        <li className="flex gap-2 items-start">
-                          <span className="text-emerald-500 font-bold">✓</span>
-                          <span>Content & Performance Strategy</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Content Block */}
-                    <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
-                      <span className="text-[10px] font-black text-brand-navy uppercase tracking-wider block mb-1.5">
-                        High-Impact Content
-                      </span>
-                      <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
-                        <li className="flex gap-2 items-start">
-                          <span className="text-emerald-500 font-bold">✓</span>
-                          <span>24 Static Posts & 12 Reels</span>
-                        </li>
-                        <li className="flex gap-2 items-start">
-                          <span className="text-emerald-500 font-bold">✓</span>
-                          <span>Copywriting, Captions & Scheduling</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Performance Block */}
-                    <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
-                      <span className="text-[10px] font-black text-[#f6861f] uppercase tracking-wider block mb-1.5">
-                        Paid Ads & Search
-                      </span>
-                      <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
-                        <li className="flex gap-2 items-start">
-                          <span className="text-emerald-500 font-bold">✓</span>
-                          <span>Meta & Google Ads Management</span>
-                        </li>
-                        <li className="flex gap-2 items-start">
-                          <span className="text-emerald-500 font-bold">✓</span>
-                          <span>Ad Creative Direction & Setup</span>
-                        </li>
-                        <li className="flex gap-2 items-start">
-                          <span className="text-emerald-500 font-bold">✓</span>
-                          <span>Google SEM Management (Up to 8 Keywords)</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <p className="text-[11px] text-slate-400 font-semibold italic mt-2">
-                      * Advertising spend is billed directly by Meta, Google and
-                      other platforms.
-                    </p>
-                  </div>
-                </div>
-
-                <a
-                  href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Retainer plan.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
-                >
-                  Get Started
-                </a>
-              </div>
-            </div>
-
-            {/* Card 4: Jukebox Performance Accelerator */}
-            <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
-              {/* Corner decor tag */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
-
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
-                    Jukebox Performance
-                  </h3>
-
-                  <div className="flex flex-col mt-4">
-                    <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
-                      ₹26,000
-                    </span>
-                    <span className="text-[13px] font-bold text-slate-500 mt-1.5">
-                      / Month per Brand
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-400 block mt-1">
-                      (Exclusive of GST)
-                    </span>
-                  </div>
-
-                  <div className="w-full h-[1px] bg-slate-100 my-5" />
-
-                  <p className="text-[13px] text-slate-500 font-semibold leading-relaxed">
-                    For businesses focused on lead generation, conversions and
-                    measurable growth.
-                  </p>
-
-                  <div className="mt-6">
-                    <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
-                      Includes:
-                    </span>
-                    <ul className="flex flex-col gap-3">
-                      {[
-                        "Meta Ads Management",
-                        "Google Ads Management",
-                        "LinkedIn Ads Management",
-                        "Funnel Strategy",
-                        "Campaign Setup & Optimization",
-                        "Audience Research",
-                        "Monthly Reporting & Performance Review",
-                      ].map((feature, idx) => (
-                        <li
-                          key={idx}
-                          className="flex gap-3 items-start text-[13px] text-slate-600 font-semibold"
-                        >
-                          <div className="w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                            <svg
-                              className="w-3.5 h-3.5"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="3"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.5 12.75l6 6 9-13.5"
-                              />
-                            </svg>
-                          </div>
-                          <span className="mt-0.5">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="text-[11px] text-slate-400 font-semibold leading-relaxed italic mt-4">
-                      * Advertising spend is billed directly by Meta, Google and
-                      other platforms. This package doesn&apos;t include Ad
-                      Creatives.
-                    </p>
-                  </div>
-                </div>
-
-                <a
-                  href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Performance plan.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
-                >
-                  Get Started
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Info: Common Features + Additional Charges */}
-          <div
-            id="pricing-additional"
-            className="mt-10 md:mt-6 max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-white relative z-10"
-          >
-            {/* Common Features Card */}
-            <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
-              <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#161443] border border-[#f6861f] block animate-pulse"></span>
-                Common Features Across All Packages
-              </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  "Copywriting & Captions",
-                  "Content Planning",
-                  "Editing & Optimization",
-                  "Content Calendar",
-                  "Posting Schedule",
-                  "Content Shoot using iPhone 16 or above",
-                ].map((feature, idx) => (
-                  <li
-                    key={idx}
-                    className="flex gap-2.5 items-start text-[13px] text-white/85 font-semibold leading-snug"
-                  >
+                <div className="mt-6 pt-6 border-t border-white/10 space-y-4">
+                  <div className="flex gap-2.5 items-start text-[12.5px] text-white/80 font-semibold leading-relaxed">
                     <div className="text-white shrink-0 mt-0.5">•</div>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Additional Charges Card */}
-            <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
-              <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2 mb-6">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#161443] border border-[#f6861f] block"></span>
-                Services Available at an Additional Cost
-              </h3>
-              <ul className="flex flex-col gap-3">
-                {[
-                  "Professional Camera Shoot",
-                  "Studio Rental",
-                  "Models & Talent",
-                  "Production Crew",
-                  "Advanced Video Production",
-                  "Travel & Location Costs",
-                ].map((charge, idx) => (
-                  <li
-                    key={idx}
-                    className="flex gap-2.5 items-start text-[13px] text-white/85 font-semibold leading-snug"
-                  >
+                    <span>
+                      Creative revisions for static posts and videos are limited
+                      to two rounds. Any revisions beyond this will be charged
+                      at 10% of the total package value per revision.
+                      Corrections relating to approved content are not
+                      considered revisions.
+                    </span>
+                  </div>
+                  <div className="flex gap-2.5 items-start text-[12.5px] text-white/80 font-semibold leading-relaxed">
                     <div className="text-white shrink-0 mt-0.5">•</div>
-                    <span>{charge}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-6 pt-6 border-t border-white/10 space-y-4">
-                <div className="flex gap-2.5 items-start text-[12.5px] text-white/80 font-semibold leading-relaxed">
-                  <div className="text-white shrink-0 mt-0.5">•</div>
-                  <span>
-                    Creative revisions for static posts and videos are limited
-                    to two rounds. Any revisions beyond this will be charged at
-                    10% of the total package value per revision. Corrections
-                    relating to approved content are not considered revisions.
-                  </span>
-                </div>
-                <div className="flex gap-2.5 items-start text-[12.5px] text-white/80 font-semibold leading-relaxed">
-                  <div className="text-white shrink-0 mt-0.5">•</div>
-                  <span>
-                    Platform-specific advertising support (LinkedIn, Reddit,
-                    JioHotstar and other premium media platforms)
-                  </span>
+                    <span>
+                      Platform-specific advertising support (LinkedIn, Reddit,
+                      JioHotstar and other premium media platforms)
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Legal Note / Footer Statement */}
-          <div className="text-center mt-12 mb-6 text-[#161443] text-[13px] font-bold tracking-wide select-none">
-            * All prices are exclusive of GST.
+            {/* Legal Note / Footer Statement */}
+            <div className="text-center mt-12 mb-6 text-[#161443] text-[13px] font-bold tracking-wide select-none">
+              * All prices are exclusive of GST.
+            </div>
           </div>
         </div>
-      </div>
       )}
 
       {/* Jukebox Brand Film Section */}
@@ -1991,7 +2078,9 @@ export default function Home() {
               Jukebox Brand Film
             </h2>
             <p className="text-base sm:text-lg text-brand-navy/80 font-medium leading-relaxed max-w-2xl">
-              See how we craft structured marketing systems and deploy high-fidelity creatives that drive enterprise-grade results for growing brands.
+              See how we craft structured marketing systems and deploy
+              high-fidelity creatives that drive enterprise-grade results for
+              growing brands.
             </p>
           </div>
 
@@ -1999,30 +2088,31 @@ export default function Home() {
           <div className="aspect-video max-w-[950px] w-full mx-auto rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(22,20,67,0.2)] border border-brand-navy/10 relative group bg-brand-navy">
             {isFilmPlaying ? (
               <iframe
-                src="https://www.youtube.com/embed/nf_EqvzpgFo?si=ZdoMHe6ht8vzJKOY&controls=1&autoplay=1"
+                src="https://www.youtube.com/embed/nf_EqvzpgFo?autoplay=1&controls=1"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                className="w-full h-full absolute inset-0"
+                className="w-full h-full absolute inset-0 z-10"
               ></iframe>
             ) : (
-              <div 
+              <div
                 onClick={() => setIsFilmPlaying(true)}
                 className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer z-10"
               >
                 {/* Poster image from YouTube */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
+                <img
                   src="https://img.youtube.com/vi/nf_EqvzpgFo/maxresdefault.jpg"
                   alt="Jukebox Brand Film Poster"
                   className="w-full h-full object-cover absolute inset-0 transition-transform duration-700 group-hover:scale-105"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = "https://img.youtube.com/vi/nf_EqvzpgFo/hqdefault.jpg";
+                    (e.target as HTMLImageElement).src =
+                      "https://img.youtube.com/vi/nf_EqvzpgFo/hqdefault.jpg";
                   }}
                 />
-                
+
                 {/* Overlay darkening filter */}
                 <div className="absolute inset-0 bg-brand-navy/60 transition-colors duration-500 group-hover:bg-brand-navy/55 z-0" />
 
@@ -2034,10 +2124,14 @@ export default function Home() {
                   {/* Ripple rings */}
                   <div className="absolute inset-0 rounded-full bg-brand-orange/20 animate-ping" />
                   <div className="absolute inset-2 rounded-full bg-brand-orange/30 animate-pulse" />
-                  
+
                   {/* Core button */}
                   <div className="relative w-16 h-16 rounded-full bg-brand-orange flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110 active:scale-95 border border-white/20">
-                    <svg className="w-6 h-6 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-6 h-6 text-white translate-x-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
@@ -2069,8 +2163,7 @@ export default function Home() {
                     e.preventDefault();
                     if ((window as any).lenis)
                       (window as any).lenis.scrollTo("#home");
-                    else
-                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    else window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
                   className="inline-block group cursor-pointer"
                 >

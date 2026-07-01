@@ -105,6 +105,12 @@ function LogoItem({
   const [hasError, setHasError] = React.useState(false);
   const src = logoPath || `https://logo.clearbit.com/${domain}?size=200`;
 
+  const heightStyle = name === "Volkswagen"
+    ? "clamp(32px, 5.8vh, 56px)"
+    : isLarge
+    ? "clamp(24px, 4.2vh, 42px)"
+    : "clamp(16px, 2.8vh, 26px)";
+
   return (
     <div className="flex items-center justify-center px-1.5 max-w-full">
       {hasError ? (
@@ -116,10 +122,9 @@ function LogoItem({
         <img
           src={src}
           alt={name}
-          className={`${
-            customClass ? customClass : isLarge ? "h-8 lg:h-10 xl:h-12" : "h-5 lg:h-6 xl:h-7"
-          } w-auto max-w-[9vw] xl:max-w-none object-contain animate-logo-pop`}
+          className="w-auto max-w-[9vw] xl:max-w-none object-contain animate-logo-pop"
           style={{
+            height: heightStyle,
             animationDelay: delay ? `${delay}ms` : undefined,
           }}
           loading="lazy"
@@ -571,9 +576,10 @@ export default function LogoWall() {
           {/* Strip 9 (top horizontal strip) */}
           <div
             id="brand-strip-1"
-            className="w-full h-[50px] lg:h-[60px] xl:h-[70px] px-4 lg:px-8 flex items-center justify-between overflow-x-auto xl:overflow-x-visible scrollbar-none"
+            className="w-full px-4 lg:px-8 flex items-center justify-center overflow-hidden"
+            style={{ height: "clamp(55px, 8.5vh, 85px)" }}
           >
-            <div className="flex items-center justify-between w-full min-w-0 xl:min-w-[1200px] gap-2 lg:gap-4 xl:gap-6">
+            <div className="flex items-center justify-between w-full gap-2 lg:gap-4 xl:gap-6">
               {strip1Logos.map((logo, index) => (
                 <LogoItem
                   key={logo.logoPath || logo.domain}
@@ -586,9 +592,10 @@ export default function LogoWall() {
           {/* Strip 10 (bottom horizontal strip) */}
           <div
             id="brand-strip-2"
-            className="w-full h-[50px] lg:h-[60px] xl:h-[70px] px-4 lg:px-8 flex items-center justify-between overflow-x-auto xl:overflow-x-visible scrollbar-none"
+            className="w-full px-4 lg:px-8 flex items-center justify-center overflow-hidden"
+            style={{ height: "clamp(55px, 8.5vh, 85px)" }}
           >
-            <div className="flex items-center justify-between w-full min-w-0 xl:min-w-[1200px] gap-2 lg:gap-4 xl:gap-6">
+            <div className="flex items-center justify-between w-full gap-2 lg:gap-4 xl:gap-6">
               {strip2Logos.map((logo, index) => (
                 <LogoItem
                   key={logo.logoPath || logo.domain}
