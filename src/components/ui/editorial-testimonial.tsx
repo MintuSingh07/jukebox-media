@@ -14,7 +14,7 @@ const testimonials = [
     company: "",
     rating: 5,
     verified: true,
-    image: "/public/nu.jpg",
+    image: "/nu.jpg",
   },
   {
     id: 2,
