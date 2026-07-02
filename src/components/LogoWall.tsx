@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import ScrollReveal from "./ScrollReveal";
 
 // Assigning brands from the logo list to individual boxes based on the required layout
 const box1Logos = [
@@ -141,9 +142,12 @@ export default function LogoWall() {
     <div className="w-full h-full flex flex-col items-center justify-start pt-8 md:pt-16 lg:pt-24 pb-8 md:pb-12 lg:pb-16 px-4 sm:px-8 gap-2">
       {/* Section header */}
       <div className="text-center mb-6 md:mb-8 mt-8 md:mt-10 lg:mt-14">
-        <h2 className="text-[32px] sm:text-[40px] font-bold text-[#161443] tracking-tight">
+        <ScrollReveal
+          as="h2"
+          containerClassName="text-[32px] sm:text-[40px] font-bold text-[#161443] tracking-tight"
+        >
           Leadership Experience Across Brands
-        </h2>
+        </ScrollReveal>
       </div>
 
       {/* Grid container matching the layout and sizing shown in the user's reference image */}

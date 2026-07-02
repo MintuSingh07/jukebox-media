@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
-  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-cursive: var(--font-caveat), cursive;
+  --font-sans: var(--font-avenir), sans-serif;
+  --font-serif: var(--font-avenir), serif;
+  --font-cursive: var(--font-avenir), cursive;
+  --font-mono: var(--font-avenir), monospace;
   
   --color-brand-orange: #f6861f;
   --color-brand-orange-light: #fb923c;
@@ -170,5 +171,55 @@ body {
 
 .animate-marquee-reverse:hover {
   animation-play-state: paused;
+}
+
+/* Typography Consistency Rules: Avenir Heavy (800) for titles/links/highlights, Avenir Light (300) for text/subheadings */
+h1, h2, h3, h4, h5, h6,
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
+button,
+button *,
+.lets-talk-btn,
+.lets-talk-btn *,
+.title,
+.nav-link {
+  font-weight: 800 !important;
+}
+
+body,
+p,
+span,
+li,
+td,
+th,
+input,
+textarea,
+.subheading,
+.subtitle,
+.description {
+  font-weight: 300 !important;
+}
+
+/* Allow bold emphasis (strong, b, or utility bold/semibold classes) to render as Avenir Regular (500) */
+strong,
+b,
+.font-bold,
+.font-semibold {
+  font-weight: 500 !important;
+}
+
+/* Titles/Buttons elements and their children should explicitly render as Avenir Heavy (800) */
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span,
+button span, a span {
+  font-weight: 800 !important;
+}
+
+/* Make Avenir Black (900) appear much wider */
+.font-black,
+.font-black * {
+  font-weight: 900 !important;
+  font-stretch: 125% !important;
+  letter-spacing: 0.08em !important;
+  transform: scaleX(1.1) !important;
+  display: inline-block;
 }
 

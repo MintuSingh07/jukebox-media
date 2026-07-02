@@ -1,18 +1,47 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const Avenir = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Avenir Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Avenir Book.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Avenir Regular.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Avenir Heavy.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Avenir Heavy.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Avenir Heavy.ttf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Avenir Black.ttf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-avenir",
 });
 
 export const metadata: Metadata = {
@@ -28,10 +57,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${caveat.variable} h-full antialiased`}
+      className={`${Avenir.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full bg-[#fafaf9] text-[#0f0f10]" suppressHydrationWarning>
+      <body className="min-h-full bg-[#fafaf9] text-[#0f0f10] font-light" suppressHydrationWarning>
         {children}
         <CookieConsent />
       </body>

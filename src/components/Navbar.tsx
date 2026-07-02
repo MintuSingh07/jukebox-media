@@ -162,7 +162,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                   e.preventDefault();
                   handleTabClick(item.id);
                 }}
-                className={`relative px-3.5 py-1.5 text-[13px] font-semibold rounded-full transition-colors duration-300 cursor-pointer z-10 ${
+                className={`relative px-3.5 py-1.5 text-[13px] font-normal rounded-full transition-colors duration-300 cursor-pointer z-10 ${
                   isActive
                     ? "text-white active-nav-btn"
                     : "text-[#161443]/70 hover:text-[#161443] hover:bg-[#161443]/[0.03]"
@@ -272,7 +272,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                       handleTabClick(item.id);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`text-center py-1.5 text-[24px] sm:text-[30px] font-bold tracking-tight transition-all duration-300 w-full hover:scale-105 ${
+                    className={`text-center py-1.5 text-[24px] sm:text-[30px] font-normal tracking-tight transition-all duration-300 w-full hover:scale-105 ${
                       isActive
                         ? "text-[#161443] drop-shadow-[0_2px_8px_rgba(22,20,67,0.15)]"
                         : "text-[#161443]/70 hover:text-[#161443]"
@@ -294,7 +294,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2.5 rounded-full bg-[#161443] py-3.5 px-8 text-[15px] font-bold text-white transition-all duration-300 hover:bg-[#161443]/90 hover:scale-[1.02] w-full max-w-sm cursor-pointer text-center shadow-lg border border-white/10"
+                className="flex items-center justify-center gap-2.5 rounded-full bg-[#161443] py-3.5 px-8 text-[15px] font-normal text-white transition-all duration-300 hover:bg-[#161443]/90 hover:scale-[1.02] w-full max-w-sm cursor-pointer text-center shadow-lg border border-white/10"
               >
                 <svg className="w-5 h-5 shrink-0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="8" cy="8" r="8" fill="#25D366" />

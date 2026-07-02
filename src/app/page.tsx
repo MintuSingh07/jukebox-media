@@ -4657,7 +4657,7 @@ const BrandStorytellingMockup = () => {
 
       {/* Page 1 — Typewriter */}
       <div className="bg-[#161443]/[0.03] rounded-xl p-4 border border-[#161443]/5 mb-3 flex items-center min-h-[50px]">
-        <span className="text-[20px] font-bold text-[#161443] tracking-tight font-[Caveat] leading-snug">
+        <span className="text-[20px] font-bold text-[#161443] tracking-tight font-cursive leading-snug">
           {typedText}
           <span className="animate-pulse text-brand-orange">|</span>
         </span>
