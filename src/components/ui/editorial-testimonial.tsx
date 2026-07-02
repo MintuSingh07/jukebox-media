@@ -103,13 +103,13 @@ export default function TestimonialsEditorial() {
               </svg>
               <span className="text-[12px] text-[#E1306C] font-semibold">{(current as any).instagram}</span>
               <span className="text-[#161443]/20 text-xs">·</span>
-              <span className="text-[12px] text-[#161443]/50 font-medium">{current.role.split("—")[0].trim()}</span>
+              <span className="text-[12px] text-[#161443]/60 font-semibold">{current.role.split("—")[0].trim()}</span>
             </div>
           ) : (
-            <p className="text-[12px] text-[#161443]/50 font-medium leading-tight">
+            <p className="text-[12px] text-[#161443]/60 font-semibold leading-tight">
               {current.role}
               {current.company && (
-                <span className="text-[#161443]/30"> · {current.company}</span>
+                <span className="text-[#161443]/40"> · {current.company}</span>
               )}
             </p>
           )}

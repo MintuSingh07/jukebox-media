@@ -199,17 +199,31 @@ textarea,
   font-weight: 300 !important;
 }
 
-/* Allow bold emphasis (strong, b, or utility bold/semibold classes) to render as Avenir Regular (500) */
-strong,
-b,
-.font-bold,
-.font-semibold {
-  font-weight: 500 !important;
+/* Allow bold emphasis (strong, b, or utility bold/semibold classes) to render as Avenir Heavy (800) inside text blocks to contrast with body text (Avenir Regular) */
+p strong, p b, p .font-bold, p .font-semibold,
+span strong, span b, span .font-bold, span .font-semibold,
+li strong, li b, li .font-bold, li .font-semibold {
+  font-weight: 800 !important;
 }
 
 /* Titles/Buttons elements and their children should explicitly render as Avenir Heavy (800) */
 h1 span, h2 span, h3 span, h4 span, h5 span, h6 span,
 button span, a span {
+  font-weight: 800 !important;
+}
+
+/* Ensure text inside badge pills/capsules (rounded-full classes) renders in Avenir Heavy (800) instead of base Regular (300) */
+[class*="rounded-full"] span,
+[class*="rounded-full"] strong,
+[class*="rounded-full"] b {
+  font-weight: 800 !important;
+}
+
+/* Enforce that buttons and header CTA links override this to remain Avenir Heavy (800) */
+button,
+button *,
+.lets-talk-btn,
+.lets-talk-btn * {
   font-weight: 800 !important;
 }
 
@@ -226,5 +240,10 @@ button span, a span {
 /* Disable all italic font styles globally on the site */
 * {
   font-style: normal !important;
+}
+
+/* Custom class for Caveat cursive font */
+.font-caveat {
+  font-family: var(--font-caveat), cursive !important;
 }
 

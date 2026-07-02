@@ -1294,10 +1294,10 @@ export default function Home() {
               <div className="pt-6 px-1 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-baseline justify-between border-b border-white/15 pb-3.5 mb-3.5">
-                    <span className="text-[12px] font-extrabold tracking-wider text-[#161443] font-mono">
+                    <span className="text-[12px] font-black tracking-wider text-[#161443] font-mono">
                       {item.step}
                     </span>
-                    <span className="text-[15px] font-extrabold text-[#161443] tracking-tight uppercase">
+                    <span className="text-[15px] font-black text-[#161443] tracking-tight uppercase">
                       {item.phase}
                     </span>
                   </div>
@@ -1324,7 +1324,7 @@ export default function Home() {
 
           {/* Footer cursive script text */}
           <div className="absolute left-[45%] top-[90%] flex flex-col items-start select-none">
-            <span className="font-cursive text-[32px] lg:text-[36px] text-[#161443] rotate-[-4deg] tracking-wide">
+            <span className="font-caveat text-[32px] lg:text-[36px] text-[#161443] rotate-[-4deg] tracking-wide">
               Ready to be delivered!
             </span>
           </div>
@@ -1421,10 +1421,10 @@ export default function Home() {
                 <div className="pt-6 px-1 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex items-baseline justify-between border-b border-white/15 pb-3.5 mb-3.5">
-                      <span className="text-[12px] font-extrabold tracking-wider text-[#161443] font-mono">
+                      <span className="text-[12px] font-black tracking-wider text-[#161443] font-mono">
                         {item.step}
                       </span>
-                      <span className="text-[15px] font-extrabold text-[#161443] tracking-tight uppercase">
+                      <span className="text-[15px] font-black text-[#161443] tracking-tight uppercase">
                         {item.phase}
                       </span>
                     </div>
@@ -1452,7 +1452,7 @@ export default function Home() {
 
           {/* Mobile Footer text */}
           <div className="mt-10 select-none">
-            <span className="font-cursive text-[30px] text-[#161443] rotate-[-2deg] tracking-wide inline-block">
+            <span className="font-caveat text-[30px] text-[#161443] rotate-[-2deg] tracking-wide inline-block">
               Ready to be delivered!
             </span>
           </div>
@@ -4657,7 +4657,7 @@ const BrandStorytellingMockup = () => {
 
       {/* Page 1 — Typewriter */}
       <div className="bg-[#161443]/[0.03] rounded-xl p-4 border border-[#161443]/5 mb-3 flex items-center min-h-[50px]">
-        <span className="text-[20px] font-bold text-[#161443] tracking-tight font-cursive leading-snug">
+        <span className="text-[20px] font-bold text-[#161443] tracking-tight font-sans leading-snug">
           {typedText}
           <span className="animate-pulse text-brand-orange">|</span>
         </span>

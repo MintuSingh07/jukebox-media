@@ -162,7 +162,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                   e.preventDefault();
                   handleTabClick(item.id);
                 }}
-                className={`relative px-3.5 py-1.5 text-[13px] font-normal rounded-full transition-colors duration-300 cursor-pointer z-10 ${
+                className={`relative px-3.5 py-1.5 text-[13px] font-medium rounded-full transition-colors duration-300 cursor-pointer z-10 ${
                   isActive
                     ? "text-white active-nav-btn"
                     : "text-[#161443]/70 hover:text-[#161443] hover:bg-[#161443]/[0.03]"
@@ -272,7 +272,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                       handleTabClick(item.id);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`text-center py-1.5 text-[24px] sm:text-[30px] font-normal tracking-tight transition-all duration-300 w-full hover:scale-105 ${
+                    className={`text-center py-1.5 text-[24px] sm:text-[30px] font-medium tracking-tight transition-all duration-300 w-full hover:scale-105 ${
                       isActive
                         ? "text-[#161443] drop-shadow-[0_2px_8px_rgba(22,20,67,0.15)]"
                         : "text-[#161443]/70 hover:text-[#161443]"
