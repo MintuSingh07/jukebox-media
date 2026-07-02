@@ -86,7 +86,7 @@ export default function TestimonialsEditorial() {
             src={current.image || "/placeholder.svg"}
             alt={current.author}
             fill
-            className={`object-cover ${current.image.includes("one20mins") ? "scale-110" : ""}`}
+            className={`object-cover ${current.image.includes("nu.jpg") ? "object-top" : ""} ${current.image.includes("one20mins") ? "scale-110" : ""}`}
             sizes="44px"
           />
         </div>
