@@ -47,7 +47,7 @@ export default function TermsAndConditionsPage() {
             Terms & Conditions
           </h1>
           <p className="text-[14px] text-white/50 mb-10 font-medium">
-            Last Updated: January 2026
+            Last Updated: July 2026
           </p>
 
           <div className="space-y-8 text-[15px] sm:text-[16px] text-white/80 leading-relaxed font-normal">
@@ -287,7 +287,7 @@ export default function TermsAndConditionsPage() {
                 17. Contact Information
               </h2>
               <p>For legal or service-related queries:</p>
-              <p className="font-semibold text-white font-serif italic text-[18px]">Jukebox Media</p>
+              <p className="font-semibold text-white text-[18px]">Jukebox Media</p>
               <ul className="space-y-1.5 text-white/80">
                 <li>
                   Website:{" "}

@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="text-[14px] text-white/50 mb-10 font-medium">
-            Last Updated: January 2026
+            Last Updated: July 2026
           </p>
 
           <div className="space-y-8 text-[15px] sm:text-[16px] text-white/80 leading-relaxed font-normal">
@@ -312,7 +312,7 @@ export default function PrivacyPolicyPage() {
                 14. Contact Information
               </h2>
               <p>For privacy-related inquiries or data requests:</p>
-              <p className="font-semibold text-white font-serif italic text-[18px]">Jukebox Media</p>
+              <p className="font-semibold text-white text-[18px]">Jukebox Media</p>
               <ul className="space-y-1.5 text-white/80">
                 <li>
                   Website:{" "}

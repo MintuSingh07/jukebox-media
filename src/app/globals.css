@@ -223,3 +223,8 @@ button span, a span {
   display: inline-block;
 }
 
+/* Disable all italic font styles globally on the site */
+* {
+  font-style: normal !important;
+}
+
