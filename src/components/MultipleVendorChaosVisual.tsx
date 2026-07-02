@@ -283,7 +283,7 @@ export default function MultipleVendorChaosVisual({ isHovered }: Props) {
         {/* Message 2 (blue accent) - Floats to the right, out of the card boundaries */}
         <div
           ref={message2Ref}
-          className="absolute top-[32%] md:top-[42%] -right-[75px] md:-right-[95px] w-[130px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#161443]/20 shadow-[0_8px_30px_rgba(22,20,67,0.12)] rounded-2xl p-2 flex items-start gap-1.5 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
+          className="absolute top-[32%] md:top-[42%] -right-[75px] md:-right-[95px] w-[130px] md:w-[145px] bg-white/95 backdrop-blur-sm border border-[#161443]/20 shadow-[0_8px_30px_rgba(22, 20, 67,0.12)] rounded-2xl p-2 flex items-start gap-1.5 pointer-events-auto transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 cursor-pointer"
 
         >
           <div className="w-6 h-6 rounded-full bg-[#161443]/10 border border-[#161443]/20 flex items-center justify-center text-[9px] font-bold text-[#161443] flex-shrink-0">

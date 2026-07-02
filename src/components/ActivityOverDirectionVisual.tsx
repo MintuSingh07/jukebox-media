@@ -196,12 +196,12 @@ export default function ActivityOverDirectionVisual({ isHovered }: Props) {
           ref={headerRef}
           className="flex justify-between items-center mb-2 px-0.5"
         >
-          <span className="text-[10px] font-bold text-brand-navy tracking-tight">
+          <span className="text-[10px] font-bold text-[#161443] tracking-tight">
             Sprint Board
           </span>
           <div className="flex gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-navy/15"></span>
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-navy/15"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#161443]/15"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#161443]/15"></span>
           </div>
         </div>
 
@@ -211,7 +211,7 @@ export default function ActivityOverDirectionVisual({ isHovered }: Props) {
           <div className="bg-slate-50/70 rounded-lg border border-black/[0.015] p-1 flex flex-col gap-1.5">
             <div
               ref={columnHeadersRef}
-              className="text-[7px] font-extrabold text-brand-navy/35 tracking-wider uppercase pl-0.5"
+              className="text-[7px] font-extrabold text-[#161443]/35 tracking-wider uppercase pl-0.5"
             >
               To Do
             </div>
@@ -219,14 +219,14 @@ export default function ActivityOverDirectionVisual({ isHovered }: Props) {
 
           {/* Column 2 (In Progress) */}
           <div className="bg-slate-50/70 rounded-lg border border-black/[0.015] p-1 flex flex-col gap-1.5">
-            <div className="text-[7px] font-extrabold text-brand-navy/35 tracking-wider uppercase pl-0.5">
+            <div className="text-[7px] font-extrabold text-[#161443]/35 tracking-wider uppercase pl-0.5">
               In Progress
             </div>
           </div>
 
           {/* Column 3 (Done) — with "0 completed" counter */}
           <div className="bg-slate-50/70 rounded-lg border border-black/[0.015] p-1 flex flex-col gap-1.5 relative">
-            <div className="text-[7px] font-extrabold text-brand-navy/35 tracking-wider uppercase pl-0.5">
+            <div className="text-[7px] font-extrabold text-[#161443]/35 tracking-wider uppercase pl-0.5">
               Done
             </div>
             {/* "0 completed" badge */}
@@ -260,10 +260,10 @@ export default function ActivityOverDirectionVisual({ isHovered }: Props) {
                 }}
                 className="w-full h-full rounded-md border p-1 flex flex-col justify-between select-none"
               >
-                <div className="text-[6.5px] font-extrabold text-brand-navy leading-none tracking-tight truncate">
+                <div className="text-[6.5px] font-extrabold text-[#161443] leading-none tracking-tight truncate">
                   {task.title}
                 </div>
-                <div className="text-[5px] text-brand-navy/50 leading-none truncate mt-0.5">
+                <div className="text-[5px] text-[#161443]/50 leading-none truncate mt-0.5">
                   {task.desc}
                 </div>
               </div>

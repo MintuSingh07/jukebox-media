@@ -26,24 +26,24 @@ export default function DoctorBadge({
 }: DoctorBadgeProps) {
   const bgClass = 
     theme === "navy" 
-      ? "bg-brand-navy text-white" 
+      ? "bg-[#161443] text-white" 
       : theme === "orange" 
         ? "bg-brand-orange text-white" 
-        : "bg-white text-brand-navy";
+        : "bg-white text-[#161443]";
 
   const textRoleClass = 
     theme === "navy" 
       ? "text-brand-orange-light" 
       : theme === "orange" 
         ? "text-brand-peach" 
-        : "text-brand-navy/60";
+        : "text-[#161443]/60";
 
   const borderClass = 
     theme === "navy" 
-      ? "border-brand-navy-light/40" 
+      ? "border-[#161443]/40" 
       : theme === "orange" 
         ? "border-brand-orange-light/40" 
-        : "border-brand-navy/10";
+        : "border-[#161443]/10";
 
   // Cursor pointing direction
   const isLeftPointer = pointerPosition === "top-left";

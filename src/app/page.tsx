@@ -421,7 +421,7 @@ export default function Home() {
         },
         {
           threshold: 0.01, // trigger as soon as 1% of the section is visible
-        }
+        },
       );
 
       observer.observe(el);
@@ -602,7 +602,7 @@ export default function Home() {
           borderBottomLeftRadius: "32px",
           borderBottomRightRadius: "32px",
         }}
-        className="left-4 right-4 md:left-[4vw] md:right-[4vw] lg:left-[4vw] lg:right-[4vw] xl:left-[4vw] xl:right-[4vw] px-6 py-1.5 md:px-8 md:py-2 bg-white/[0.12] backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(22,20,67,0.08)]"
+        className="left-4 right-4 md:left-[4vw] md:right-[4vw] lg:left-[4vw] lg:right-[4vw] xl:left-[4vw] xl:right-[4vw] px-6 py-1.5 md:px-8 md:py-2 bg-white/[0.12] backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(22, 20, 67,0.08)]"
       />
       <div
         ref={containerRef}
@@ -684,18 +684,18 @@ export default function Home() {
                   <h1 className="text-[32px] sm:text-[50px] md:text-[64px] lg:text-[76px] xl:text-[86px] leading-[1.2] sm:leading-[1.15] md:leading-[1.1] lg:leading-[1.08] font-semibold tracking-tight text-white">
                     <span className="block">Clarity & Growth.</span>
                     <span className="block mt-1">Structured Marketing</span>
-                    <span className="block text-brand-navy mt-1">
+                    <span className="block text-[#161443] mt-1">
                       For Growing Brands
                     </span>
                     <span className="block mt-1">To Deliver Impact</span>
                   </h1>
                   <p className="mt-6 sm:mt-8 text-[15px] sm:text-[18px] md:text-[22px] leading-relaxed font-normal text-white/80 max-w-2xl tracking-tight">
                     Bringing{" "}
-                    <span className="font-serif italic font-medium text-brand-navy">
+                    <span className="font-serif italic font-medium text-[#161443]">
                       clarity
                     </span>{" "}
                     and{" "}
-                    <span className="font-serif italic font-medium text-brand-navy">
+                    <span className="font-serif italic font-medium text-[#161443]">
                       growth
                     </span>{" "}
                     to your{" "}
@@ -706,7 +706,7 @@ export default function Home() {
                   <div className="mt-6 sm:mt-8 md:mt-10 flex flex-row items-center justify-center gap-4 pointer-events-auto">
                     <button
                       onClick={() => scrollToSection("brand-film")}
-                      className="px-7 py-3.5 text-[15px] font-semibold text-white bg-brand-navy rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-brand-navy-light cursor-pointer"
+                      className="px-7 py-3.5 text-[15px] font-semibold text-white bg-[#161443] rounded-full border border-white/10 shadow-premium transition-all duration-300 hover:scale-[1.02] hover:bg-[#161443]/90 cursor-pointer"
                     >
                       Watch the Jukebox Brand Film
                     </button>
@@ -786,7 +786,7 @@ export default function Home() {
             {/* Right Column: Profile Image + Media Houses Logos (col-span 5) */}
             <div className="about-card lg:col-span-5 bg-white/10 border border-white/15 rounded-3xl pt-6 px-6 flex flex-col justify-between items-center shadow-lg relative overflow-hidden backdrop-blur-sm select-none">
               {/* Profile image container */}
-              <div className="relative h-28 w-28 rounded-full border-2 border-white overflow-hidden mb-6 flex items-center justify-center bg-brand-navy shadow-lg shrink-0">
+              <div className="relative h-28 w-28 rounded-full border-2 border-white overflow-hidden mb-6 flex items-center justify-center bg-[#161443] shadow-lg shrink-0">
                 <img
                   src="/ankit.jpeg"
                   alt="Ankit Jani"
@@ -829,7 +829,7 @@ export default function Home() {
 
       <section
         id="brands"
-        className="relative z-20 w-full bg-white h-auto border-b border-brand-navy/[0.04] flex items-center justify-center pt-20"
+        className="relative z-20 w-full bg-white h-auto border-b border-[#161443]/[0.04] flex items-center justify-center pt-20"
         style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         <LogoWall />
@@ -838,7 +838,7 @@ export default function Home() {
       {/* The Common Problem Section (Problem Statement) */}
       <div
         id="problem"
-        className="relative z-20 w-full bg-[#f8fafc] pt-20 border-y border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-[#f8fafc] pt-20 border-y border-[#161443]/[0.04] flex flex-col items-center select-none overflow-hidden"
         style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         {/* Grid pattern & soft ambient spotlights */}
@@ -864,11 +864,11 @@ export default function Home() {
           <div className="text-center max-w-3xl mx-auto mb-16 mt-12 md:mt-16">
             <ScrollReveal
               as="h2"
-              containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3 leading-[1.1]"
+              containerClassName="text-[36px] sm:text-[48px] font-bold text-[#161443] tracking-tight mt-3 leading-[1.1]"
             >
               Does your marketing feel scattered?
             </ScrollReveal>
-            <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
+            <p className="text-[16px] sm:text-[18px] text-[#161443]/70 mt-4 leading-relaxed">
               Many businesses today operate in a state of fragmentation, leading
               to wasted spend and unmeasurable results.
             </p>
@@ -880,14 +880,14 @@ export default function Home() {
               ref={problemCard1Ref}
               onMouseEnter={() => setCard1Hovered(true)}
               onMouseLeave={() => setCard1Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] md:col-span-2 flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors md:h-[420px]"
+              className="relative bg-[#161443]/[0.04] rounded-[2rem] md:col-span-2 flex flex-col overflow-hidden group border border-transparent hover:border-[#161443]/5 transition-colors md:h-[420px]"
             >
               {/* Text */}
               <div className="relative z-10 text-center px-6 pt-7 pb-3 md:pt-5 md:pb-0">
-                <h4 className="text-[22px] md:text-[26px] font-bold text-brand-navy tracking-tight">
+                <h4 className="text-[22px] md:text-[26px] font-bold text-[#161443] tracking-tight">
                   Irregular Campaigns
                 </h4>
-                <p className="text-[14px] md:text-[15px] text-brand-navy/60 mt-1.5 max-w-md mx-auto leading-relaxed">
+                <p className="text-[14px] md:text-[15px] text-[#161443]/60 mt-1.5 max-w-md mx-auto leading-relaxed">
                   Running marketing activities in fits and starts, resulting in
                   erratic cash flows.
                 </p>
@@ -906,17 +906,17 @@ export default function Home() {
               ref={problemCard2Ref}
               onMouseEnter={() => setCard2Hovered(true)}
               onMouseLeave={() => setCard2Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors md:h-[420px]"
+              className="relative bg-[#161443]/[0.04] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-[#161443]/5 transition-colors md:h-[420px]"
             >
               {/* Mobile: visual on top, text below */}
               <div className="mx-4 mt-4 h-[150px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] flex items-center justify-center">
                 <MultipleVendorChaosVisual isHovered={card2Hovered} />
               </div>
               <div className="relative z-10 text-center px-6 py-5 md:hidden">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                <h4 className="text-[20px] font-bold text-[#161443] tracking-tight">
                   Multiple Vendor Chaos
                 </h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">
+                <p className="text-[14px] text-[#161443]/60 leading-relaxed mt-1.5">
                   Working with disconnected agencies leads to lack of alignment.
                 </p>
               </div>
@@ -926,10 +926,10 @@ export default function Home() {
                   <MultipleVendorChaosVisual isHovered={card2Hovered} />
                 </div>
                 <div className="relative z-10 text-center mt-auto">
-                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  <h4 className="text-[20px] font-bold text-[#161443] tracking-tight">
                     Multiple Vendor Chaos
                   </h4>
-                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                  <p className="text-[14px] text-[#161443]/60 leading-relaxed mt-2">
                     Working with disconnected agencies leads to lack of
                     alignment.
                   </p>
@@ -942,16 +942,16 @@ export default function Home() {
               ref={problemCard3Ref}
               onMouseEnter={() => setCard3Hovered(true)}
               onMouseLeave={() => setCard3Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+              className="relative bg-[#161443]/[0.04] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-[#161443]/5 transition-colors"
             >
               <div className="mx-4 mt-4 h-[200px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center px-3 py-2">
                 <ActivityOverDirectionVisual isHovered={card3Hovered} />
               </div>
               <div className="relative z-10 text-center px-6 py-5 md:hidden">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                <h4 className="text-[20px] font-bold text-[#161443] tracking-tight">
                   Activity Over Direction
                 </h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">
+                <p className="text-[14px] text-[#161443]/60 leading-relaxed mt-1.5">
                   Focusing heavily on execution instead of strategic alignment.
                 </p>
               </div>
@@ -960,10 +960,10 @@ export default function Home() {
                   <ActivityOverDirectionVisual isHovered={card3Hovered} />
                 </div>
                 <div className="relative z-10 text-center mt-auto">
-                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  <h4 className="text-[20px] font-bold text-[#161443] tracking-tight">
                     Activity Over Direction
                   </h4>
-                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                  <p className="text-[14px] text-[#161443]/60 leading-relaxed mt-2">
                     Focusing heavily on execution instead of strategic
                     alignment.
                   </p>
@@ -976,13 +976,13 @@ export default function Home() {
               ref={problemCard4Ref}
               onMouseEnter={() => setCard4Hovered(true)}
               onMouseLeave={() => setCard4Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+              className="relative bg-[#161443]/[0.04] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-[#161443]/5 transition-colors"
             >
               <div className="relative z-10 text-center px-6 pt-7 pb-3 md:hidden">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                <h4 className="text-[20px] font-bold text-[#161443] tracking-tight">
                   Consistency Struggles
                 </h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">
+                <p className="text-[14px] text-[#161443]/60 leading-relaxed mt-1.5">
                   Struggling to maintain a unified brand message and consistent
                   presence.
                 </p>
@@ -992,10 +992,10 @@ export default function Home() {
               </div>
               <div className="hidden md:flex md:flex-col md:items-center md:justify-start md:min-h-[420px] md:pt-5 md:px-8 md:pb-8">
                 <div className="relative z-10 text-center mt-0">
-                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  <h4 className="text-[20px] font-bold text-[#161443] tracking-tight">
                     Consistency Struggles
                   </h4>
-                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                  <p className="text-[14px] text-[#161443]/60 leading-relaxed mt-2">
                     Struggling to maintain a unified brand message and
                     consistent presence.
                   </p>
@@ -1011,16 +1011,16 @@ export default function Home() {
               ref={problemCard5Ref}
               onMouseEnter={() => setCard5Hovered(true)}
               onMouseLeave={() => setCard5Hovered(false)}
-              className="relative bg-[#eff3fe] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-brand-navy/5 transition-colors"
+              className="relative bg-[#161443]/[0.04] rounded-[2rem] flex flex-col overflow-hidden group border border-transparent hover:border-[#161443]/5 transition-colors"
             >
               <div className="mx-4 mt-4 h-[200px] md:hidden bg-white rounded-[1.5rem] shadow-xl border border-black/[0.03] overflow-hidden flex items-center justify-center px-3 py-2">
                 <UnclearROIVisual isHovered={card5Hovered} />
               </div>
               <div className="relative z-10 text-center px-6 py-5 md:hidden">
-                <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                <h4 className="text-[20px] font-bold text-[#161443] tracking-tight">
                   Unclear ROI
                 </h4>
-                <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-1.5">
+                <p className="text-[14px] text-[#161443]/60 leading-relaxed mt-1.5">
                   Inability to track return on investment from multiple
                   channels.
                 </p>
@@ -1030,10 +1030,10 @@ export default function Home() {
                   <UnclearROIVisual isHovered={card5Hovered} />
                 </div>
                 <div className="relative z-10 text-center mt-auto">
-                  <h4 className="text-[20px] font-bold text-brand-navy tracking-tight">
+                  <h4 className="text-[20px] font-bold text-[#161443] tracking-tight">
                     Unclear ROI
                   </h4>
-                  <p className="text-[14px] text-brand-navy/60 leading-relaxed mt-2">
+                  <p className="text-[14px] text-[#161443]/60 leading-relaxed mt-2">
                     Inability to track return on investment from multiple
                     channels.
                   </p>
@@ -1047,7 +1047,7 @@ export default function Home() {
       {/* Service Section */}
       <div
         id="service"
-        className="relative z-20 w-full bg-white pt-10 md:pt-16 border-t border-brand-navy/[0.04] flex flex-col items-center overflow-hidden"
+        className="relative z-20 w-full bg-white pt-10 md:pt-16 border-t border-[#161443]/[0.04] flex flex-col items-center overflow-hidden"
         style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         {/* Grid pattern & soft ambient spotlights */}
@@ -1073,11 +1073,11 @@ export default function Home() {
           <div className="text-center max-w-3xl mx-auto mb-4 md:mb-6 mt-8 md:mt-16">
             <ScrollReveal
               as="h2"
-              containerClassName="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight mt-2"
+              containerClassName="text-[32px] sm:text-[40px] font-bold text-[#161443] tracking-tight mt-2"
             >
               Our Services &amp; Expertise
             </ScrollReveal>
-            <p className="text-[15px] sm:text-[17px] text-brand-navy/70 mt-2 leading-relaxed">
+            <p className="text-[15px] sm:text-[17px] text-[#161443]/70 mt-2 leading-relaxed">
               We build cohesive marketing engines that turn scattered, expensive
               campaigns into predictable growth channels.
             </p>
@@ -1088,7 +1088,7 @@ export default function Home() {
             {servicesData.map((service, idx) => (
               <div
                 key={idx}
-                className="px-3.5 py-2 md:px-6 md:py-3.5 bg-[#f6861f] border border-transparent rounded-full text-[11.5px] md:text-[14px] font-extrabold text-brand-navy hover:text-white tracking-tight shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default flex items-center gap-1.5 md:gap-2"
+                className="px-3.5 py-2 md:px-6 md:py-3.5 bg-[#f6861f] border border-transparent rounded-full text-[11.5px] md:text-[14px] font-extrabold text-[#161443] hover:text-white tracking-tight shadow-sm hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default flex items-center gap-1.5 md:gap-2"
               >
                 <service.icon className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" />
                 <span>{service.title}</span>
@@ -1101,7 +1101,7 @@ export default function Home() {
             <div className="lg:col-span-5 flex flex-col gap-1.5 relative">
               <div
                 ref={selectorRef}
-                className="absolute left-0 right-0 bg-white border border-brand-navy/[0.06] shadow-premium rounded-xl pointer-events-none z-0 opacity-0"
+                className="absolute left-0 right-0 bg-white border border-[#161443]/[0.06] shadow-premium rounded-xl pointer-events-none z-0 opacity-0"
               />
               {servicesData.map((service, idx) => {
                 const isActive = idx === activeService;
@@ -1122,20 +1122,20 @@ export default function Home() {
                       className={`h-9 w-9 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300 ${
                         isActive
                           ? "bg-brand-orange/10 text-brand-orange"
-                          : "bg-brand-navy/5 text-brand-navy"
+                          : "bg-[#161443]/5 text-[#161443]"
                       }`}
                     >
                       <service.icon className="w-4.5 h-4.5" />
                     </div>
                     <div className="flex flex-col flex-grow">
-                      <h3 className="text-[15.5px] font-semibold text-brand-navy tracking-tight">
+                      <h3 className="text-[15.5px] font-semibold text-[#161443] tracking-tight">
                         {service.title}
                       </h3>
                       <div
                         ref={(el) => {
                           descRefs.current[idx] = el;
                         }}
-                        className="overflow-hidden text-[13px] text-brand-navy/60 leading-relaxed"
+                        className="overflow-hidden text-[13px] text-[#161443]/60 leading-relaxed"
                         style={{ height: isActive ? "auto" : 0 }}
                       >
                         <p className="mt-1.5">{service.description}</p>
@@ -1147,15 +1147,15 @@ export default function Home() {
             </div>
 
             <div className="lg:col-span-7 flex justify-center items-center relative py-4 lg:py-6">
-              <div className="relative w-full max-w-[680px] aspect-[4/3] bg-brand-navy rounded-[30px] p-3.5 shadow-2xl border-4 border-brand-navy-light/80 flex items-center justify-center z-10">
-                <div className="w-full h-full bg-[#f8fafc] rounded-[18px] overflow-hidden relative border border-brand-navy/10 flex flex-col p-3.5">
+              <div className="relative w-full max-w-[680px] aspect-[4/3] bg-[#161443] rounded-[30px] p-3.5 shadow-2xl border-4 border-[#161443]/80 flex items-center justify-center z-10">
+                <div className="w-full h-full bg-[#f8fafc] rounded-[18px] overflow-hidden relative border border-[#161443]/10 flex flex-col p-3.5">
                   <ActiveMockup index={activeService} />
                 </div>
 
-                <div className="absolute top-1/2 left-2.5 -translate-y-1/2 w-1.5 h-6 bg-brand-navy-light/60 rounded-full" />
+                <div className="absolute top-1/2 left-2.5 -translate-y-1/2 w-1.5 h-6 bg-[#161443]/60 rounded-full" />
               </div>
 
-              <div className="absolute right-[-10px] md:right-[15px] lg:right-[-10px] top-[6%] w-[180px] bg-white rounded-xl p-3 shadow-premium border border-brand-navy/[0.04] transition-all duration-300 z-20 hover:scale-[1.02] hover:shadow-card-hover">
+              <div className="absolute right-[-10px] md:right-[15px] lg:right-[-10px] top-[6%] w-[180px] bg-white rounded-xl p-3 shadow-premium border border-[#161443]/[0.04] transition-all duration-300 z-20 hover:scale-[1.02] hover:shadow-card-hover">
                 <ActiveOverlay index={activeService} />
               </div>
             </div>
@@ -1167,7 +1167,7 @@ export default function Home() {
       {/* Growth Architecture Section (Process) */}
       <div
         id="blueprint"
-        className="relative z-20 w-full bg-[#f8fafc] text-brand-navy pt-28 flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-[#f8fafc] text-[#161443] pt-28 flex flex-col items-center select-none overflow-hidden"
         style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.06] z-0"></div>
@@ -1194,11 +1194,11 @@ export default function Home() {
           <div className="absolute left-[6%] top-[4%] max-w-md">
             <ScrollReveal
               as="h2"
-              containerClassName="text-[34px] lg:text-[40px] font-bold text-brand-navy leading-[1.15] tracking-tight mt-5"
+              containerClassName="text-[34px] lg:text-[40px] font-bold text-[#161443] leading-[1.15] tracking-tight mt-5"
             >
               Let us show you how we drive your brand to new heights
             </ScrollReveal>
-            <p className="text-[15px] text-brand-navy/70 mt-5 leading-relaxed">
+            <p className="text-[15px] text-[#161443]/70 mt-5 leading-relaxed">
               Our structured operational framework is engineered to align,
               optimize, and scale your brand's digital presence systematically.
             </p>
@@ -1301,10 +1301,10 @@ export default function Home() {
               <div className="pt-6 px-1 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-baseline justify-between border-b border-white/15 pb-3.5 mb-3.5">
-                    <span className="text-[12px] font-extrabold tracking-wider text-brand-navy font-mono">
+                    <span className="text-[12px] font-extrabold tracking-wider text-[#161443] font-mono">
                       {item.step}
                     </span>
-                    <span className="text-[15px] font-extrabold text-brand-navy tracking-tight uppercase">
+                    <span className="text-[15px] font-extrabold text-[#161443] tracking-tight uppercase">
                       {item.phase}
                     </span>
                   </div>
@@ -1318,7 +1318,7 @@ export default function Home() {
                       key={bIdx}
                       className="flex items-start gap-2 text-[11.5px] text-white/85 font-medium"
                     >
-                      <span className="text-brand-navy font-extrabold text-[9px] mt-0.5">
+                      <span className="text-[#161443] font-extrabold text-[9px] mt-0.5">
                         ➔
                       </span>
                       <span>{b}</span>
@@ -1343,11 +1343,11 @@ export default function Home() {
           <div className="text-center mb-10">
             <ScrollReveal
               as="h2"
-              containerClassName="text-[32px] font-bold text-brand-navy leading-tight tracking-tight mt-4"
+              containerClassName="text-[32px] font-bold text-[#161443] leading-tight tracking-tight mt-4"
             >
               Let us show you how we drive your brand to new heights
             </ScrollReveal>
-            <p className="text-[14px] text-brand-navy/70 mt-3 leading-relaxed">
+            <p className="text-[14px] text-[#161443]/70 mt-3 leading-relaxed">
               Our operational framework is engineered to align, optimize, and
               scale your digital presence systematically.
             </p>
@@ -1428,10 +1428,10 @@ export default function Home() {
                 <div className="pt-6 px-1 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex items-baseline justify-between border-b border-white/15 pb-3.5 mb-3.5">
-                      <span className="text-[12px] font-extrabold tracking-wider text-brand-navy font-mono">
+                      <span className="text-[12px] font-extrabold tracking-wider text-[#161443] font-mono">
                         {item.step}
                       </span>
-                      <span className="text-[15px] font-extrabold text-brand-navy tracking-tight uppercase">
+                      <span className="text-[15px] font-extrabold text-[#161443] tracking-tight uppercase">
                         {item.phase}
                       </span>
                     </div>
@@ -1445,7 +1445,7 @@ export default function Home() {
                         key={bIdx}
                         className="flex items-start gap-2 text-[11.5px] text-white/85 font-medium"
                       >
-                        <span className="text-brand-navy font-extrabold text-[9px] mt-0.5">
+                        <span className="text-[#161443] font-extrabold text-[9px] mt-0.5">
                           ➔
                         </span>
                         <span>{b}</span>
@@ -1495,7 +1495,7 @@ export default function Home() {
           <div className="text-center max-w-3xl mx-auto mb-6">
             <ScrollReveal
               as="h2"
-              containerClassName="text-[28px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
+              containerClassName="text-[28px] sm:text-[48px] font-bold text-[#161443] tracking-tight mt-3"
             >
               Businesses We Support
             </ScrollReveal>
@@ -1523,7 +1523,7 @@ export default function Home() {
             ].map((industry, idx) => (
               <div
                 key={idx}
-                className="capsule-item px-3.5 py-2 md:px-6 md:py-3.5 bg-[#fafaf9] border border-brand-navy/5 rounded-full text-[11.5px] md:text-[14px] font-extrabold text-brand-navy tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange hover:bg-white hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default"
+                className="capsule-item px-3.5 py-2 md:px-6 md:py-3.5 bg-[#fafaf9] border border-[#161443]/5 rounded-full text-[11.5px] md:text-[14px] font-extrabold text-[#161443] tracking-tight shadow-sm hover:border-brand-orange/30 hover:text-brand-orange hover:bg-white hover:scale-105 hover:shadow-md transition-all duration-300 select-none cursor-default"
               >
                 {industry}
               </div>
@@ -1535,7 +1535,7 @@ export default function Home() {
       {/* Testimonial Section */}
       <div
         id="testimonial"
-        className="relative z-20 w-full bg-white pt-12 border-t border-brand-navy/[0.04] flex flex-col items-center select-none overflow-hidden"
+        className="relative z-20 w-full bg-white pt-12 border-t border-[#161443]/[0.04] flex flex-col items-center select-none overflow-hidden"
         style={{ paddingBottom: "clamp(60px, 15vh, 160px)" }}
       >
         {/* Grid pattern & soft ambient spotlights */}
@@ -1562,11 +1562,11 @@ export default function Home() {
           <div className="text-center max-w-3xl mx-auto mt-12 md:mt-16">
             <ScrollReveal
               as="h2"
-              containerClassName="text-[36px] sm:text-[48px] font-bold text-brand-navy tracking-tight mt-3"
+              containerClassName="text-[36px] sm:text-[48px] font-bold text-[#161443] tracking-tight mt-3"
             >
               What Our Partners Say
             </ScrollReveal>
-            <p className="text-[16px] sm:text-[18px] text-brand-navy/70 mt-4 leading-relaxed">
+            <p className="text-[16px] sm:text-[18px] text-[#161443]/70 mt-4 leading-relaxed">
               Real feedback from the business heads, directors, and campaign
               partners we work with.
             </p>
@@ -1606,17 +1606,17 @@ export default function Home() {
             {/* Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full mx-auto px-4 items-stretch">
               {/* Card 1: Jukebox Starter */}
-              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22, 20, 67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22, 20, 67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
                 {/* Corner decor tag */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   <div>
-                    <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
+                    <h3 className="text-[22px] font-black text-[#161443] tracking-tight mt-1">
                       Jukebox Starter
                     </h3>
 
                     <div className="flex flex-col mt-4">
-                      <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
+                      <span className="text-[40px] font-black tracking-tight text-[#161443] leading-none">
                         ₹24,000
                       </span>
                       <span className="text-[13px] font-bold text-slate-500 mt-1.5">
@@ -1635,7 +1635,7 @@ export default function Home() {
                     </p>
 
                     <div className="mt-6">
-                      <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
+                      <span className="text-[11px] font-extrabold text-[#161443] uppercase tracking-wider block mb-4">
                         Includes:
                       </span>
                       <ul className="flex flex-col gap-3">
@@ -1677,7 +1677,7 @@ export default function Home() {
                     href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Starter plan.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                    className="w-full py-4 mt-8 bg-[#161443] hover:bg-[#161443]/90 text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22, 20, 67,0.1)] hover:shadow-[0_8px_20px_rgba(22, 20, 67,0.2)] cursor-pointer text-center uppercase block"
                   >
                     Get Started
                   </a>
@@ -1685,18 +1685,18 @@ export default function Home() {
               </div>
 
               {/* Card 2: Jukebox Growth Package */}
-              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22, 20, 67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22, 20, 67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
                 {/* Corner decor tag */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
 
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   <div>
-                    <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
+                    <h3 className="text-[22px] font-black text-[#161443] tracking-tight mt-1">
                       Jukebox Growth
                     </h3>
 
                     <div className="flex flex-col mt-4">
-                      <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
+                      <span className="text-[40px] font-black tracking-tight text-[#161443] leading-none">
                         ₹53,000
                       </span>
                       <span className="text-[13px] font-bold text-slate-500 mt-1.5">
@@ -1715,7 +1715,7 @@ export default function Home() {
                     </p>
 
                     <div className="mt-6">
-                      <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
+                      <span className="text-[11px] font-extrabold text-[#161443] uppercase tracking-wider block mb-4">
                         Includes:
                       </span>
                       <ul className="flex flex-col gap-3">
@@ -1758,7 +1758,7 @@ export default function Home() {
                     href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Growth plan.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                    className="w-full py-4 mt-8 bg-[#161443] hover:bg-[#161443]/90 text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22, 20, 67,0.1)] hover:shadow-[0_8px_20px_rgba(22, 20, 67,0.2)] cursor-pointer text-center uppercase block"
                   >
                     Get Started
                   </a>
@@ -1766,18 +1766,18 @@ export default function Home() {
               </div>
 
               {/* Card 3: Jukebox Brand Retainer */}
-              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22, 20, 67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22, 20, 67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
                 {/* Corner decor tag */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
 
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   <div>
-                    <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
+                    <h3 className="text-[22px] font-black text-[#161443] tracking-tight mt-1">
                       Jukebox Retainer
                     </h3>
 
                     <div className="flex flex-col mt-4">
-                      <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
+                      <span className="text-[40px] font-black tracking-tight text-[#161443] leading-none">
                         ₹64,000
                       </span>
                       <span className="text-[13px] font-bold text-slate-500 mt-1.5">
@@ -1795,13 +1795,13 @@ export default function Home() {
                     </p>
 
                     <div className="mt-6 space-y-4">
-                      <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block">
+                      <span className="text-[11px] font-extrabold text-[#161443] uppercase tracking-wider block">
                         Scope:
                       </span>
 
                       {/* Strategy Block */}
                       <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
-                        <span className="text-[10px] font-black text-brand-navy uppercase tracking-wider block mb-1.5">
+                        <span className="text-[10px] font-black text-[#161443] uppercase tracking-wider block mb-1.5">
                           Strategy & Branding
                         </span>
                         <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
@@ -1824,7 +1824,7 @@ export default function Home() {
 
                       {/* Content Block */}
                       <div className="p-3 bg-slate-50/80 border border-slate-100/50 rounded-2xl">
-                        <span className="text-[10px] font-black text-brand-navy uppercase tracking-wider block mb-1.5">
+                        <span className="text-[10px] font-black text-[#161443] uppercase tracking-wider block mb-1.5">
                           High-Impact Content
                         </span>
                         <ul className="space-y-1.5 text-[12px] text-slate-600 font-semibold">
@@ -1883,7 +1883,7 @@ export default function Home() {
                     href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Retainer plan.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                    className="w-full py-4 mt-8 bg-[#161443] hover:bg-[#161443]/90 text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22, 20, 67,0.1)] hover:shadow-[0_8px_20px_rgba(22, 20, 67,0.2)] cursor-pointer text-center uppercase block"
                   >
                     Get Started
                   </a>
@@ -1891,18 +1891,18 @@ export default function Home() {
               </div>
 
               {/* Card 4: Jukebox Performance Accelerator */}
-              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22,20,67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22,20,67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
+              <div className="bg-white border border-slate-100 rounded-[2.2rem] p-8 md:p-10 flex flex-col justify-between shadow-[0_15px_40px_rgba(22, 20, 67,0.03)] transition-all duration-500 ease-out hover:shadow-[0_30px_60px_rgba(22, 20, 67,0.08)] hover:-translate-y-2 hover:border-[#f6861f]/20 h-full relative overflow-hidden group">
                 {/* Corner decor tag */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full pointer-events-none z-0 transition-colors group-hover:bg-orange-50/50" />
 
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   <div>
-                    <h3 className="text-[22px] font-black text-brand-navy tracking-tight mt-1">
+                    <h3 className="text-[22px] font-black text-[#161443] tracking-tight mt-1">
                       Jukebox Performance
                     </h3>
 
                     <div className="flex flex-col mt-4">
-                      <span className="text-[40px] font-black tracking-tight text-brand-navy leading-none">
+                      <span className="text-[40px] font-black tracking-tight text-[#161443] leading-none">
                         ₹26,000
                       </span>
                       <span className="text-[13px] font-bold text-slate-500 mt-1.5">
@@ -1921,7 +1921,7 @@ export default function Home() {
                     </p>
 
                     <div className="mt-6">
-                      <span className="text-[11px] font-extrabold text-brand-navy uppercase tracking-wider block mb-4">
+                      <span className="text-[11px] font-extrabold text-[#161443] uppercase tracking-wider block mb-4">
                         Includes:
                       </span>
                       <ul className="flex flex-col gap-3">
@@ -1969,7 +1969,7 @@ export default function Home() {
                     href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to inquire about the Jukebox Performance plan.")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 mt-8 bg-brand-navy hover:bg-[#1f1b5c] text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22,20,67,0.1)] hover:shadow-[0_8px_20px_rgba(22,20,67,0.2)] cursor-pointer text-center uppercase block"
+                    className="w-full py-4 mt-8 bg-[#161443] hover:bg-[#161443]/90 text-white rounded-2xl text-[13px] font-bold tracking-wide transition-all shadow-[0_4px_12px_rgba(22, 20, 67,0.1)] hover:shadow-[0_8px_20px_rgba(22, 20, 67,0.2)] cursor-pointer text-center uppercase block"
                   >
                     Get Started
                   </a>
@@ -1983,7 +1983,7 @@ export default function Home() {
               className="mt-10 md:mt-6 max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-white relative z-10"
             >
               {/* Common Features Card */}
-              <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
+              <div className="bg-[#161443]/35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
                 <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2 mb-6">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#161443] border border-[#f6861f] block animate-pulse"></span>
                   Common Features Across All Packages
@@ -2009,7 +2009,7 @@ export default function Home() {
               </div>
 
               {/* Additional Charges Card */}
-              <div className="bg-[#161443] bg-opacity-35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
+              <div className="bg-[#161443]/35 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-lg">
                 <h3 className="text-[18px] font-bold text-white tracking-tight flex items-center gap-2 mb-6">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#161443] border border-[#f6861f] block"></span>
                   Services Available at an Additional Cost
@@ -2074,10 +2074,10 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto px-6 w-full relative z-10 flex flex-col items-center gap-12 text-center">
           {/* Header */}
           <div className="max-w-3xl mx-auto flex flex-col items-center">
-            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-brand-navy tracking-tight leading-none mb-4 mt-7">
+            <h2 className="text-[36px] sm:text-[48px] font-extrabold text-[#161443] tracking-tight leading-none mb-4 mt-7">
               Jukebox Brand Film
             </h2>
-            <p className="text-base sm:text-lg text-brand-navy/80 font-medium leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-[#161443]/80 font-medium leading-relaxed max-w-2xl">
               See how we craft structured marketing systems and deploy
               high-fidelity creatives that drive enterprise-grade results for
               growing brands.
@@ -2085,7 +2085,7 @@ export default function Home() {
           </div>
 
           {/* Interactive Custom Video Player */}
-          <div className="aspect-video max-w-[950px] w-full mx-auto rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(22,20,67,0.2)] border border-brand-navy/10 relative group bg-brand-navy">
+          <div className="aspect-video max-w-[950px] w-full mx-auto rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(22, 20, 67,0.2)] border border-[#161443]/10 relative group bg-[#161443]">
             {isFilmPlaying ? (
               <iframe
                 src="https://www.youtube.com/embed/nf_EqvzpgFo?autoplay=1&controls=1"
@@ -2114,7 +2114,7 @@ export default function Home() {
                 />
 
                 {/* Overlay darkening filter */}
-                <div className="absolute inset-0 bg-brand-navy/60 transition-colors duration-500 group-hover:bg-brand-navy/55 z-0" />
+                <div className="absolute inset-0 bg-[#161443]/60 transition-colors duration-500 group-hover:bg-[#161443]/55 z-0" />
 
                 {/* Grid pattern on poster */}
                 <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none z-0"></div>
@@ -2664,9 +2664,9 @@ const PerformanceMarketingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
-        <span className="text-[15px] font-bold text-brand-navy/90">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none p-2">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-[#161443]/90">
           Meta &amp; Google Ads Campaign
         </span>
         <div className="flex items-center gap-2">
@@ -2677,24 +2677,24 @@ const PerformanceMarketingMockup = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-brand-navy/5 p-3.5 rounded-xl text-center shadow-sm">
-          <span className="text-[11px] block text-brand-navy/50 font-bold uppercase mb-0.5">
+        <div className="bg-[#161443]/5 p-3.5 rounded-xl text-center shadow-sm">
+          <span className="text-[11px] block text-[#161443]/50 font-bold uppercase mb-0.5">
             CTR
           </span>
-          <span className="text-[22px] font-extrabold text-brand-navy tracking-tight">
+          <span className="text-[22px] font-extrabold text-[#161443] tracking-tight">
             {ctr}
           </span>
         </div>
-        <div className="bg-brand-navy/5 p-3.5 rounded-xl text-center shadow-sm">
-          <span className="text-[11px] block text-brand-navy/50 font-bold uppercase mb-0.5">
+        <div className="bg-[#161443]/5 p-3.5 rounded-xl text-center shadow-sm">
+          <span className="text-[11px] block text-[#161443]/50 font-bold uppercase mb-0.5">
             CPC
           </span>
-          <span className="text-[22px] font-extrabold text-brand-navy tracking-tight">
+          <span className="text-[22px] font-extrabold text-[#161443] tracking-tight">
             {cpc}
           </span>
         </div>
-        <div className="bg-brand-navy/5 p-3.5 rounded-xl text-center shadow-sm">
-          <span className="text-[11px] block text-brand-navy/50 font-bold uppercase mb-0.5">
+        <div className="bg-[#161443]/5 p-3.5 rounded-xl text-center shadow-sm">
+          <span className="text-[11px] block text-[#161443]/50 font-bold uppercase mb-0.5">
             ROAS
           </span>
           <span className="text-[22px] font-extrabold text-brand-orange tracking-tight">
@@ -2816,10 +2816,10 @@ const FunnelCroMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none relative">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none relative">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-1.5 mb-1.5">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-1.5 mb-1.5">
+        <span className="text-[11px] font-semibold text-[#161443]/80">
           Conversion Rate Optimizer
         </span>
         <span className="text-[9px] font-bold text-brand-orange uppercase tracking-wider">
@@ -2840,7 +2840,7 @@ const FunnelCroMockup = () => {
         {/* Custom Virtual Cursor */}
         <div
           ref={cursorRef}
-          className="absolute pointer-events-none z-50 text-brand-navy"
+          className="absolute pointer-events-none z-50 text-[#161443]"
         >
           <svg
             className="w-4.5 h-4.5 drop-shadow-md"
@@ -2852,29 +2852,29 @@ const FunnelCroMockup = () => {
         </div>
 
         {/* Column A: Control Version */}
-        <div className="border border-brand-navy/10 bg-white rounded-xl p-2 flex flex-col justify-between relative overflow-hidden opacity-70">
-          <div className="absolute top-1 right-1 bg-brand-navy/10 text-[6.5px] text-brand-navy/70 px-1 rounded font-semibold uppercase tracking-wider">
+        <div className="border border-[#161443]/10 bg-white rounded-xl p-2 flex flex-col justify-between relative overflow-hidden opacity-70">
+          <div className="absolute top-1 right-1 bg-[#161443]/10 text-[6.5px] text-[#161443]/70 px-1 rounded font-semibold uppercase tracking-wider">
             Page A: Control
           </div>
 
           {/* Wireframe components */}
           <div className="mt-4 flex flex-col gap-1.5">
-            <div className="h-2 w-3/4 bg-brand-navy/15 rounded-full" />
-            <div className="h-1.5 w-1/2 bg-brand-navy/10 rounded-full" />
-            <div className="h-4 w-full bg-brand-navy/5 border border-brand-navy/10 rounded mt-1 flex items-center px-1 text-[6.5px] text-brand-navy/30">
+            <div className="h-2 w-3/4 bg-[#161443]/15 rounded-full" />
+            <div className="h-1.5 w-1/2 bg-[#161443]/10 rounded-full" />
+            <div className="h-4 w-full bg-[#161443]/5 border border-[#161443]/10 rounded mt-1 flex items-center px-1 text-[6.5px] text-[#161443]/30">
               Email Address
             </div>
-            <div className="h-4.5 w-full bg-brand-navy/20 text-brand-navy/60 rounded flex items-center justify-center text-[7.5px] font-semibold mt-1">
+            <div className="h-4.5 w-full bg-[#161443]/20 text-[#161443]/60 rounded flex items-center justify-center text-[7.5px] font-semibold mt-1">
               Submit
             </div>
           </div>
 
           {/* Metric conversion badge */}
-          <div className="mt-2 bg-brand-navy/5 rounded-lg p-1.5 flex flex-col items-center">
-            <span className="text-[6px] text-brand-navy/40 font-semibold uppercase tracking-wider">
+          <div className="mt-2 bg-[#161443]/5 rounded-lg p-1.5 flex flex-col items-center">
+            <span className="text-[6px] text-[#161443]/40 font-semibold uppercase tracking-wider">
               Conversion Rate
             </span>
-            <span className="text-[12px] font-extrabold text-brand-navy/60 mt-0.5">
+            <span className="text-[12px] font-extrabold text-[#161443]/60 mt-0.5">
               {valA}
             </span>
           </div>
@@ -2888,7 +2888,7 @@ const FunnelCroMockup = () => {
 
           {/* Winner badge overlay */}
           {showWinner && (
-            <div className="absolute inset-0 bg-brand-navy/95 text-white flex flex-col items-center justify-center p-2 text-center animate-fade-in z-30">
+            <div className="absolute inset-0 bg-[#161443]/95 text-white flex flex-col items-center justify-center p-2 text-center animate-fade-in z-30">
               <span className="text-brand-orange text-[7.5px] font-extrabold uppercase tracking-widest block mb-0.5 animate-pulse">
                 Winner Verified
               </span>
@@ -2905,12 +2905,12 @@ const FunnelCroMockup = () => {
           <div className="mt-4 flex flex-col gap-1.5">
             {/* Visual Headline */}
             <div className="flex flex-col gap-0.5">
-              <div className="h-2 w-5/6 bg-brand-navy/20 rounded-full" />
+              <div className="h-2 w-5/6 bg-[#161443]/20 rounded-full" />
               <div className="h-1.5 w-2/3 bg-brand-orange/20 rounded-full" />
             </div>
 
             {/* Action form */}
-            <div className="h-4 w-full bg-white border border-brand-orange/20 rounded mt-1 flex items-center px-1 text-[6.5px] text-brand-navy/80">
+            <div className="h-4 w-full bg-white border border-brand-orange/20 rounded mt-1 flex items-center px-1 text-[6.5px] text-[#161443]/80">
               siddharth@jukebox.com
             </div>
 
@@ -2980,30 +2980,30 @@ const FunnelCroOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2.5 animate-fade-in text-[#161443] select-none">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         CRO Checklist
       </span>
-      <div className="flex items-center justify-between text-[11px] border-b border-brand-navy/5 pb-1">
+      <div className="flex items-center justify-between text-[11px] border-b border-[#161443]/5 pb-1">
         <span>Page Speed Test</span>
         <span
-          className={`font-bold ${speed.includes("0.8") ? "text-emerald-500" : "text-brand-navy/50"}`}
+          className={`font-bold ${speed.includes("0.8") ? "text-emerald-500" : "text-[#161443]/50"}`}
         >
           {speed}
         </span>
       </div>
-      <div className="flex items-center justify-between text-[11px] border-b border-brand-navy/5 pb-1">
+      <div className="flex items-center justify-between text-[11px] border-b border-[#161443]/5 pb-1">
         <span>Mobile Audit</span>
         <span
-          className={`font-bold ${mobileAudit === "Passed" ? "text-emerald-500 animate-pulse" : "text-brand-navy/50"}`}
+          className={`font-bold ${mobileAudit === "Passed" ? "text-emerald-500 animate-pulse" : "text-[#161443]/50"}`}
         >
           {mobileAudit}
         </span>
       </div>
-      <div className="flex items-center justify-between text-[11px] border-b border-brand-navy/5 pb-1">
+      <div className="flex items-center justify-between text-[11px] border-b border-[#161443]/5 pb-1">
         <span>Form Optimization</span>
         <span
-          className={`font-bold ${formsOpt === "Optimized" ? "text-brand-orange" : "text-brand-navy/50"}`}
+          className={`font-bold ${formsOpt === "Optimized" ? "text-brand-orange" : "text-[#161443]/50"}`}
         >
           {formsOpt}
         </span>
@@ -3011,7 +3011,7 @@ const FunnelCroOverlay = () => {
       <div className="flex items-center justify-between text-[11px] pt-1">
         <span>Conversion Increase</span>
         <span
-          className={`font-bold ${lift !== "+0%" ? "text-emerald-500 text-[13px]" : "text-brand-navy/50"}`}
+          className={`font-bold ${lift !== "+0%" ? "text-emerald-500 text-[13px]" : "text-[#161443]/50"}`}
         >
           {lift}
         </span>
@@ -3124,9 +3124,9 @@ const CreativeStrategyMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none relative overflow-hidden p-2">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
-        <span className="text-[15px] font-bold text-brand-navy/90">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none relative overflow-hidden p-2">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-[#161443]/90">
           Figma Creative Workspace
         </span>
         <span className="text-[11px] font-extrabold text-[#a259ff] uppercase tracking-wider">
@@ -3136,7 +3136,7 @@ const CreativeStrategyMockup = () => {
 
       <div
         ref={bannerRef}
-        className="flex-grow rounded-2xl bg-brand-navy p-5 flex flex-col justify-between text-white relative overflow-hidden min-h-[220px]"
+        className="flex-grow rounded-2xl bg-[#161443] p-5 flex flex-col justify-between text-white relative overflow-hidden min-h-[220px]"
       >
         {/* Glow backdrop */}
         <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-brand-orange/20 blur-2xl pointer-events-none" />
@@ -3243,31 +3243,31 @@ const CreativeStrategyOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2.5 animate-fade-in text-[#161443] select-none">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Copywriting Angles
       </span>
-      <div className="border border-brand-navy/5 rounded-lg p-2 bg-brand-navy/5">
-        <span className="text-[9px] text-brand-navy/40 block font-semibold">
+      <div className="border border-[#161443]/5 rounded-lg p-2 bg-[#161443]/5">
+        <span className="text-[9px] text-[#161443]/40 block font-semibold">
           Headline Tester A:
         </span>
         <span
-          className={`text-[10px] font-semibold transition-all duration-300 ${headlineIdx === 0 ? "text-brand-orange" : "text-brand-navy"}`}
+          className={`text-[10px] font-semibold transition-all duration-300 ${headlineIdx === 0 ? "text-brand-orange" : "text-[#161443]"}`}
         >
           "Scale your revenue with Jukebox systems."
         </span>
       </div>
-      <div className="border border-brand-navy/5 rounded-lg p-2 bg-brand-navy/5">
-        <span className="text-[9px] text-brand-navy/40 block font-semibold">
+      <div className="border border-[#161443]/5 rounded-lg p-2 bg-[#161443]/5">
+        <span className="text-[9px] text-[#161443]/40 block font-semibold">
           Headline Tester B:
         </span>
         <span
-          className={`text-[10px] font-semibold transition-all duration-300 ${headlineIdx === 1 ? "text-brand-orange text-[10.5px]" : "text-brand-navy"}`}
+          className={`text-[10px] font-semibold transition-all duration-300 ${headlineIdx === 1 ? "text-brand-orange text-[10.5px]" : "text-[#161443]"}`}
         >
           "Predictable pipeline growth on autoplay."
         </span>
       </div>
-      <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-brand-navy/5">
+      <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-[#161443]/5">
         <span>Predictive CTR Score:</span>
         <span className="font-bold text-emerald-500">
           {feedbackScore.toFixed(1)}/10
@@ -3393,9 +3393,9 @@ const AnalyticsTrackingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-2 mb-1">
-        <span className="text-[11px] font-semibold text-brand-navy/80">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-2 mb-1">
+        <span className="text-[11px] font-semibold text-[#161443]/80">
           GA4 Real-Time Traffic Stream
         </span>
         <div className="flex items-center gap-1">
@@ -3434,20 +3434,20 @@ const AnalyticsTrackingMockup = () => {
           <circle ref={dot1Ref} cx="30" cy="10" r="3.5" fill="#3b82f6" />
           <circle ref={dot2Ref} cx="170" cy="10" r="3.5" fill="#a259ff" />
         </svg>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 border border-brand-navy/10 px-2 py-0.5 rounded shadow-sm text-[8px] font-extrabold">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 border border-[#161443]/10 px-2 py-0.5 rounded shadow-sm text-[8px] font-extrabold">
           API Router Gate
         </div>
       </div>
 
       {/* GA4 Real-time chart */}
-      <div className="grid grid-cols-4 gap-2 h-14 items-end px-2 my-1.5 relative border-b border-brand-navy/5">
+      <div className="grid grid-cols-4 gap-2 h-14 items-end px-2 my-1.5 relative border-b border-[#161443]/5">
         <div
           ref={bar1Ref}
-          className="bg-brand-navy/10 h-[20%] rounded-t-sm transition-all duration-300"
+          className="bg-[#161443]/10 h-[20%] rounded-t-sm transition-all duration-300"
         />
         <div
           ref={bar2Ref}
-          className="bg-brand-navy/30 h-[20%] rounded-t-sm transition-all duration-300"
+          className="bg-[#161443]/30 h-[20%] rounded-t-sm transition-all duration-300"
         />
         <div
           ref={bar3Ref}
@@ -3455,13 +3455,13 @@ const AnalyticsTrackingMockup = () => {
         />
         <div
           ref={bar4Ref}
-          className="bg-brand-navy/10 h-[20%] rounded-t-sm transition-all duration-300"
+          className="bg-[#161443]/10 h-[20%] rounded-t-sm transition-all duration-300"
         />
       </div>
 
       {/* Traffic source indicators */}
-      <div className="flex flex-col gap-1 border-t border-brand-navy/5 pt-1.5">
-        <div className="flex items-center justify-between text-[9px] font-semibold text-brand-navy/70">
+      <div className="flex flex-col gap-1 border-t border-[#161443]/5 pt-1.5">
+        <div className="flex items-center justify-between text-[9px] font-semibold text-[#161443]/70">
           <span>Active Attribute Channel</span>
           <span>Live Conversions</span>
         </div>
@@ -3469,7 +3469,7 @@ const AnalyticsTrackingMockup = () => {
           <span className="font-bold text-brand-orange animate-pulse">
             {activeTabName}
           </span>
-          <span className="font-bold text-brand-navy">{liveConvs} / min</span>
+          <span className="font-bold text-[#161443]">{liveConvs} / min</span>
         </div>
       </div>
     </div>
@@ -3504,11 +3504,11 @@ const AnalyticsTrackingOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2 animate-fade-in text-brand-navy select-none min-h-[142px]">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2 animate-fade-in text-[#161443] select-none min-h-[142px]">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Pixel Debugger Logs
       </span>
-      <div className="bg-brand-navy text-emerald-400 p-2 rounded-lg font-mono text-[8.5px] leading-relaxed flex flex-col justify-between h-[95px] overflow-hidden border border-brand-navy-light shadow-inner">
+      <div className="bg-[#161443] text-emerald-400 p-2 rounded-lg font-mono text-[8.5px] leading-relaxed flex flex-col justify-between h-[95px] overflow-hidden border border-[#161443]/20 shadow-inner">
         {log.length === 0 ? (
           <span className="text-white/40 italic">
             Listening for pixel traffic...
@@ -3634,9 +3634,9 @@ const GrowthConsultingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
-        <span className="text-[15px] font-bold text-brand-navy/90">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none p-2">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-[#161443]/90">
           Scaling Roadmap
         </span>
         <span className="text-[11px] font-extrabold text-brand-orange uppercase tracking-wider">
@@ -3651,16 +3651,16 @@ const GrowthConsultingMockup = () => {
           <div
             className={`p-3 rounded-xl border transition-all duration-300 shadow-sm ${
               activePhase === 1
-                ? "bg-brand-navy/5 border-brand-navy scale-[1.02]"
+                ? "bg-[#161443]/5 border-[#161443] scale-[1.02]"
                 : activePhase > 1
                   ? "bg-emerald-500/5 border-emerald-500/20"
-                  : "bg-white border-brand-navy/5"
+                  : "bg-white border-[#161443]/5"
             }`}
           >
             <div className="flex items-center justify-between">
               <span
                 className={`text-[12px] font-bold block leading-tight ${
-                  activePhase >= 1 ? "text-brand-navy" : "text-brand-navy/40"
+                  activePhase >= 1 ? "text-[#161443]" : "text-[#161443]/40"
                 }`}
               >
                 1. System Audit
@@ -3677,11 +3677,11 @@ const GrowthConsultingMockup = () => {
               )}
             </div>
             {activePhase >= 1 && (
-              <div className="mt-2 flex flex-col gap-1 text-[10px] text-brand-navy/60 font-semibold animate-fade-in">
+              <div className="mt-2 flex flex-col gap-1 text-[10px] text-[#161443]/60 font-semibold animate-fade-in">
                 <div className="flex items-center gap-1.5">
                   <span
                     className={
-                      auditCheck1 ? "text-emerald-500" : "text-brand-navy/20"
+                      auditCheck1 ? "text-emerald-500" : "text-[#161443]/20"
                     }
                   >
                     {auditCheck1 ? "✓" : "○"}
@@ -3691,7 +3691,7 @@ const GrowthConsultingMockup = () => {
                 <div className="flex items-center gap-1.5">
                   <span
                     className={
-                      auditCheck2 ? "text-emerald-500" : "text-brand-navy/20"
+                      auditCheck2 ? "text-emerald-500" : "text-[#161443]/20"
                     }
                   >
                     {auditCheck2 ? "✓" : "○"}
@@ -3706,16 +3706,16 @@ const GrowthConsultingMockup = () => {
           <div
             className={`p-3 rounded-xl border transition-all duration-300 shadow-sm ${
               activePhase === 2
-                ? "bg-brand-navy/5 border-brand-navy scale-[1.02]"
+                ? "bg-[#161443]/5 border-[#161443] scale-[1.02]"
                 : activePhase > 2
                   ? "bg-emerald-500/5 border-emerald-500/20"
-                  : "bg-white border-brand-navy/5"
+                  : "bg-white border-[#161443]/5"
             }`}
           >
             <div className="flex items-center justify-between">
               <span
                 className={`text-[12px] font-bold block leading-tight ${
-                  activePhase >= 2 ? "text-brand-navy" : "text-brand-navy/40"
+                  activePhase >= 2 ? "text-[#161443]" : "text-[#161443]/40"
                 }`}
               >
                 2. Funnel Restructure
@@ -3732,11 +3732,11 @@ const GrowthConsultingMockup = () => {
               )}
             </div>
             {activePhase >= 2 && (
-              <div className="mt-2 flex flex-col gap-1 text-[10px] text-brand-navy/60 font-semibold animate-fade-in">
+              <div className="mt-2 flex flex-col gap-1 text-[10px] text-[#161443]/60 font-semibold animate-fade-in">
                 <div className="flex items-center gap-1.5">
                   <span
                     className={
-                      restructCheck1 ? "text-emerald-500" : "text-brand-navy/20"
+                      restructCheck1 ? "text-emerald-500" : "text-[#161443]/20"
                     }
                   >
                     {restructCheck1 ? "✓" : "○"}
@@ -3746,7 +3746,7 @@ const GrowthConsultingMockup = () => {
                 <div className="flex items-center gap-1.5">
                   <span
                     className={
-                      restructCheck2 ? "text-emerald-500" : "text-brand-navy/20"
+                      restructCheck2 ? "text-emerald-500" : "text-[#161443]/20"
                     }
                   >
                     {restructCheck2 ? "✓" : "○"}
@@ -3762,13 +3762,13 @@ const GrowthConsultingMockup = () => {
             className={`p-3 rounded-xl border transition-all duration-300 shadow-sm ${
               activePhase === 3
                 ? "bg-brand-orange/10 border-brand-orange scale-[1.02] shadow-[0_4px_12px_rgba(232,128,26,0.05)]"
-                : "bg-white border-brand-navy/5"
+                : "bg-white border-[#161443]/5"
             }`}
           >
             <div className="flex items-center justify-between">
               <span
                 className={`text-[12px] font-bold block leading-tight ${
-                  activePhase >= 3 ? "text-brand-navy" : "text-brand-navy/40"
+                  activePhase >= 3 ? "text-[#161443]" : "text-[#161443]/40"
                 }`}
               >
                 3. Scaling & Budgets
@@ -3780,7 +3780,7 @@ const GrowthConsultingMockup = () => {
               )}
             </div>
             {activePhase >= 3 && (
-              <div className="mt-2 flex flex-col gap-1 text-[10px] text-brand-navy/60 font-semibold animate-fade-in">
+              <div className="mt-2 flex flex-col gap-1 text-[10px] text-[#161443]/60 font-semibold animate-fade-in">
                 <div className="flex items-center gap-1.5">
                   <span className="text-brand-orange font-bold">➔</span>
                   <span>Scale Daily Budget to $1,500/day</span>
@@ -3797,7 +3797,7 @@ const GrowthConsultingMockup = () => {
         {/* Right Column: Visual Dashboard Charts (5 col-span) */}
         <div className="col-span-5 h-full flex flex-col gap-3 justify-center py-1">
           {/* Revenue Dial Card */}
-          <div className="bg-brand-navy text-white p-3 rounded-2xl border border-brand-navy-light flex flex-col justify-between relative overflow-hidden shadow-lg min-h-[76px]">
+          <div className="bg-[#161443] text-white p-3 rounded-2xl border border-[#161443]/20 flex flex-col justify-between relative overflow-hidden shadow-lg min-h-[76px]">
             <div className="absolute top-0 right-0 w-16 h-16 rounded-full bg-brand-orange/20 blur-xl pointer-events-none" />
             <span className="text-[9px] text-white/50 block font-bold uppercase tracking-wider">
               Projected Monthly Revenue
@@ -3808,12 +3808,12 @@ const GrowthConsultingMockup = () => {
           </div>
 
           {/* ROAS Indicator */}
-          <div className="bg-white border border-brand-navy/10 p-3 rounded-2xl flex items-center justify-between shadow-sm min-h-[56px]">
+          <div className="bg-white border border-[#161443]/10 p-3 rounded-2xl flex items-center justify-between shadow-sm min-h-[56px]">
             <div className="flex flex-col">
-              <span className="text-[9px] text-brand-navy/40 font-bold uppercase tracking-wider">
+              <span className="text-[9px] text-[#161443]/40 font-bold uppercase tracking-wider">
                 Target ROAS
               </span>
-              <span className="text-[16px] font-extrabold text-brand-navy mt-1 leading-none">
+              <span className="text-[16px] font-extrabold text-[#161443] mt-1 leading-none">
                 {roas}
               </span>
             </div>
@@ -3825,7 +3825,7 @@ const GrowthConsultingMockup = () => {
           </div>
 
           {/* Mini Line Chart SVG */}
-          <div className="bg-white border border-brand-navy/10 rounded-2xl p-3 flex flex-col justify-between h-[85px] relative overflow-hidden shadow-sm">
+          <div className="bg-white border border-[#161443]/10 rounded-2xl p-3 flex flex-col justify-between h-[85px] relative overflow-hidden shadow-sm">
             <svg
               className="w-full h-full overflow-visible"
               viewBox="0 0 100 30"
@@ -3900,47 +3900,43 @@ const GrowthConsultingOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2.5 animate-fade-in text-[#161443] select-none">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Strategic Checklist
       </span>
-      <div className="flex items-center gap-2 text-[11px] border-b border-brand-navy/5 pb-1 transition-opacity duration-300">
+      <div className="flex items-center gap-2 text-[11px] border-b border-[#161443]/5 pb-1 transition-opacity duration-300">
         <span
-          className={`font-semibold transition-all duration-300 ${c1 ? "text-emerald-500 scale-110" : "text-brand-navy/20"}`}
+          className={`font-semibold transition-all duration-300 ${c1 ? "text-emerald-500 scale-110" : "text-[#161443]/20"}`}
         >
           {c1 ? "✓" : "○"}
         </span>
         <span
-          className={
-            c1 ? "text-brand-navy/90 font-medium" : "text-brand-navy/40"
-          }
+          className={c1 ? "text-[#161443]/90 font-medium" : "text-[#161443]/40"}
         >
           Competitor Ad Gap Audit
         </span>
       </div>
-      <div className="flex items-center gap-2 text-[11px] border-b border-brand-navy/5 pb-1 transition-opacity duration-300">
+      <div className="flex items-center gap-2 text-[11px] border-b border-[#161443]/5 pb-1 transition-opacity duration-300">
         <span
-          className={`font-semibold transition-all duration-300 ${c2 ? "text-emerald-500 scale-110" : "text-brand-navy/20"}`}
+          className={`font-semibold transition-all duration-300 ${c2 ? "text-emerald-500 scale-110" : "text-[#161443]/20"}`}
         >
           {c2 ? "✓" : "○"}
         </span>
         <span
-          className={
-            c2 ? "text-brand-navy/90 font-medium" : "text-brand-navy/40"
-          }
+          className={c2 ? "text-[#161443]/90 font-medium" : "text-[#161443]/40"}
         >
           Offer Optimization Plan
         </span>
       </div>
       <div className="flex items-center gap-2 text-[11px] pt-1 transition-opacity duration-300">
         <span
-          className={`font-semibold transition-all duration-300 ${c3 ? "text-brand-orange scale-110" : "text-brand-navy/20"}`}
+          className={`font-semibold transition-all duration-300 ${c3 ? "text-brand-orange scale-110" : "text-[#161443]/20"}`}
         >
           {c3 ? "✓" : "○"}
         </span>
         <span
           className={
-            c3 ? "text-brand-navy/90 font-semibold" : "text-brand-navy/40"
+            c3 ? "text-[#161443]/90 font-semibold" : "text-[#161443]/40"
           }
         >
           Monthly Budget Expansion
@@ -4006,9 +4002,9 @@ const MarketingAutomationMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
-        <span className="text-[15px] font-bold text-brand-navy/90">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none p-2">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-[#161443]/90">
           Workflow Logic Builder
         </span>
         <span className="text-[11px] font-extrabold text-emerald-500 uppercase tracking-wider">
@@ -4024,19 +4020,19 @@ const MarketingAutomationMockup = () => {
             className={`w-full px-4 py-2.5 rounded-xl border text-center transition-all duration-300 shadow-sm ${
               pulsePos === "node1"
                 ? "bg-brand-orange/10 border-brand-orange scale-[1.03]"
-                : "bg-white border-brand-navy/10"
+                : "bg-white border-[#161443]/10"
             }`}
           >
             <span className="text-[12px] font-bold block leading-tight">
               1. Form Submit
             </span>
-            <span className="text-[9.5px] text-brand-navy/40 leading-none">
+            <span className="text-[9.5px] text-[#161443]/40 leading-none">
               Capture Lead
             </span>
           </div>
 
           {/* Line 1 */}
-          <div className="h-4 w-0.5 bg-brand-navy/15 relative">
+          <div className="h-4 w-0.5 bg-[#161443]/15 relative">
             <div
               className={`absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-brand-orange transition-all duration-300 ${
                 pulsePos === "line1"
@@ -4051,19 +4047,19 @@ const MarketingAutomationMockup = () => {
             className={`w-full px-4 py-2.5 rounded-xl border text-center transition-all duration-300 shadow-sm ${
               pulsePos === "node2"
                 ? "bg-brand-orange/10 border-brand-orange scale-[1.03]"
-                : "bg-white border-brand-navy/10"
+                : "bg-white border-[#161443]/10"
             }`}
           >
             <span className="text-[12px] font-bold block leading-tight">
               2. API Router Delay
             </span>
-            <span className="text-[9.5px] text-brand-navy/40 leading-none">
+            <span className="text-[9.5px] text-[#161443]/40 leading-none">
               Wait: 2 minutes
             </span>
           </div>
 
           {/* Line 2 */}
-          <div className="h-4 w-0.5 bg-brand-navy/15 relative">
+          <div className="h-4 w-0.5 bg-[#161443]/15 relative">
             <div
               className={`absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-brand-orange transition-all duration-300 ${
                 pulsePos === "line2"
@@ -4078,13 +4074,13 @@ const MarketingAutomationMockup = () => {
             className={`w-full px-4 py-2.5 rounded-xl border text-center transition-all duration-300 shadow-sm ${
               pulsePos === "node3"
                 ? "bg-emerald-500/10 border-emerald-500 scale-[1.03]"
-                : "bg-white border-brand-navy/10"
+                : "bg-white border-[#161443]/10"
             }`}
           >
             <span className="text-[12px] font-bold block leading-tight">
               3. WhatsApp Alert
             </span>
-            <span className="text-[9.5px] text-brand-navy/40 leading-none">
+            <span className="text-[9.5px] text-[#161443]/40 leading-none">
               Send Client Blueprint
             </span>
           </div>
@@ -4092,7 +4088,7 @@ const MarketingAutomationMockup = () => {
 
         {/* Right: Phone Simulator (col-span 5) */}
         <div className="col-span-5 flex justify-center py-1">
-          <div className="relative w-[145px] aspect-[9/16] bg-[#0c0c0e] rounded-2xl border border-brand-navy-light/80 p-1.5 flex flex-col justify-start overflow-hidden shadow-lg shrink-0">
+          <div className="relative w-[145px] aspect-[9/16] bg-[#0c0c0e] rounded-2xl border border-[#161443]/80 p-1.5 flex flex-col justify-start overflow-hidden shadow-lg shrink-0">
             {/* Screen background (lockscreen) */}
             <div className="absolute inset-0 bg-[#1e293b] flex flex-col items-center justify-start p-1.5 pointer-events-none">
               {/* Top notch */}
@@ -4117,10 +4113,10 @@ const MarketingAutomationMockup = () => {
                   </svg>
                 </div>
                 <div className="flex flex-col min-w-0 leading-tight">
-                  <span className="font-extrabold text-[9.5px] text-brand-navy truncate">
+                  <span className="font-extrabold text-[9.5px] text-[#161443] truncate">
                     Jukebox Media
                   </span>
-                  <span className="text-[8.5px] text-brand-navy/60 font-semibold leading-none">
+                  <span className="text-[8.5px] text-[#161443]/60 font-semibold leading-none">
                     Ready! 📄
                   </span>
                 </div>
@@ -4191,8 +4187,8 @@ const MarketingAutomationOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2 text-brand-navy select-none min-h-[170px] animate-fade-in">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2 text-[#161443] select-none min-h-[170px] animate-fade-in">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Live Integration Hub
       </span>
 
@@ -4210,7 +4206,7 @@ const MarketingAutomationOverlay = () => {
           </div>
           <div className="flex flex-col leading-tight">
             <span className="font-bold text-[9.5px]">WhatsApp CRM</span>
-            <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase">
+            <span className="text-[7.5px] text-[#161443]/40 font-semibold uppercase">
               Instant trigger
             </span>
           </div>
@@ -4246,7 +4242,7 @@ const MarketingAutomationOverlay = () => {
           </div>
           <div className="flex flex-col leading-tight">
             <span className="font-bold text-[9.5px]">Email Sequence</span>
-            <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase">
+            <span className="text-[7.5px] text-[#161443]/40 font-semibold uppercase">
               Nurture Campaign
             </span>
           </div>
@@ -4464,15 +4460,15 @@ const PerformanceMarketingOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none min-h-[200px]">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2.5 animate-fade-in text-[#161443] select-none min-h-[200px]">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Live Attribution Feed
       </span>
       <div className="relative h-[170px] overflow-hidden">
         {/* Card 1 */}
         <div
           ref={card1Ref}
-          className="absolute left-0 right-0 flex items-center justify-between p-2 bg-white/95 border border-brand-navy/[0.05] rounded-xl shadow-[0_4px_12px_rgba(16,20,59,0.03)] backdrop-blur-sm"
+          className="absolute left-0 right-0 flex items-center justify-between p-2 bg-white/95 border border-[#161443]/[0.05] rounded-xl shadow-[0_4px_12px_rgba(16,20,59,0.03)] backdrop-blur-sm"
         >
           <div className="flex items-center gap-2 min-w-0">
             <div className="h-7 w-7 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0 border border-blue-500/20">
@@ -4485,10 +4481,10 @@ const PerformanceMarketingOverlay = () => {
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-bold text-[10px] text-brand-navy truncate">
+              <span className="font-bold text-[10px] text-[#161443] truncate">
                 Google Search
               </span>
-              <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase tracking-wider">
+              <span className="text-[7.5px] text-[#161443]/40 font-semibold uppercase tracking-wider">
                 2s ago
               </span>
             </div>
@@ -4504,7 +4500,7 @@ const PerformanceMarketingOverlay = () => {
         {/* Card 2 */}
         <div
           ref={card2Ref}
-          className="absolute left-0 right-0 flex items-center justify-between p-2 bg-white/95 border border-brand-navy/[0.05] rounded-xl shadow-[0_4px_12px_rgba(16,20,59,0.03)] backdrop-blur-sm"
+          className="absolute left-0 right-0 flex items-center justify-between p-2 bg-white/95 border border-[#161443]/[0.05] rounded-xl shadow-[0_4px_12px_rgba(16,20,59,0.03)] backdrop-blur-sm"
         >
           <div className="flex items-center gap-2 min-w-0">
             <div className="h-7 w-7 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20">
@@ -4517,10 +4513,10 @@ const PerformanceMarketingOverlay = () => {
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-bold text-[10px] text-brand-navy truncate">
+              <span className="font-bold text-[10px] text-[#161443] truncate">
                 YouTube Ads
               </span>
-              <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase tracking-wider">
+              <span className="text-[7.5px] text-[#161443]/40 font-semibold uppercase tracking-wider">
                 1m ago
               </span>
             </div>
@@ -4536,7 +4532,7 @@ const PerformanceMarketingOverlay = () => {
         {/* Card 3 */}
         <div
           ref={card3Ref}
-          className="absolute left-0 right-0 flex items-center justify-between p-2 bg-white/95 border border-brand-navy/[0.05] rounded-xl shadow-[0_4px_12px_rgba(16,20,59,0.03)] backdrop-blur-sm"
+          className="absolute left-0 right-0 flex items-center justify-between p-2 bg-white/95 border border-[#161443]/[0.05] rounded-xl shadow-[0_4px_12px_rgba(16,20,59,0.03)] backdrop-blur-sm"
         >
           <div className="flex items-center gap-2 min-w-0">
             <div className="h-7 w-7 rounded-lg bg-pink-500/10 flex items-center justify-center shrink-0 border border-pink-500/20">
@@ -4553,10 +4549,10 @@ const PerformanceMarketingOverlay = () => {
               </svg>
             </div>
             <div className="flex flex-col min-w-0 leading-tight">
-              <span className="font-bold text-[10px] text-brand-navy truncate">
+              <span className="font-bold text-[10px] text-[#161443] truncate">
                 Instagram Reels
               </span>
-              <span className="text-[7.5px] text-brand-navy/40 font-semibold uppercase tracking-wider">
+              <span className="text-[7.5px] text-[#161443]/40 font-semibold uppercase tracking-wider">
                 Just now
               </span>
             </div>
@@ -4652,10 +4648,10 @@ const BrandStorytellingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none p-2">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
-        <span className="text-[15px] font-bold text-brand-navy/90">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-[#161443]/90">
           Brand Narrative Studio
         </span>
         <div className="flex items-center gap-2">
@@ -4667,8 +4663,8 @@ const BrandStorytellingMockup = () => {
       </div>
 
       {/* Page 1 — Typewriter */}
-      <div className="bg-brand-navy/[0.03] rounded-xl p-4 border border-brand-navy/5 mb-3 flex items-center min-h-[50px]">
-        <span className="text-[20px] font-bold text-brand-navy tracking-tight font-[Caveat] leading-snug">
+      <div className="bg-[#161443]/[0.03] rounded-xl p-4 border border-[#161443]/5 mb-3 flex items-center min-h-[50px]">
+        <span className="text-[20px] font-bold text-[#161443] tracking-tight font-[Caveat] leading-snug">
           {typedText}
           <span className="animate-pulse text-brand-orange">|</span>
         </span>
@@ -4678,19 +4674,19 @@ const BrandStorytellingMockup = () => {
       <div className="flex flex-col gap-3 relative py-2 pl-4">
         <div ref={word1Ref} className="flex items-center gap-3">
           <span className="h-3 w-3 rounded-full bg-brand-orange/80 shadow-[0_0_8px_rgba(246,134,31,0.6)]" />
-          <span className="text-[15px] font-extrabold text-brand-navy tracking-tight">
+          <span className="text-[15px] font-extrabold text-[#161443] tracking-tight">
             Trust
           </span>
         </div>
         <div ref={word2Ref} className="flex items-center gap-3">
           <span className="h-3 w-3 rounded-full bg-brand-orange/80 shadow-[0_0_8px_rgba(246,134,31,0.6)]" />
-          <span className="text-[15px] font-extrabold text-brand-navy tracking-tight">
+          <span className="text-[15px] font-extrabold text-[#161443] tracking-tight">
             Vision
           </span>
         </div>
         <div ref={word3Ref} className="flex items-center gap-3">
           <span className="h-3 w-3 rounded-full bg-brand-orange/80 shadow-[0_0_8px_rgba(246,134,31,0.6)]" />
-          <span className="text-[15px] font-extrabold text-brand-navy tracking-tight">
+          <span className="text-[15px] font-extrabold text-[#161443] tracking-tight">
             Impact
           </span>
         </div>
@@ -4718,7 +4714,7 @@ const BrandStorytellingMockup = () => {
         </div>
         <div
           ref={taglineRef}
-          className="text-[11px] font-extrabold text-brand-navy/50 uppercase tracking-widest"
+          className="text-[11px] font-extrabold text-[#161443]/50 uppercase tracking-widest"
         >
           Your Story, Their Connection
         </div>
@@ -4755,29 +4751,29 @@ const BrandStorytellingOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2.5 animate-fade-in text-[#161443] select-none">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Story Score
       </span>
       <div className="flex items-end justify-between">
         <span className="text-[28px] font-extrabold text-brand-orange leading-none">
           {score}
         </span>
-        <span className="text-[8px] font-bold text-brand-navy/40 uppercase">
+        <span className="text-[8px] font-bold text-[#161443]/40 uppercase">
           /10
         </span>
       </div>
-      <span className="text-[8px] font-semibold text-brand-navy/50 -mt-1">
+      <span className="text-[8px] font-semibold text-[#161443]/50 -mt-1">
         Emotional Resonance
       </span>
       <div className="flex flex-col gap-1.5 mt-1">
         <div className="flex items-center gap-2">
-          <span className="text-[7px] font-bold text-brand-navy/40 w-8">
+          <span className="text-[7px] font-bold text-[#161443]/40 w-8">
             Before
           </span>
-          <div className="flex-1 h-2 bg-brand-navy/5 rounded-full overflow-hidden">
+          <div className="flex-1 h-2 bg-[#161443]/5 rounded-full overflow-hidden">
             <div
-              className="h-full bg-brand-navy/20 rounded-full transition-all duration-300"
+              className="h-full bg-[#161443]/20 rounded-full transition-all duration-300"
               style={{ width: `${beforeBar}%` }}
             />
           </div>
@@ -4885,10 +4881,10 @@ const PersonalBrandingMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between items-center animate-fade-in text-brand-navy select-none p-2 gap-4">
+    <div className="flex flex-col h-full justify-between items-center animate-fade-in text-[#161443] select-none p-2 gap-4">
       {/* Header */}
-      <div className="flex items-center justify-between w-full border-b border-brand-navy/10 pb-3 mb-2">
-        <span className="text-[15px] font-bold text-brand-navy/90">
+      <div className="flex items-center justify-between w-full border-b border-[#161443]/10 pb-3 mb-2">
+        <span className="text-[15px] font-bold text-[#161443]/90">
           Identity Builder
         </span>
         <span className="text-[11px] font-extrabold text-brand-orange uppercase tracking-wider animate-pulse">
@@ -4911,7 +4907,7 @@ const PersonalBrandingMockup = () => {
           />
         </svg>
         {initials && (
-          <span className="text-[32px] font-extrabold text-brand-navy animate-fade-in">
+          <span className="text-[32px] font-extrabold text-[#161443] animate-fade-in">
             SJ
           </span>
         )}
@@ -4921,14 +4917,11 @@ const PersonalBrandingMockup = () => {
       <div className="flex flex-col items-center gap-1">
         <div
           ref={nameRef}
-          className="text-[20px] font-extrabold text-brand-navy tracking-tight"
+          className="text-[20px] font-extrabold text-[#161443] tracking-tight"
         >
           Siddharth Jain
         </div>
-        <div
-          ref={titleRef}
-          className="text-[13px] font-bold text-brand-navy/50"
-        >
+        <div ref={titleRef} className="text-[13px] font-bold text-[#161443]/50">
           Founder & Strategist
         </div>
       </div>
@@ -4949,10 +4942,10 @@ const PersonalBrandingMockup = () => {
         </div>
         <div
           ref={badge2Ref}
-          className="h-9 w-9 rounded-full bg-brand-navy/5 border border-brand-navy/10 flex items-center justify-center transition-transform hover:scale-110"
+          className="h-9 w-9 rounded-full bg-[#161443]/5 border border-[#161443]/10 flex items-center justify-center transition-transform hover:scale-110"
         >
           <svg
-            className="w-4.5 h-4.5 text-brand-navy"
+            className="w-4.5 h-4.5 text-[#161443]"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -4964,7 +4957,7 @@ const PersonalBrandingMockup = () => {
       {/* Follower Counter */}
       <div
         ref={counterRef}
-        className="flex items-center gap-2.5 bg-brand-navy/[0.03] border border-brand-navy/5 rounded-xl px-5 py-2.5 shadow-sm"
+        className="flex items-center gap-2.5 bg-[#161443]/[0.03] border border-[#161443]/5 rounded-xl px-5 py-2.5 shadow-sm"
       >
         <svg
           className="w-5 h-5 text-brand-orange"
@@ -4979,10 +4972,10 @@ const PersonalBrandingMockup = () => {
             d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
           />
         </svg>
-        <span className="text-[20px] font-extrabold text-brand-navy tracking-tight">
+        <span className="text-[20px] font-extrabold text-[#161443] tracking-tight">
           {followerCount}
         </span>
-        <span className="text-[11px] font-bold text-brand-navy/40 uppercase tracking-wide">
+        <span className="text-[11px] font-bold text-[#161443]/40 uppercase tracking-wide">
           Followers
         </span>
       </div>
@@ -5018,8 +5011,8 @@ const PersonalBrandingOverlay = () => {
   const strokeDashoffset = circumference - (ringProgress / 100) * circumference;
 
   return (
-    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2.5 animate-fade-in text-[#161443] select-none">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Authority Score
       </span>
       <div className="flex items-center gap-3">
@@ -5059,7 +5052,7 @@ const PersonalBrandingOverlay = () => {
           </text>
         </svg>
         <div className="flex flex-col">
-          <span className="text-[9px] font-bold text-brand-navy/50">
+          <span className="text-[9px] font-bold text-[#161443]/50">
             Trust Index
           </span>
           <span className="text-[11px] font-extrabold text-brand-orange">
@@ -5174,10 +5167,10 @@ const StrategyMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none p-2">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
-        <span className="text-[15px] font-bold text-brand-navy/90">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-[#161443]/90">
           Growth Blueprint
         </span>
         <span className="text-[11px] font-extrabold text-brand-orange uppercase tracking-wider animate-pulse">
@@ -5234,7 +5227,7 @@ const StrategyMockup = () => {
           </svg>
           <div
             ref={node1Ref}
-            className="px-4 py-2 rounded-xl bg-brand-orange/10 border border-brand-orange/20 text-[13px] font-bold text-brand-navy whitespace-nowrap shadow-sm"
+            className="px-4 py-2 rounded-xl bg-brand-orange/10 border border-brand-orange/20 text-[13px] font-bold text-[#161443] whitespace-nowrap shadow-sm"
           >
             🎯 Audience
           </div>
@@ -5259,7 +5252,7 @@ const StrategyMockup = () => {
           </svg>
           <div
             ref={node2Ref}
-            className="px-4 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-[13px] font-bold text-brand-navy whitespace-nowrap shadow-sm"
+            className="px-4 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-[13px] font-bold text-[#161443] whitespace-nowrap shadow-sm"
           >
             📡 Channels
           </div>
@@ -5284,7 +5277,7 @@ const StrategyMockup = () => {
           </svg>
           <div
             ref={node3Ref}
-            className="px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[13px] font-bold text-brand-navy whitespace-nowrap shadow-sm"
+            className="px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[13px] font-bold text-[#161443] whitespace-nowrap shadow-sm"
           >
             ✍️ Content
           </div>
@@ -5309,7 +5302,7 @@ const StrategyMockup = () => {
           </svg>
           <div
             ref={node4Ref}
-            className="px-4 py-2 rounded-xl bg-brand-orange/10 border border-brand-orange/25 text-[13px] font-bold text-brand-navy whitespace-nowrap shadow-md"
+            className="px-4 py-2 rounded-xl bg-brand-orange/10 border border-brand-orange/25 text-[13px] font-bold text-[#161443] whitespace-nowrap shadow-md"
           >
             🚀 Growth
           </div>
@@ -5380,8 +5373,8 @@ const StrategyOverlay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2.5 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2.5 animate-fade-in text-[#161443] select-none">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Growth Trajectory
       </span>
       {/* Mini Chart */}
@@ -5406,7 +5399,7 @@ const StrategyOverlay = () => {
       </svg>
       <div className="flex items-end justify-between -mt-1">
         <div className="flex flex-col">
-          <span className="text-[8px] font-bold text-brand-navy/40 uppercase">
+          <span className="text-[8px] font-bold text-[#161443]/40 uppercase">
             ROI Multiplier
           </span>
           <span className="text-[22px] font-extrabold text-brand-orange leading-none">
@@ -5538,10 +5531,10 @@ const ContentCreationMockup = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between animate-fade-in text-brand-navy select-none p-2">
+    <div className="flex flex-col h-full justify-between animate-fade-in text-[#161443] select-none p-2">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-brand-navy/10 pb-3 mb-4">
-        <span className="text-[15px] font-bold text-brand-navy/90">
+      <div className="flex items-center justify-between border-b border-[#161443]/10 pb-3 mb-4">
+        <span className="text-[15px] font-bold text-[#161443]/90">
           Content Studio
         </span>
         <div className="flex items-center gap-2">
@@ -5555,7 +5548,7 @@ const ContentCreationMockup = () => {
       {/* Canvas Area */}
       <div
         ref={canvasRef}
-        className="flex-grow relative rounded-xl overflow-hidden border border-brand-navy/10 bg-brand-navy/[0.02] min-h-[200px]"
+        className="flex-grow relative rounded-xl overflow-hidden border border-[#161443]/10 bg-[#161443]/[0.02] min-h-[200px]"
       >
         {/* Grid lines */}
         <div
@@ -5570,12 +5563,12 @@ const ContentCreationMockup = () => {
         {/* Gradient Background Wipe */}
         <div
           ref={gradientRef}
-          className="absolute inset-0 bg-gradient-to-r from-brand-orange/30 via-brand-orange/15 to-brand-navy/20 rounded-xl"
+          className="absolute inset-0 bg-gradient-to-r from-brand-orange/30 via-brand-orange/15 to-[#161443]/20 rounded-xl"
         />
 
         {/* Content Overlay */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full p-4 gap-4">
-          <span className="text-[22px] font-extrabold text-brand-navy text-center tracking-tight leading-tight min-h-[30px]">
+          <span className="text-[22px] font-extrabold text-[#161443] text-center tracking-tight leading-tight min-h-[30px]">
             {headline}
             {headline.length < 20 && headline.length > 0 && (
               <span className="animate-pulse text-brand-orange">|</span>
@@ -5609,7 +5602,7 @@ const ContentCreationMockup = () => {
           <span className="text-[11px] text-pink-500 font-bold block mb-0.5">
             ❤️
           </span>
-          <span className="text-[15px] font-extrabold text-brand-navy">
+          <span className="text-[15px] font-extrabold text-[#161443]">
             {likes}
           </span>
         </div>
@@ -5617,7 +5610,7 @@ const ContentCreationMockup = () => {
           <span className="text-[11px] text-blue-500 font-bold block mb-0.5">
             💬
           </span>
-          <span className="text-[15px] font-extrabold text-brand-navy">
+          <span className="text-[15px] font-extrabold text-[#161443]">
             {comments}
           </span>
         </div>
@@ -5625,7 +5618,7 @@ const ContentCreationMockup = () => {
           <span className="text-[11px] text-emerald-500 font-bold block mb-0.5">
             🔁
           </span>
-          <span className="text-[15px] font-extrabold text-brand-navy">
+          <span className="text-[15px] font-extrabold text-[#161443]">
             {shares}
           </span>
         </div>
@@ -5673,16 +5666,16 @@ const ContentCreationOverlay = () => {
   const strokeDashoffset = circumference - (quality / 100) * circumference;
 
   return (
-    <div className="flex flex-col gap-2 animate-fade-in text-brand-navy select-none">
-      <span className="text-[9px] font-extrabold text-brand-navy/40 uppercase tracking-widest block mb-1">
+    <div className="flex flex-col gap-2 animate-fade-in text-[#161443] select-none">
+      <span className="text-[9px] font-extrabold text-[#161443]/40 uppercase tracking-widest block mb-1">
         Content Performance
       </span>
-      <div className="flex items-center justify-between text-[10px] border-b border-brand-navy/5 pb-1">
-        <span className="text-brand-navy/60 font-semibold">Reach</span>
-        <span className="font-extrabold text-brand-navy">{reach}</span>
+      <div className="flex items-center justify-between text-[10px] border-b border-[#161443]/5 pb-1">
+        <span className="text-[#161443]/60 font-semibold">Reach</span>
+        <span className="font-extrabold text-[#161443]">{reach}</span>
       </div>
-      <div className="flex items-center justify-between text-[10px] border-b border-brand-navy/5 pb-1">
-        <span className="text-brand-navy/60 font-semibold">Saves</span>
+      <div className="flex items-center justify-between text-[10px] border-b border-[#161443]/5 pb-1">
+        <span className="text-[#161443]/60 font-semibold">Saves</span>
         <span className="font-extrabold text-brand-orange">{saves}</span>
       </div>
       <div className="flex items-center gap-2 pt-1">
@@ -5721,7 +5714,7 @@ const ContentCreationOverlay = () => {
           </text>
         </svg>
         <div className="flex flex-col">
-          <span className="text-[8px] font-bold text-brand-navy/40 uppercase">
+          <span className="text-[8px] font-bold text-[#161443]/40 uppercase">
             Quality Score
           </span>
           <span className="text-[10px] font-extrabold text-emerald-500">

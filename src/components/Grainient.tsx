@@ -5,8 +5,21 @@ import { Renderer, Program, Mesh, Triangle } from 'ogl';
 import './Grainient.css';
 
 const hexToRgb = (hex: string) => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  if (!result) return [1, 1, 1];
+  let resolvedColor = hex;
+  if (hex && hex.startsWith('var(')) {
+    const varName = hex.slice(4, -1).trim();
+    if (typeof window !== 'undefined') {
+      const val = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+      if (val) {
+        resolvedColor = val;
+      }
+    }
+  }
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(resolvedColor);
+  if (!result) {
+    if (hex.includes('#161443')) return [22 / 255, 20 / 255, 67 / 255];
+    return [1, 1, 1];
+  }
   return [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255];
 };
 

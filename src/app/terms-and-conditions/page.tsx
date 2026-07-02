@@ -10,7 +10,7 @@ export default function TermsAndConditionsPage() {
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] pointer-events-none z-0" />
 
       {/* Header */}
-      <header className="w-full border-b border-white/10 bg-brand-navy/30 backdrop-blur-md sticky top-0 z-50 py-4 px-6 sm:px-12 md:px-16 flex justify-center">
+      <header className="w-full border-b border-white/10 bg-[#161443]/30 backdrop-blur-md sticky top-0 z-50 py-4 px-6 sm:px-12 md:px-16 flex justify-center">
         <div className="max-w-[1550px] w-full flex items-center justify-between">
           <Link href="/" className="flex items-center group">
             <img
@@ -309,7 +309,7 @@ export default function TermsAndConditionsPage() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-white/10 py-8 px-6 sm:px-12 md:px-16 flex justify-center bg-brand-navy/20 relative z-10 select-none">
+      <footer className="w-full border-t border-white/10 py-8 px-6 sm:px-12 md:px-16 flex justify-center bg-[#161443]/20 relative z-10 select-none">
         <div className="max-w-[1550px] w-full flex flex-col sm:flex-row justify-between items-center text-[13px] text-white/50 font-medium">
           <div>
             © {new Date().getFullYear()} Jukebox Media. All Rights Reserved.

@@ -254,13 +254,13 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
         <div className="flex justify-between items-center mb-2 px-0.5">
           <span
             ref={headerRef}
-            className="text-[10px] font-bold text-brand-navy tracking-tight"
+            className="text-[10px] font-bold text-[#161443] tracking-tight"
           >
             This month
           </span>
           <div className="flex gap-1">
-            <span className="w-1 h-1 rounded-full bg-brand-navy/20"></span>
-            <span className="w-1 h-1 rounded-full bg-brand-navy/20"></span>
+            <span className="w-1 h-1 rounded-full bg-[#161443]/20"></span>
+            <span className="w-1 h-1 rounded-full bg-[#161443]/20"></span>
           </div>
         </div>
 
@@ -269,7 +269,7 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
           {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
             <span
               key={i}
-              className="text-[8px] font-bold text-brand-navy/30 tracking-wider"
+              className="text-[8px] font-bold text-[#161443]/30 tracking-wider"
             >
               {d}
             </span>
@@ -285,7 +285,7 @@ export default function IrregularCampaignsVisual({ isHovered }: Props) {
                 key={idx}
                 className="relative border-r border-b border-black/[0.015] flex items-start justify-end p-0.5"
               >
-                <span className="text-[6px] font-medium text-brand-navy/15">
+                <span className="text-[6px] font-medium text-[#161443]/15">
                   {idx + 1}
                 </span>
               </div>

@@ -73,7 +73,7 @@ export default function AppointmentCard() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={tiltStyle}
-      className="absolute z-20 left-[48%] top-[35%] -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-2xl border border-brand-navy/[0.04] bg-white shadow-premium overflow-hidden select-none"
+      className="absolute z-20 left-[48%] top-[35%] -translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-2xl border border-[#161443]/[0.04] bg-white shadow-premium overflow-hidden select-none"
     >
       <div className="w-[190px]">
         {/* Top Orange Container */}
@@ -90,18 +90,18 @@ export default function AppointmentCard() {
         <div className="p-3 bg-white flex flex-col gap-2">
           {/* Tags */}
           <div className="flex gap-1.5">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-brand-navy/[0.06] bg-brand-navy/[0.03] text-[9px] font-semibold text-brand-navy">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-[#161443]/[0.06] bg-[#161443]/[0.03] text-[9px] font-semibold text-[#161443]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#38bdf8]"></span>
               Strategy
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-brand-navy/[0.06] bg-brand-navy/[0.03] text-[9px] font-semibold text-brand-navy">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-[#161443]/[0.06] bg-[#161443]/[0.03] text-[9px] font-semibold text-[#161443]">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-orange"></span>
               Growth
             </span>
           </div>
 
           {/* Time/Date */}
-          <div className="flex items-center gap-1.5 text-[9.5px] font-semibold text-brand-navy/70 mt-1">
+          <div className="flex items-center gap-1.5 text-[9.5px] font-semibold text-[#161443]/70 mt-1">
             {/* Calendar SVG */}
             <svg
               className="h-3.5 w-3.5 text-brand-orange"

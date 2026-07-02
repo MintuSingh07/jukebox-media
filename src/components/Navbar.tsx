@@ -136,12 +136,12 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
         {/* Center Pill Navigation Dock */}
         <nav
           ref={navContainerRef}
-          className="relative hidden xl:flex items-center gap-0.5 rounded-full p-1 bg-brand-navy/[0.02]"
+          className="relative hidden xl:flex items-center gap-0.5 rounded-full p-1 bg-[#161443]/[0.02]"
         >
           {/* Sliding Active Bubble */}
           <div
             ref={bubbleRef}
-            className="absolute bg-[#161443] rounded-full shadow-[0_2px_6px_rgba(22,20,67,0.15)] z-0"
+            className="absolute bg-[#161443] rounded-full shadow-[0_2px_6px_rgba(22, 20, 67,0.15)] z-0"
             style={{ opacity: 0 }}
           />
           {[
@@ -165,7 +165,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                 className={`relative px-3.5 py-1.5 text-[13px] font-semibold rounded-full transition-colors duration-300 cursor-pointer z-10 ${
                   isActive
                     ? "text-white active-nav-btn"
-                    : "text-brand-navy/70 hover:text-brand-navy hover:bg-brand-navy/[0.03]"
+                    : "text-[#161443]/70 hover:text-[#161443] hover:bg-[#161443]/[0.03]"
                 }`}
               >
                 <span className="flex items-center gap-1">{item.name}</span>
@@ -180,7 +180,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
             href={`https://wa.me/919998526134?text=${encodeURIComponent("Hi Jukebox Media! I would like to connect.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="lets-talk-btn group hidden sm:flex items-center justify-center w-11 h-11 rounded-full bg-brand-navy text-white transition-all duration-300 hover:bg-brand-navy-light hover:scale-105 shadow-md cursor-pointer border border-white/15"
+            className="lets-talk-btn group hidden sm:flex items-center justify-center w-11 h-11 rounded-full bg-[#161443] text-white transition-all duration-300 hover:bg-[#161443]/90 hover:scale-105 shadow-md cursor-pointer border border-white/15"
           >
             <svg className="w-5.5 h-5.5 shrink-0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
               <circle cx="8" cy="8" r="8" fill="#25D366" />
@@ -191,18 +191,18 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
           {/* Hamburger toggle button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="xl:hidden relative flex flex-col justify-center items-center w-10 h-10 rounded-full border border-brand-navy/10 bg-white/80 shadow-premium cursor-pointer z-50 focus:outline-none"
+            className="xl:hidden relative flex flex-col justify-center items-center w-10 h-10 rounded-full border border-[#161443]/10 bg-white/80 shadow-premium cursor-pointer z-50 focus:outline-none"
             aria-label="Toggle mobile menu"
           >
             <div className="relative w-5 h-4">
               <span
-                className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 ${isMobileMenuOpen ? "top-1.5 rotate-45" : "top-0"}`}
+                className={`absolute left-0 right-0 h-0.5 bg-[#161443] rounded-full transition-all duration-300 ${isMobileMenuOpen ? "top-1.5 rotate-45" : "top-0"}`}
               />
               <span
-                className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 top-1.5 ${isMobileMenuOpen ? "opacity-0 scale-x-0" : "opacity-100"}`}
+                className={`absolute left-0 right-0 h-0.5 bg-[#161443] rounded-full transition-all duration-300 top-1.5 ${isMobileMenuOpen ? "opacity-0 scale-x-0" : "opacity-100"}`}
               />
               <span
-                className={`absolute left-0 right-0 h-0.5 bg-brand-navy rounded-full transition-all duration-300 ${isMobileMenuOpen ? "top-1.5 -rotate-45" : "top-3"}`}
+                className={`absolute left-0 right-0 h-0.5 bg-[#161443] rounded-full transition-all duration-300 ${isMobileMenuOpen ? "top-1.5 -rotate-45" : "top-3"}`}
               />
             </div>
           </button>
@@ -241,12 +241,12 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
               {/* Close button that matches the hamburger position but styled for orange backdrop */}
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative flex flex-col justify-center items-center w-10 h-10 rounded-full border border-brand-navy/10 bg-brand-navy/10 shadow-premium cursor-pointer focus:outline-none"
+                className="relative flex flex-col justify-center items-center w-10 h-10 rounded-full border border-[#161443]/10 bg-[#161443]/10 shadow-premium cursor-pointer focus:outline-none"
                 aria-label="Close mobile menu"
               >
                 <div className="relative w-5 h-5 flex items-center justify-center">
-                  <span className="absolute h-0.5 w-5 bg-brand-navy rounded-full rotate-45" />
-                  <span className="absolute h-0.5 w-5 bg-brand-navy rounded-full -rotate-45" />
+                  <span className="absolute h-0.5 w-5 bg-[#161443] rounded-full rotate-45" />
+                  <span className="absolute h-0.5 w-5 bg-[#161443] rounded-full -rotate-45" />
                 </div>
               </button>
             </div>
@@ -274,8 +274,8 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                     }}
                     className={`text-center py-1.5 text-[24px] sm:text-[30px] font-bold tracking-tight transition-all duration-300 w-full hover:scale-105 ${
                       isActive
-                        ? "text-brand-navy drop-shadow-[0_2px_8px_rgba(22,20,67,0.15)]"
-                        : "text-brand-navy/70 hover:text-brand-navy"
+                        ? "text-[#161443] drop-shadow-[0_2px_8px_rgba(22,20,67,0.15)]"
+                        : "text-[#161443]/70 hover:text-[#161443]"
                     }`}
                     style={{
                       transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : "0ms",
@@ -294,7 +294,7 @@ const Navbar = forwardRef<HTMLElement, NavbarProps>((props, ref) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2.5 rounded-full bg-brand-navy py-3.5 px-8 text-[15px] font-bold text-white transition-all duration-300 hover:bg-brand-navy-light hover:scale-[1.02] w-full max-w-sm cursor-pointer text-center shadow-lg border border-white/10"
+                className="flex items-center justify-center gap-2.5 rounded-full bg-[#161443] py-3.5 px-8 text-[15px] font-bold text-white transition-all duration-300 hover:bg-[#161443]/90 hover:scale-[1.02] w-full max-w-sm cursor-pointer text-center shadow-lg border border-white/10"
               >
                 <svg className="w-5 h-5 shrink-0" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="8" cy="8" r="8" fill="#25D366" />

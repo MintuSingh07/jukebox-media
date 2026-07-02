@@ -179,24 +179,24 @@ export default function UnclearROIVisual({ isHovered }: Props) {
       >
         {/* Card Title */}
         <div className="flex justify-between items-center mb-2 px-0.5">
-          <span className="text-[10px] font-bold text-brand-navy tracking-tight">
+          <span className="text-[10px] font-bold text-[#161443] tracking-tight">
             Marketing ROI
           </span>
-          <span className="text-[8px] font-medium text-brand-navy/30">Live updates</span>
+          <span className="text-[8px] font-medium text-[#161443]/30">Live updates</span>
         </div>
 
         {/* KPI Tiles (2 Columns) */}
         <div className="grid grid-cols-2 gap-2 mb-2">
           {/* KPI 1: CAC */}
           <div className="bg-[#f8fafc] border border-black/[0.02] rounded-lg p-1.5 flex flex-col justify-between h-[36px]">
-            <div className="text-[6.5px] font-bold text-brand-navy/40 uppercase tracking-wider">
+            <div className="text-[6.5px] font-bold text-[#161443]/40 uppercase tracking-wider">
               CAC
             </div>
             <div className="text-[10px] font-extrabold leading-none relative h-3 flex items-center">
               {/* Question mark (default) */}
               <span
                 ref={qMark1Ref}
-                className="text-brand-navy/30 font-black absolute"
+                className="text-[#161443]/30 font-black absolute"
               >
                 ?
               </span>
@@ -212,14 +212,14 @@ export default function UnclearROIVisual({ isHovered }: Props) {
 
           {/* KPI 2: Conversions */}
           <div className="bg-[#f8fafc] border border-black/[0.02] rounded-lg p-1.5 flex flex-col justify-between h-[36px]">
-            <div className="text-[6.5px] font-bold text-brand-navy/40 uppercase tracking-wider">
+            <div className="text-[6.5px] font-bold text-[#161443]/40 uppercase tracking-wider">
               Conversions
             </div>
             <div className="text-[10px] font-extrabold leading-none relative h-3 flex items-center">
               {/* Question mark (default) */}
               <span
                 ref={qMark2Ref}
-                className="text-brand-navy/30 font-black absolute"
+                className="text-[#161443]/30 font-black absolute"
               >
                 ?
               </span>

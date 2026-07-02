@@ -114,7 +114,7 @@ function LogoItem({
   return (
     <div className="flex items-center justify-center px-1.5 max-w-full">
       {hasError ? (
-        <span className="logo-fallback text-[10px] md:text-[12px] font-bold text-brand-navy/60 tracking-tight whitespace-nowrap">
+        <span className="logo-fallback text-[10px] md:text-[12px] font-bold text-[#161443]/60 tracking-tight whitespace-nowrap">
           {name}
         </span>
       ) : (
@@ -141,7 +141,7 @@ export default function LogoWall() {
     <div className="w-full h-full flex flex-col items-center justify-start pt-8 md:pt-16 lg:pt-24 pb-8 md:pb-12 lg:pb-16 px-4 sm:px-8 gap-2">
       {/* Section header */}
       <div className="text-center mb-6 md:mb-8 mt-8 md:mt-10 lg:mt-14">
-        <h2 className="text-[32px] sm:text-[40px] font-bold text-brand-navy tracking-tight">
+        <h2 className="text-[32px] sm:text-[40px] font-bold text-[#161443] tracking-tight">
           Leadership Experience Across Brands
         </h2>
       </div>
@@ -610,7 +610,7 @@ export default function LogoWall() {
       </div>
 
       {/* Subtle bottom divider line */}
-      <div className="mt-6 md:mt-10 w-16 h-[2px] rounded-full bg-brand-navy/10" />
+      <div className="mt-6 md:mt-10 w-16 h-[2px] rounded-full bg-[#161443]/10" />
     </div>
   );
 }
