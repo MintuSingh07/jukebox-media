@@ -123,7 +123,7 @@ function LogoItem({
         <img
           src={src}
           alt={name}
-          className="w-auto max-w-[9vw] xl:max-w-none object-contain animate-logo-pop"
+          className="w-auto max-w-[9vw] 2xl:max-w-none object-contain animate-logo-pop"
           style={{
             height: heightStyle,
             animationDelay: delay ? `${delay}ms` : undefined,

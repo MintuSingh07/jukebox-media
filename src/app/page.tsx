@@ -2208,7 +2208,7 @@ export default function Home() {
               </span>
               <div className="flex flex-col gap-4">
                 <div>
-                  <h4 className="text-[18px] font-black text-white select-none">
+                  <h4 className="text-[18px] font-bold text-white select-none">
                     Jukebox Media
                   </h4>
                   <p className="text-[11px] text-white/40 font-medium select-none mt-0.5">
@@ -2245,7 +2245,7 @@ export default function Home() {
                       className="group w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#f6861f]/50 hover:bg-[#f6861f]/10 hover:shadow-[0_0_20px_rgba(246,134,31,0.25)] hover:scale-110 transition-all duration-300"
                     >
                       <svg
-                        className="w-5.5 h-5.5 text-white/70 group-hover:text-[#f6861f] transition-colors duration-300"
+                        className="w-6.5 h-6.5 text-white/70 group-hover:text-[#f6861f] transition-colors duration-300"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -2264,7 +2264,7 @@ export default function Home() {
                       className="group w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:text-white hover:border-[#25D366]/50 hover:bg-[#25D366]/10 hover:shadow-[0_0_20px_rgba(37,211,102,0.25)] hover:scale-110 transition-all duration-300"
                     >
                       <svg
-                        className="w-5.5 h-5.5 text-white/70 group-hover:text-[#25D366] transition-colors duration-300"
+                        className="w-6.5 h-6.5 text-white/70 group-hover:text-[#25D366] transition-colors duration-300"
                         viewBox="0 0 24 24"
                         fill="currentColor"
                       >
