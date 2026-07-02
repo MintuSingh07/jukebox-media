@@ -728,13 +728,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0 pointer-events-none"></div>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div
-            className="absolute top-0 right-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
-            style={{
-              background:
-                "radial-gradient(circle at top right, rgba(246, 134, 31, 0.1) 0%, rgba(246, 134, 31, 0) 70%)",
-            }}
-          />
-          <div
             className="absolute bottom-0 left-0 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px]"
             style={{
               background:
@@ -2088,7 +2081,7 @@ export default function Home() {
           <div className="aspect-video max-w-[950px] w-full mx-auto rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(22, 20, 67,0.2)] border border-[#161443]/10 relative group bg-[#161443]">
             {isFilmPlaying ? (
               <iframe
-                src="https://www.youtube.com/embed/nf_EqvzpgFo?autoplay=1&controls=1"
+                src="https://www.youtube.com/embed/nf_EqvzpgFo?autoplay=1&controls=1&cc_load_policy=0"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
